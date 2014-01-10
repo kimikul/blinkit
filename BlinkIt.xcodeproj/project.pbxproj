@@ -14,13 +14,24 @@
 		5EAB8AB0187E73DF00B02953 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EAB8AAF187E73DF00B02953 /* main.m */; };
 		5EAB8AB4187E73DF00B02953 /* BIAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EAB8AB3187E73DF00B02953 /* BIAppDelegate.m */; };
 		5EAB8AB7187E73DF00B02953 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5EAB8AB5187E73DF00B02953 /* Main.storyboard */; };
-		5EAB8ABA187E73DF00B02953 /* BIViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EAB8AB9187E73DF00B02953 /* BIViewController.m */; };
 		5EAB8ABC187E73DF00B02953 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5EAB8ABB187E73DF00B02953 /* Images.xcassets */; };
 		5EAB8AC3187E73DF00B02953 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EAB8AC2187E73DF00B02953 /* XCTest.framework */; };
 		5EAB8AC4187E73DF00B02953 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EAB8AA3187E73DF00B02953 /* Foundation.framework */; };
 		5EAB8AC5187E73DF00B02953 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EAB8AA7187E73DF00B02953 /* UIKit.framework */; };
 		5EAB8ACD187E73DF00B02953 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5EAB8ACB187E73DF00B02953 /* InfoPlist.strings */; };
 		5EAB8ACF187E73DF00B02953 /* BlinkItTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EAB8ACE187E73DF00B02953 /* BlinkItTests.m */; };
+		5EAB8ADB187E7CFF00B02953 /* BILoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EAB8ADA187E7CFF00B02953 /* BILoginViewController.m */; };
+		5EAB8AE1187E7D2600B02953 /* BISignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EAB8AE0187E7D2600B02953 /* BISignUpViewController.m */; };
+		5EAB8AE4187E7D3600B02953 /* BISplashViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EAB8AE3187E7D3600B02953 /* BISplashViewController.m */; };
+		5EAB8AFF187FC8A100B02953 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EAB8AFE187FC8A100B02953 /* Parse.framework */; };
+		5EAB8B01187FC8BA00B02953 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EAB8B00187FC8BA00B02953 /* AudioToolbox.framework */; };
+		5EAB8B03187FC8BF00B02953 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EAB8B02187FC8BF00B02953 /* CFNetwork.framework */; };
+		5EAB8B05187FC8C600B02953 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EAB8B04187FC8C600B02953 /* CoreLocation.framework */; };
+		5EAB8B07187FC8CD00B02953 /* libz.1.1.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EAB8B06187FC8CD00B02953 /* libz.1.1.3.dylib */; };
+		5EAB8B09187FC90000B02953 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EAB8B08187FC90000B02953 /* MobileCoreServices.framework */; };
+		5EAB8B0B187FC90500B02953 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EAB8B0A187FC90500B02953 /* QuartzCore.framework */; };
+		5EAB8B0D187FC90A00B02953 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EAB8B0C187FC90A00B02953 /* Security.framework */; };
+		5EAB8B0F187FC90F00B02953 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EAB8B0E187FC90F00B02953 /* SystemConfiguration.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,14 +56,27 @@
 		5EAB8AB2187E73DF00B02953 /* BIAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BIAppDelegate.h; sourceTree = "<group>"; };
 		5EAB8AB3187E73DF00B02953 /* BIAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BIAppDelegate.m; sourceTree = "<group>"; };
 		5EAB8AB6187E73DF00B02953 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		5EAB8AB8187E73DF00B02953 /* BIViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BIViewController.h; sourceTree = "<group>"; };
-		5EAB8AB9187E73DF00B02953 /* BIViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BIViewController.m; sourceTree = "<group>"; };
 		5EAB8ABB187E73DF00B02953 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		5EAB8AC1187E73DF00B02953 /* BlinkItTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BlinkItTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5EAB8AC2187E73DF00B02953 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		5EAB8ACA187E73DF00B02953 /* BlinkItTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BlinkItTests-Info.plist"; sourceTree = "<group>"; };
 		5EAB8ACC187E73DF00B02953 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		5EAB8ACE187E73DF00B02953 /* BlinkItTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BlinkItTests.m; sourceTree = "<group>"; };
+		5EAB8AD9187E7CFF00B02953 /* BILoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BILoginViewController.h; path = PreSignedIn/BILoginViewController.h; sourceTree = "<group>"; };
+		5EAB8ADA187E7CFF00B02953 /* BILoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BILoginViewController.m; path = PreSignedIn/BILoginViewController.m; sourceTree = "<group>"; };
+		5EAB8ADF187E7D2600B02953 /* BISignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BISignUpViewController.h; path = PreSignedIn/BISignUpViewController.h; sourceTree = "<group>"; };
+		5EAB8AE0187E7D2600B02953 /* BISignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BISignUpViewController.m; path = PreSignedIn/BISignUpViewController.m; sourceTree = "<group>"; };
+		5EAB8AE2187E7D3600B02953 /* BISplashViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BISplashViewController.h; path = PreSignedIn/BISplashViewController.h; sourceTree = "<group>"; };
+		5EAB8AE3187E7D3600B02953 /* BISplashViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BISplashViewController.m; path = PreSignedIn/BISplashViewController.m; sourceTree = "<group>"; };
+		5EAB8AFE187FC8A100B02953 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
+		5EAB8B00187FC8BA00B02953 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		5EAB8B02187FC8BF00B02953 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		5EAB8B04187FC8C600B02953 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		5EAB8B06187FC8CD00B02953 /* libz.1.1.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.1.3.dylib; path = usr/lib/libz.1.1.3.dylib; sourceTree = SDKROOT; };
+		5EAB8B08187FC90000B02953 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		5EAB8B0A187FC90500B02953 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		5EAB8B0C187FC90A00B02953 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		5EAB8B0E187FC90F00B02953 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,8 +84,17 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5EAB8B0F187FC90F00B02953 /* SystemConfiguration.framework in Frameworks */,
+				5EAB8B0D187FC90A00B02953 /* Security.framework in Frameworks */,
+				5EAB8B0B187FC90500B02953 /* QuartzCore.framework in Frameworks */,
+				5EAB8B09187FC90000B02953 /* MobileCoreServices.framework in Frameworks */,
+				5EAB8B07187FC8CD00B02953 /* libz.1.1.3.dylib in Frameworks */,
+				5EAB8B05187FC8C600B02953 /* CoreLocation.framework in Frameworks */,
+				5EAB8B03187FC8BF00B02953 /* CFNetwork.framework in Frameworks */,
+				5EAB8B01187FC8BA00B02953 /* AudioToolbox.framework in Frameworks */,
 				5EAB8AA6187E73DF00B02953 /* CoreGraphics.framework in Frameworks */,
 				5EAB8AA8187E73DF00B02953 /* UIKit.framework in Frameworks */,
+				5EAB8AFF187FC8A100B02953 /* Parse.framework in Frameworks */,
 				5EAB8AA4187E73DF00B02953 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -101,6 +134,15 @@
 		5EAB8AA2187E73DF00B02953 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5EAB8B0E187FC90F00B02953 /* SystemConfiguration.framework */,
+				5EAB8B0C187FC90A00B02953 /* Security.framework */,
+				5EAB8B0A187FC90500B02953 /* QuartzCore.framework */,
+				5EAB8B08187FC90000B02953 /* MobileCoreServices.framework */,
+				5EAB8B06187FC8CD00B02953 /* libz.1.1.3.dylib */,
+				5EAB8B04187FC8C600B02953 /* CoreLocation.framework */,
+				5EAB8B02187FC8BF00B02953 /* CFNetwork.framework */,
+				5EAB8B00187FC8BA00B02953 /* AudioToolbox.framework */,
+				5EAB8AFE187FC8A100B02953 /* Parse.framework */,
 				5EAB8AA3187E73DF00B02953 /* Foundation.framework */,
 				5EAB8AA5187E73DF00B02953 /* CoreGraphics.framework */,
 				5EAB8AA7187E73DF00B02953 /* UIKit.framework */,
@@ -112,11 +154,10 @@
 		5EAB8AA9187E73DF00B02953 /* BlinkIt */ = {
 			isa = PBXGroup;
 			children = (
+				5EAB8AD8187E7CC300B02953 /* Pre Signed In */,
 				5EAB8AB2187E73DF00B02953 /* BIAppDelegate.h */,
 				5EAB8AB3187E73DF00B02953 /* BIAppDelegate.m */,
 				5EAB8AB5187E73DF00B02953 /* Main.storyboard */,
-				5EAB8AB8187E73DF00B02953 /* BIViewController.h */,
-				5EAB8AB9187E73DF00B02953 /* BIViewController.m */,
 				5EAB8ABB187E73DF00B02953 /* Images.xcassets */,
 				5EAB8AAA187E73DF00B02953 /* Supporting Files */,
 			);
@@ -150,6 +191,19 @@
 				5EAB8ACB187E73DF00B02953 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		5EAB8AD8187E7CC300B02953 /* Pre Signed In */ = {
+			isa = PBXGroup;
+			children = (
+				5EAB8AE2187E7D3600B02953 /* BISplashViewController.h */,
+				5EAB8AE3187E7D3600B02953 /* BISplashViewController.m */,
+				5EAB8ADF187E7D2600B02953 /* BISignUpViewController.h */,
+				5EAB8AE0187E7D2600B02953 /* BISignUpViewController.m */,
+				5EAB8AD9187E7CFF00B02953 /* BILoginViewController.h */,
+				5EAB8ADA187E7CFF00B02953 /* BILoginViewController.m */,
+			);
+			name = "Pre Signed In";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -250,9 +304,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5EAB8ABA187E73DF00B02953 /* BIViewController.m in Sources */,
+				5EAB8AE4187E7D3600B02953 /* BISplashViewController.m in Sources */,
 				5EAB8AB0187E73DF00B02953 /* main.m in Sources */,
+				5EAB8ADB187E7CFF00B02953 /* BILoginViewController.m in Sources */,
 				5EAB8AB4187E73DF00B02953 /* BIAppDelegate.m in Sources */,
+				5EAB8AE1187E7D2600B02953 /* BISignUpViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -379,6 +435,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/kimberlyhsiao/Developer/Portfolio/BlinkIt,
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BlinkIt/BlinkIt-Prefix.pch";
 				INFOPLIST_FILE = "BlinkIt/BlinkIt-Info.plist";
@@ -392,6 +452,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/kimberlyhsiao/Developer/Portfolio/BlinkIt,
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BlinkIt/BlinkIt-Prefix.pch";
 				INFOPLIST_FILE = "BlinkIt/BlinkIt-Info.plist";
@@ -461,6 +525,7 @@
 				5EAB8AD4187E73DF00B02953 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		5EAB8AD5187E73DF00B02953 /* Build configuration list for PBXNativeTarget "BlinkItTests" */ = {
 			isa = XCConfigurationList;
@@ -469,6 +534,7 @@
 				5EAB8AD7187E73DF00B02953 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
