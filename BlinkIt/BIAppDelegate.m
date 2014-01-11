@@ -14,6 +14,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [self startParseWithLaunchOptions:launchOptions];
+    [self setupUI];
     [self presentCorrectRootController];
     
     return YES;
@@ -24,6 +25,10 @@
                   clientKey:@"wytpn1ob1jPfhbQKaa1RUw1CUrynyVnTWfg8RaDE"];
     [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
     
+}
+
+- (void)setupUI {
+//    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
 }
 
 - (void)presentCorrectRootController {

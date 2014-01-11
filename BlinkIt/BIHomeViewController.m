@@ -36,8 +36,7 @@
     [super viewDidLoad];
     
     [self setupButtons];
-    [self setupTableView];
-    [self fetchBlinks];
+    [self setupNav];
 }
 
 - (void)setupButtons {
@@ -45,9 +44,20 @@
     self.navigationItem.rightBarButtonItem = composeButton;
 }
 
-- (void)setupTableView {
+- (void)setupNav {
+    self.navigationController.navigationBar.barTintColor = [UIColor mintGreen];
+    UIImageView *logoImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"logo.png"]];
+    logoImageView.contentMode = UIViewContentModeScaleAspectFit;
+    logoImageView.frame = CGRectMake(0, 0, 160, 24);
+    logoImageView.autoresizingMask = self.navigationItem.titleView.autoresizingMask;
+    self.navigationItem.titleView = logoImageView;
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    [self fetchBlinks];
+}
 
 #pragma mark - requests
 
@@ -55,6 +65,7 @@
     self.loading = YES;
     
     PFQuery *query = [PFQuery queryWithClassName:@"Blink"];
+    [query orderByDescending:@"date"];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         self.loading = NO;
         

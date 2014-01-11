@@ -39,6 +39,7 @@
 		5EAB8B3318811E8600B02953 /* BITableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EAB8B3218811E8600B02953 /* BITableViewController.m */; };
 		5EAB8B37188121E400B02953 /* BIComposeBlinkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EAB8B36188121E400B02953 /* BIComposeBlinkViewController.m */; };
 		5EAB8B3B1881300E00B02953 /* UIView+BlinkIt.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EAB8B3A1881300E00B02953 /* UIView+BlinkIt.m */; };
+		5EAB8B3E1881359D00B02953 /* UIColor+BlinkIt.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EAB8B3D1881359D00B02953 /* UIColor+BlinkIt.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -98,6 +99,8 @@
 		5EAB8B36188121E400B02953 /* BIComposeBlinkViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BIComposeBlinkViewController.m; sourceTree = "<group>"; };
 		5EAB8B391881300E00B02953 /* UIView+BlinkIt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+BlinkIt.h"; sourceTree = "<group>"; };
 		5EAB8B3A1881300E00B02953 /* UIView+BlinkIt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+BlinkIt.m"; sourceTree = "<group>"; };
+		5EAB8B3C1881359D00B02953 /* UIColor+BlinkIt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+BlinkIt.h"; sourceTree = "<group>"; };
+		5EAB8B3D1881359D00B02953 /* UIColor+BlinkIt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+BlinkIt.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -238,6 +241,8 @@
 				5EAB8B2B1881062A00B02953 /* UIStoryboard+BlinkIt.m */,
 				5EAB8B391881300E00B02953 /* UIView+BlinkIt.h */,
 				5EAB8B3A1881300E00B02953 /* UIView+BlinkIt.m */,
+				5EAB8B3C1881359D00B02953 /* UIColor+BlinkIt.h */,
+				5EAB8B3D1881359D00B02953 /* UIColor+BlinkIt.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -391,6 +396,7 @@
 				5EAB8AB4187E73DF00B02953 /* BIAppDelegate.m in Sources */,
 				5EAB8B291880F8AF00B02953 /* BIHomeViewController.m in Sources */,
 				5EAB8AE1187E7D2600B02953 /* BISignUpViewController.m in Sources */,
+				5EAB8B3E1881359D00B02953 /* UIColor+BlinkIt.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

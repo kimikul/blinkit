@@ -17,5 +17,5 @@
     #import "NSString+BlinkIt.h"
     #import "UIStoryboard+BlinkIt.h"
     #import "UIView+BlinkIt.h"
-
+    #import "UIColor+BlinkIt.h"
 #endif
