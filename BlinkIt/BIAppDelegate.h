@@ -11,5 +11,6 @@
 @interface BIAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
+- (void)setRootViewController:(UIViewController*)vc;
 
 @end

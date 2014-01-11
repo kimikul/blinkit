@@ -8,6 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
+@class BILoginViewController;
+
+@protocol BILoginViewControllerDelegate <NSObject>
+- (void)loginViewController:(BILoginViewController*)loginVC didLoginUser:(PFUser*)user;
+@end
+
 @interface BILoginViewController : UIViewController
+
+@property (nonatomic, weak) id <BILoginViewControllerDelegate> delegate;
 
 @end

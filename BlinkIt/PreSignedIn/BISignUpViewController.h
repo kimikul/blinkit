@@ -8,6 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
+@class BISignUpViewController;
+
+@protocol BISignUpViewControllerDelegate <NSObject>
+- (void)signUpViewController:(BISignUpViewController*)signupVC didSignUp:(PFUser*)user;
+@end
+
 @interface BISignUpViewController : UIViewController
+
+@property (nonatomic, weak) id <BISignUpViewControllerDelegate> delegate;
 
 @end

@@ -21,6 +21,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [self setupButtons];
+    [_emailTextField becomeFirstResponder];
+}
+
+- (void)setupButtons {
     _loginButton.layer.cornerRadius = 5.0;
     _loginButton.clipsToBounds = YES;
     
@@ -38,7 +43,20 @@
 }
 
 - (IBAction)loginTapped:(id)sender {
+    NSString *username = [_emailTextField.text stringByTrimmingWhiteSpace];
+    NSString *password = [_passwordTextField.text stringByTrimmingWhiteSpace];
     
+    [PFUser logInWithUsernameInBackground:username password:password
+                                    block:^(PFUser *user, NSError *error) {
+                                        if (user) {
+                                            [self.delegate loginViewController:self didLoginUser:user];
+                                        } else if (error) {
+                                            NSString *errorString = [error userInfo][@"error"];
+                                            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:errorString delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                                            [alert show];
+                                            return;
+                                        }
+                                    }];
 }
 
 @end

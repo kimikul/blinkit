@@ -32,6 +32,9 @@
 		5EAB8B0B187FC90500B02953 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EAB8B0A187FC90500B02953 /* QuartzCore.framework */; };
 		5EAB8B0D187FC90A00B02953 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EAB8B0C187FC90A00B02953 /* Security.framework */; };
 		5EAB8B0F187FC90F00B02953 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EAB8B0E187FC90F00B02953 /* SystemConfiguration.framework */; };
+		5EAB8B251880F3C600B02953 /* NSString+BlinkIt.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EAB8B241880F3C600B02953 /* NSString+BlinkIt.m */; };
+		5EAB8B291880F8AF00B02953 /* BIHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EAB8B281880F8AF00B02953 /* BIHomeViewController.m */; };
+		5EAB8B2C1881062A00B02953 /* UIStoryboard+BlinkIt.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EAB8B2B1881062A00B02953 /* UIStoryboard+BlinkIt.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +80,12 @@
 		5EAB8B0A187FC90500B02953 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		5EAB8B0C187FC90A00B02953 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		5EAB8B0E187FC90F00B02953 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		5EAB8B231880F3C600B02953 /* NSString+BlinkIt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+BlinkIt.h"; sourceTree = "<group>"; };
+		5EAB8B241880F3C600B02953 /* NSString+BlinkIt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+BlinkIt.m"; sourceTree = "<group>"; };
+		5EAB8B271880F8AF00B02953 /* BIHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BIHomeViewController.h; sourceTree = "<group>"; };
+		5EAB8B281880F8AF00B02953 /* BIHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BIHomeViewController.m; sourceTree = "<group>"; };
+		5EAB8B2A1881062A00B02953 /* UIStoryboard+BlinkIt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIStoryboard+BlinkIt.h"; sourceTree = "<group>"; };
+		5EAB8B2B1881062A00B02953 /* UIStoryboard+BlinkIt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIStoryboard+BlinkIt.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -154,6 +163,8 @@
 		5EAB8AA9187E73DF00B02953 /* BlinkIt */ = {
 			isa = PBXGroup;
 			children = (
+				5EAB8B261880F89900B02953 /* Home */,
+				5EAB8B221880F3B500B02953 /* Categories */,
 				5EAB8AD8187E7CC300B02953 /* Pre Signed In */,
 				5EAB8AB2187E73DF00B02953 /* BIAppDelegate.h */,
 				5EAB8AB3187E73DF00B02953 /* BIAppDelegate.m */,
@@ -204,6 +215,26 @@
 				5EAB8ADA187E7CFF00B02953 /* BILoginViewController.m */,
 			);
 			name = "Pre Signed In";
+			sourceTree = "<group>";
+		};
+		5EAB8B221880F3B500B02953 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				5EAB8B231880F3C600B02953 /* NSString+BlinkIt.h */,
+				5EAB8B241880F3C600B02953 /* NSString+BlinkIt.m */,
+				5EAB8B2A1881062A00B02953 /* UIStoryboard+BlinkIt.h */,
+				5EAB8B2B1881062A00B02953 /* UIStoryboard+BlinkIt.m */,
+			);
+			name = Categories;
+			sourceTree = "<group>";
+		};
+		5EAB8B261880F89900B02953 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				5EAB8B271880F8AF00B02953 /* BIHomeViewController.h */,
+				5EAB8B281880F8AF00B02953 /* BIHomeViewController.m */,
+			);
+			name = Home;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -304,10 +335,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5EAB8B2C1881062A00B02953 /* UIStoryboard+BlinkIt.m in Sources */,
 				5EAB8AE4187E7D3600B02953 /* BISplashViewController.m in Sources */,
 				5EAB8AB0187E73DF00B02953 /* main.m in Sources */,
 				5EAB8ADB187E7CFF00B02953 /* BILoginViewController.m in Sources */,
+				5EAB8B251880F3C600B02953 /* NSString+BlinkIt.m in Sources */,
 				5EAB8AB4187E73DF00B02953 /* BIAppDelegate.m in Sources */,
+				5EAB8B291880F8AF00B02953 /* BIHomeViewController.m in Sources */,
 				5EAB8AE1187E7D2600B02953 /* BISignUpViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
