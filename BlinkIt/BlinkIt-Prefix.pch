@@ -16,4 +16,6 @@
     #import <Parse/Parse.h>
     #import "NSString+BlinkIt.h"
     #import "UIStoryboard+BlinkIt.h"
+    #import "UIView+BlinkIt.h"
+
 #endif

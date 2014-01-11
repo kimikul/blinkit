@@ -9,7 +9,6 @@
 #import "BITableViewController.h"
 
 @interface BITableViewController ()
-
 @end
 
 @implementation BITableViewController
@@ -18,7 +17,52 @@
     [super viewDidLoad];
 
     self.tableView.tableFooterView = _useEmptyTableFooter ? [[UIView alloc] initWithFrame:CGRectZero] : _footerView;
+    [self setupRefresh];
 }
+
+#pragma mark - refresh
+
+- (void)setupRefresh {
+    if(_useRefreshTableHeaderView) {
+        
+        _refreshTableHeaderView = [[UIRefreshControl alloc] initWithFrame:CGRectMake(0, 0, self.tableView.frameWidth, 60)];
+        [_refreshTableHeaderView addTarget:self action:@selector(handleRefresh:) forControlEvents:UIControlEventValueChanged];
+        
+        self.tableView = self.tableView;
+        self.refreshControl = _refreshTableHeaderView;
+        self.refreshControl.layer.zPosition = self.tableView.backgroundView.layer.zPosition + 1;
+    }
+}
+
+- (void)handleRefresh:(UIRefreshControl *)refreshControl {
+    [self.refreshTableHeaderView beginRefreshing];
+    if(![self.tableView isDragging])
+        [self refreshTableHeaderDidTriggerRefresh];
+}
+
+- (void)refreshTableHeaderDidTriggerRefresh {
+    // Do nothing here.  Subclasses that want to have pull down refresh should override this.
+}
+
+-(void)setLoading:(BOOL)loading {
+    if(_loading != loading) {
+        if(!loading && _useRefreshTableHeaderView) {
+            _lastRefreshDate = [NSDate date];
+            [_refreshTableHeaderView endRefreshing];
+        }
+        
+        _loading = loading;
+    }
+}
+
+#pragma mark - UIScrollViewDelegate
+
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
+    if([self.refreshTableHeaderView isRefreshing])
+        [self refreshTableHeaderDidTriggerRefresh];
+}
+
+#pragma mark - helper
 
 - (void)reloadTableData {
     [self.tableView reloadData];

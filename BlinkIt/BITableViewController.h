@@ -15,6 +15,11 @@
 @property (nonatomic, strong) IBOutlet UIView               *headerView;
 
 @property (nonatomic, assign) BOOL                          useEmptyTableFooter;
+@property (nonatomic, assign) BOOL                          useRefreshTableHeaderView;
+@property (nonatomic, assign, getter = isLoading) BOOL      loading;
+@property (nonatomic, strong) NSDate                        *lastRefreshDate;
+
+@property (nonatomic, strong) UIRefreshControl              *refreshTableHeaderView;
 
 - (void)reloadTableData;
 

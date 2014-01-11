@@ -24,6 +24,7 @@
     self = [super initWithCoder:aDecoder];
     if (self) {
         self.useEmptyTableFooter = YES;
+        self.useRefreshTableHeaderView = YES;
     }
     
     return self;
@@ -51,11 +52,19 @@
 #pragma mark - requests
 
 - (void)fetchBlinks {
+    self.loading = YES;
+    
     PFQuery *query = [PFQuery queryWithClassName:@"Blink"];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        self.loading = NO;
+        
         _blinksArray = objects;
         [self reloadTableData];
     }];
+}
+
+- (void)refreshTableHeaderDidTriggerRefresh {
+    [self fetchBlinks];
 }
 
 #pragma mark - UITableViewDelegate / UITableViewDataSource

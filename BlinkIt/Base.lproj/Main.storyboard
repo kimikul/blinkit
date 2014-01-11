@@ -269,7 +269,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wednesday, September 25, 2014" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9aY-an-pEm">
-                                            <rect key="frame" x="10" y="5" width="300" height="24"/>
+                                            <rect key="frame" x="10" y="8" width="300" height="24"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="24" id="Kzp-x4-D9R"/>
@@ -279,7 +279,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="300" translatesAutoresizingMaskIntoConstraints="NO" id="FMy-MN-yxI">
-                                            <rect key="frame" x="10" y="37" width="300" height="51"/>
+                                            <rect key="frame" x="10" y="40" width="300" height="51"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <string key="text">Today, I learned how to edit client-side code through a web browser and was able to hack into Coachella's waiting page for Weekend 1 tickets.</string>
                                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
@@ -287,7 +287,7 @@
                                         </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="9aY-an-pEm" firstAttribute="top" secondItem="LIe-ju-z0p" secondAttribute="top" constant="5" id="4MC-bo-bQz"/>
+                                        <constraint firstItem="9aY-an-pEm" firstAttribute="top" secondItem="LIe-ju-z0p" secondAttribute="top" constant="8" id="4MC-bo-bQz"/>
                                         <constraint firstItem="9aY-an-pEm" firstAttribute="width" secondItem="FMy-MN-yxI" secondAttribute="width" id="Nxo-EO-sCL"/>
                                         <constraint firstAttribute="trailing" secondItem="9aY-an-pEm" secondAttribute="trailing" constant="10" id="UIb-2X-gLy"/>
                                         <constraint firstItem="9aY-an-pEm" firstAttribute="leading" secondItem="FMy-MN-yxI" secondAttribute="leading" id="Xwc-Q3-ANC"/>

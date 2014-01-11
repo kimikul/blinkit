@@ -19,12 +19,39 @@
     return @"BIHomeTableViewCell";
 }
 
++ (UIFont*)fontForContent {
+    return [UIFont systemFontOfSize:13];
+}
+
 + (CGFloat)heightForContent:(NSString*)content {
-    return 100;
+    CGFloat staticHeight = 50;
+    UIFont *font = [BIHomeTableViewCell fontForContent];
+    CGSize maxSize = CGSizeMake(300,1000);
+    
+    NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:
+                                font, NSFontAttributeName,
+                                nil];
+    
+    CGRect rect = [content boundingRectWithSize:maxSize options:NSStringDrawingUsesLineFragmentOrigin attributes:attributes context:nil];
+    
+    return rect.size.height + staticHeight;
 }
 
 - (void)setBlink:(PFObject *)blink {
     _blink = blink;
+    
+    _contentLabel.text = blink[@"content"];
+    _dateLabel.text = [self formattedDateLabel];
+}
+
+- (NSString*)formattedDateLabel {
+    NSDate *date = _blink[@"date"];
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"eeee, MMMM d, yyyy"];
+    
+    NSString *formattedDate = [dateFormatter stringFromDate:date];
+    return formattedDate;
 }
 
 @end
