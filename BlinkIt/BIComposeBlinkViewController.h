@@ -1,5 +1,5 @@
 //
-//  BIHomeViewController.h
+//  BIComposeBlinkViewController.h
 //  BlinkIt
 //
 //  Created by Kimberly Hsiao on 1/10/14.
@@ -7,8 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "BITableViewController.h"
 
-@interface BIHomeViewController : BITableViewController
+@interface BIComposeBlinkViewController : UIViewController
 
 @end
