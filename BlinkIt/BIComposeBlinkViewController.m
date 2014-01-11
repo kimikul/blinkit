@@ -47,6 +47,9 @@
     PFObject *newBlink = [PFObject objectWithClassName:@"Blink"];
     newBlink[@"content"] = [_contentTextView.text stringByTrimmingWhiteSpace];
     newBlink[@"date"] = [NSDate date];
+    
+    PFRelation *relation = [newBlink relationForKey:@"user"];
+    [relation addObject:[PFUser currentUser]];
     [newBlink saveInBackground];
     
     [self dismissViewControllerAnimated:YES completion:nil];

@@ -42,6 +42,9 @@
 - (void)setupButtons {
     UIBarButtonItem *composeButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addBlink:)];
     self.navigationItem.rightBarButtonItem = composeButton;
+    
+    UIBarButtonItem *logoutButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRewind target:self action:@selector(logout:)];
+    self.navigationItem.leftBarButtonItem = logoutButton;
 }
 
 - (void)setupNav {
@@ -66,6 +69,7 @@
     
     PFQuery *query = [PFQuery queryWithClassName:@"Blink"];
     [query orderByDescending:@"date"];
+    [query whereKey:@"user" equalTo:[PFUser currentUser]];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         self.loading = NO;
         

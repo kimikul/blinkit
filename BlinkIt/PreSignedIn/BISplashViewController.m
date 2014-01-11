@@ -57,7 +57,7 @@
 
 - (void)transitionToHomeViewController {
     UIStoryboard *mainStoryboard = [UIStoryboard mainStoryboard];
-    BIHomeViewController *homeVC = [mainStoryboard instantiateViewControllerWithIdentifier:@"BIHomeViewController"];
+    BIHomeViewController *homeVC = [mainStoryboard instantiateViewControllerWithIdentifier:@"BIHomeNavigationController"];
     
     BIAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     [appDelegate setRootViewController:homeVC];
