@@ -41,7 +41,7 @@
 }
 
 - (void)setRootViewController:(UIViewController*)vc {
-    [UIView transitionWithView:self.window duration:0.9
+    [UIView transitionWithView:self.window duration:0.5
                        options:UIViewAnimationOptionTransitionCrossDissolve
                     animations:^{
                         self.window.rootViewController = vc;

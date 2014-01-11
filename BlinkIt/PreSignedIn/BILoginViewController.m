@@ -59,4 +59,16 @@
                                     }];
 }
 
+#pragma mark - UITextFieldDelegate
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    if ([textField isEqual:_emailTextField]) {
+        [_passwordTextField becomeFirstResponder];
+    } else if ([textField isEqual:_passwordTextField]) {
+        [self loginTapped:_loginButton];
+    }
+    
+    return YES;
+}
+
 @end

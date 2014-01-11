@@ -163,12 +163,10 @@
 		5EAB8AA9187E73DF00B02953 /* BlinkIt */ = {
 			isa = PBXGroup;
 			children = (
+				5EAB8B2D1881077100B02953 /* Main */,
 				5EAB8B261880F89900B02953 /* Home */,
 				5EAB8B221880F3B500B02953 /* Categories */,
 				5EAB8AD8187E7CC300B02953 /* Pre Signed In */,
-				5EAB8AB2187E73DF00B02953 /* BIAppDelegate.h */,
-				5EAB8AB3187E73DF00B02953 /* BIAppDelegate.m */,
-				5EAB8AB5187E73DF00B02953 /* Main.storyboard */,
 				5EAB8ABB187E73DF00B02953 /* Images.xcassets */,
 				5EAB8AAA187E73DF00B02953 /* Supporting Files */,
 			);
@@ -235,6 +233,16 @@
 				5EAB8B281880F8AF00B02953 /* BIHomeViewController.m */,
 			);
 			name = Home;
+			sourceTree = "<group>";
+		};
+		5EAB8B2D1881077100B02953 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				5EAB8AB2187E73DF00B02953 /* BIAppDelegate.h */,
+				5EAB8AB3187E73DF00B02953 /* BIAppDelegate.m */,
+				5EAB8AB5187E73DF00B02953 /* Main.storyboard */,
+			);
+			name = Main;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
