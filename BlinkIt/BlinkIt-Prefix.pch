@@ -18,4 +18,5 @@
     #import "UIStoryboard+BlinkIt.h"
     #import "UIView+BlinkIt.h"
     #import "UIColor+BlinkIt.h"
+    #import "NSDate+BlinkIt.h"
 #endif

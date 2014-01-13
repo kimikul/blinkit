@@ -20,11 +20,11 @@
 }
 
 + (UIFont*)fontForContent {
-    return [UIFont systemFontOfSize:13];
+    return [UIFont systemFontOfSize:14];
 }
 
 + (CGFloat)heightForContent:(NSString*)content {
-    CGFloat staticHeight = 50;
+    CGFloat staticHeight = 46;
     UIFont *font = [BIHomeTableViewCell fontForContent];
     CGSize maxSize = CGSizeMake(300,1000);
     
@@ -46,12 +46,7 @@
 
 - (NSString*)formattedDateLabel {
     NSDate *date = _blink[@"date"];
-    
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"eeee, MMMM d, yyyy"];
-    
-    NSString *formattedDate = [dateFormatter stringFromDate:date];
-    return formattedDate;
+    return [NSDate spelledOutDate:date];
 }
 
 @end

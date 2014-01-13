@@ -16,7 +16,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    self.tableView.tableHeaderView = _headerView;
     self.tableView.tableFooterView = _useEmptyTableFooter ? [[UIView alloc] initWithFrame:CGRectZero] : _footerView;
+    
     [self setupRefresh];
 }
 
