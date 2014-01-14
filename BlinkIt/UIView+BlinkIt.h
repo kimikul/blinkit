@@ -51,4 +51,23 @@
 @property (nonatomic) CGPoint boundsBottomLeftPoint;
 @property (nonatomic) CGPoint boundsMiddleLeftPoint;
 
+- (void)fadeInToOpacity:(CGFloat)opacity
+               duration:(NSTimeInterval)duration
+             completion:(dispatch_block_t)block;
+
+- (void)fadeOutToOpacity:(CGFloat)opacity
+                duration:(NSTimeInterval)duration
+              completion:(dispatch_block_t)block;
+
+- (void)fadeInWithDuration:(NSTimeInterval)duration
+                completion:(dispatch_block_t)block;
+
+- (void)fadeOutWithDuration:(NSTimeInterval)duration
+                 completion:(dispatch_block_t)block;
+
+- (void)fadeToggleWithDuration:(NSTimeInterval)duration
+                    completion:(dispatch_block_t)block;
+
+- (void)fadeTransitionWithDuration:(NSTimeInterval)duration;
+
 @end

@@ -15,7 +15,8 @@
 
 @interface BIHomeViewController () <UITextViewDelegate>
 @property (nonatomic, strong) NSArray *blinksArray;
-@property (nonatomic, strong) BITodayView *todayView;
+@property (nonatomic, strong) IBOutlet BITodayView *todayView;
+@property (strong, nonatomic) IBOutlet UIView *fadeLayer;
 @end
 
 @implementation BIHomeViewController
@@ -43,9 +44,6 @@
 }
 
 - (void)setupButtons {
-//    UIBarButtonItem *composeButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addBlink:)];
-//    self.navigationItem.rightBarButtonItem = composeButton;
-    
     UIBarButtonItem *logoutButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRewind target:self action:@selector(logout:)];
     self.navigationItem.leftBarButtonItem = logoutButton;
 }
@@ -62,12 +60,14 @@
 - (void)setupTodayView {
     NSArray *nibs = [[NSBundle mainBundle] loadNibNamed:@"BITodayView" owner:self options:nil];
     BITodayView *todayView = [nibs objectAtIndex:0];
+    todayView.frameY = 64;
     _todayView = todayView;
-    
     _todayView.contentTextView.delegate = self;
-    
-//    UITapGestureRecognizer *tapGR = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tappedTodayView:)];
-//    [_todayView addGestureRecognizer:tapGR];
+
+    [self.view addSubview:todayView];
+
+    UITapGestureRecognizer *tapGR = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tappedFadeLayer:)];
+    [_fadeLayer addGestureRecognizer:tapGR];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -135,13 +135,13 @@
     return _blinksArray.count;
 }
 
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    return _todayView;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return _todayView.frameHeight;
-}
+//- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+//    return _todayView;
+//}
+//
+//- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+//    return _todayView.frameHeight;
+//}
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     PFObject *blink = [_blinksArray objectAtIndex:indexPath.row];
@@ -170,6 +170,7 @@
 - (void)textViewDidBeginEditing:(UITextView *)textView {
     if (!_todayView.isExpanded) {
         _todayView.isExpanded = YES;
+        [_fadeLayer fadeInToOpacity:0.7 duration:0.5 completion:nil];
     }
     
     _todayView.placeholderLabel.hidden = YES;
@@ -193,9 +194,11 @@
 
 #pragma mark - ibactions
 
-//- (void)tappedTodayView:(UITapGestureRecognizer*)tapGR {
-//    _todayView.isExpanded = !_todayView.isExpanded;
-//}
+- (void)tappedFadeLayer:(UITapGestureRecognizer*)tapGR {
+    _todayView.isExpanded = NO;
+    [_fadeLayer fadeOutWithDuration:0.5 completion:nil];
+}
+
 
 //- (void)addBlink:(id)sender {
 //    UIStoryboard *mainStoryboard = [UIStoryboard mainStoryboard];

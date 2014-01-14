@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface BITableViewController : UITableViewController
+@interface BITableViewController : UIViewController <UITableViewDataSource, UITableViewDelegate> 
 
 @property (nonatomic, strong) IBOutlet UITableView          *tableView;
 @property (nonatomic, strong) IBOutlet UIView               *footerView;

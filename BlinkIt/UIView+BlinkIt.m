@@ -462,4 +462,73 @@
 	self.boundsMidY = boundsMiddleLeftPoint.y;
 }
 
+#pragma mark - Fading animation helpers
+static inline void fadeInternal(UIView *self,
+                                NSTimeInterval duration,
+                                CGFloat alpha,
+                                dispatch_block_t completion) {
+    
+    [UIView animateWithDuration:duration
+                     animations:^{
+                         self.alpha = alpha;
+                     } completion:^(BOOL finished) {
+                         if(completion) {
+                             completion();
+                         }
+                     }];
+}
+
+- (void)fadeInToOpacity:(CGFloat)opacity
+               duration:(NSTimeInterval)duration
+             completion:(dispatch_block_t)block {
+    
+    self.hidden = NO;
+    self.alpha  = 0.0f;
+    
+    fadeInternal(self, duration, opacity, block);
+}
+
+- (void)fadeOutToOpacity:(CGFloat)opacity
+                duration:(NSTimeInterval)duration
+              completion:(dispatch_block_t)block {
+    fadeInternal(self, duration, opacity, ^{
+        self.hidden = YES;
+        self.alpha  = 1.0f;
+        
+        if(block) {
+            block();
+        }
+    });
+}
+
+- (void)fadeInWithDuration:(NSTimeInterval)duration
+                completion:(dispatch_block_t)block {
+    [self fadeInToOpacity:1.0 duration:duration completion:block];
+}
+
+- (void)fadeOutWithDuration:(NSTimeInterval)duration
+                 completion:(dispatch_block_t)block {
+    [self fadeOutToOpacity:0.0 duration:duration completion:block];
+}
+
+- (void)fadeToggleWithDuration:(NSTimeInterval)duration
+                    completion:(dispatch_block_t)block {
+    if(self.hidden) {
+        [self fadeInWithDuration:duration completion:block];
+    } else {
+        [self fadeOutWithDuration:duration completion:block];
+    }
+}
+
+- (void)fadeTransitionWithDuration:(NSTimeInterval)duration {
+    
+    CATransition *transition = [CATransition animation];
+    transition.type = kCATransitionFade;
+    transition.duration = duration;
+    
+    CALayer *viewLayer  = self.layer;
+    [viewLayer removeAnimationForKey:@"fadeTransition"];
+    [viewLayer addAnimation:transition forKey:@"fadeTransition"];
+}
+
 @end

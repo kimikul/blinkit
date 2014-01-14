@@ -252,69 +252,85 @@
             <point key="canvasLocation" x="610" y="536"/>
         </scene>
         <!--Home View Controller - Home-->
-        <scene sceneID="imd-ib-d1G">
+        <scene sceneID="jO2-Nf-1ST">
             <objects>
-                <tableViewController storyboardIdentifier="BIHomeViewController" id="FkT-qe-Iyn" customClass="BIHomeViewController" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="L6D-7g-Z49">
+                <viewController storyboardIdentifier="BIHomeViewController" id="kPo-93-x5j" customClass="BIHomeViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="hTs-Ij-agD"/>
+                        <viewControllerLayoutGuide type="bottom" id="pmR-xz-94D"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="pVE-wR-cqx">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <inset key="separatorInset" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
-                        <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="gray" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="BIHomeTableViewCell" rowHeight="100" id="rdm-el-GPj" customClass="BIHomeTableViewCell">
-                                <rect key="frame" x="0.0" y="86" width="320" height="100"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="rdm-el-GPj" id="LIe-ju-z0p">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="99"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wednesday, September 25, 2014" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9aY-an-pEm">
-                                            <rect key="frame" x="10" y="8" width="300" height="18"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="d2a-43-wUe">
+                                <rect key="frame" x="0.0" y="57" width="320" height="511"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="gray" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="BIHomeTableViewCell" rowHeight="100" id="TOJ-wG-qgS" customClass="BIHomeTableViewCell">
+                                        <rect key="frame" x="0.0" y="86" width="320" height="100"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="TOJ-wG-qgS" id="M5Q-qU-vkK">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="99"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wednesday, September 25, 2014" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zpR-TS-B4T">
+                                                    <rect key="frame" x="10" y="8" width="300" height="18"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="18" id="d3k-Yh-DgS"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="15"/>
+                                                    <color key="textColor" red="0.99607843139999996" green="0.50196078430000002" blue="0.50196078430000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="300" translatesAutoresizingMaskIntoConstraints="NO" id="zSy-fq-t3e">
+                                                    <rect key="frame" x="10" y="31" width="300" height="51"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <string key="text">Today, I learned how to edit client-side code through a web browser and was able to hack into Coachella's waiting page for Weekend 1 tickets.</string>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="18" id="Kzp-x4-D9R"/>
+                                                <constraint firstItem="zpR-TS-B4T" firstAttribute="top" secondItem="M5Q-qU-vkK" secondAttribute="top" constant="8" id="0ik-u1-Ia2"/>
+                                                <constraint firstItem="zpR-TS-B4T" firstAttribute="leading" secondItem="M5Q-qU-vkK" secondAttribute="leading" constant="10" id="Q4g-kY-tlo"/>
+                                                <constraint firstAttribute="trailing" secondItem="zpR-TS-B4T" secondAttribute="trailing" constant="10" id="h73-Fa-N2N"/>
+                                                <constraint firstItem="zpR-TS-B4T" firstAttribute="leading" secondItem="zSy-fq-t3e" secondAttribute="leading" id="hBn-wC-J6k"/>
+                                                <constraint firstItem="zpR-TS-B4T" firstAttribute="width" secondItem="zSy-fq-t3e" secondAttribute="width" id="v1x-pa-Tjw"/>
+                                                <constraint firstItem="zSy-fq-t3e" firstAttribute="top" secondItem="zpR-TS-B4T" secondAttribute="bottom" constant="5" id="zyJ-Ca-omJ"/>
                                             </constraints>
-                                            <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="15"/>
-                                            <color key="textColor" red="0.99607843139999996" green="0.50196078430000002" blue="0.50196078430000002" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="300" translatesAutoresizingMaskIntoConstraints="NO" id="FMy-MN-yxI">
-                                            <rect key="frame" x="10" y="31" width="300" height="51"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <string key="text">Today, I learned how to edit client-side code through a web browser and was able to hack into Coachella's waiting page for Weekend 1 tickets.</string>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstItem="9aY-an-pEm" firstAttribute="top" secondItem="LIe-ju-z0p" secondAttribute="top" constant="8" id="4MC-bo-bQz"/>
-                                        <constraint firstItem="9aY-an-pEm" firstAttribute="width" secondItem="FMy-MN-yxI" secondAttribute="width" id="Nxo-EO-sCL"/>
-                                        <constraint firstAttribute="trailing" secondItem="9aY-an-pEm" secondAttribute="trailing" constant="10" id="UIb-2X-gLy"/>
-                                        <constraint firstItem="9aY-an-pEm" firstAttribute="leading" secondItem="FMy-MN-yxI" secondAttribute="leading" id="Xwc-Q3-ANC"/>
-                                        <constraint firstItem="9aY-an-pEm" firstAttribute="leading" secondItem="LIe-ju-z0p" secondAttribute="leading" constant="10" id="YKF-2n-z0L"/>
-                                        <constraint firstItem="FMy-MN-yxI" firstAttribute="top" secondItem="9aY-an-pEm" secondAttribute="bottom" constant="5" id="vWt-0d-owc"/>
-                                    </constraints>
-                                </tableViewCellContentView>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="contentLabel" destination="zSy-fq-t3e" id="jOv-9Z-c63"/>
+                                            <outlet property="dateLabel" destination="zpR-TS-B4T" id="yWl-cv-tvQ"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
                                 <connections>
-                                    <outlet property="contentLabel" destination="FMy-MN-yxI" id="KIT-CG-uiy"/>
-                                    <outlet property="dateLabel" destination="9aY-an-pEm" id="c6o-cR-AlI"/>
+                                    <outlet property="dataSource" destination="kPo-93-x5j" id="Upb-od-cF1"/>
+                                    <outlet property="delegate" destination="kPo-93-x5j" id="l8o-Jh-WJw"/>
                                 </connections>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="FkT-qe-Iyn" id="ZcN-Ic-pfn"/>
-                            <outlet property="delegate" destination="FkT-qe-Iyn" id="rZ5-TQ-4h9"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="Home" id="i5q-N5-ey6"/>
+                            </tableView>
+                            <view hidden="YES" alpha="0.69999999999999996" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WfG-xA-xzb" userLabel="Fade Layer">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Home" id="JLR-3i-oSt"/>
                     <connections>
-                        <outlet property="tableView" destination="L6D-7g-Z49" id="HYR-aA-Hjp"/>
+                        <outlet property="fadeLayer" destination="WfG-xA-xzb" id="Sug-8B-Jcu"/>
+                        <outlet property="tableView" destination="d2a-43-wUe" id="7oi-0E-rTV"/>
                     </connections>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Dnu-Cp-hxX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FoO-NA-U4j" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2581" y="151"/>
+            <point key="canvasLocation" x="2447" y="151"/>
         </scene>
         <!--Compose Blink View Controller - New Blink-->
         <scene sceneID="Oa8-Sg-bEG">
@@ -390,7 +406,7 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="FkT-qe-Iyn" kind="relationship" relationship="rootViewController" id="Ccg-92-ldO"/>
+                        <segue destination="kPo-93-x5j" kind="relationship" relationship="rootViewController" id="8Ze-uS-2lE"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TQ9-tq-onF" userLabel="First Responder" sceneMemberID="firstResponder"/>

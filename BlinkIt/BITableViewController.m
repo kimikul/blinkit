@@ -9,6 +9,7 @@
 #import "BITableViewController.h"
 
 @interface BITableViewController ()
+@property (nonatomic, strong) UITableViewController *tableViewController;
 @end
 
 @implementation BITableViewController
@@ -30,9 +31,11 @@
         _refreshTableHeaderView = [[UIRefreshControl alloc] initWithFrame:CGRectMake(0, 0, self.tableView.frameWidth, 60)];
         [_refreshTableHeaderView addTarget:self action:@selector(handleRefresh:) forControlEvents:UIControlEventValueChanged];
         
-        self.tableView = self.tableView;
-        self.refreshControl = _refreshTableHeaderView;
-        self.refreshControl.layer.zPosition = self.tableView.backgroundView.layer.zPosition + 1;
+        self.tableViewController = [UITableViewController new];
+        [self addChildViewController:self.tableViewController];
+        self.tableViewController.tableView = self.tableView;
+        self.tableViewController.refreshControl = _refreshTableHeaderView;
+        self.tableViewController.refreshControl.layer.zPosition = self.tableView.backgroundView.layer.zPosition + 1;
     }
 }
 
