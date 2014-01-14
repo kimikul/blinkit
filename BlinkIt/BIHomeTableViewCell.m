@@ -24,7 +24,7 @@
 }
 
 + (CGFloat)heightForContent:(NSString*)content {
-    CGFloat staticHeight = 46;
+    CGFloat staticHeight = 40;
     UIFont *font = [BIHomeTableViewCell fontForContent];
     CGSize maxSize = CGSizeMake(300,1000);
     

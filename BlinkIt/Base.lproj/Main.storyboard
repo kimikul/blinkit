@@ -269,17 +269,17 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wednesday, September 25, 2014" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9aY-an-pEm">
-                                            <rect key="frame" x="10" y="8" width="300" height="20"/>
+                                            <rect key="frame" x="10" y="8" width="300" height="18"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="20" id="Kzp-x4-D9R"/>
+                                                <constraint firstAttribute="height" constant="18" id="Kzp-x4-D9R"/>
                                             </constraints>
-                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="15"/>
                                             <color key="textColor" red="0.99607843139999996" green="0.50196078430000002" blue="0.50196078430000002" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="300" translatesAutoresizingMaskIntoConstraints="NO" id="FMy-MN-yxI">
-                                            <rect key="frame" x="10" y="33" width="300" height="51"/>
+                                            <rect key="frame" x="10" y="31" width="300" height="51"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <string key="text">Today, I learned how to edit client-side code through a web browser and was able to hack into Coachella's waiting page for Weekend 1 tickets.</string>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>

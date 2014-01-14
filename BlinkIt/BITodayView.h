@@ -10,7 +10,12 @@
 #import "BIPlaceholderTextView.h"
 
 @interface BITodayView : UIView
+
+@property (nonatomic, strong) PFObject *blink;
+@property (nonatomic, assign) BOOL isExpanded;
+
 @property (weak, nonatomic) IBOutlet BIPlaceholderTextView *contentTextView;
 @property (nonatomic, strong) IBOutlet UILabel *remainingCharactersLabel;
-@property (nonatomic, strong) PFObject *blink;
+@property (weak, nonatomic) IBOutlet UILabel *placeholderLabel;
+
 @end

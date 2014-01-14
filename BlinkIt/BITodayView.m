@@ -8,21 +8,27 @@
 
 #import "BITodayView.h"
 
+const CGFloat CONDENSED_HEIGHT = 57;
+
 @interface BITodayView()
 
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 @property (weak, nonatomic) IBOutlet UIButton *submitButton;
 
+@property (weak, nonatomic) IBOutlet UIView *separatorView;
 @end
 
 @implementation BITodayView
+
+#pragma mark - class methods
 
 + (UIFont*)fontForContent {
     return [UIFont systemFontOfSize:14];
 }
 
-- (id)initWithFrame:(CGRect)frame
-{
+#pragma mark - init
+
+- (id)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
@@ -31,13 +37,16 @@
 }
 
 - (void)awakeFromNib {
+    self.clipsToBounds = YES;
+    self.frameHeight = CONDENSED_HEIGHT;
+    
     _contentTextView.layer.cornerRadius = 5.0;
     _contentTextView.clipsToBounds = YES;
-    _contentTextView.placeholder = @"What do you want to remember about today?";
-    _contentTextView.placeholderColor = [UIColor lightGrayColor];
+//    _contentTextView.placeholder = @"What do you want to remember about today?";
+//    _contentTextView.placeholderColor = [UIColor lightGrayColor];
     
 
-//    _dateLabel.text = [NSDate spelledOutTodaysDate];
+    _dateLabel.text = [NSDate spelledOutTodaysDate];
 }
 
 #pragma mark - setter/getter
@@ -47,12 +56,49 @@
     _contentTextView.text = blink[@"content"];
     _remainingCharactersLabel.hidden = YES;
     _submitButton.hidden = YES;
-    
-    CGFloat textViewHeight = [self heightForTextViewWithContent:blink[@"content"]];
-    _contentTextView.frameHeight = textViewHeight;
     _contentTextView.editable = NO;
     
-    self.frameHeight = textViewHeight + 50;
+//    [self updateHeightForBlinkContent];
+    CGFloat newHeight = [self heightForBlinkContent];
+    self.frameHeight = newHeight;
+    self.separatorView.frameY = newHeight;
+}
+
+- (void)setIsExpanded:(BOOL)isExpanded {
+    _isExpanded = isExpanded;
+    
+    if (!isExpanded) {
+        [_contentTextView resignFirstResponder];
+        
+        if (_contentTextView.text.length == 0) {
+            _placeholderLabel.hidden = NO;
+        }
+    }
+    
+    CGFloat newHeight;
+    if (isExpanded) {
+        if (_blink) {
+            newHeight = [self heightForBlinkContent];
+        } else {
+            newHeight = 150;
+        }
+    } else {
+        newHeight = CONDENSED_HEIGHT;
+    }
+    
+    [UIView animateWithDuration:0.5 animations:^{
+        self.frameHeight = newHeight;
+        self.separatorView.frameY = newHeight;
+    }];
+}
+
+#pragma mark - helper
+
+- (CGFloat)heightForBlinkContent {
+    CGFloat textViewHeight = [self heightForTextViewWithContent:_blink[@"content"]];
+//    _contentTextView.frameHeight = textViewHeight;
+    
+    return textViewHeight + 50;
 }
 
 - (CGFloat)heightForTextViewWithContent:(NSString*)content {

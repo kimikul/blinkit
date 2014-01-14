@@ -65,6 +65,9 @@
     _todayView = todayView;
     
     _todayView.contentTextView.delegate = self;
+    
+//    UITapGestureRecognizer *tapGR = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tappedTodayView:)];
+//    [_todayView addGestureRecognizer:tapGR];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -164,6 +167,14 @@
 
 #pragma mark - uitextviewdelegate
 
+- (void)textViewDidBeginEditing:(UITextView *)textView {
+    if (!_todayView.isExpanded) {
+        _todayView.isExpanded = YES;
+    }
+    
+    _todayView.placeholderLabel.hidden = YES;
+}
+
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
     if (textView.text.length < 200 || text.length == 0) {
         return YES;
@@ -181,6 +192,10 @@
 }
 
 #pragma mark - ibactions
+
+//- (void)tappedTodayView:(UITapGestureRecognizer*)tapGR {
+//    _todayView.isExpanded = !_todayView.isExpanded;
+//}
 
 //- (void)addBlink:(id)sender {
 //    UIStoryboard *mainStoryboard = [UIStoryboard mainStoryboard];
