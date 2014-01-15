@@ -9,6 +9,7 @@
 #import "BITodayView.h"
 
 const CGFloat CONDENSED_HEIGHT = 57;
+const CGFloat EXPANDED_HEIGHT = 170;
 
 @interface BITodayView()
 @property (weak, nonatomic) IBOutlet UILabel *placeholderLabel;
@@ -43,7 +44,9 @@ const CGFloat CONDENSED_HEIGHT = 57;
 
 - (void)setBlink:(PFObject *)blink {
     _blink = blink;
-    _contentTextView.text = blink[@"content"];
+    
+    _placeholderLabel.text = blink[@"content"];
+//    _contentTextView.text = blink[@"content"];
     
     [self updateForCondensedView];
 }
@@ -57,7 +60,7 @@ const CGFloat CONDENSED_HEIGHT = 57;
         [self updateForExpandedView];
     }
     
-    CGFloat newHeight = isExpanded ? 150 : CONDENSED_HEIGHT;
+    CGFloat newHeight = isExpanded ? EXPANDED_HEIGHT : CONDENSED_HEIGHT;
     
     [UIView animateWithDuration:0.5 animations:^{
         self.frameHeight = newHeight;
@@ -90,6 +93,10 @@ const CGFloat CONDENSED_HEIGHT = 57;
     _submitButton.hidden = NO;
     _remainingCharactersLabel.hidden = NO;
     
+    if (_blink) {
+        _contentTextView.text = _blink[@"content"];
+    }
+    
     if ([self contentTextFieldHasContent]) {
         _submitButton.enabled = YES;
     } else {
@@ -102,16 +109,16 @@ const CGFloat CONDENSED_HEIGHT = 57;
 - (void)updateForCondensedView {
     _remainingCharactersLabel.hidden = YES;
     _submitButton.hidden = YES;
-    
+    _contentTextView.text = @"";
+    _placeholderLabel.hidden = NO;
+
     if (_blink) {
         _editButton.hidden = NO;
         [_editButton setTitle:@"Edit" forState:UIControlStateNormal];
         _contentTextView.editable = NO;
-        _placeholderLabel.hidden = YES;
     } else {
         _editButton.hidden = YES;
         _contentTextView.editable = YES;
-        _placeholderLabel.hidden = NO;
     }
     
     [_contentTextView resignFirstResponder];

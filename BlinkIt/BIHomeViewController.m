@@ -208,7 +208,6 @@
 
 - (void)unfocusTodayView {
     _todayView.isExpanded = NO;
-    _todayView.contentTextView.text = _todayView.blink[@"content"];
     [_fadeLayer fadeOutWithDuration:0.5 completion:nil];
 }
 
