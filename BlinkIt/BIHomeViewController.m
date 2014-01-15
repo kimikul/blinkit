@@ -13,7 +13,7 @@
 #import "BIComposeBlinkViewController.h"
 #import "BITodayView.h"
 
-@interface BIHomeViewController () <UITextViewDelegate, BITodayViewDelegate>
+@interface BIHomeViewController () <UITextViewDelegate, BITodayViewDelegate, UIActionSheetDelegate>
 @property (nonatomic, strong) NSArray *blinksArray;
 @property (nonatomic, strong) BITodayView *todayView;
 @property (strong, nonatomic) IBOutlet UIView *fadeLayer;
@@ -89,14 +89,20 @@
         self.loading = NO;
         
         NSMutableArray *blinks = [objects mutableCopy];
+        BOOL isBlinkToday = NO;
         
         for (PFObject *blink in objects) {
             NSDate *date = blink[@"date"];
             if ([self isDateToday:date]) {
                 [blinks removeObject:blink];
                 _todayView.blink = blink;
+                isBlinkToday = YES;
                 break;
             }
+        }
+        
+        if (!isBlinkToday) {
+            _todayView.blink = nil;
         }
         
         _blinksArray = blinks;
@@ -198,6 +204,22 @@
 
 - (void)todayView:(BITodayView *)todayView didTapCancelEditExistingBlink:(PFObject*)blink {
     [self unfocusTodayView];
+}
+
+#pragma mark - UIActionSheetDelegate
+
+- (void)actionSheet:(UIActionSheet *)actionSheet willDismissWithButtonIndex:(NSInteger)buttonIndex {
+    if (buttonIndex == actionSheet.destructiveButtonIndex) {
+        PFObject *existingBlink = _todayView.blink;
+        if (existingBlink) {
+            [existingBlink deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                if (succeeded) {
+                    _todayView.blink = nil;
+                    [self unfocusTodayView];
+                }
+            }];
+        }
+    }
 }
 
 #pragma mark - ibactions

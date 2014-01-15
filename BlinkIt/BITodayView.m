@@ -17,6 +17,7 @@ const CGFloat EXPANDED_HEIGHT = 170;
 @property (weak, nonatomic) IBOutlet UIButton *editButton;
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 @property (weak, nonatomic) IBOutlet UIView *separatorView;
+@property (weak, nonatomic) IBOutlet UIButton *deleteButton;
 @end
 
 @implementation BITodayView
@@ -45,10 +46,12 @@ const CGFloat EXPANDED_HEIGHT = 170;
 - (void)setBlink:(PFObject *)blink {
     _blink = blink;
     
-    _placeholderLabel.text = blink[@"content"];
-//    _contentTextView.text = blink[@"content"];
-    
-    [self updateForCondensedView];
+    if (blink) {
+        _placeholderLabel.text = blink[@"content"];
+        [self updateForCondensedView];
+    } else {
+        _placeholderLabel.text = @"Click to edit today's blink";
+    }
 }
 
 - (void)setIsExpanded:(BOOL)isExpanded {
@@ -77,7 +80,7 @@ const CGFloat EXPANDED_HEIGHT = 170;
 
 - (void)updateRemainingCharLabel {
     NSInteger remainingCharacterCount = 200 - _contentTextView.text.length;
-    NSString *remainingCharactersLabel = [NSString stringWithFormat:@"%ld", remainingCharacterCount];
+    NSString *remainingCharactersLabel = [NSString stringWithFormat:@"%ld", (long)remainingCharacterCount];
     
     self.remainingCharactersLabel.text = remainingCharactersLabel;
 }
@@ -85,23 +88,24 @@ const CGFloat EXPANDED_HEIGHT = 170;
 #pragma mark - expand / condense helpers
 
 - (void)updateForExpandedView {
-    _editButton.hidden = NO;
     [_editButton setTitle:@"Cancel" forState:UIControlStateNormal];
+    _editButton.hidden = NO;
     
     _placeholderLabel.hidden = YES;
     _contentTextView.editable = YES;
     _submitButton.hidden = NO;
     _remainingCharactersLabel.hidden = NO;
     
+    // update textview and trash button based on whether there is an existing entry
     if (_blink) {
         _contentTextView.text = _blink[@"content"];
+        _deleteButton.hidden = NO;
+    } else {
+        _deleteButton.hidden = YES;
     }
     
-    if ([self contentTextFieldHasContent]) {
-        _submitButton.enabled = YES;
-    } else {
-        _submitButton.enabled = NO;
-    }
+    // enable submit button or not
+    _submitButton.enabled = [self contentTextFieldHasContent] ? YES : NO;
     
     [_contentTextView becomeFirstResponder];
 }
@@ -109,12 +113,13 @@ const CGFloat EXPANDED_HEIGHT = 170;
 - (void)updateForCondensedView {
     _remainingCharactersLabel.hidden = YES;
     _submitButton.hidden = YES;
+    _deleteButton.hidden = YES;
     _contentTextView.text = @"";
     _placeholderLabel.hidden = NO;
 
     if (_blink) {
-        _editButton.hidden = NO;
         [_editButton setTitle:@"Edit" forState:UIControlStateNormal];
+        _editButton.hidden = NO;
         _contentTextView.editable = NO;
     } else {
         _editButton.hidden = YES;
@@ -176,6 +181,11 @@ const CGFloat EXPANDED_HEIGHT = 170;
     } else {
         [self.delegate todayView:self didTapEditExistingBlink:_blink];
     }
+}
+
+- (IBAction)deleteTapped:(id)sender {
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"This will clear your entry for today. Are you sure?" delegate:self.delegate cancelButtonTitle:@"Cancel" destructiveButtonTitle:@"Continue" otherButtonTitles:nil];
+    [actionSheet showInView:self.delegate.view];
 }
 
 @end

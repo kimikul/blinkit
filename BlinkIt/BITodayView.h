@@ -21,7 +21,7 @@
 
 @interface BITodayView : UIView
 
-@property (nonatomic, weak) id <BITodayViewDelegate> delegate;
+@property (nonatomic, weak) UIViewController <BITodayViewDelegate, UIActionSheetDelegate> * delegate;
 
 @property (nonatomic, strong) PFObject *blink;
 @property (nonatomic, assign) BOOL isExpanded;
