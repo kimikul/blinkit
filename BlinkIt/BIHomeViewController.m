@@ -13,9 +13,9 @@
 #import "BIComposeBlinkViewController.h"
 #import "BITodayView.h"
 
-@interface BIHomeViewController () <UITextViewDelegate>
+@interface BIHomeViewController () <UITextViewDelegate, BITodayViewDelegate>
 @property (nonatomic, strong) NSArray *blinksArray;
-@property (nonatomic, strong) IBOutlet BITodayView *todayView;
+@property (nonatomic, strong) BITodayView *todayView;
 @property (strong, nonatomic) IBOutlet UIView *fadeLayer;
 @end
 
@@ -61,6 +61,7 @@
     NSArray *nibs = [[NSBundle mainBundle] loadNibNamed:@"BITodayView" owner:self options:nil];
     BITodayView *todayView = [nibs objectAtIndex:0];
     todayView.frameY = 64;
+    todayView.delegate = self;
     _todayView = todayView;
     _todayView.contentTextView.delegate = self;
 
@@ -135,14 +136,6 @@
     return _blinksArray.count;
 }
 
-//- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-//    return _todayView;
-//}
-//
-//- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-//    return _todayView.frameHeight;
-//}
-
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     PFObject *blink = [_blinksArray objectAtIndex:indexPath.row];
     
@@ -173,7 +166,7 @@
         [_fadeLayer fadeInToOpacity:0.7 duration:0.5 completion:nil];
     }
     
-    _todayView.placeholderLabel.hidden = YES;
+    [_todayView updateRemainingCharLabel];
 }
 
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
@@ -185,27 +178,39 @@
 }
 
 - (void)textViewDidChange:(UITextView *)textView {
-    NSInteger remainingCharacterCount = 200 - textView.text.length;
+    // update remaining char count label
+    [_todayView updateRemainingCharLabel];
     
-    NSString *remainingCharactersLabel = [NSString stringWithFormat:@"%d", remainingCharacterCount];
-    
-    _todayView.remainingCharactersLabel.text = remainingCharactersLabel;
+    // enable / disable submit button
+    _todayView.submitButton.enabled = ([_todayView contentTextFieldHasContent]) ? YES : NO;
+}
+
+#pragma mark - BITodayViewDelegate
+
+- (void)todayView:(BITodayView *)todayView didSubmitBlink:(PFObject *)blink {
+    [self unfocusTodayView];
+    _todayView.blink = blink;
+}
+
+- (void)todayView:(BITodayView *)todayView didTapEditExistingBlink:(PFObject*)blink {
+    [self textViewDidBeginEditing:todayView.contentTextView];
+}
+
+- (void)todayView:(BITodayView *)todayView didTapCancelEditExistingBlink:(PFObject*)blink {
+    [self unfocusTodayView];
 }
 
 #pragma mark - ibactions
 
 - (void)tappedFadeLayer:(UITapGestureRecognizer*)tapGR {
-    _todayView.isExpanded = NO;
-    [_fadeLayer fadeOutWithDuration:0.5 completion:nil];
+    [self unfocusTodayView];
 }
 
-
-//- (void)addBlink:(id)sender {
-//    UIStoryboard *mainStoryboard = [UIStoryboard mainStoryboard];
-//
-//    BIComposeBlinkViewController *composeVC = [mainStoryboard instantiateViewControllerWithIdentifier:@"BIComposeBlinkNavigationController"];
-//    [self presentViewController:composeVC animated:YES completion:nil];
-//}
+- (void)unfocusTodayView {
+    _todayView.isExpanded = NO;
+    _todayView.contentTextView.text = _todayView.blink[@"content"];
+    [_fadeLayer fadeOutWithDuration:0.5 completion:nil];
+}
 
 - (IBAction)logout:(id)sender {
     [PFUser logOut];
