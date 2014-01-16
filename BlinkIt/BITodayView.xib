@@ -67,13 +67,23 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LM7-rc-MuD">
-                    <rect key="frame" x="6" y="138" width="25" height="25"/>
+                    <rect key="frame" x="8" y="138" width="25" height="25"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <state key="normal" backgroundImage="trash2">
                         <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
                         <action selector="deleteTapped:" destination="1" eventType="touchUpInside" id="Oqh-Jd-sbw"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9cq-BZ-pCf">
+                    <rect key="frame" x="48" y="138" width="25" height="25"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" backgroundImage="camera">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="cameraTapped:" destination="1" eventType="touchUpInside" id="78R-C6-8ZE"/>
                     </connections>
                 </button>
             </subviews>
@@ -86,6 +96,7 @@
             <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
+                <outlet property="cameraButton" destination="9cq-BZ-pCf" id="OoT-lU-sgL"/>
                 <outlet property="contentTextView" destination="03R-nq-ogR" id="cx4-cQ-9B1"/>
                 <outlet property="dateLabel" destination="YyN-qg-K24" id="hW3-Xl-LQ4"/>
                 <outlet property="deleteButton" destination="LM7-rc-MuD" id="xr4-4t-HgD"/>
@@ -98,6 +109,7 @@
         </view>
     </objects>
     <resources>
+        <image name="camera" width="25" height="25"/>
         <image name="trash2" width="128" height="128"/>
     </resources>
 </document>

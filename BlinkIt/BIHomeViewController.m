@@ -13,10 +13,17 @@
 #import "BIComposeBlinkViewController.h"
 #import "BITodayView.h"
 
-@interface BIHomeViewController () <UITextViewDelegate, BITodayViewDelegate, UIActionSheetDelegate>
+#define kAttachPhotoActionSheet 0
+#define kDeleteBlinkActionSheet 1
+#define kActionSheetPhotoLibrary 0
+#define kActionSheetTakePhoto 1
+
+@interface BIHomeViewController () <UITextViewDelegate, BITodayViewDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate>
 @property (nonatomic, strong) NSArray *blinksArray;
 @property (nonatomic, strong) BITodayView *todayView;
-@property (strong, nonatomic) IBOutlet UIView *fadeLayer;
+@property (nonatomic, strong) IBOutlet UIView *fadeLayer;
+@property (nonatomic, strong) UIImagePickerController *imagePickerController;
+@property (nonatomic, assign) BOOL isPresentingOtherVC;
 @end
 
 @implementation BIHomeViewController
@@ -31,6 +38,17 @@
     }
     
     return self;
+}
+
+#pragma mark - setter/getter
+
+- (UIImagePickerController*)imagePickerController {
+    if (!_imagePickerController) {
+        _imagePickerController = [UIImagePickerController new];
+        _imagePickerController.delegate = self;
+    }
+    
+    return _imagePickerController;
 }
 
 #pragma mark - lifecycle
@@ -74,7 +92,11 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    [self fetchBlinks];
+    if (!_isPresentingOtherVC) {
+        [self fetchBlinks];
+    } else {
+        _isPresentingOtherVC = NO;
+    }
 }
 
 #pragma mark - requests
@@ -206,20 +228,74 @@
     [self unfocusTodayView];
 }
 
+- (void)todayView:(BITodayView *)todayView didTapDeleteExistingBlink:(PFObject*)blink {
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"This will clear your entry for today. Are you sure?" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:@"Continue" otherButtonTitles:nil];
+    actionSheet.tag = kDeleteBlinkActionSheet;
+    [actionSheet showInView:self.view];
+}
+
+- (void)todayView:(BITodayView *)todayView addPhotoToBlink:(PFObject*)blink {
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"From Photo Library", @"Take New Photo", nil];
+    actionSheet.tag = kAttachPhotoActionSheet;
+    [actionSheet showInView:self.view];
+}
+
 #pragma mark - UIActionSheetDelegate
 
 - (void)actionSheet:(UIActionSheet *)actionSheet willDismissWithButtonIndex:(NSInteger)buttonIndex {
-    if (buttonIndex == actionSheet.destructiveButtonIndex) {
-        PFObject *existingBlink = _todayView.blink;
-        if (existingBlink) {
-            [existingBlink deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-                if (succeeded) {
-                    _todayView.blink = nil;
-                    [self unfocusTodayView];
-                }
-            }];
+    if (actionSheet.tag == kDeleteBlinkActionSheet) {
+        if (buttonIndex == actionSheet.destructiveButtonIndex) {
+            PFObject *existingBlink = _todayView.blink;
+            if (existingBlink) {
+                [existingBlink deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                    if (succeeded) {
+                        _todayView.blink = nil;
+                        [self unfocusTodayView];
+                    }
+                }];
+            }
+        }
+    } else if (actionSheet.tag == kAttachPhotoActionSheet) {
+        if (buttonIndex == kActionSheetPhotoLibrary) {
+            [self showImagePickerForSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
+        } else if (buttonIndex == kActionSheetTakePhoto) {
+            [self showImagePickerForSourceType:UIImagePickerControllerSourceTypeCamera];
         }
     }
+}
+
+#pragma mark - UIImagePickerControllerDelegate
+
+- (void)showImagePickerForSourceType:(UIImagePickerControllerSourceType)sourceType {
+    if(![UIImagePickerController isSourceTypeAvailable:sourceType]) {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Your device does not support this type of functionality" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alertView show];
+        return;
+    }
+    
+    self.imagePickerController.sourceType = sourceType;
+    self.imagePickerController.allowsEditing = YES;
+
+    if (sourceType == UIImagePickerControllerSourceTypeCamera) {
+        self.imagePickerController.showsCameraControls = NO;
+    }
+    
+    _isPresentingOtherVC = YES;
+    [self presentViewController:self.imagePickerController animated:YES completion:nil];
+}
+
+
+// This method is called when an image has been chosen from the library or taken from the camera.
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
+    UIImage *image = [info valueForKey:UIImagePickerControllerOriginalImage];
+    
+    _todayView.selectedImage = image;
+    
+    [self dismissViewControllerAnimated:YES completion:NULL];
+}
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
+    [self dismissViewControllerAnimated:YES completion:NULL];
 }
 
 #pragma mark - ibactions

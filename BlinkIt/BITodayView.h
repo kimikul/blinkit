@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "BIPlaceholderTextView.h"
+#import "BIViewController.h"
 
 @class BITodayView;
 
@@ -16,15 +17,18 @@
 - (void)todayView:(BITodayView*)todayView didSubmitBlink:(PFObject*)blink;
 - (void)todayView:(BITodayView *)todayView didTapEditExistingBlink:(PFObject*)blink;
 - (void)todayView:(BITodayView *)todayView didTapCancelEditExistingBlink:(PFObject*)blink;
+- (void)todayView:(BITodayView *)todayView didTapDeleteExistingBlink:(PFObject*)blink;
+- (void)todayView:(BITodayView *)todayView addPhotoToBlink:(PFObject*)blink;
 
 @end
 
 @interface BITodayView : UIView
 
-@property (nonatomic, weak) UIViewController <BITodayViewDelegate, UIActionSheetDelegate> * delegate;
+@property (nonatomic, weak) BIViewController <BITodayViewDelegate, UIActionSheetDelegate> * delegate;
 
 @property (nonatomic, strong) PFObject *blink;
 @property (nonatomic, assign) BOOL isExpanded;
+@property (nonatomic, strong) UIImage *selectedImage;
 
 @property (weak, nonatomic) IBOutlet BIPlaceholderTextView *contentTextView;
 @property (weak, nonatomic) IBOutlet UIButton *submitButton;

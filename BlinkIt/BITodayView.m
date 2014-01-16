@@ -18,6 +18,8 @@ const CGFloat EXPANDED_HEIGHT = 170;
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 @property (weak, nonatomic) IBOutlet UIView *separatorView;
 @property (weak, nonatomic) IBOutlet UIButton *deleteButton;
+@property (weak, nonatomic) IBOutlet UIButton *cameraButton;
+
 @end
 
 @implementation BITodayView
@@ -52,6 +54,8 @@ const CGFloat EXPANDED_HEIGHT = 170;
     } else {
         _placeholderLabel.text = @"Click to edit today's blink";
     }
+    
+    _dateLabel.text = [NSDate spelledOutTodaysDate];
 }
 
 - (void)setIsExpanded:(BOOL)isExpanded {
@@ -69,6 +73,18 @@ const CGFloat EXPANDED_HEIGHT = 170;
         self.frameHeight = newHeight;
         self.separatorView.frameY = newHeight;
     }];
+}
+
+- (void)setSelectedImage:(UIImage *)selectedImage {
+    _selectedImage = selectedImage;
+    
+    UIImage *cameraImage = [UIImage imageNamed:@"camera"];
+
+    if (selectedImage) {
+        cameraImage = [cameraImage imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    }
+    
+    [_cameraButton setBackgroundImage:cameraImage forState:UIControlStateNormal];
 }
 
 #pragma mark - helper
@@ -94,6 +110,7 @@ const CGFloat EXPANDED_HEIGHT = 170;
     _placeholderLabel.hidden = YES;
     _contentTextView.editable = YES;
     _submitButton.hidden = NO;
+    _cameraButton.hidden = NO;
     _remainingCharactersLabel.hidden = NO;
     
     // update textview and trash button based on whether there is an existing entry
@@ -113,6 +130,7 @@ const CGFloat EXPANDED_HEIGHT = 170;
 - (void)updateForCondensedView {
     _remainingCharactersLabel.hidden = YES;
     _submitButton.hidden = YES;
+    _cameraButton.hidden = YES;
     _deleteButton.hidden = YES;
     _contentTextView.text = @"";
     _placeholderLabel.hidden = NO;
@@ -155,23 +173,27 @@ const CGFloat EXPANDED_HEIGHT = 170;
 - (IBAction)submitTapped:(id)sender {
     NSString *content = [_contentTextView.text stringByTrimmingWhiteSpace];
     
+    PFObject *blink;
+    
     if (!_blink) {
-        PFObject *newBlink = [PFObject objectWithClassName:@"Blink"];
-        newBlink[@"content"] = content;
-        newBlink[@"date"] = [NSDate date];
+        blink = [PFObject objectWithClassName:@"Blink"];
+        blink[@"content"] = content;
+        blink[@"date"] = [NSDate date];
         
-        PFRelation *relation = [newBlink relationForKey:@"user"];
+        PFRelation *relation = [blink relationForKey:@"user"];
         [relation addObject:[PFUser currentUser]];
-        [newBlink saveInBackground];
-        
-        [self.delegate todayView:self didSubmitBlink:newBlink];
     } else {
-        PFObject *existingBlink = _blink;
-        existingBlink[@"content"] = content;
-        [existingBlink saveInBackground];
-        
-        [self.delegate todayView:self didSubmitBlink:existingBlink];
+        blink = _blink;
+        blink[@"content"] = content;
     }
+    
+    [self.delegate showProgressHUD];
+    [blink saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        self.delegate.progressHUD.mode = MBProgressHUDModeText;
+        self.delegate.progressHUD.labelText = @"Saved!";
+        [self.delegate showProgressHUDForDuration:0.8];
+        [self.delegate todayView:self didSubmitBlink:blink];
+    }];
 }
 
 - (IBAction)editTapped:(id)sender {
@@ -184,8 +206,15 @@ const CGFloat EXPANDED_HEIGHT = 170;
 }
 
 - (IBAction)deleteTapped:(id)sender {
-    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"This will clear your entry for today. Are you sure?" delegate:self.delegate cancelButtonTitle:@"Cancel" destructiveButtonTitle:@"Continue" otherButtonTitles:nil];
-    [actionSheet showInView:self.delegate.view];
+    [self.delegate todayView:self didTapDeleteExistingBlink:_blink];
+}
+
+- (IBAction)cameraTapped:(id)sender {
+    if (!_selectedImage) {
+        [self.delegate todayView:self addPhotoToBlink:_blink];
+    } else {
+        // present existing attached photo
+    }
 }
 
 @end

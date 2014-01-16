@@ -19,4 +19,6 @@
     #import "UIView+BlinkIt.h"
     #import "UIColor+BlinkIt.h"
     #import "NSDate+BlinkIt.h"
+    #import "MBProgressHUD.h"
+
 #endif
