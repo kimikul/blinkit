@@ -37,7 +37,6 @@
 		5EAB8B2C1881062A00B02953 /* UIStoryboard+BlinkIt.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EAB8B2B1881062A00B02953 /* UIStoryboard+BlinkIt.m */; };
 		5EAB8B30188118E600B02953 /* BIHomeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EAB8B2F188118E600B02953 /* BIHomeTableViewCell.m */; };
 		5EAB8B3318811E8600B02953 /* BITableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EAB8B3218811E8600B02953 /* BITableViewController.m */; };
-		5EAB8B37188121E400B02953 /* BIComposeBlinkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EAB8B36188121E400B02953 /* BIComposeBlinkViewController.m */; };
 		5EAB8B3B1881300E00B02953 /* UIView+BlinkIt.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EAB8B3A1881300E00B02953 /* UIView+BlinkIt.m */; };
 		5EAB8B3E1881359D00B02953 /* UIColor+BlinkIt.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EAB8B3D1881359D00B02953 /* UIColor+BlinkIt.m */; };
 		5EAB8B4118831AF600B02953 /* BITodayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EAB8B4018831AF600B02953 /* BITodayView.m */; };
@@ -102,8 +101,6 @@
 		5EAB8B2F188118E600B02953 /* BIHomeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BIHomeTableViewCell.m; sourceTree = "<group>"; };
 		5EAB8B3118811E8600B02953 /* BITableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BITableViewController.h; sourceTree = "<group>"; };
 		5EAB8B3218811E8600B02953 /* BITableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BITableViewController.m; sourceTree = "<group>"; };
-		5EAB8B35188121E400B02953 /* BIComposeBlinkViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BIComposeBlinkViewController.h; sourceTree = "<group>"; };
-		5EAB8B36188121E400B02953 /* BIComposeBlinkViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BIComposeBlinkViewController.m; sourceTree = "<group>"; };
 		5EAB8B391881300E00B02953 /* UIView+BlinkIt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+BlinkIt.h"; sourceTree = "<group>"; };
 		5EAB8B3A1881300E00B02953 /* UIView+BlinkIt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+BlinkIt.m"; sourceTree = "<group>"; };
 		5EAB8B3C1881359D00B02953 /* UIColor+BlinkIt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+BlinkIt.h"; sourceTree = "<group>"; };
@@ -202,7 +199,6 @@
 				5EAB8B3418811E8C00B02953 /* Common */,
 				5EAB8B2D1881077100B02953 /* Main */,
 				5EAB8B261880F89900B02953 /* Home */,
-				5EAB8B38188121E900B02953 /* Compose */,
 				5EAB8B221880F3B500B02953 /* Categories */,
 				5EAB8AD8187E7CC300B02953 /* Pre Signed In */,
 				5EAB8ABB187E73DF00B02953 /* Images.xcassets */,
@@ -307,15 +303,6 @@
 				5EB3A5C51887A2F300BCA8DB /* BIImageUploadManager.m */,
 			);
 			name = Common;
-			sourceTree = "<group>";
-		};
-		5EAB8B38188121E900B02953 /* Compose */ = {
-			isa = PBXGroup;
-			children = (
-				5EAB8B35188121E400B02953 /* BIComposeBlinkViewController.h */,
-				5EAB8B36188121E400B02953 /* BIComposeBlinkViewController.m */,
-			);
-			name = Compose;
 			sourceTree = "<group>";
 		};
 		5EB3A5BD1887A10900BCA8DB /* Vendor */ = {
@@ -435,7 +422,6 @@
 				5EAB8AB0187E73DF00B02953 /* main.m in Sources */,
 				5EAB8ADB187E7CFF00B02953 /* BILoginViewController.m in Sources */,
 				5EB3A5C01887A14100BCA8DB /* MBProgressHUD.m in Sources */,
-				5EAB8B37188121E400B02953 /* BIComposeBlinkViewController.m in Sources */,
 				5EAB8B30188118E600B02953 /* BIHomeTableViewCell.m in Sources */,
 				5EAB8B251880F3C600B02953 /* NSString+BlinkIt.m in Sources */,
 				5EB3A5C61887A2F300BCA8DB /* BIImageUploadManager.m in Sources */,

@@ -10,33 +10,27 @@
 
 @implementation BIImageUploadManager
 
-- (void)uploadImage:(UIImage*)image {
+- (void)uploadImage:(UIImage*)image forBlink:(PFObject*)blink {
     NSData *imageData = UIImageJPEGRepresentation(image, 0.05f);
     
     PFFile *imageFile = [PFFile fileWithName:@"Image.jpg" data:imageData];
     
-    [self.delegate showProgressHUD];
-    
     // Save PFFile
     [imageFile saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (!error) {
-            [self.delegate hideProgressHUD];
             
-            PFObject *userPhoto = [PFObject objectWithClassName:@"UserPhoto"];
+            PFObject *userPhoto = [PFObject objectWithClassName:@"Photo"];
             [userPhoto setObject:imageFile forKey:@"imageFile"];
             
             userPhoto.ACL = [PFACL ACLWithUser:[PFUser currentUser]];
             
-            PFUser *user = [PFUser currentUser];
-            [userPhoto setObject:user forKey:@"user"];
+            [userPhoto setObject:blink forKey:@"blink"];
             
             [userPhoto saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-                [self.delegate imageUploadManager:self didUploadImageWithError:error];
+                [self.delegate imageUploadManager:self didUploadImage:image forBlink:blink withError:error];
             }];
         }
-        else{
-            [self.delegate hideProgressHUD];
-            
+        else {
             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error" message:@"There was an error uploading your photo. Please try again." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
             [alertView show];
         }

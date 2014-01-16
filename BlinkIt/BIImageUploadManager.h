@@ -12,11 +12,13 @@
 @class BIImageUploadManager;
 
 @protocol BIImageUploadManagerDelegate <NSObject>
-- (void)imageUploadManager:(BIImageUploadManager*)imageUploadManager didUploadImageWithError:(NSError*)error;
+- (void)imageUploadManager:(BIImageUploadManager*)imageUploadManager didUploadImage:(UIImage*)image forBlink:(PFObject*)blink withError:(NSError*)error;
 @end
 
 @interface BIImageUploadManager : NSObject
 
 @property (nonatomic, weak) BIViewController <BIImageUploadManagerDelegate> * delegate;
+
+- (void)uploadImage:(UIImage*)image forBlink:(PFObject*)blink;
 
 @end

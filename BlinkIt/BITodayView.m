@@ -171,29 +171,7 @@ const CGFloat EXPANDED_HEIGHT = 170;
 #pragma mark - button actions
 
 - (IBAction)submitTapped:(id)sender {
-    NSString *content = [_contentTextView.text stringByTrimmingWhiteSpace];
-    
-    PFObject *blink;
-    
-    if (!_blink) {
-        blink = [PFObject objectWithClassName:@"Blink"];
-        blink[@"content"] = content;
-        blink[@"date"] = [NSDate date];
-        
-        PFRelation *relation = [blink relationForKey:@"user"];
-        [relation addObject:[PFUser currentUser]];
-    } else {
-        blink = _blink;
-        blink[@"content"] = content;
-    }
-    
-    [self.delegate showProgressHUD];
-    [blink saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-        self.delegate.progressHUD.mode = MBProgressHUDModeText;
-        self.delegate.progressHUD.labelText = @"Saved!";
-        [self.delegate showProgressHUDForDuration:0.8];
-        [self.delegate todayView:self didSubmitBlink:blink];
-    }];
+    [self.delegate todayView:self didSubmitBlink:_blink];
 }
 
 - (IBAction)editTapped:(id)sender {

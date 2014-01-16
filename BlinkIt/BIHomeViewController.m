@@ -10,19 +10,20 @@
 #import "BIAppDelegate.h"
 #import "BISplashViewController.h"
 #import "BIHomeTableViewCell.h"
-#import "BIComposeBlinkViewController.h"
 #import "BITodayView.h"
+#import "BIImageUploadManager.h"
 
 #define kAttachPhotoActionSheet 0
 #define kDeleteBlinkActionSheet 1
 #define kActionSheetPhotoLibrary 0
 #define kActionSheetTakePhoto 1
 
-@interface BIHomeViewController () <UITextViewDelegate, BITodayViewDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate>
+@interface BIHomeViewController () <UITextViewDelegate, BITodayViewDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, BIImageUploadManagerDelegate>
 @property (nonatomic, strong) NSArray *blinksArray;
 @property (nonatomic, strong) BITodayView *todayView;
 @property (nonatomic, strong) IBOutlet UIView *fadeLayer;
 @property (nonatomic, strong) UIImagePickerController *imagePickerController;
+@property (nonatomic, strong) BIImageUploadManager *imageUploadManager;
 @property (nonatomic, assign) BOOL isPresentingOtherVC;
 @end
 
@@ -49,6 +50,15 @@
     }
     
     return _imagePickerController;
+}
+
+- (BIImageUploadManager*)imageUploadManager {
+    if (!_imageUploadManager) {
+        _imageUploadManager = [BIImageUploadManager new];
+        _imageUploadManager.delegate = self;
+    }
+    
+    return _imageUploadManager;
 }
 
 #pragma mark - lifecycle
@@ -215,9 +225,41 @@
 
 #pragma mark - BITodayViewDelegate
 
-- (void)todayView:(BITodayView *)todayView didSubmitBlink:(PFObject *)blink {
+- (void)finishSuccessfulBlinkUpdate:(PFObject*)blink {
+    self.progressHUD.mode = MBProgressHUDModeText;
+    self.progressHUD.labelText = @"Saved!";
+    [self showProgressHUDForDuration:0.8];
+    
     [self unfocusTodayView];
     _todayView.blink = blink;
+}
+
+- (void)todayView:(BITodayView *)todayView didSubmitBlink:(PFObject *)blink {
+    
+    [self showProgressHUD];
+
+    NSString *content = [_todayView.contentTextView.text stringByTrimmingWhiteSpace];
+    
+    PFObject *theBlink;
+    
+    if (!blink) {
+        theBlink = [PFObject objectWithClassName:@"Blink"];
+        theBlink[@"content"] = content;
+        theBlink[@"date"] = [NSDate date];
+        theBlink[@"user"] = [PFUser currentUser];
+    } else {
+        theBlink = blink;
+        theBlink[@"content"] = content;
+    }
+    
+    [theBlink saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        UIImage *image = _todayView.selectedImage;
+        if (image) {
+            [self.imageUploadManager uploadImage:image forBlink:theBlink];
+        } else {
+            [self finishSuccessfulBlinkUpdate:theBlink];
+        }
+    }];
 }
 
 - (void)todayView:(BITodayView *)todayView didTapEditExistingBlink:(PFObject*)blink {
@@ -296,6 +338,18 @@
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
     [self dismissViewControllerAnimated:YES completion:NULL];
+}
+
+#pragma mark - BIImageUploadManagerDelegate
+
+- (void)imageUploadManager:(BIImageUploadManager*)imageUploadManager didUploadImage:(UIImage*)image forBlink:(PFObject*)blink withError:(NSError*)error {
+    if (!error) {
+        [self finishSuccessfulBlinkUpdate:blink];
+    } else {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error" message:@"There was an error uploading your entry. Please try again!" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alertView show];
+    
+    }
 }
 
 #pragma mark - ibactions
