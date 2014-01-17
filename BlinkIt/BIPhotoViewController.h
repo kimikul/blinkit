@@ -8,6 +8,18 @@
 
 #import "BIViewController.h"
 
+@class BIPhotoViewController;
+
+@protocol BIPhotoViewControllerDelegate <NSObject>
+
+- (void)photoViewController:(BIPhotoViewController*)photoViewController didRemovePhotoFromBlink:(PFObject*)blink;
+
+@end
+
 @interface BIPhotoViewController : BIViewController
+
+@property (nonatomic, weak) id <BIPhotoViewControllerDelegate> delegate;
 @property (nonatomic, strong) UIImage *attachedImage;
+@property (nonatomic, strong) PFObject *blink;
+
 @end

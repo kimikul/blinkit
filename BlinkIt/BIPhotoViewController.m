@@ -25,14 +25,26 @@
 - (void)setupNav {
     self.title = @"Attached Photo";
 
-    UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStylePlain target:self action:@selector(okTapped:)];
-    self.navigationItem.rightBarButtonItem = rightButton;
+    UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStylePlain target:self action:@selector(okTapped:)];
+    self.navigationItem.rightBarButtonItem = doneButton;
+    
+    UIBarButtonItem *removeButton = [[UIBarButtonItem alloc] initWithTitle:@"Remove" style:UIBarButtonItemStylePlain target:self action:@selector(removePhoto:)];
+    self.navigationItem.leftBarButtonItem = removeButton;
 }
 
 #pragma mark - button actions
 
 - (void)okTapped:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)removePhoto:(id)sender {
+    [_blink removeObjectForKey:@"imageFile"];
+    [_blink saveInBackground];
+    
+    [self dismissViewControllerAnimated:YES completion:^{
+        [self.delegate photoViewController:self didRemovePhotoFromBlink:_blink];
+    }];
 }
 
 @end

@@ -19,7 +19,8 @@
 #define kActionSheetPhotoLibrary 0
 #define kActionSheetTakePhoto 1
 
-@interface BIHomeViewController () <UITextViewDelegate, BITodayViewDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, BIImageUploadManagerDelegate>
+@interface BIHomeViewController () <UITextViewDelegate, BITodayViewDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, BIImageUploadManagerDelegate, BIPhotoViewControllerDelegate>
+
 @property (nonatomic, strong) NSArray *blinksArray;
 @property (nonatomic, strong) BITodayView *todayView;
 @property (nonatomic, strong) IBOutlet UIView *fadeLayer;
@@ -287,6 +288,8 @@
 - (void)todayView:(BITodayView *)todayView showExistingPhotoForBlink:(PFObject*)blink {
     BIPhotoViewController *photoVC = [BIPhotoViewController new];
     photoVC.attachedImage = todayView.selectedImage;
+    photoVC.blink = blink;
+    photoVC.delegate = self;
     
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:photoVC];
     _isPresentingOtherVC = YES;
@@ -361,6 +364,12 @@
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error" message:@"There was an error uploading your entry. Please try again!" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alertView show];
     }
+}
+
+#pragma mark - BIPhotoViewControllerDelegate
+
+- (void)photoViewController:(BIPhotoViewController*)photoViewController didRemovePhotoFromBlink:(PFObject*)blink {
+    _todayView.selectedImage = nil;
 }
 
 #pragma mark - ibactions
