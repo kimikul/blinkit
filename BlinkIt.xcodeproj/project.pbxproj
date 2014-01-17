@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5E6392701888EA9800D1AE80 /* BIPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E63926F1888EA9800D1AE80 /* BIPhotoViewController.m */; };
+		5E6392721888F09600D1AE80 /* BIPhotoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E6392711888F09600D1AE80 /* BIPhotoViewController.xib */; };
 		5EAB8AA4187E73DF00B02953 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EAB8AA3187E73DF00B02953 /* Foundation.framework */; };
 		5EAB8AA6187E73DF00B02953 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EAB8AA5187E73DF00B02953 /* CoreGraphics.framework */; };
 		5EAB8AA8187E73DF00B02953 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EAB8AA7187E73DF00B02953 /* UIKit.framework */; };
@@ -59,6 +61,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5E63926E1888EA9800D1AE80 /* BIPhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BIPhotoViewController.h; sourceTree = "<group>"; };
+		5E63926F1888EA9800D1AE80 /* BIPhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BIPhotoViewController.m; sourceTree = "<group>"; };
+		5E6392711888F09600D1AE80 /* BIPhotoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BIPhotoViewController.xib; sourceTree = "<group>"; };
 		5EAB8AA0187E73DF00B02953 /* BlinkIt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BlinkIt.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5EAB8AA3187E73DF00B02953 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		5EAB8AA5187E73DF00B02953 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -153,6 +158,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5E63926D1888EA7E00D1AE80 /* Photo Viewer */ = {
+			isa = PBXGroup;
+			children = (
+				5E63926E1888EA9800D1AE80 /* BIPhotoViewController.h */,
+				5E63926F1888EA9800D1AE80 /* BIPhotoViewController.m */,
+				5E6392711888F09600D1AE80 /* BIPhotoViewController.xib */,
+			);
+			name = "Photo Viewer";
+			sourceTree = "<group>";
+		};
 		5EAB8A97187E73DF00B02953 = {
 			isa = PBXGroup;
 			children = (
@@ -195,6 +210,7 @@
 		5EAB8AA9187E73DF00B02953 /* BlinkIt */ = {
 			isa = PBXGroup;
 			children = (
+				5E63926D1888EA7E00D1AE80 /* Photo Viewer */,
 				5EB3A5BD1887A10900BCA8DB /* Vendor */,
 				5EAB8B3418811E8C00B02953 /* Common */,
 				5EAB8B2D1881077100B02953 /* Main */,
@@ -392,6 +408,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5EAB8ABC187E73DF00B02953 /* Images.xcassets in Resources */,
+				5E6392721888F09600D1AE80 /* BIPhotoViewController.xib in Resources */,
 				5EAB8AAE187E73DF00B02953 /* InfoPlist.strings in Resources */,
 				5EAB8AB7187E73DF00B02953 /* Main.storyboard in Resources */,
 				5EAB8B4318831B0700B02953 /* BITodayView.xib in Resources */,
@@ -423,6 +440,7 @@
 				5EAB8ADB187E7CFF00B02953 /* BILoginViewController.m in Sources */,
 				5EB3A5C01887A14100BCA8DB /* MBProgressHUD.m in Sources */,
 				5EAB8B30188118E600B02953 /* BIHomeTableViewCell.m in Sources */,
+				5E6392701888EA9800D1AE80 /* BIPhotoViewController.m in Sources */,
 				5EAB8B251880F3C600B02953 /* NSString+BlinkIt.m in Sources */,
 				5EB3A5C61887A2F300BCA8DB /* BIImageUploadManager.m in Sources */,
 				5EAB8B461883211700B02953 /* NSDate+BlinkIt.m in Sources */,

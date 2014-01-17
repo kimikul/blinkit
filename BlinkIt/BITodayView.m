@@ -50,6 +50,14 @@ const CGFloat EXPANDED_HEIGHT = 170;
     
     if (blink) {
         _placeholderLabel.text = blink[@"content"];
+        
+        PFFile *imageFile = blink[@"imageFile"];
+        if (imageFile) {
+            NSData *imageData = [imageFile getData];
+            UIImage *image = [UIImage imageWithData:imageData];
+            self.selectedImage = image;
+        }
+        
         [self updateForCondensedView];
     } else {
         _placeholderLabel.text = @"Click to edit today's blink";
@@ -191,7 +199,7 @@ const CGFloat EXPANDED_HEIGHT = 170;
     if (!_selectedImage) {
         [self.delegate todayView:self addPhotoToBlink:_blink];
     } else {
-        // present existing attached photo
+        [self.delegate todayView:self showExistingPhotoForBlink:_blink];
     }
 }
 

@@ -12,6 +12,7 @@
 #import "BIHomeTableViewCell.h"
 #import "BITodayView.h"
 #import "BIImageUploadManager.h"
+#import "BIPhotoViewController.h"
 
 #define kAttachPhotoActionSheet 0
 #define kDeleteBlinkActionSheet 1
@@ -244,22 +245,23 @@
     
     if (!blink) {
         theBlink = [PFObject objectWithClassName:@"Blink"];
-        theBlink[@"content"] = content;
         theBlink[@"date"] = [NSDate date];
         theBlink[@"user"] = [PFUser currentUser];
     } else {
         theBlink = blink;
-        theBlink[@"content"] = content;
     }
+
+    theBlink[@"content"] = content;
     
-    [theBlink saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-        UIImage *image = _todayView.selectedImage;
-        if (image) {
-            [self.imageUploadManager uploadImage:image forBlink:theBlink];
-        } else {
+    UIImage *image = _todayView.selectedImage;
+    if (image) {
+        [self.imageUploadManager uploadImage:image forBlink:theBlink];
+    } else {
+        [theBlink removeObjectForKey:@"imageFile"];
+        [theBlink saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
             [self finishSuccessfulBlinkUpdate:theBlink];
-        }
-    }];
+        }];
+    }
 }
 
 - (void)todayView:(BITodayView *)todayView didTapEditExistingBlink:(PFObject*)blink {
@@ -280,6 +282,16 @@
     UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"From Photo Library", @"Take New Photo", nil];
     actionSheet.tag = kAttachPhotoActionSheet;
     [actionSheet showInView:self.view];
+}
+
+- (void)todayView:(BITodayView *)todayView showExistingPhotoForBlink:(PFObject*)blink {
+    BIPhotoViewController *photoVC = [BIPhotoViewController new];
+    photoVC.attachedImage = todayView.selectedImage;
+    
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:photoVC];
+    _isPresentingOtherVC = YES;
+    
+    [self presentViewController:nav animated:YES completion:nil];
 }
 
 #pragma mark - UIActionSheetDelegate
@@ -348,7 +360,6 @@
     } else {
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error" message:@"There was an error uploading your entry. Please try again!" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alertView show];
-    
     }
 }
 

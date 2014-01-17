@@ -18,15 +18,8 @@
     // Save PFFile
     [imageFile saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (!error) {
-            
-            PFObject *userPhoto = [PFObject objectWithClassName:@"Photo"];
-            [userPhoto setObject:imageFile forKey:@"imageFile"];
-            
-            userPhoto.ACL = [PFACL ACLWithUser:[PFUser currentUser]];
-            
-            [userPhoto setObject:blink forKey:@"blink"];
-            
-            [userPhoto saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+            [blink setObject:imageFile forKey:@"imageFile"];
+            [blink saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
                 [self.delegate imageUploadManager:self didUploadImage:image forBlink:blink withError:error];
             }];
         }

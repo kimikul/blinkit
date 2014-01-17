@@ -19,6 +19,7 @@
 - (void)todayView:(BITodayView *)todayView didTapCancelEditExistingBlink:(PFObject*)blink;
 - (void)todayView:(BITodayView *)todayView didTapDeleteExistingBlink:(PFObject*)blink;
 - (void)todayView:(BITodayView *)todayView addPhotoToBlink:(PFObject*)blink;
+- (void)todayView:(BITodayView *)todayView showExistingPhotoForBlink:(PFObject*)blink;
 
 @end
 
