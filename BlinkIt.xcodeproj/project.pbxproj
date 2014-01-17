@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		5E6392701888EA9800D1AE80 /* BIPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E63926F1888EA9800D1AE80 /* BIPhotoViewController.m */; };
 		5E6392721888F09600D1AE80 /* BIPhotoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E6392711888F09600D1AE80 /* BIPhotoViewController.xib */; };
+		5E63927B1889227F00D1AE80 /* BIHomePhotoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E63927A1889227F00D1AE80 /* BIHomePhotoTableViewCell.m */; };
 		5EAB8AA4187E73DF00B02953 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EAB8AA3187E73DF00B02953 /* Foundation.framework */; };
 		5EAB8AA6187E73DF00B02953 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EAB8AA5187E73DF00B02953 /* CoreGraphics.framework */; };
 		5EAB8AA8187E73DF00B02953 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EAB8AA7187E73DF00B02953 /* UIKit.framework */; };
@@ -64,6 +65,8 @@
 		5E63926E1888EA9800D1AE80 /* BIPhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BIPhotoViewController.h; sourceTree = "<group>"; };
 		5E63926F1888EA9800D1AE80 /* BIPhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BIPhotoViewController.m; sourceTree = "<group>"; };
 		5E6392711888F09600D1AE80 /* BIPhotoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BIPhotoViewController.xib; sourceTree = "<group>"; };
+		5E6392791889227F00D1AE80 /* BIHomePhotoTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BIHomePhotoTableViewCell.h; sourceTree = "<group>"; };
+		5E63927A1889227F00D1AE80 /* BIHomePhotoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BIHomePhotoTableViewCell.m; sourceTree = "<group>"; };
 		5EAB8AA0187E73DF00B02953 /* BlinkIt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BlinkIt.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5EAB8AA3187E73DF00B02953 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		5EAB8AA5187E73DF00B02953 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -292,6 +295,8 @@
 				5EAB8B3F18831AF600B02953 /* BITodayView.h */,
 				5EAB8B4018831AF600B02953 /* BITodayView.m */,
 				5EAB8B4218831B0700B02953 /* BITodayView.xib */,
+				5E6392791889227F00D1AE80 /* BIHomePhotoTableViewCell.h */,
+				5E63927A1889227F00D1AE80 /* BIHomePhotoTableViewCell.m */,
 			);
 			name = Home;
 			sourceTree = "<group>";
@@ -432,6 +437,7 @@
 			files = (
 				5EAB8B491883B5FA00B02953 /* BIPlaceholderTextView.m in Sources */,
 				5EAB8B3B1881300E00B02953 /* UIView+BlinkIt.m in Sources */,
+				5E63927B1889227F00D1AE80 /* BIHomePhotoTableViewCell.m in Sources */,
 				5EAB8B3318811E8600B02953 /* BITableViewController.m in Sources */,
 				5EB3A5C31887A18F00BCA8DB /* BIViewController.m in Sources */,
 				5EAB8B2C1881062A00B02953 /* UIStoryboard+BlinkIt.m in Sources */,

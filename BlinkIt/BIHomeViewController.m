@@ -13,6 +13,7 @@
 #import "BITodayView.h"
 #import "BIImageUploadManager.h"
 #import "BIPhotoViewController.h"
+#import "BIHomePhotoTableViewCell.h"
 
 #define kAttachPhotoActionSheet 0
 #define kDeleteBlinkActionSheet 1
@@ -177,16 +178,32 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    PFObject *blink = [_blinksArray objectAtIndex:indexPath.row];
+    CGFloat height = 0;
     
-    return [BIHomeTableViewCell heightForContent:blink[@"content"]];
+    PFObject *blink = [_blinksArray objectAtIndex:indexPath.row];
+    NSString *content = blink[@"content"];
+    PFFile *imageFile = blink[@"imageFile"];
+    
+    if (imageFile) {
+        height = [BIHomePhotoTableViewCell heightForContent:content];
+    } else {
+        height = [BIHomeTableViewCell heightForContent:content];
+    }
+    
+    return height;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    BIHomeTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:[BIHomeTableViewCell reuseIdentifier]];
-    
     PFObject *blink = [_blinksArray objectAtIndex:indexPath.row];
+    BIHomeTableViewCell *cell;
+    
+    if (blink[@"imageFile"]) {
+        cell = [self.tableView dequeueReusableCellWithIdentifier:[BIHomePhotoTableViewCell reuseIdentifier]];
+    } else {
+        cell = [self.tableView dequeueReusableCellWithIdentifier:[BIHomeTableViewCell reuseIdentifier]];
+    }
+    
     cell.blink = blink;
     
     return cell;
@@ -271,6 +288,7 @@
 
 - (void)todayView:(BITodayView *)todayView didTapCancelEditExistingBlink:(PFObject*)blink {
     [self unfocusTodayView];
+    _todayView.blink = _todayView.blink;
 }
 
 - (void)todayView:(BITodayView *)todayView didTapDeleteExistingBlink:(PFObject*)blink {
@@ -371,7 +389,6 @@
 #pragma mark - BIPhotoViewControllerDelegate
 
 - (void)photoViewController:(BIPhotoViewController*)photoViewController didRemovePhotoFromBlink:(PFObject*)blink {
-    [blink removeObjectForKey:@"imageFile"];
     _todayView.selectedImage = nil;
 }
 
@@ -379,6 +396,7 @@
 
 - (void)tappedFadeLayer:(UITapGestureRecognizer*)tapGR {
     [self unfocusTodayView];
+    _todayView.blink = _todayView.blink;
 }
 
 - (void)unfocusTodayView {

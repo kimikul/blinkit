@@ -56,11 +56,14 @@ const CGFloat EXPANDED_HEIGHT = 170;
             NSData *imageData = [imageFile getData];
             UIImage *image = [UIImage imageWithData:imageData];
             self.selectedImage = image;
+        } else {
+            self.selectedImage = nil;
         }
         
         [self updateForCondensedView];
     } else {
         _placeholderLabel.text = @"Click to edit today's blink";
+        self.selectedImage = nil;
     }
     
     _dateLabel.text = [NSDate spelledOutTodaysDate];
@@ -86,7 +89,7 @@ const CGFloat EXPANDED_HEIGHT = 170;
 - (void)setSelectedImage:(UIImage *)selectedImage {
     _selectedImage = selectedImage;
     
-    [self toggleCameraIconForBlink:_blink];
+    [self toggleCameraIconForSelectedImage:selectedImage];
 //    UIImage *cameraImage = [UIImage imageNamed:@"camera"];
 //
 //    if (selectedImage) {
@@ -96,13 +99,11 @@ const CGFloat EXPANDED_HEIGHT = 170;
 //    [_cameraButton setBackgroundImage:cameraImage forState:UIControlStateNormal];
 }
 
-- (void)toggleCameraIconForBlink:(PFObject*)blink {
+- (void)toggleCameraIconForSelectedImage:(UIImage*)image {
     UIImage *cameraImage = [UIImage imageNamed:@"camera"];
 
-    if (blink) {
-        if (blink[@"imageFile"]) {
-            cameraImage = [cameraImage imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-        }
+    if (image) {
+        cameraImage = [cameraImage imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     }
     
     [_cameraButton setBackgroundImage:cameraImage forState:UIControlStateNormal];

@@ -29,7 +29,7 @@
 
 @property (nonatomic, strong) PFObject *blink;
 @property (nonatomic, assign) BOOL isExpanded;
-@property (nonatomic, strong) UIImage *selectedImage;
+@property (nonatomic, strong) UIImage *selectedImage; // keeps track of if there is an image in editing mode. not saved mode
 
 @property (weak, nonatomic) IBOutlet BIPlaceholderTextView *contentTextView;
 @property (weak, nonatomic) IBOutlet UIButton *submitButton;
