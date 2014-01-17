@@ -86,10 +86,23 @@ const CGFloat EXPANDED_HEIGHT = 170;
 - (void)setSelectedImage:(UIImage *)selectedImage {
     _selectedImage = selectedImage;
     
+    [self toggleCameraIconForBlink:_blink];
+//    UIImage *cameraImage = [UIImage imageNamed:@"camera"];
+//
+//    if (selectedImage) {
+//        cameraImage = [cameraImage imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+//    }
+//    
+//    [_cameraButton setBackgroundImage:cameraImage forState:UIControlStateNormal];
+}
+
+- (void)toggleCameraIconForBlink:(PFObject*)blink {
     UIImage *cameraImage = [UIImage imageNamed:@"camera"];
 
-    if (selectedImage) {
-        cameraImage = [cameraImage imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    if (blink) {
+        if (blink[@"imageFile"]) {
+            cameraImage = [cameraImage imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+        }
     }
     
     [_cameraButton setBackgroundImage:cameraImage forState:UIControlStateNormal];

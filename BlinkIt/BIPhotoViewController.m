@@ -39,9 +39,6 @@
 }
 
 - (void)removePhoto:(id)sender {
-    [_blink removeObjectForKey:@"imageFile"];
-    [_blink saveInBackground];
-    
     [self dismissViewControllerAnimated:YES completion:^{
         [self.delegate photoViewController:self didRemovePhotoFromBlink:_blink];
     }];

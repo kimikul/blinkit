@@ -348,7 +348,9 @@
     
     _todayView.selectedImage = image;
     
-    [self dismissViewControllerAnimated:YES completion:NULL];
+    [self dismissViewControllerAnimated:YES completion:^{
+        [_todayView.contentTextView becomeFirstResponder];
+    }];
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
@@ -369,6 +371,7 @@
 #pragma mark - BIPhotoViewControllerDelegate
 
 - (void)photoViewController:(BIPhotoViewController*)photoViewController didRemovePhotoFromBlink:(PFObject*)blink {
+    [blink removeObjectForKey:@"imageFile"];
     _todayView.selectedImage = nil;
 }
 
