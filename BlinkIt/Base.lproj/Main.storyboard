@@ -263,7 +263,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="d2a-43-wUe">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="d2a-43-wUe">
                                 <rect key="frame" x="0.0" y="57" width="320" height="511"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -335,7 +335,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZIQ-2i-chW">
-                                                    <rect key="frame" x="10" y="90" width="300" height="300"/>
+                                                    <rect key="frame" x="10" y="95" width="300" height="300"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>
@@ -352,7 +352,7 @@
                                                 <constraint firstItem="z0U-m8-2fY" firstAttribute="top" secondItem="hJI-g2-NR8" secondAttribute="bottom" constant="5" id="cLp-Fu-e8R"/>
                                                 <constraint firstItem="hJI-g2-NR8" firstAttribute="top" secondItem="CEJ-q5-K3W" secondAttribute="top" constant="8" id="g5H-2s-Lfn"/>
                                                 <constraint firstAttribute="trailing" secondItem="ZIQ-2i-chW" secondAttribute="trailing" constant="10" id="k7o-xq-Qz9"/>
-                                                <constraint firstItem="ZIQ-2i-chW" firstAttribute="top" secondItem="z0U-m8-2fY" secondAttribute="bottom" constant="8" id="lY9-Il-7At"/>
+                                                <constraint firstItem="ZIQ-2i-chW" firstAttribute="top" secondItem="z0U-m8-2fY" secondAttribute="bottom" constant="13" id="lY9-Il-7At"/>
                                                 <constraint firstAttribute="trailing" secondItem="hJI-g2-NR8" secondAttribute="trailing" constant="10" id="nED-KG-mTe"/>
                                             </constraints>
                                         </tableViewCellContentView>

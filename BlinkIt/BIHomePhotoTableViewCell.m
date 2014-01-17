@@ -21,7 +21,7 @@
 
 + (CGFloat)heightForContent:(NSString*)content {
     CGFloat baseHeight = [super heightForContent:content];
-    CGFloat photoHeight = 300;
+    CGFloat photoHeight = 315;
     
     return baseHeight + photoHeight;
 }
