@@ -351,12 +351,9 @@
     self.imagePickerController.sourceType = sourceType;
     self.imagePickerController.allowsEditing = YES;
 
-    if (sourceType == UIImagePickerControllerSourceTypeCamera) {
-        self.imagePickerController.showsCameraControls = NO;
-    }
-    
     _isPresentingOtherVC = YES;
-    [self presentViewController:self.imagePickerController animated:YES completion:nil];
+    
+    [self.navigationController presentViewController:self.imagePickerController animated:YES completion:nil];
 }
 
 
