@@ -52,6 +52,7 @@
                         </subviews>
                         <color key="backgroundColor" red="0.66666666666666663" green="0.92156862745098034" blue="0.81176470588235294" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
+                    <navigationItem key="navigationItem" id="zyv-9k-JaN"/>
                     <connections>
                         <outlet property="loginButton" destination="tLt-aQ-4HJ" id="Rc8-vO-FS2"/>
                         <outlet property="signupButton" destination="fpa-SB-BVm" id="vrW-hd-HoE"/>
@@ -59,6 +60,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="676" y="-20"/>
         </scene>
         <!--Login View Controller - Log In-->
         <scene sceneID="3QE-OR-Cks">
@@ -130,7 +132,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ivp-N0-Z3H" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1136" y="-216"/>
+            <point key="canvasLocation" x="1662" y="-216"/>
         </scene>
         <!--Sign Up View Controller - Sign Up-->
         <scene sceneID="Ime-A2-fXF">
@@ -201,7 +203,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JjW-pt-ZNt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1136" y="536"/>
+            <point key="canvasLocation" x="1662" y="536"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="edJ-lC-aRp">
@@ -219,7 +221,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xtu-ed-utg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="610" y="-216"/>
+            <point key="canvasLocation" x="1136" y="-216"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Uc5-j2-frg">
@@ -237,7 +239,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZcJ-cI-H60" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="610" y="536"/>
+            <point key="canvasLocation" x="1136" y="536"/>
         </scene>
         <!--Home View Controller - Home-->
         <scene sceneID="jO2-Nf-1ST">
@@ -369,13 +371,14 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FoO-NA-U4j" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2447" y="151"/>
+            <point key="canvasLocation" x="2973" y="151"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="E9k-zS-qcU">
             <objects>
                 <navigationController storyboardIdentifier="BIHomeNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="JTq-4J-Uut" sceneMemberID="viewController">
                     <toolbarItems/>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ouD-6N-gME">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -387,7 +390,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TQ9-tq-onF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2055" y="151"/>
+            <point key="canvasLocation" x="2581" y="151"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="dRe-7c-Eid">
@@ -405,7 +408,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="o99-hE-zff" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2459" y="-529"/>
+            <point key="canvasLocation" x="2985" y="-529"/>
         </scene>
         <!--Settings View Controller - Settings-->
         <scene sceneID="Iow-oh-4wi">
@@ -529,7 +532,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vPF-ve-9ie" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2883" y="-543"/>
+            <point key="canvasLocation" x="3409" y="-543"/>
         </scene>
     </scenes>
     <resources>

@@ -82,6 +82,7 @@
     [settingsButton addTarget:self action:@selector(tappedSettings:) forControlEvents:UIControlEventTouchUpInside];
     
     UIBarButtonItem *settingsBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:settingsButton];
+    settingsBarButtonItem.customView.hidden = YES;
     self.navigationItem.leftBarButtonItem = settingsBarButtonItem;
 }
 
@@ -91,6 +92,7 @@
     logoImageView.contentMode = UIViewContentModeScaleAspectFit;
     logoImageView.frame = CGRectMake(0, 0, 160, 24);
     logoImageView.autoresizingMask = self.navigationItem.titleView.autoresizingMask;
+    logoImageView.hidden = YES;
     self.navigationItem.titleView = logoImageView;
 }
 
@@ -115,6 +117,15 @@
         [self fetchBlinks];
     } else {
         _isPresentingOtherVC = NO;
+    }
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+    if (self.navigationItem.titleView.hidden) {
+        [self.navigationItem.titleView fadeInWithDuration:0.5 completion:nil];
+        [self.navigationItem.leftBarButtonItem.customView fadeInWithDuration:0.5 completion:nil];
     }
 }
 

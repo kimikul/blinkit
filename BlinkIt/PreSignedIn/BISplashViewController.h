@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BIViewController.h"
 
-@interface BISplashViewController : UIViewController
+@interface BISplashViewController : BIViewController
 
 @end
