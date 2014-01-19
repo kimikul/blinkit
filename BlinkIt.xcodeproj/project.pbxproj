@@ -10,6 +10,8 @@
 		5E6392701888EA9800D1AE80 /* BIPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E63926F1888EA9800D1AE80 /* BIPhotoViewController.m */; };
 		5E6392721888F09600D1AE80 /* BIPhotoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E6392711888F09600D1AE80 /* BIPhotoViewController.xib */; };
 		5E63927B1889227F00D1AE80 /* BIHomePhotoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E63927A1889227F00D1AE80 /* BIHomePhotoTableViewCell.m */; };
+		5E639291188BA52F00D1AE80 /* BISettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E639290188BA52F00D1AE80 /* BISettingsViewController.m */; };
+		5E639297188BB5CE00D1AE80 /* BIUserDefaultsKeys.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E639296188BB5CE00D1AE80 /* BIUserDefaultsKeys.m */; };
 		5EAB8AA4187E73DF00B02953 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EAB8AA3187E73DF00B02953 /* Foundation.framework */; };
 		5EAB8AA6187E73DF00B02953 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EAB8AA5187E73DF00B02953 /* CoreGraphics.framework */; };
 		5EAB8AA8187E73DF00B02953 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EAB8AA7187E73DF00B02953 /* UIKit.framework */; };
@@ -67,6 +69,10 @@
 		5E6392711888F09600D1AE80 /* BIPhotoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BIPhotoViewController.xib; sourceTree = "<group>"; };
 		5E6392791889227F00D1AE80 /* BIHomePhotoTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BIHomePhotoTableViewCell.h; sourceTree = "<group>"; };
 		5E63927A1889227F00D1AE80 /* BIHomePhotoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BIHomePhotoTableViewCell.m; sourceTree = "<group>"; };
+		5E63928F188BA52F00D1AE80 /* BISettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BISettingsViewController.h; sourceTree = "<group>"; };
+		5E639290188BA52F00D1AE80 /* BISettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BISettingsViewController.m; sourceTree = "<group>"; };
+		5E639295188BB5CE00D1AE80 /* BIUserDefaultsKeys.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BIUserDefaultsKeys.h; sourceTree = "<group>"; };
+		5E639296188BB5CE00D1AE80 /* BIUserDefaultsKeys.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BIUserDefaultsKeys.m; sourceTree = "<group>"; };
 		5EAB8AA0187E73DF00B02953 /* BlinkIt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BlinkIt.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5EAB8AA3187E73DF00B02953 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		5EAB8AA5187E73DF00B02953 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -171,6 +177,15 @@
 			name = "Photo Viewer";
 			sourceTree = "<group>";
 		};
+		5E63928E188BA51E00D1AE80 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				5E63928F188BA52F00D1AE80 /* BISettingsViewController.h */,
+				5E639290188BA52F00D1AE80 /* BISettingsViewController.m */,
+			);
+			name = Settings;
+			sourceTree = "<group>";
+		};
 		5EAB8A97187E73DF00B02953 = {
 			isa = PBXGroup;
 			children = (
@@ -213,6 +228,7 @@
 		5EAB8AA9187E73DF00B02953 /* BlinkIt */ = {
 			isa = PBXGroup;
 			children = (
+				5E63928E188BA51E00D1AE80 /* Settings */,
 				5E63926D1888EA7E00D1AE80 /* Photo Viewer */,
 				5EB3A5BD1887A10900BCA8DB /* Vendor */,
 				5EAB8B3418811E8C00B02953 /* Common */,
@@ -322,6 +338,8 @@
 				5EB3A5C21887A18F00BCA8DB /* BIViewController.m */,
 				5EB3A5C41887A2F300BCA8DB /* BIImageUploadManager.h */,
 				5EB3A5C51887A2F300BCA8DB /* BIImageUploadManager.m */,
+				5E639295188BB5CE00D1AE80 /* BIUserDefaultsKeys.h */,
+				5E639296188BB5CE00D1AE80 /* BIUserDefaultsKeys.m */,
 			);
 			name = Common;
 			sourceTree = "<group>";
@@ -438,8 +456,10 @@
 				5EAB8B491883B5FA00B02953 /* BIPlaceholderTextView.m in Sources */,
 				5EAB8B3B1881300E00B02953 /* UIView+BlinkIt.m in Sources */,
 				5E63927B1889227F00D1AE80 /* BIHomePhotoTableViewCell.m in Sources */,
+				5E639297188BB5CE00D1AE80 /* BIUserDefaultsKeys.m in Sources */,
 				5EAB8B3318811E8600B02953 /* BITableViewController.m in Sources */,
 				5EB3A5C31887A18F00BCA8DB /* BIViewController.m in Sources */,
+				5E639291188BA52F00D1AE80 /* BISettingsViewController.m in Sources */,
 				5EAB8B2C1881062A00B02953 /* UIStoryboard+BlinkIt.m in Sources */,
 				5EAB8AE4187E7D3600B02953 /* BISplashViewController.m in Sources */,
 				5EAB8AB0187E73DF00B02953 /* main.m in Sources */,

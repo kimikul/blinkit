@@ -20,5 +20,6 @@
     #import "UIColor+BlinkIt.h"
     #import "NSDate+BlinkIt.h"
     #import "MBProgressHUD.h"
+    #import "BIUserDefaultsKeys.h"
 
 #endif

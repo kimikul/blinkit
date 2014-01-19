@@ -7,13 +7,12 @@
 //
 
 #import "BIHomeViewController.h"
-#import "BIAppDelegate.h"
-#import "BISplashViewController.h"
 #import "BIHomeTableViewCell.h"
 #import "BITodayView.h"
 #import "BIImageUploadManager.h"
 #import "BIPhotoViewController.h"
 #import "BIHomePhotoTableViewCell.h"
+#import "BISettingsViewController.h"
 
 #define kAttachPhotoActionSheet 0
 #define kDeleteBlinkActionSheet 1
@@ -75,8 +74,15 @@
 }
 
 - (void)setupButtons {
-    UIBarButtonItem *logoutButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRewind target:self action:@selector(logout:)];
-    self.navigationItem.leftBarButtonItem = logoutButton;
+    UIButton *settingsButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    settingsButton.frame = CGRectMake(0,0,24,24);
+    
+    UIImage *settingsImage = [[UIImage imageNamed:@"settings"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    [settingsButton setImage:settingsImage forState:UIControlStateNormal];
+    [settingsButton addTarget:self action:@selector(tappedSettings:) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIBarButtonItem *settingsBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:settingsButton];
+    self.navigationItem.leftBarButtonItem = settingsBarButtonItem;
 }
 
 - (void)setupNav {
@@ -404,15 +410,11 @@
     [_fadeLayer fadeOutWithDuration:0.5 completion:nil];
 }
 
-- (IBAction)logout:(id)sender {
-    [PFUser logOut];
-    
+- (void)tappedSettings:(id)sender {
     UIStoryboard *mainStoryboard = [UIStoryboard mainStoryboard];
-    BISplashViewController *splashVC = [mainStoryboard instantiateViewControllerWithIdentifier:@"BISplashViewController"];
     
-    BIAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-                            
-    [appDelegate setRootViewController:splashVC];
+    UINavigationController *settingsNav = [mainStoryboard instantiateViewControllerWithIdentifier:@"BISettingsNavigationController"];
+    [self presentViewController:settingsNav animated:YES completion:nil];
 }
 
 
