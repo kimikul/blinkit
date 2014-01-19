@@ -31,9 +31,10 @@
     
     PFFile *imageFile = blink[@"imageFile"];
     if (imageFile) {
-        NSData *imageData = [imageFile getData];
-        UIImage *image = [UIImage imageWithData:imageData];
-        _attachedImageView.image = image;
+        [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+            UIImage *image = [UIImage imageWithData:data];
+            _attachedImageView.image = image;
+        }];
     }
 }
 
