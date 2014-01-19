@@ -219,6 +219,9 @@
 
 - (void)textViewDidBeginEditing:(UITextView *)textView {
     if (!_todayView.isExpanded) {
+        self.progressHUD.mode = MBProgressHUDModeIndeterminate;
+        self.progressHUD.labelText = nil;
+        
         _todayView.isExpanded = YES;
         [_fadeLayer fadeInToOpacity:0.7 duration:0.5 completion:nil];
     }
