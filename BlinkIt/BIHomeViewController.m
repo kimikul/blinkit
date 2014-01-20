@@ -180,9 +180,10 @@
 
 #pragma mark - scrollview
 
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    [_todayView.contentTextView resignFirstResponder];
-}
+//
+//- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+////    [_todayView.contentTextView resignFirstResponder];
+//}
 
 #pragma mark - UITableViewDelegate / UITableViewDataSource
 
@@ -260,6 +261,8 @@
     
     // enable / disable submit button
     _todayView.submitButton.enabled = ([_todayView contentTextFieldHasContent]) ? YES : NO;
+    
+    [textView scrollRangeToVisible:NSMakeRange(textView.text.length + 10, 0)];
 }
 
 #pragma mark - BITodayViewDelegate
@@ -379,7 +382,7 @@
 
 // This method is called when an image has been chosen from the library or taken from the camera.
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
-    UIImage *image = [info valueForKey:UIImagePickerControllerOriginalImage];
+    UIImage *image = [info valueForKey:UIImagePickerControllerEditedImage];
     
     _todayView.selectedImage = image;
     
