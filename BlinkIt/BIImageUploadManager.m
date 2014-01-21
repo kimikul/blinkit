@@ -11,7 +11,7 @@
 @implementation BIImageUploadManager
 
 - (void)uploadImage:(UIImage*)image forBlink:(PFObject*)blink {
-    NSData *imageData = UIImageJPEGRepresentation(image, 0.05f);
+    NSData *imageData = UIImageJPEGRepresentation(image, 0.7);
     
     PFFile *imageFile = [PFFile fileWithName:@"Image.jpg" data:imageData];
     

@@ -27,6 +27,7 @@
 @property (nonatomic, strong) UIImagePickerController *imagePickerController;
 @property (nonatomic, strong) BIImageUploadManager *imageUploadManager;
 @property (nonatomic, assign) BOOL isPresentingOtherVC;
+@property (weak, nonatomic) IBOutlet UIView *errorView;
 @end
 
 @implementation BIHomeViewController
@@ -71,6 +72,7 @@
     [self setupButtons];
     [self setupNav];
     [self setupTodayView];
+    [self setupErrorView];
 }
 
 - (void)setupButtons {
@@ -110,6 +112,11 @@
     [_fadeLayer addGestureRecognizer:tapGR];
 }
 
+- (void)setupErrorView {
+    UITapGestureRecognizer *tapGR = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(fetchBlinks)];
+    [_errorView addGestureRecognizer:tapGR];
+}
+
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
@@ -139,26 +146,34 @@
     [query whereKey:@"user" equalTo:[PFUser currentUser]];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         self.loading = NO;
-        
-        NSMutableArray *blinks = [objects mutableCopy];
-        BOOL isBlinkToday = NO;
-        
-        for (PFObject *blink in objects) {
-            NSDate *date = blink[@"date"];
-            if ([self isDateToday:date]) {
-                [blinks removeObject:blink];
-                _todayView.blink = blink;
-                isBlinkToday = YES;
-                break;
+
+        if (!error) {
+            if (!_errorView.hidden) {
+                [_errorView fadeOutWithDuration:0.4 completion:nil];
             }
+            
+            NSMutableArray *blinks = [objects mutableCopy];
+            BOOL isBlinkToday = NO;
+            
+            for (PFObject *blink in objects) {
+                NSDate *date = blink[@"date"];
+                if ([self isDateToday:date]) {
+                    [blinks removeObject:blink];
+                    _todayView.blink = blink;
+                    isBlinkToday = YES;
+                    break;
+                }
+            }
+            
+            if (!isBlinkToday) {
+                _todayView.blink = nil;
+            }
+            
+            _blinksArray = blinks;
+            [self reloadTableData];
+        } else {
+            [_errorView fadeInWithDuration:0.4 completion:nil];
         }
-        
-        if (!isBlinkToday) {
-            _todayView.blink = nil;
-        }
-        
-        _blinksArray = blinks;
-        [self reloadTableData];
     }];
 }
 
@@ -260,7 +275,7 @@
     [_todayView updateRemainingCharLabel];
     
     // enable / disable submit button
-    _todayView.submitButton.enabled = ([_todayView contentTextFieldHasContent]) ? YES : NO;
+    _todayView.submitButton.enabled = ([_todayView contentTextFieldHasContent] || _todayView.selectedImage) ? YES : NO;
     
     [textView scrollRangeToVisible:NSMakeRange(textView.text.length + 10, 0)];
 }
@@ -300,7 +315,12 @@
     } else {
         [theBlink removeObjectForKey:@"imageFile"];
         [theBlink saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-            [self finishSuccessfulBlinkUpdate:theBlink];
+            if (!error) {
+                [self finishSuccessfulBlinkUpdate:theBlink];
+            } else {
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error" message:@"There was an error saving your entry. Please try again." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                [alertView show];
+            }
         }];
     }
 }
@@ -374,6 +394,24 @@
     self.imagePickerController.sourceType = sourceType;
     self.imagePickerController.allowsEditing = YES;
 
+    if (sourceType == UIImagePickerControllerSourceTypeCamera) {
+        CGRect frame = self.imagePickerController.view.bounds;
+        frame.size.height -= self.imagePickerController.navigationBar.bounds.size.height; // subtract 44
+        CGFloat barHeight = (frame.size.height - frame.size.width) / 2; // 102
+        
+        UIGraphicsBeginImageContext(frame.size);
+        [[UIColor blackColor] set];
+        UIRectFillUsingBlendMode(CGRectMake(0, 0, frame.size.width, barHeight), kCGBlendModeNormal);
+        UIRectFillUsingBlendMode(CGRectMake(0, frame.size.height - barHeight, frame.size.width, barHeight-26), kCGBlendModeNormal);
+        UIImage *overlayImage = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+        
+        UIImageView *overlayIV = [[UIImageView alloc] initWithFrame:frame];
+        overlayIV.userInteractionEnabled = NO;
+        overlayIV.image = overlayImage;
+        self.imagePickerController.cameraOverlayView = overlayIV;
+    }
+    
     _isPresentingOtherVC = YES;
     
     [self.navigationController presentViewController:self.imagePickerController animated:YES completion:nil];
@@ -388,6 +426,8 @@
     
     [self dismissViewControllerAnimated:YES completion:^{
         [_todayView.contentTextView becomeFirstResponder];
+        
+        _todayView.submitButton.enabled = ([_todayView contentTextFieldHasContent] || _todayView.selectedImage) ? YES : NO;
     }];
 }
 
