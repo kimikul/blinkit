@@ -299,11 +299,11 @@
                                             <outlet property="dateLabel" destination="zpR-TS-B4T" id="yWl-cv-tvQ"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="gray" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="BIHomePhotoTableViewCell" rowHeight="400" id="lMP-qc-Kjl" customClass="BIHomePhotoTableViewCell">
-                                        <rect key="frame" x="0.0" y="186" width="320" height="400"/>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="gray" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="BIHomePhotoTableViewCell" rowHeight="200" id="lMP-qc-Kjl" customClass="BIHomePhotoTableViewCell">
+                                        <rect key="frame" x="0.0" y="186" width="320" height="200"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="lMP-qc-Kjl" id="CEJ-q5-K3W">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="399"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="199"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wednesday, September 25, 2014" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hJI-g2-NR8">
@@ -322,7 +322,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZIQ-2i-chW">
-                                                    <rect key="frame" x="10" y="95" width="300" height="300"/>
+                                                    <rect key="frame" x="10" y="95" width="300" height="100"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>
@@ -347,6 +347,27 @@
                                             <outlet property="attachedImageView" destination="ZIQ-2i-chW" id="sgm-N3-mm8"/>
                                             <outlet property="contentLabel" destination="z0U-m8-2fY" id="1TK-tM-xYV"/>
                                             <outlet property="dateLabel" destination="hJI-g2-NR8" id="vfp-N6-hgl"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="gray" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="BIPaginationTableViewCell" rowHeight="30" id="1EJ-Ct-Xqs" customClass="BIPaginationTableViewCell">
+                                        <rect key="frame" x="0.0" y="386" width="320" height="30"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1EJ-Ct-Xqs" id="qPP-Gt-kTX">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="29"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="zkz-RR-QX6">
+                                                    <rect key="frame" x="150" y="5" width="20" height="20"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </activityIndicatorView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="centerY" secondItem="zkz-RR-QX6" secondAttribute="centerY" constant="-0.5" id="OX6-Ag-sJe"/>
+                                                <constraint firstAttribute="centerX" secondItem="zkz-RR-QX6" secondAttribute="centerX" id="bNE-60-x57"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="aiv" destination="zkz-RR-QX6" id="Ka9-HR-uzG"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

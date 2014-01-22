@@ -23,5 +23,6 @@
 @property (nonatomic, strong) UIRefreshControl              *refreshTableHeaderView;
 
 - (void)reloadTableData;
+- (BOOL)hasReachedTableEnd:(UITableView*)tableView;
 
 @end

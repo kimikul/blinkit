@@ -13,14 +13,17 @@
 #import "BIPhotoViewController.h"
 #import "BIHomePhotoTableViewCell.h"
 #import "BISettingsViewController.h"
+#import "BIPaginationTableViewCell.h"
 
 #define kAttachPhotoActionSheet 0
 #define kDeleteBlinkActionSheet 1
 #define kActionSheetPhotoLibrary 0
 #define kActionSheetTakePhoto 1
+#define kNumBlinksPerPage 15
 
 @interface BIHomeViewController () <UITextViewDelegate, BITodayViewDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, BIImageUploadManagerDelegate, BIPhotoViewControllerDelegate>
 
+@property (nonatomic, strong) NSMutableArray *allBlinksArray;
 @property (nonatomic, strong) NSArray *blinksArray;
 @property (nonatomic, strong) BITodayView *todayView;
 @property (nonatomic, strong) IBOutlet UIView *fadeLayer;
@@ -28,6 +31,7 @@
 @property (nonatomic, strong) BIImageUploadManager *imageUploadManager;
 @property (nonatomic, assign) BOOL isPresentingOtherVC;
 @property (weak, nonatomic) IBOutlet UIView *errorView;
+@property (nonatomic, assign) BOOL canPaginate;
 @end
 
 @implementation BIHomeViewController
@@ -62,6 +66,14 @@
     }
     
     return _imageUploadManager;
+}
+
+- (NSMutableArray*)allBlinksArray {
+    if (!_allBlinksArray) {
+        _allBlinksArray = [NSMutableArray new];
+    }
+    
+    return _allBlinksArray;
 }
 
 #pragma mark - lifecycle
@@ -121,7 +133,7 @@
     [super viewWillAppear:animated];
     
     if (!_isPresentingOtherVC) {
-        [self fetchBlinks];
+        [self fetchBlinksForPagination:NO];
     } else {
         _isPresentingOtherVC = NO;
     }
@@ -138,24 +150,29 @@
 
 #pragma mark - requests
 
-- (void)fetchBlinks {
+- (void)fetchBlinksForPagination:(BOOL)pagination {
     self.loading = YES;
     
     PFQuery *query = [PFQuery queryWithClassName:@"Blink"];
+    query.limit = kNumBlinksPerPage;
+    query.skip = pagination ? self.allBlinksArray.count : 0;
     [query orderByDescending:@"date"];
     [query whereKey:@"user" equalTo:[PFUser currentUser]];
+    
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         self.loading = NO;
-
+        self.canPaginate = objects.count > 0 && (objects.count % kNumBlinksPerPage == 0);
+        
         if (!error) {
             if (!_errorView.hidden) {
                 [_errorView fadeOutWithDuration:0.4 completion:nil];
             }
             
-            NSMutableArray *blinks = [objects mutableCopy];
-            BOOL isBlinkToday = NO;
+            NSMutableArray *blinks = pagination ? [[self.allBlinksArray arrayByAddingObjectsFromArray:objects] mutableCopy] : [objects mutableCopy];
+            self.allBlinksArray = [blinks copy];
             
-            for (PFObject *blink in objects) {
+            BOOL isBlinkToday = NO;
+            for (PFObject *blink in blinks) {
                 NSDate *date = blink[@"date"];
                 if ([self isDateToday:date]) {
                     [blinks removeObject:blink];
@@ -169,7 +186,9 @@
                 _todayView.blink = nil;
             }
             
+            // append or replace existing data source
             _blinksArray = blinks;
+            
             [self reloadTableData];
         } else {
             [_errorView fadeInWithDuration:0.4 completion:nil];
@@ -190,15 +209,14 @@
 }
 
 - (void)refreshTableHeaderDidTriggerRefresh {
-    [self fetchBlinks];
+    [self fetchBlinksForPagination:NO];
 }
 
-#pragma mark - scrollview
-
-//
-//- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-////    [_todayView.contentTextView resignFirstResponder];
-//}
+- (void)performPaginationRequestIfNecessary {
+    if([self hasReachedTableEnd:self.tableView] && self.canPaginate) {
+        [self fetchBlinksForPagination:YES];
+    }
+}
 
 #pragma mark - UITableViewDelegate / UITableViewDataSource
 
@@ -207,12 +225,17 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return _blinksArray.count;
+    return _blinksArray.count + self.canPaginate;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    CGFloat height = 0;
+    // pagination row
+    if (indexPath.row == _blinksArray.count) {
+        return [BIPaginationTableViewCell cellHeight];
+    }
     
+    // regular row
+    CGFloat height = 0;
     PFObject *blink = [_blinksArray objectAtIndex:indexPath.row];
     NSString *content = blink[@"content"];
     PFFile *imageFile = blink[@"imageFile"];
@@ -227,7 +250,14 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    // pagination row
+    if (indexPath.row == _blinksArray.count) {
+        BIPaginationTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:[BIPaginationTableViewCell reuseIdentifier]];
+        [cell.aiv startAnimating];
+        return cell;
+    }
     
+    // regular row
     PFObject *blink = [_blinksArray objectAtIndex:indexPath.row];
     BIHomeTableViewCell *cell;
     
@@ -401,7 +431,7 @@
         
         UIGraphicsBeginImageContext(frame.size);
         [[UIColor blackColor] set];
-        UIRectFillUsingBlendMode(CGRectMake(0, 0, frame.size.width, barHeight), kCGBlendModeNormal);
+        UIRectFillUsingBlendMode(CGRectMake(0, 30, frame.size.width, barHeight-35), kCGBlendModeNormal);
         UIRectFillUsingBlendMode(CGRectMake(0, frame.size.height - barHeight, frame.size.width, barHeight-26), kCGBlendModeNormal);
         UIImage *overlayImage = UIGraphicsGetImageFromCurrentImageContext();
         UIGraphicsEndImageContext();
@@ -414,7 +444,9 @@
     
     _isPresentingOtherVC = YES;
     
-    [self.navigationController presentViewController:self.imagePickerController animated:YES completion:nil];
+    [self.navigationController presentViewController:self.imagePickerController animated:YES completion:^{
+        [[UIApplication sharedApplication] setStatusBarHidden:YES];
+    }];
 }
 
 

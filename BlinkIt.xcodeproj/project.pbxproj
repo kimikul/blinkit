@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5E2F088C188F7B1400C633C7 /* BIPaginationTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E2F088B188F7B1400C633C7 /* BIPaginationTableViewCell.m */; };
 		5E6392701888EA9800D1AE80 /* BIPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E63926F1888EA9800D1AE80 /* BIPhotoViewController.m */; };
 		5E6392721888F09600D1AE80 /* BIPhotoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E6392711888F09600D1AE80 /* BIPhotoViewController.xib */; };
 		5E63927B1889227F00D1AE80 /* BIHomePhotoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E63927A1889227F00D1AE80 /* BIHomePhotoTableViewCell.m */; };
@@ -64,6 +65,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5E2F088A188F7B1400C633C7 /* BIPaginationTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BIPaginationTableViewCell.h; sourceTree = "<group>"; };
+		5E2F088B188F7B1400C633C7 /* BIPaginationTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BIPaginationTableViewCell.m; sourceTree = "<group>"; };
 		5E63926E1888EA9800D1AE80 /* BIPhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BIPhotoViewController.h; sourceTree = "<group>"; };
 		5E63926F1888EA9800D1AE80 /* BIPhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BIPhotoViewController.m; sourceTree = "<group>"; };
 		5E6392711888F09600D1AE80 /* BIPhotoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BIPhotoViewController.xib; sourceTree = "<group>"; };
@@ -340,6 +343,8 @@
 				5EB3A5C51887A2F300BCA8DB /* BIImageUploadManager.m */,
 				5E639295188BB5CE00D1AE80 /* BIUserDefaultsKeys.h */,
 				5E639296188BB5CE00D1AE80 /* BIUserDefaultsKeys.m */,
+				5E2F088A188F7B1400C633C7 /* BIPaginationTableViewCell.h */,
+				5E2F088B188F7B1400C633C7 /* BIPaginationTableViewCell.m */,
 			);
 			name = Common;
 			sourceTree = "<group>";
@@ -455,6 +460,7 @@
 			files = (
 				5EAB8B491883B5FA00B02953 /* BIPlaceholderTextView.m in Sources */,
 				5EAB8B3B1881300E00B02953 /* UIView+BlinkIt.m in Sources */,
+				5E2F088C188F7B1400C633C7 /* BIPaginationTableViewCell.m in Sources */,
 				5E63927B1889227F00D1AE80 /* BIHomePhotoTableViewCell.m in Sources */,
 				5E639297188BB5CE00D1AE80 /* BIUserDefaultsKeys.m in Sources */,
 				5EAB8B3318811E8600B02953 /* BITableViewController.m in Sources */,

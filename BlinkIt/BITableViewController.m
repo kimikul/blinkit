@@ -67,6 +67,19 @@
         [self refreshTableHeaderDidTriggerRefresh];
 }
 
+- (BOOL)hasReachedTableEnd:(UITableView*)tableView {
+    static NSInteger offset = 10;
+    return tableView.contentOffset.y + tableView.frameHeight >= tableView.contentSize.height - offset;
+}
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+    [self performPaginationRequestIfNecessary];
+}
+
+- (void)performPaginationRequestIfNecessary {
+    // override
+}
+
 #pragma mark - helper
 
 - (void)reloadTableData {
