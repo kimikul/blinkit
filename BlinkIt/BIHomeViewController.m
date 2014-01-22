@@ -17,6 +17,7 @@
 
 #define kAttachPhotoActionSheet 0
 #define kDeleteBlinkActionSheet 1
+#define kDeletePreviousBlinkActionSheet 2
 #define kActionSheetPhotoLibrary 0
 #define kActionSheetTakePhoto 1
 #define kNumBlinksPerPage 15
@@ -24,7 +25,7 @@
 @interface BIHomeViewController () <UITextViewDelegate, BITodayViewDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, BIImageUploadManagerDelegate, BIPhotoViewControllerDelegate>
 
 @property (nonatomic, strong) NSMutableArray *allBlinksArray;
-@property (nonatomic, strong) NSArray *blinksArray;
+@property (nonatomic, strong) NSMutableArray *blinksArray;
 @property (nonatomic, strong) BITodayView *todayView;
 @property (nonatomic, strong) IBOutlet UIView *fadeLayer;
 @property (nonatomic, strong) UIImagePickerController *imagePickerController;
@@ -277,6 +278,35 @@
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    return YES;
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        UIActionSheet *deleteActionSheet = [[UIActionSheet alloc] initWithTitle:@"This will permanently delete your entry. Are you sure?" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:@"Delete" otherButtonTitles:nil];
+        deleteActionSheet.tag = kDeletePreviousBlinkActionSheet;
+        deleteActionSheet.accessibilityLabel = [NSString stringWithFormat:@"%d",indexPath.row];
+        [deleteActionSheet showInView:self.view];
+    }
+}
+
+- (void)deleteBlinkAtIndex:(NSInteger)row {
+    PFObject *blinkToDelete = [_blinksArray objectAtIndex:row];
+
+    [blinkToDelete deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        if (!error) {
+            [_blinksArray removeObjectAtIndex:row];
+            
+            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:0];
+            [self.tableView deleteRowsAtIndexPaths:@[indexPath]
+                                  withRowAnimation:UITableViewRowAnimationLeft];
+        } else {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"There was an error deleting your entry. Please try again!" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [alert show];
+        }
+    }];
+}
 
 #pragma mark - uitextviewdelegate
 
@@ -408,6 +438,11 @@
             [self showImagePickerForSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
         } else if (buttonIndex == kActionSheetTakePhoto) {
             [self showImagePickerForSourceType:UIImagePickerControllerSourceTypeCamera];
+        }
+    } else if (actionSheet.tag == kDeletePreviousBlinkActionSheet) {
+        if (buttonIndex == actionSheet.destructiveButtonIndex) {
+            NSInteger indexOfDeletedBlink = [actionSheet.accessibilityLabel integerValue];
+            [self deleteBlinkAtIndex:indexOfDeletedBlink];
         }
     }
 }
