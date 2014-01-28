@@ -9,7 +9,7 @@
 #import "BIHomePhotoTableViewCell.h"
 
 @interface BIHomePhotoTableViewCell ()
-@property (weak, nonatomic) IBOutlet UIImageView *attachedImageView;
+@property (weak, nonatomic) IBOutlet PFImageView *attachedImageView;
 @end
 
 
@@ -31,9 +31,9 @@
     
     PFFile *imageFile = blink[@"imageFile"];
     if (imageFile) {
-        [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
-            UIImage *image = [UIImage imageWithData:data];
-            _attachedImageView.image = image;
+        self.attachedImageView.file = imageFile;
+        [self.attachedImageView loadInBackground:^(UIImage *image, NSError *error) {
+            NSLog(@"downloaded image");
         }];
     }
 }

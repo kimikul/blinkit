@@ -321,7 +321,7 @@
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZIQ-2i-chW">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZIQ-2i-chW" customClass="PFImageView">
                                                     <rect key="frame" x="10" y="95" width="300" height="100"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
@@ -344,7 +344,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="attachedImageView" destination="ZIQ-2i-chW" id="sgm-N3-mm8"/>
+                                            <outlet property="attachedImageView" destination="ZIQ-2i-chW" id="C4r-i3-yzs"/>
                                             <outlet property="contentLabel" destination="z0U-m8-2fY" id="1TK-tM-xYV"/>
                                             <outlet property="dateLabel" destination="hJI-g2-NR8" id="vfp-N6-hgl"/>
                                         </connections>

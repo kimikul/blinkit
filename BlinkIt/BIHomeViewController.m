@@ -18,8 +18,8 @@
 #define kAttachPhotoActionSheet 0
 #define kDeleteBlinkActionSheet 1
 #define kDeletePreviousBlinkActionSheet 2
-#define kActionSheetPhotoLibrary 0
-#define kActionSheetTakePhoto 1
+#define kActionSheetTakePhoto 0
+#define kActionSheetPhotoLibrary 1
 #define kNumBlinksPerPage 15
 
 @interface BIHomeViewController () <UITextViewDelegate, BITodayViewDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, BIImageUploadManagerDelegate, BIPhotoViewControllerDelegate>
@@ -401,7 +401,7 @@
 }
 
 - (void)todayView:(BITodayView *)todayView addPhotoToBlink:(PFObject*)blink {
-    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"From Photo Library", @"Take New Photo", nil];
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Take New Photo", @"Choose Existing Photo", nil];
     actionSheet.tag = kAttachPhotoActionSheet;
     [actionSheet showInView:self.view];
 }
@@ -490,6 +490,7 @@
     UIImage *image = [info valueForKey:UIImagePickerControllerEditedImage];
     
     _todayView.selectedImage = image;
+    self.imageUploadManager.sourceType = picker.sourceType;
     
     [self dismissViewControllerAnimated:YES completion:^{
         [_todayView.contentTextView becomeFirstResponder];
@@ -506,6 +507,10 @@
 
 - (void)imageUploadManager:(BIImageUploadManager*)imageUploadManager didUploadImage:(UIImage*)image forBlink:(PFObject*)blink withError:(NSError*)error {
     if (!error) {
+        if (imageUploadManager.sourceType == UIImagePickerControllerSourceTypeCamera) {
+                UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil);
+        }
+        
         [self finishSuccessfulBlinkUpdate:blink];
     } else {
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error" message:@"There was an error uploading your entry. Please try again!" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];

@@ -90,13 +90,6 @@ const CGFloat EXPANDED_HEIGHT = 170;
     _selectedImage = selectedImage;
     
     [self toggleCameraIconForSelectedImage:selectedImage];
-//    UIImage *cameraImage = [UIImage imageNamed:@"camera"];
-//
-//    if (selectedImage) {
-//        cameraImage = [cameraImage imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-//    }
-//    
-//    [_cameraButton setBackgroundImage:cameraImage forState:UIControlStateNormal];
 }
 
 - (void)toggleCameraIconForSelectedImage:(UIImage*)image {

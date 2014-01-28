@@ -17,6 +17,7 @@
 
 @interface BIImageUploadManager : NSObject
 
+@property (nonatomic, assign) UIImagePickerControllerSourceType sourceType; // to determine if pic should be saved to camera roll
 @property (nonatomic, weak) BIViewController <BIImageUploadManagerDelegate> * delegate;
 
 - (void)uploadImage:(UIImage*)image forBlink:(PFObject*)blink;

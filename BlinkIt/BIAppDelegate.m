@@ -14,6 +14,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [self startParseWithLaunchOptions:launchOptions];
+    [PFImageView class];
     [self setupUI];
     [self presentCorrectRootController];
     
