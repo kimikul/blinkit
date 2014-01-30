@@ -22,6 +22,7 @@
             currentUser[@"location"] = userData[@"location"][@"name"];
             currentUser[@"gender"] = userData[@"gender"];
             currentUser[@"email"] = userData[@"email"];
+            currentUser[@"username"] = userData[@"email"];
             
             NSString *facebookID = userData[@"id"];
             NSString *pictureURL = [NSString stringWithFormat:@"https://graph.facebook.com/%@/picture?type=large&return_ssl_resources=1", facebookID];
