@@ -36,6 +36,7 @@ const CGFloat EXPANDED_HEIGHT = 170;
     self.clipsToBounds = YES;
     self.frameHeight = CONDENSED_HEIGHT;
     
+    _contentTextView.scrollsToTop = NO;
     _contentTextView.layer.cornerRadius = 5.0;
     _contentTextView.clipsToBounds = YES;
     _editButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;

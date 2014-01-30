@@ -84,6 +84,7 @@
     
     [self setupButtons];
     [self setupNav];
+    [self setupTableView];
     [self setupTodayView];
     [self setupErrorView];
 }
@@ -109,6 +110,10 @@
     logoImageView.autoresizingMask = self.navigationItem.titleView.autoresizingMask;
     logoImageView.hidden = YES;
     self.navigationItem.titleView = logoImageView;
+}
+
+- (void)setupTableView {
+    self.tableView.scrollsToTop = YES;
 }
 
 - (void)setupTodayView {
