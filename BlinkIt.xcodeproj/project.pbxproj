@@ -13,6 +13,9 @@
 		5E63927B1889227F00D1AE80 /* BIHomePhotoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E63927A1889227F00D1AE80 /* BIHomePhotoTableViewCell.m */; };
 		5E639291188BA52F00D1AE80 /* BISettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E639290188BA52F00D1AE80 /* BISettingsViewController.m */; };
 		5E639297188BB5CE00D1AE80 /* BIUserDefaultsKeys.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E639296188BB5CE00D1AE80 /* BIUserDefaultsKeys.m */; };
+		5E79D004189A363600529EBE /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E79D003189A363600529EBE /* FacebookSDK.framework */; };
+		5E79D006189A372000529EBE /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E79D005189A372000529EBE /* StoreKit.framework */; };
+		5E79D009189A45AE00529EBE /* BIFacebookUserManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E79D008189A45AE00529EBE /* BIFacebookUserManager.m */; };
 		5EAB8AA4187E73DF00B02953 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EAB8AA3187E73DF00B02953 /* Foundation.framework */; };
 		5EAB8AA6187E73DF00B02953 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EAB8AA5187E73DF00B02953 /* CoreGraphics.framework */; };
 		5EAB8AA8187E73DF00B02953 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EAB8AA7187E73DF00B02953 /* UIKit.framework */; };
@@ -76,6 +79,10 @@
 		5E639290188BA52F00D1AE80 /* BISettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BISettingsViewController.m; sourceTree = "<group>"; };
 		5E639295188BB5CE00D1AE80 /* BIUserDefaultsKeys.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BIUserDefaultsKeys.h; sourceTree = "<group>"; };
 		5E639296188BB5CE00D1AE80 /* BIUserDefaultsKeys.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BIUserDefaultsKeys.m; sourceTree = "<group>"; };
+		5E79D003189A363600529EBE /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../../FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
+		5E79D005189A372000529EBE /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		5E79D007189A45AE00529EBE /* BIFacebookUserManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BIFacebookUserManager.h; sourceTree = "<group>"; };
+		5E79D008189A45AE00529EBE /* BIFacebookUserManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BIFacebookUserManager.m; sourceTree = "<group>"; };
 		5EAB8AA0187E73DF00B02953 /* BlinkIt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BlinkIt.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5EAB8AA3187E73DF00B02953 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		5EAB8AA5187E73DF00B02953 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -142,6 +149,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5E79D006189A372000529EBE /* StoreKit.framework in Frameworks */,
 				5EAB8B0F187FC90F00B02953 /* SystemConfiguration.framework in Frameworks */,
 				5EAB8B0D187FC90A00B02953 /* Security.framework in Frameworks */,
 				5EAB8B0B187FC90500B02953 /* QuartzCore.framework in Frameworks */,
@@ -150,6 +158,7 @@
 				5EAB8B05187FC8C600B02953 /* CoreLocation.framework in Frameworks */,
 				5EAB8B03187FC8BF00B02953 /* CFNetwork.framework in Frameworks */,
 				5EAB8B01187FC8BA00B02953 /* AudioToolbox.framework in Frameworks */,
+				5E79D004189A363600529EBE /* FacebookSDK.framework in Frameworks */,
 				5EAB8AA6187E73DF00B02953 /* CoreGraphics.framework in Frameworks */,
 				5EAB8AA8187E73DF00B02953 /* UIKit.framework in Frameworks */,
 				5EAB8AFF187FC8A100B02953 /* Parse.framework in Frameworks */,
@@ -185,6 +194,8 @@
 			children = (
 				5E63928F188BA52F00D1AE80 /* BISettingsViewController.h */,
 				5E639290188BA52F00D1AE80 /* BISettingsViewController.m */,
+				5E79D007189A45AE00529EBE /* BIFacebookUserManager.h */,
+				5E79D008189A45AE00529EBE /* BIFacebookUserManager.m */,
 			);
 			name = Settings;
 			sourceTree = "<group>";
@@ -211,6 +222,8 @@
 		5EAB8AA2187E73DF00B02953 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5E79D005189A372000529EBE /* StoreKit.framework */,
+				5E79D003189A363600529EBE /* FacebookSDK.framework */,
 				5EAB8B0E187FC90F00B02953 /* SystemConfiguration.framework */,
 				5EAB8B0C187FC90A00B02953 /* Security.framework */,
 				5EAB8B0A187FC90500B02953 /* QuartzCore.framework */,
@@ -475,6 +488,7 @@
 				5E6392701888EA9800D1AE80 /* BIPhotoViewController.m in Sources */,
 				5EAB8B251880F3C600B02953 /* NSString+BlinkIt.m in Sources */,
 				5EB3A5C61887A2F300BCA8DB /* BIImageUploadManager.m in Sources */,
+				5E79D009189A45AE00529EBE /* BIFacebookUserManager.m in Sources */,
 				5EAB8B461883211700B02953 /* NSDate+BlinkIt.m in Sources */,
 				5EAB8B4118831AF600B02953 /* BITodayView.m in Sources */,
 				5EAB8AB4187E73DF00B02953 /* BIAppDelegate.m in Sources */,
@@ -610,10 +624,12 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/kimberlyhsiao/Developer/Portfolio/BlinkIt,
+					/Users/kimberlyhsiao/Developer/FacebookSDK,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BlinkIt/BlinkIt-Prefix.pch";
 				INFOPLIST_FILE = "BlinkIt/BlinkIt-Info.plist";
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -627,10 +643,12 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/kimberlyhsiao/Developer/Portfolio/BlinkIt,
+					/Users/kimberlyhsiao/Developer/FacebookSDK,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BlinkIt/BlinkIt-Prefix.pch";
 				INFOPLIST_FILE = "BlinkIt/BlinkIt-Info.plist";
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

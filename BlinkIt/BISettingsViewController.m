@@ -9,32 +9,50 @@
 #import "BISettingsViewController.h"
 #import "BISplashViewController.h"
 #import "BIAppDelegate.h"
+#import "BIFacebookUserManager.h"
 
 #define kTableSectionAccount 0
 #define kTableSectionNotifications 1
 #define kTableSectionLogout 2
 
 #define kTableRowEmail 0
-#define kTableRowDefaultPrivacy 1
+#define kTableRowFacebook 1
+#define kTableRowDefaultPrivacy 2
 
 #define kTableRowReminders 0
 
 #define kTableRowLogout 0
 
-@interface BISettingsViewController ()
+@interface BISettingsViewController () <UIActionSheetDelegate, BIFacebookUserManagerDelegate>
 
+@property (nonatomic, strong) PFUser *currentUser;
 @property (weak, nonatomic) IBOutlet UILabel *emailLabel;
 @property (weak, nonatomic) IBOutlet UISwitch *privacySwitch;
 @property (weak, nonatomic) IBOutlet UISwitch *dailyRemindersSwitch;
+@property (weak, nonatomic) IBOutlet UILabel *facebookLinkLabel;
+@property (nonatomic, strong) BIFacebookUserManager *facebookUserManager;
 
 @end
 
 @implementation BISettingsViewController
 
+#pragma mark - getter/setter
+
+- (BIFacebookUserManager*)facebookUserManager {
+    if (!_facebookUserManager) {
+        _facebookUserManager = [BIFacebookUserManager new];
+        _facebookUserManager.delegate = self;
+    }
+    
+    return _facebookUserManager;
+}
+
 #pragma mark - init
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
+    _currentUser = [PFUser currentUser];
 
     [self setupButtons];
     [self displayCurrentSettings];
@@ -46,12 +64,18 @@
 }
 
 - (void)displayCurrentSettings {
-    PFUser *user = [PFUser currentUser];
-    _emailLabel.text = user[@"username"];
+    _emailLabel.text = _currentUser[@"username"];
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     _privacySwitch.on = [defaults boolForKey:BIPrivacyDefaultSettings];
     _dailyRemindersSwitch.on = [defaults boolForKey:BIDailyReminderSettings];
+
+    [self updateFacebookLinkLabel];
+}
+
+- (void)updateFacebookLinkLabel {
+    _facebookLinkLabel.text = [PFFacebookUtils isLinkedWithUser:_currentUser] ? _currentUser[@"name"] : @"Click to link account";
+    [_facebookLinkLabel fadeTransitionWithDuration:0.2];
 }
 
 #pragma mark - tableviewdelegate
@@ -61,10 +85,61 @@
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     NSInteger section = indexPath.section;
+    NSInteger row = indexPath.row;
     
-    if (section == kTableSectionLogout) {
+    if (section == kTableSectionAccount && row == kTableRowFacebook) {
+        if ([PFFacebookUtils isLinkedWithUser:_currentUser]) {
+            [self promptForUnlinkWithFacebook];
+        } else {
+            [self linkToFacebook];
+        }
+    } else if (section == kTableSectionLogout) {
         [self logout];
     }
+}
+
+- (void)linkToFacebook {
+    NSArray *permissions = @[@"basic_info", @"email"];
+
+    if (![PFFacebookUtils isLinkedWithUser:_currentUser]) {
+        [PFFacebookUtils linkUser:_currentUser permissions:permissions block:^(BOOL succeeded, NSError *error) {
+            if (succeeded) {
+                [self.facebookUserManager fetchAndSaveBasicUserInfo];
+            } else {
+                [self showFacebookLinkErrorAlert:error];
+            }
+        }];
+    }
+}
+
+- (void)facebookManager:(BIFacebookUserManager*)facebookManager didSaveUser:(PFUser*)user withError:(NSError*)error {
+    if (!error) {
+        [self updateFacebookLinkLabel];
+    } else {
+        [self showFacebookLinkErrorAlert:error];
+    }
+}
+
+- (void)promptForUnlinkWithFacebook {
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"This will disconnect your account with Facebook. Are you sure?" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:@"Continue" otherButtonTitles:nil];
+    [actionSheet showInView:self.view];
+}
+
+- (void)unlinkWithFacebook {
+    [PFFacebookUtils unlinkUserInBackground:_currentUser block:^(BOOL succeeded, NSError *error) {
+        if (succeeded) {
+            [self updateFacebookLinkLabel];
+        } else {
+            [self showFacebookLinkErrorAlert:error];
+        }
+    }];
+}
+
+- (void)showFacebookLinkErrorAlert:(NSError*)error {
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error" message:error.localizedDescription delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    [alertView show];
+    
+    NSLog(@"error linking to facebook : %@", error.localizedDescription);
 }
 
 #pragma mark - button actions
@@ -98,6 +173,14 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setBool:newValue forKey:BIDailyReminderSettings];
     [defaults synchronize];
+}
+
+#pragma mark - UIActionSheetDelegate
+
+- (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex {
+    if (buttonIndex == actionSheet.destructiveButtonIndex) {
+        [self unlinkWithFacebook];
+    }
 }
 
 @end

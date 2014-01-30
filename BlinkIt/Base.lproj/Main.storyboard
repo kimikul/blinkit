@@ -20,33 +20,40 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="K2c-z3-nOA" userLabel="Separator">
-                                <rect key="frame" x="160" y="338" width="1" height="44"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.49445564520000002" alpha="1" colorSpace="calibratedWhite"/>
-                            </view>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fpa-SB-BVm">
-                                <rect key="frame" x="169" y="338" width="110" height="44"/>
+                                <rect key="frame" x="164" y="338" width="115" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.49445564520000002" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.67764945652173914" green="0.67764945652173914" blue="0.67764945652173914" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Sign Up">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <segue destination="7nl-4v-pu6" kind="modal" identifier="SignupSegue" id="slh-wW-6yL"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tLt-aQ-4HJ">
-                                <rect key="frame" x="42" y="338" width="110" height="44"/>
+                                <rect key="frame" x="42" y="338" width="115" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.49445564520000002" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.67764945652173914" green="0.67764945652173914" blue="0.67764945652173914" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Log In">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleShadowColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <segue destination="x0V-kl-G37" kind="modal" identifier="LoginSegue" id="kRa-kk-wuk"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L7J-pZ-u7u">
+                                <rect key="frame" x="42" y="389" width="237" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" backgroundImage="facebookLoginButton">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="tappedLoginThroughFacebook:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="SlS-52-qXa"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -54,6 +61,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="zyv-9k-JaN"/>
                     <connections>
+                        <outlet property="facebookButton" destination="L7J-pZ-u7u" id="0q9-v3-QXt"/>
                         <outlet property="loginButton" destination="tLt-aQ-4HJ" id="Rc8-vO-FS2"/>
                         <outlet property="signupButton" destination="fpa-SB-BVm" id="vrW-hd-HoE"/>
                     </connections>
@@ -481,24 +489,47 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="SVH-V7-hWR">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="gray" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="SVH-V7-hWR">
                                         <rect key="frame" x="0.0" y="163" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="SVH-V7-hWR" id="6xN-1C-TCW">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Default to Private Entries" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Shn-ah-tyb">
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Facebook" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Shn-ah-tyb">
+                                                    <rect key="frame" x="9" y="12" width="77" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Click to link account" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bCY-Yo-WLf">
+                                                    <rect key="frame" x="94" y="12" width="216" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="ytW-t2-W5d">
+                                        <rect key="frame" x="0.0" y="207" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ytW-t2-W5d" id="bWu-uE-coK">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Default to Private Entries" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yfF-ps-iZb">
                                                     <rect key="frame" x="9" y="12" width="190" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7dz-vC-4e2">
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="i4A-Sc-ayB">
                                                     <rect key="frame" x="262" y="6" width="51" height="31"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <connections>
-                                                        <action selector="togglePrivacySettings:" destination="JhV-QC-qar" eventType="valueChanged" id="6U4-r6-njM"/>
+                                                        <action selector="togglePrivacySettings:" destination="JhV-QC-qar" eventType="valueChanged" id="ahL-4e-Gc1"/>
                                                     </connections>
                                                 </switch>
                                             </subviews>
@@ -509,7 +540,7 @@
                             <tableViewSection headerTitle="Notifications" id="EMv-rX-afg">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="LmY-CN-Xye">
-                                        <rect key="frame" x="0.0" y="255" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="299" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="LmY-CN-Xye" id="0Be-nS-BJi">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -536,7 +567,7 @@
                             <tableViewSection headerTitle="Logout" id="xtO-Nm-0xq">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="gray" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="PEr-Tj-FIw">
-                                        <rect key="frame" x="0.0" y="347" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="391" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="PEr-Tj-FIw" id="XdR-h3-lQy">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -563,7 +594,8 @@
                     <connections>
                         <outlet property="dailyRemindersSwitch" destination="zgC-iP-b1v" id="Ghe-GV-myl"/>
                         <outlet property="emailLabel" destination="yeU-TL-SNt" id="nSY-UY-cr8"/>
-                        <outlet property="privacySwitch" destination="7dz-vC-4e2" id="xxp-vs-Vc7"/>
+                        <outlet property="facebookLinkLabel" destination="bCY-Yo-WLf" id="lTC-sY-Uja"/>
+                        <outlet property="privacySwitch" destination="i4A-Sc-ayB" id="c6f-tH-7wK"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vPF-ve-9ie" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -573,6 +605,7 @@
     </scenes>
     <resources>
         <image name="Default" width="320" height="568"/>
+        <image name="facebookLoginButton" width="470" height="80"/>
     </resources>
     <color key="tintColor" red="0.99607843139999996" green="0.50196078430000002" blue="0.50196078430000002" alpha="1" colorSpace="calibratedRGB"/>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
