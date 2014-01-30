@@ -21,11 +21,10 @@
             currentUser[@"name"] = userData[@"name"];
             currentUser[@"location"] = userData[@"location"][@"name"];
             currentUser[@"gender"] = userData[@"gender"];
-            currentUser[@"birthday"] = userData[@"birthday"];
             currentUser[@"email"] = userData[@"email"];
             
             NSString *facebookID = userData[@"id"];
-            NSURL *pictureURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://graph.facebook.com/%@/picture?type=large&return_ssl_resources=1", facebookID]];
+            NSString *pictureURL = [NSString stringWithFormat:@"https://graph.facebook.com/%@/picture?type=large&return_ssl_resources=1", facebookID];
             currentUser[@"photoURL"] = pictureURL;
             
             [currentUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
