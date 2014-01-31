@@ -258,11 +258,11 @@
                         <viewControllerLayoutGuide type="bottom" id="sKD-iC-DpA"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="pVE-wR-cqx">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="d2a-43-wUe">
-                                <rect key="frame" x="0.0" y="57" width="320" height="511"/>
+                                <rect key="frame" x="0.0" y="57" width="320" height="462"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <inset key="separatorInset" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -390,7 +390,7 @@
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <view hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ov9-8Z-61I" userLabel="Error View">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="There was an error loading your entries. Tap to refresh." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="pyx-3Z-fgZ">
@@ -415,12 +415,32 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FoO-NA-U4j" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2973" y="151"/>
+            <point key="canvasLocation" x="3499" y="151"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--View Controller-->
+        <scene sceneID="NWJ-gi-e8U">
+            <objects>
+                <viewController id="YgN-Li-0qf" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="9mb-gA-EXs"/>
+                        <viewControllerLayoutGuide type="bottom" id="hYT-MZ-ok1"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="aRL-rn-9s4">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="gbk-VI-DXq"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7fR-SL-b0H" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3601" y="925"/>
+        </scene>
+        <!--Navigation Controller - Me-->
         <scene sceneID="E9k-zS-qcU">
             <objects>
                 <navigationController storyboardIdentifier="BIHomeNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="JTq-4J-Uut" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Me" image="Tab-me" id="WGr-2F-OgH"/>
                     <toolbarItems/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ouD-6N-gME">
@@ -434,7 +454,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TQ9-tq-onF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2581" y="151"/>
+            <point key="canvasLocation" x="3107" y="151"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="dRe-7c-Eid">
@@ -602,9 +622,49 @@
             </objects>
             <point key="canvasLocation" x="3409" y="-543"/>
         </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="Sdq-Gx-Edp">
+            <objects>
+                <tabBarController storyboardIdentifier="BITabBarController" automaticallyAdjustsScrollViewInsets="NO" id="yV4-go-GVc" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" translucent="NO" id="3hJ-6b-jC6">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="JTq-4J-Uut" kind="relationship" relationship="viewControllers" id="Cln-47-DQX"/>
+                        <segue destination="Jdg-E3-URZ" kind="relationship" relationship="viewControllers" id="8En-ZL-5he"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xGB-Lt-COY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2581" y="151"/>
+        </scene>
+        <!--Navigation Controller - Following-->
+        <scene sceneID="MAc-BV-JNV">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Jdg-E3-URZ" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Following" image="Tab-friends" id="kyB-5v-mAF"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="G4W-rA-Syp">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="YgN-Li-0qf" kind="relationship" relationship="rootViewController" id="gD9-oi-2Fz"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vjX-iy-WlQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3075" y="925"/>
+        </scene>
     </scenes>
     <resources>
         <image name="Default" width="320" height="568"/>
+        <image name="Tab-friends" width="40" height="30"/>
+        <image name="Tab-me" width="40" height="30"/>
         <image name="facebookLoginButton" width="470" height="80"/>
     </resources>
     <color key="tintColor" red="0.99607843139999996" green="0.50196078430000002" blue="0.50196078430000002" alpha="1" colorSpace="calibratedRGB"/>

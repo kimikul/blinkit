@@ -35,7 +35,7 @@
     
     PFUser *currentUser = [PFUser currentUser];
     if (currentUser) {
-        vc = [mainStoryboard instantiateViewControllerWithIdentifier:@"BIHomeNavigationController"];
+        vc = [mainStoryboard instantiateViewControllerWithIdentifier:@"BITabBarController"];
     } else {
         vc = [mainStoryboard instantiateViewControllerWithIdentifier:@"BISplashViewController"];
     }

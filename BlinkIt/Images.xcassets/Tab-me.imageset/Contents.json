@@ -3,11 +3,12 @@
     {
       "idiom" : "universal",
       "scale" : "1x",
-      "filename" : "facebookLoginButton.png"
+      "filename" : "Tab-me.png"
     },
     {
       "idiom" : "universal",
-      "scale" : "2x"
+      "scale" : "2x",
+      "filename" : "Tab-me@2x.png"
     }
   ],
   "info" : {
