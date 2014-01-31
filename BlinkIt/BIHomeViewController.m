@@ -156,6 +156,10 @@
 
 #pragma mark - requests
 
+- (void)fetchBlinks {
+    [self fetchBlinksForPagination:NO];
+}
+
 - (void)fetchBlinksForPagination:(BOOL)pagination {
     self.loading = YES;
     
