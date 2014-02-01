@@ -25,6 +25,14 @@
     return 40;
 }
 
+#pragma mark - lifecycle
+
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    _followButton.layer.cornerRadius = 3.0;
+    _followButton.clipsToBounds = YES;
+
+}
 #pragma mark - getter/setter
 
 - (void)setUser:(PFUser *)user {
@@ -32,6 +40,10 @@
     _nameLabel.text = user[@"name"];
 }
 
-#pragma mark - lifecycle
+#pragma mark - actions
+
+- (IBAction)tappedFollowButton:(id)sender {
+    [self.delegate followingCell:self tappedFollowButton:sender];
+}
 
 @end

@@ -9,8 +9,9 @@
 #import "BIFollowingViewController.h"
 #import "BIDataStore.h"
 #import "BIFollowingTableViewCell.h"
+#import "BIFollowManager.h"
 
-@interface BIFollowingViewController ()
+@interface BIFollowingViewController () <BIFollowingTableViewCellDelegate>
 @property (nonatomic, strong) NSArray *friendsArray;
 @end
 
@@ -30,7 +31,7 @@
 }
 
 - (void)fetchFriends {
-    NSArray *facebookFriends = [BIDataStore shared].fbFriends.allKeys;
+    NSArray *facebookFriends = [BIDataStore shared].facebookFriends;
 
     PFQuery *friendsQuery = [PFUser query];
     [friendsQuery whereKey:@"facebookID" containedIn:facebookFriends];
@@ -59,6 +60,7 @@
     PFUser *user = [_friendsArray objectAtIndex:indexPath.row];
     BIFollowingTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:[BIFollowingTableViewCell reuseIdentifier]];
     
+    cell.delegate = self;
     cell.user = user;
     
     return cell;
@@ -67,6 +69,28 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+#pragma mark - BIFollowingTableViewCellDelegate
+
+- (void)followingCell:(BIFollowingTableViewCell*)followingCell tappedFollowButton:(UIButton*)button {
+    PFUser *user = followingCell.user;
+    
+    if (followingCell.followButton.isSelected) {
+        followingCell.followButton.selected = NO;
+        [BIFollowManager unfollowUserEventually:user block:^(NSError *error) {
+            if (!error) {
+                [[BIDataStore shared] removeFollowedFriend:user];
+            }
+        }];
+    } else {
+        followingCell.followButton.selected = YES;
+        [BIFollowManager followUserEventually:user block:^(BOOL succeeded, NSError *error) {
+            if (succeeded) {
+                [[BIDataStore shared] addFollowedFriend:user];
+            }
+        }];
+    }
 }
 
 @end

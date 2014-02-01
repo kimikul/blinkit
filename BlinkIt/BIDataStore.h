@@ -12,6 +12,12 @@
 
 + (BIDataStore*)shared;
 
-@property (nonatomic, strong) NSMutableDictionary *fbFriends;
+- (void)setFacebookFriends:(NSDictionary *)friends;  // dict of facebookID => PFUser
+- (NSDictionary *)facebookFriends;
+
+- (void)setFollowedFriends:(NSArray*)followedFriends;   // array of facebookIDs
+- (NSArray*)followedFriends;
+- (void)addFollowedFriend:(PFUser*)user;
+- (void)removeFollowedFriend:(PFUser*)user;
 
 @end

@@ -8,6 +8,10 @@
 
 #import "BIDataStore.h"
 
+@interface BIDataStore ()
+@property (nonatomic, strong) NSCache *cache;
+@end
+
 @implementation BIDataStore
 
 static BIDataStore *shared = nil;
@@ -24,19 +28,78 @@ static BIDataStore *shared = nil;
 
 #pragma mark - lifecycle
 
-- (id) init {
+- (id)init {
     self = [super init];
     if (self) {
-        _fbFriends = [[NSMutableDictionary alloc] init];
+        self.cache = [[NSCache alloc] init];
     }
-    
     return self;
 }
 
 - (void) reset {
-    [_fbFriends removeAllObjects];
+    [self.cache removeAllObjects];
 }
 
+#pragma mark - facebook friends
 
+- (void)setFacebookFriends:(NSDictionary *)friends {
+    NSString *key = kBIUserDefaultsFacebookFriendsKey;
+    [self.cache setObject:friends forKey:key];
+    [[NSUserDefaults standardUserDefaults] setObject:friends forKey:key];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+- (NSDictionary *)facebookFriends {
+    NSString *key = kBIUserDefaultsFacebookFriendsKey;
+    if ([self.cache objectForKey:key]) {
+        return [self.cache objectForKey:key];
+    }
+    
+    NSDictionary *friends = [[NSUserDefaults standardUserDefaults] objectForKey:key];
+    
+    if (friends) {
+        [self.cache setObject:friends forKey:key];
+    }
+    
+    return friends;
+}
+
+#pragma mark - followed friends
+
+- (NSArray*)followedFriends {
+    NSString *key = kBIUserDefaultsFollowedFriendsKey;
+    if ([self.cache objectForKey:key]) {
+        return [self.cache objectForKey:key];
+    }
+    
+    NSArray *followedFriends = [[NSUserDefaults standardUserDefaults] objectForKey:key];
+    if (followedFriends) {
+        [self.cache setObject:followedFriends forKey:key];
+    }
+    
+    return followedFriends;
+}
+
+- (void)setFollowedFriends:(NSArray*)followedFriends {
+    NSString *key = kBIUserDefaultsFollowedFriendsKey;
+    [self.cache setObject:followedFriends forKey:key];
+    [[NSUserDefaults standardUserDefaults] setObject:followedFriends forKey:key];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+- (void)addFollowedFriend:(PFUser*)user {
+    NSMutableArray *followedFriends = [[self followedFriends] mutableCopy];
+    if (![followedFriends containsObject:user[@"facebookID"]]) {
+        [followedFriends addObject:user[@"facebookID"]];
+    }
+    
+    [self setFollowedFriends:[followedFriends copy]];
+}
+
+- (void)removeFollowedFriend:(PFUser*)user {
+    NSMutableArray *followedFriends = [[self followedFriends] mutableCopy];
+    [followedFriends removeObject:user[@"facebookID"]];
+    [self setFollowedFriends:[followedFriends copy]];
+}
 
 @end

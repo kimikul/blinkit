@@ -21,5 +21,5 @@
     #import "NSDate+BlinkIt.h"
     #import "MBProgressHUD.h"
     #import "BIUserDefaultsKeys.h"
-
+    #import "BIConstants.h"
 #endif

@@ -44,15 +44,16 @@
                                                   NSDictionary* result,
                                                   NSError *error) {
 
-        // clear friends and save new list
-        [BIDataStore shared].fbFriends = [NSMutableDictionary new];
+        // fetch friends list
+        NSMutableDictionary *fbFriendsDict = [NSMutableDictionary new];
         
         NSArray *friends = result[@"data"];
         for (NSDictionary<FBGraphUser>* friend in friends) {
-            [[BIDataStore shared].fbFriends setObject:friend forKey:friend.id];
+            [fbFriendsDict setObject:friend forKey:friend.id];
         }
         
-        [self.delegate facebookManager:self didRefreshFriendsList:[BIDataStore shared].fbFriends withError:error];
+        [[BIDataStore shared] setFacebookFriends:[fbFriendsDict copy]];
+        [self.delegate facebookManager:self didRefreshFriendsList:fbFriendsDict withError:error];
     }];
 }
 

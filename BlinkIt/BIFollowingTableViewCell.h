@@ -8,11 +8,21 @@
 
 #import <UIKit/UIKit.h>
 
+@class BIFollowingTableViewCell;
+
+@protocol BIFollowingTableViewCellDelegate <NSObject>
+
+- (void)followingCell:(BIFollowingTableViewCell*)followingCell tappedFollowButton:(UIButton*)button;
+
+@end
+
 @interface BIFollowingTableViewCell : UITableViewCell
 
 + (NSString*)reuseIdentifier;
 + (CGFloat)cellHeight;
 
+@property (nonatomic, weak) id <BIFollowingTableViewCellDelegate> delegate;
 @property (nonatomic, strong) PFUser *user;
+@property (weak, nonatomic) IBOutlet UIButton *followButton;
 
 @end
