@@ -10,19 +10,22 @@
 #import "BISplashViewController.h"
 #import "BIHomeViewController.h"
 #import "BIFacebookUserManager.h"
+#import "BIFollowManager.h"
 
 @implementation BIAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [self startParseWithLaunchOptions:launchOptions];
     [PFFacebookUtils initializeFacebook];
-    [self reloadFacebookFriends];
+    [self refreshFriendsAndFollows];
     
     [PFImageView class];
     [self presentCorrectRootController];
     
     return YES;
 }
+
+#pragma mark - parse init
 
 - (void)startParseWithLaunchOptions:(NSDictionary*)launchOptions {
     [Parse setApplicationId:@"QXBNXOh5TYU1oUc6rYMPqG5XNct5zZdjhlbQLrhQ"
@@ -31,12 +34,21 @@
     
 }
 
+#pragma mark - friends and follows
+
+- (void)refreshFriendsAndFollows {
+    [self reloadFacebookFriends];
+    [BIFollowManager refreshFollowingList];
+}
+
 - (void)reloadFacebookFriends {
     PFUser *user = [PFUser currentUser];
     if (user) {
         [[BIFacebookUserManager shared] refreshCurrentUserFacebookFriends];
     }
 }
+
+#pragma mark - transition
 
 - (void)presentCorrectRootController {
     UIStoryboard *mainStoryboard = [UIStoryboard mainStoryboard];

@@ -10,6 +10,7 @@
 
 @interface BIFollowManager : NSObject
 
++ (void)refreshFollowingList;
 + (void)followUserEventually:(PFUser *)user block:(void (^)(BOOL succeeded, NSError *error))completionBlock;
 + (void)unfollowUserEventually:(PFUser *)user block:(void (^)(NSError *error))completionBlock;
 

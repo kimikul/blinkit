@@ -19,7 +19,7 @@
     PFObject *followActivity = [PFObject objectWithClassName:@"Activity"];
     [followActivity setObject:[PFUser currentUser] forKey:@"fromUser"];
     [followActivity setObject:user forKey:@"toUser"];
-    [followActivity setObject:@"Follow" forKey:@"type"];
+    [followActivity setObject:@"follow" forKey:@"type"];
     
     [followActivity saveEventually:completionBlock];
 }
@@ -43,4 +43,24 @@
     }];
 }
 
++ (void)refreshFollowingList {
+    PFQuery *query = [PFQuery queryWithClassName:@"Activity"];
+    [query whereKey:@"fromUser" equalTo:[PFUser currentUser]];
+    [query whereKey:@"type" equalTo:@"follow"];
+    [query includeKey:@"toUser"];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error) {
+            NSMutableArray *followedFriends = [NSMutableArray new];
+            for (PFObject *activity in objects) {
+                PFUser *user = activity[@"toUser"];
+                NSString *fbID = user[@"facebookID"];
+                if (fbID) {
+                    [followedFriends addObject:fbID];
+                }
+            }
+            
+            [[BIDataStore shared] setFollowedFriends:[followedFriends copy]];
+        }
+    }];
+}
 @end
