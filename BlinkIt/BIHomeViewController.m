@@ -117,7 +117,7 @@
 }
 
 - (void)setupTodayView {
-    NSArray *nibs = [[NSBundle mainBundle] loadNibNamed:@"BITodayView" owner:self options:nil];
+    NSArray *nibs = [[NSBundle mainBundle] loadNibNamed:@"BITodayView" owner:nil options:nil];
     BITodayView *todayView = [nibs objectAtIndex:0];
     todayView.frameY = 64;
     todayView.delegate = self;
