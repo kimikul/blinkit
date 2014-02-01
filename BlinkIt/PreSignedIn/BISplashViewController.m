@@ -71,6 +71,7 @@
         } else {
             [[BIFacebookUserManager shared] fetchAndSaveBasicUserInfoWithBlock:^(BOOL succeeded, NSError *error) {
                 if (!error) {
+                    [[BIFacebookUserManager shared] refreshCurrentUserFacebookFriends];
                     [self transitionToHomeViewController];
                 } else {
                     [self showFacebookLoginErrorAlert:error];

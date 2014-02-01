@@ -12,6 +12,6 @@
 
 + (BIFacebookUserManager*)shared;
 - (void)fetchAndSaveBasicUserInfoWithBlock:(void (^)(BOOL succeeded, NSError *error))completionBlock;
-- (void)fetchAndSaveFriendsForUser:(PFUser*)user block:(void (^)(NSDictionary *friendDict, NSError *error))completionBlock;
+- (void)refreshCurrentUserFacebookFriends;
 
 @end

@@ -94,6 +94,7 @@
             if (succeeded) {
                 [[BIFacebookUserManager shared] fetchAndSaveBasicUserInfoWithBlock:^(BOOL succeeded, NSError *error) {
                     if (!error) {
+                        [[BIFacebookUserManager shared] refreshCurrentUserFacebookFriends];
                         [self updateFacebookLinkLabel];
                     } else {
                         [self showFacebookLinkErrorAlert:error];

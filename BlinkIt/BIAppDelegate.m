@@ -34,9 +34,7 @@
 - (void)reloadFacebookFriends {
     PFUser *user = [PFUser currentUser];
     if (user) {
-        [[BIFacebookUserManager shared] fetchAndSaveFriendsForUser:user block:^(NSDictionary *friendDict, NSError *error) {
-            [[BIDataStore shared] setFacebookFriends:[friendDict copy]];
-        }];
+        [[BIFacebookUserManager shared] refreshCurrentUserFacebookFriends];
     }
 }
 

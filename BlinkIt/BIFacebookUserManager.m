@@ -52,7 +52,7 @@ static BIFacebookUserManager *shared = nil;
     }];
 }
 
-- (void)fetchAndSaveFriendsForUser:(PFUser*)user block:(void (^)(NSDictionary *friendDict, NSError *error))completionBlock {
+- (void)refreshCurrentUserFacebookFriends {
     FBRequest *friendsRequest = [FBRequest requestForMyFriends];
     [friendsRequest startWithCompletionHandler: ^(FBRequestConnection *connection,
                                                   NSDictionary* result,
@@ -66,9 +66,8 @@ static BIFacebookUserManager *shared = nil;
             [fbFriendsDict setObject:friend forKey:friend.id];
         }
         
-        // call completion block with friends dict
-        if (completionBlock) {
-            completionBlock(fbFriendsDict, error);
+        if (!error) {
+            [[BIDataStore shared] setFacebookFriends:[fbFriendsDict copy]];
         }
     }];
 }
