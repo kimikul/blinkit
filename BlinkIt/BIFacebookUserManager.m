@@ -7,11 +7,22 @@
 //
 
 #import "BIFacebookUserManager.h"
-#import "BIDataStore.h"
 
 @implementation BIFacebookUserManager
 
-- (void)fetchAndSaveBasicUserInfo {
+static BIFacebookUserManager *shared = nil;
+
++ (BIFacebookUserManager*)shared {
+    @synchronized (self) {
+        if (!shared) {
+            shared = [[BIFacebookUserManager alloc] init];
+        }
+    }
+    
+    return shared;
+}
+
+- (void)fetchAndSaveBasicUserInfoWithBlock:(void (^)(BOOL succeeded, NSError *error))completionBlock {
     FBRequest *request = [FBRequest requestForMe];
     
     [request startWithCompletionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
@@ -31,20 +42,23 @@
             NSString *pictureURL = [NSString stringWithFormat:@"https://graph.facebook.com/%@/picture?type=large&return_ssl_resources=1", facebookID];
             currentUser[@"photoURL"] = pictureURL;
             
+            // save fb info into parse user
             [currentUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-                [self.delegate facebookManager:self didSaveUser:currentUser withError:error];
+                if (completionBlock) {
+                    completionBlock(succeeded,error);
+                }
             }];
         }
     }];
 }
 
-- (void)fetchAndSaveFriends {
+- (void)fetchAndSaveFriendsForUser:(PFUser*)user block:(void (^)(NSDictionary *friendDict, NSError *error))completionBlock {
     FBRequest *friendsRequest = [FBRequest requestForMyFriends];
     [friendsRequest startWithCompletionHandler: ^(FBRequestConnection *connection,
                                                   NSDictionary* result,
                                                   NSError *error) {
 
-        // fetch friends list
+        // create facebook friends dict
         NSMutableDictionary *fbFriendsDict = [NSMutableDictionary new];
         
         NSArray *friends = result[@"data"];
@@ -52,8 +66,10 @@
             [fbFriendsDict setObject:friend forKey:friend.id];
         }
         
-        [[BIDataStore shared] setFacebookFriends:[fbFriendsDict copy]];
-        [self.delegate facebookManager:self didRefreshFriendsList:fbFriendsDict withError:error];
+        // call completion block with friends dict
+        if (completionBlock) {
+            completionBlock(fbFriendsDict, error);
+        }
     }];
 }
 

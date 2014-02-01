@@ -22,4 +22,6 @@
     #import "MBProgressHUD.h"
     #import "BIUserDefaultsKeys.h"
     #import "BIConstants.h"
+    #import "BIDataStore.h"
+
 #endif

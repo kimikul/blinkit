@@ -23,29 +23,17 @@
 
 #define kTableRowLogout 0
 
-@interface BISettingsViewController () <UIActionSheetDelegate, BIFacebookUserManagerDelegate>
+@interface BISettingsViewController () <UIActionSheetDelegate>
 
 @property (nonatomic, strong) PFUser *currentUser;
 @property (weak, nonatomic) IBOutlet UILabel *emailLabel;
 @property (weak, nonatomic) IBOutlet UISwitch *privacySwitch;
 @property (weak, nonatomic) IBOutlet UISwitch *dailyRemindersSwitch;
 @property (weak, nonatomic) IBOutlet UILabel *facebookLinkLabel;
-@property (nonatomic, strong) BIFacebookUserManager *facebookUserManager;
 
 @end
 
 @implementation BISettingsViewController
-
-#pragma mark - getter/setter
-
-- (BIFacebookUserManager*)facebookUserManager {
-    if (!_facebookUserManager) {
-        _facebookUserManager = [BIFacebookUserManager new];
-        _facebookUserManager.delegate = self;
-    }
-    
-    return _facebookUserManager;
-}
 
 #pragma mark - init
 
@@ -104,19 +92,17 @@
     if (![PFFacebookUtils isLinkedWithUser:_currentUser]) {
         [PFFacebookUtils linkUser:_currentUser permissions:permissions block:^(BOOL succeeded, NSError *error) {
             if (succeeded) {
-                [self.facebookUserManager fetchAndSaveBasicUserInfo];
+                [[BIFacebookUserManager shared] fetchAndSaveBasicUserInfoWithBlock:^(BOOL succeeded, NSError *error) {
+                    if (!error) {
+                        [self updateFacebookLinkLabel];
+                    } else {
+                        [self showFacebookLinkErrorAlert:error];
+                    }
+                }];
             } else {
                 [self showFacebookLinkErrorAlert:error];
             }
         }];
-    }
-}
-
-- (void)facebookManager:(BIFacebookUserManager*)facebookManager didSaveUser:(PFUser*)user withError:(NSError*)error {
-    if (!error) {
-        [self updateFacebookLinkLabel];
-    } else {
-        [self showFacebookLinkErrorAlert:error];
     }
 }
 

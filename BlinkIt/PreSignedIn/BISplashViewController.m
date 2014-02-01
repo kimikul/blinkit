@@ -13,25 +13,13 @@
 #import "BIAppDelegate.h"
 #import "BIFacebookUserManager.h"
 
-@interface BISplashViewController () <BILoginViewControllerDelegate, BISignUpViewControllerDelegate, BIFacebookUserManagerDelegate>
+@interface BISplashViewController () <BILoginViewControllerDelegate, BISignUpViewControllerDelegate>
 @property (weak, nonatomic) IBOutlet UIButton *loginButton;
 @property (weak, nonatomic) IBOutlet UIButton *signupButton;
 @property (weak, nonatomic) IBOutlet UIButton *facebookButton;
-@property (nonatomic, strong) BIFacebookUserManager *facebookUserManager;
 @end
 
 @implementation BISplashViewController
-
-#pragma mark - getter/setter
-
-- (BIFacebookUserManager*)facebookUserManager {
-    if (!_facebookUserManager) {
-        _facebookUserManager = [BIFacebookUserManager new];
-        _facebookUserManager.delegate = self;
-    }
-    
-    return _facebookUserManager;
-}
 
 #pragma mark - lifecycle
 
@@ -81,17 +69,15 @@
         if (!user) {
             [self showFacebookLoginErrorAlert:error];
         } else {
-            [self.facebookUserManager fetchAndSaveBasicUserInfo];
+            [[BIFacebookUserManager shared] fetchAndSaveBasicUserInfoWithBlock:^(BOOL succeeded, NSError *error) {
+                if (!error) {
+                    [self transitionToHomeViewController];
+                } else {
+                    [self showFacebookLoginErrorAlert:error];
+                }
+            }];
         }
     }];
-}
-
-- (void)facebookManager:(BIFacebookUserManager*)facebookManager didSaveUser:(PFUser*)user withError:(NSError*)error {
-    if (!error) {
-        [self transitionToHomeViewController];
-    } else {
-        [self showFacebookLoginErrorAlert:error];
-    }
 }
 
 - (void)showFacebookLoginErrorAlert:(NSError*)error {

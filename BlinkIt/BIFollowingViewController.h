@@ -10,6 +10,4 @@
 
 @interface BIFollowingViewController : BITableViewController
 
-- (void)fetchFriends;
-
 @end

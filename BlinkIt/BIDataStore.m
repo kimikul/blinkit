@@ -75,6 +75,8 @@ static BIDataStore *shared = nil;
     NSArray *followedFriends = [[NSUserDefaults standardUserDefaults] objectForKey:key];
     if (followedFriends) {
         [self.cache setObject:followedFriends forKey:key];
+    } else {
+        followedFriends = [NSArray new];
     }
     
     return followedFriends;
@@ -100,6 +102,11 @@ static BIDataStore *shared = nil;
     NSMutableArray *followedFriends = [[self followedFriends] mutableCopy];
     [followedFriends removeObject:user[@"facebookID"]];
     [self setFollowedFriends:[followedFriends copy]];
+}
+
+- (BOOL)isFollowingUser:(PFUser*)user {
+    NSArray *followedFriends = [self followedFriends];
+    return [followedFriends containsObject:user[@"facebookID"]];
 }
 
 @end

@@ -8,20 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
-@class BIFacebookUserManager;
-
-@protocol BIFacebookUserManagerDelegate <NSObject>
-@optional
-- (void)facebookManager:(BIFacebookUserManager*)facebookManager didSaveUser:(PFUser*)user withError:(NSError*)error;
-- (void)facebookManager:(BIFacebookUserManager*)facebookManager didRefreshFriendsList:(NSDictionary*)friendsList withError:(NSError*)error;
-
-@end
-
 @interface BIFacebookUserManager : NSObject
 
-@property (nonatomic, weak) id <BIFacebookUserManagerDelegate> delegate;
-
-- (void)fetchAndSaveBasicUserInfo;
-- (void)fetchAndSaveFriends;
++ (BIFacebookUserManager*)shared;
+- (void)fetchAndSaveBasicUserInfoWithBlock:(void (^)(BOOL succeeded, NSError *error))completionBlock;
+- (void)fetchAndSaveFriendsForUser:(PFUser*)user block:(void (^)(NSDictionary *friendDict, NSError *error))completionBlock;
 
 @end

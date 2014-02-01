@@ -14,9 +14,8 @@
 #define kSEGMENT_FOLLOWING    0
 #define kSEGMENT_FOLLOWERS    1
 
-@interface BIFollowViewController () <BIFacebookUserManagerDelegate>
+@interface BIFollowViewController ()
 
-@property (nonatomic, strong) BIFacebookUserManager *facebookUserManager;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segmentedControl;
 @property (nonatomic, strong) UIViewController *activeViewController;
 @property (nonatomic, strong) NSArray *segmentedViewControllers;
@@ -24,17 +23,6 @@
 @end
 
 @implementation BIFollowViewController
-
-#pragma mark - getter/setter
-
-- (BIFacebookUserManager*)facebookUserManager {
-    if (!_facebookUserManager) {
-        _facebookUserManager = [BIFacebookUserManager new];
-        _facebookUserManager.delegate = self;
-    }
-    
-    return _facebookUserManager;
-}
 
 #pragma mark - lifecycle
 
@@ -52,7 +40,6 @@
     
     [self setupButtons];
     [self setupViewControllers];
-    [self.facebookUserManager fetchAndSaveFriends];
 }
 
 - (void)setupButtons {
@@ -113,15 +100,6 @@
             _activeViewController = newVC;
         }
     }
-}
-
-#pragma mark - BIFacebookUserManagerDelegate
-
-- (void)facebookManager:(BIFacebookUserManager*)facebookManager didRefreshFriendsList:(NSDictionary*)friendsList withError:(NSError*)error {
-    NSLog(@"refreshed friends list %@",friendsList);
-
-    BIFollowingViewController *vc = [_segmentedViewControllers objectAtIndex:kSEGMENT_FOLLOWING];
-    [vc fetchFriends];
 }
 
 @end

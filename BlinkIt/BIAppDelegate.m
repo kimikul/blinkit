@@ -9,12 +9,14 @@
 #import "BIAppDelegate.h"
 #import "BISplashViewController.h"
 #import "BIHomeViewController.h"
+#import "BIFacebookUserManager.h"
 
 @implementation BIAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [self startParseWithLaunchOptions:launchOptions];
     [PFFacebookUtils initializeFacebook];
+    [self reloadFacebookFriends];
     
     [PFImageView class];
     [self presentCorrectRootController];
@@ -27,6 +29,15 @@
                   clientKey:@"wytpn1ob1jPfhbQKaa1RUw1CUrynyVnTWfg8RaDE"];
     [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
     
+}
+
+- (void)reloadFacebookFriends {
+    PFUser *user = [PFUser currentUser];
+    if (user) {
+        [[BIFacebookUserManager shared] fetchAndSaveFriendsForUser:user block:^(NSDictionary *friendDict, NSError *error) {
+            [[BIDataStore shared] setFacebookFriends:[friendDict copy]];
+        }];
+    }
 }
 
 - (void)presentCorrectRootController {

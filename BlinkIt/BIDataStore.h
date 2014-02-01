@@ -19,5 +19,6 @@
 - (NSArray*)followedFriends;
 - (void)addFollowedFriend:(PFUser*)user;
 - (void)removeFollowedFriend:(PFUser*)user;
+- (BOOL)isFollowingUser:(PFUser*)user;
 
 @end

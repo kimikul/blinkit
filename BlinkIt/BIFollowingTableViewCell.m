@@ -38,6 +38,7 @@
 - (void)setUser:(PFUser *)user {
     _user = user;
     _nameLabel.text = user[@"name"];
+    _followButton.selected = [[BIDataStore shared] isFollowingUser:user];
 }
 
 #pragma mark - actions

@@ -7,7 +7,6 @@
 //
 
 #import "BIFollowingViewController.h"
-#import "BIDataStore.h"
 #import "BIFollowingTableViewCell.h"
 #import "BIFollowManager.h"
 
@@ -28,10 +27,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self fetchFriends];
 }
 
 - (void)fetchFriends {
-    NSArray *facebookFriends = [BIDataStore shared].facebookFriends;
+    NSArray *facebookFriends = [BIDataStore shared].facebookFriends.allKeys;
 
     PFQuery *friendsQuery = [PFUser query];
     [friendsQuery whereKey:@"facebookID" containedIn:facebookFriends];
