@@ -57,9 +57,9 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (_friendsArray.count == 0) {
         return 1;
-    } else {
-        return _friendsArray.count;
     }
+    
+    return _friendsArray.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -81,7 +81,6 @@
         tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 
         BINoFollowResultsTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:[BINoFollowResultsTableViewCell reuseIdentifier]];
-        cell.noResultsLabel.text = kLABEL_NOFRIENDS;
         return cell;
     } else {
         PFUser *user = [_friendsArray objectAtIndex:indexPath.row];

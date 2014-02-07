@@ -6,8 +6,8 @@
 //  Copyright (c) 2014 hsiao. All rights reserved.
 //
 
-#import "BIViewController.h"
+#import "BITableViewController.h"
 
-@interface BIFollowViewController : BIViewController
+@interface BIFollowViewController : BITableViewController
 
 @end

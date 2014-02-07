@@ -433,6 +433,152 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <inset key="separatorInset" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="BIPaginationTableViewCell" rowHeight="30" id="aRR-zX-iYA" customClass="BIPaginationTableViewCell">
+                                        <rect key="frame" x="0.0" y="86" width="320" height="30"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="aRR-zX-iYA" id="PPw-S9-HbW">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="29"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="Udc-2N-TaW">
+                                                    <rect key="frame" x="150" y="5" width="20" height="20"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </activityIndicatorView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="centerY" secondItem="Udc-2N-TaW" secondAttribute="centerY" constant="-0.5" id="Kib-SD-X20"/>
+                                                <constraint firstAttribute="centerX" secondItem="Udc-2N-TaW" secondAttribute="centerX" id="ORX-i5-RSZ"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="aiv" destination="Udc-2N-TaW" id="ghO-4P-nK3"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="BINoFollowResultsTableViewCell" rowHeight="70" id="7Jj-we-qyj" customClass="BINoFollowResultsTableViewCell">
+                                        <rect key="frame" x="0.0" y="116" width="320" height="70"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7Jj-we-qyj" id="HDR-mn-4FD">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="69"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Your friends have not shared any blinks yet." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="300" translatesAutoresizingMaskIntoConstraints="NO" id="8Vg-KL-Rih">
+                                                    <rect key="frame" x="12" y="0.0" width="300" height="69"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                                    <color key="textColor" white="0.57009198589999999" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="noResultsLabel" destination="8Vg-KL-Rih" id="287-NW-wgM"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="BIFeedPhotoTableViewCell" rowHeight="200" id="5QN-ph-UmY" customClass="BIFeedPhotoTableViewCell">
+                                        <rect key="frame" x="0.0" y="186" width="320" height="200"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5QN-ph-UmY" id="gxG-uq-bzV">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="199"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Moosh Lin" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Er5-AY-Fpf">
+                                                    <rect key="frame" x="40" y="12" width="269" height="18"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="15"/>
+                                                    <color key="textColor" red="0.99607843139999996" green="0.50196078430000002" blue="0.50196078430000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="300" translatesAutoresizingMaskIntoConstraints="NO" id="Xss-qF-ehF">
+                                                    <rect key="frame" x="10" y="37" width="300" height="51"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <string key="text">Today, I learned how to edit client-side code through a web browser and was able to hack into Coachella's waiting page for Weekend 1 tickets.</string>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="i8z-Me-cQV" customClass="PFImageView">
+                                                    <rect key="frame" x="10" y="92" width="300" height="100"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="100" id="87m-LR-yqs"/>
+                                                        <constraint firstAttribute="width" constant="300" id="HVj-pK-HbC"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mvh-hX-aiL">
+                                                    <rect key="frame" x="10" y="9" width="25" height="25"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </imageView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="Er5-AY-Fpf" firstAttribute="top" secondItem="gxG-uq-bzV" secondAttribute="top" constant="12" id="8dY-e3-zFZ"/>
+                                                <constraint firstAttribute="trailing" secondItem="i8z-Me-cQV" secondAttribute="trailing" constant="10" id="9A0-9p-iHl"/>
+                                                <constraint firstItem="Er5-AY-Fpf" firstAttribute="leading" secondItem="gxG-uq-bzV" secondAttribute="leading" constant="40" id="CyO-XZ-FdJ"/>
+                                                <constraint firstAttribute="trailing" secondItem="Xss-qF-ehF" secondAttribute="trailing" constant="10" id="GPC-dR-srY"/>
+                                                <constraint firstItem="Xss-qF-ehF" firstAttribute="top" secondItem="Er5-AY-Fpf" secondAttribute="bottom" constant="7" id="HhA-cF-8Ie"/>
+                                                <constraint firstItem="i8z-Me-cQV" firstAttribute="top" secondItem="Xss-qF-ehF" secondAttribute="bottom" constant="4" id="KJ2-bn-GGA"/>
+                                                <constraint firstItem="Xss-qF-ehF" firstAttribute="leading" secondItem="gxG-uq-bzV" secondAttribute="leading" constant="10" id="NI3-ta-KLc"/>
+                                                <constraint firstAttribute="trailing" secondItem="Er5-AY-Fpf" secondAttribute="trailing" constant="11" id="Vgw-QJ-w3m"/>
+                                                <constraint firstItem="i8z-Me-cQV" firstAttribute="leading" secondItem="gxG-uq-bzV" secondAttribute="leading" constant="10" id="YzL-M4-R1Z"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="attachedImageView" destination="i8z-Me-cQV" id="Rsw-2Z-GRO"/>
+                                            <outlet property="contentLabel" destination="Xss-qF-ehF" id="E0S-ev-VSY"/>
+                                            <outlet property="dateLabel" destination="Er5-AY-Fpf" id="tfK-mI-zhR"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="BIFeedTableViewCell" rowHeight="100" id="bTh-7s-hV4" customClass="BIFeedTableViewCell">
+                                        <rect key="frame" x="0.0" y="386" width="320" height="100"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bTh-7s-hV4" id="Lhs-r3-0Fd">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="99"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="300" translatesAutoresizingMaskIntoConstraints="NO" id="zrS-dV-C7S">
+                                                    <rect key="frame" x="10" y="41" width="300" height="51"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <string key="text">Today, I learned how to edit client-side code through a web browser and was able to hack into Coachella's waiting page for Weekend 1 tickets.</string>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Moosh Lin" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ycC-rO-pvV">
+                                                    <rect key="frame" x="40" y="12" width="270" height="18"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="15"/>
+                                                    <color key="textColor" red="0.99607843139999996" green="0.50196078430000002" blue="0.50196078430000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="HFm-dg-oIy">
+                                                    <rect key="frame" x="10" y="9" width="25" height="25"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="25" id="U09-t5-6JH"/>
+                                                        <constraint firstAttribute="width" constant="25" id="ZRe-Sp-YbT"/>
+                                                    </constraints>
+                                                </imageView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="zrS-dV-C7S" firstAttribute="leading" secondItem="Lhs-r3-0Fd" secondAttribute="leading" constant="10" id="56H-3V-G0R"/>
+                                                <constraint firstItem="zrS-dV-C7S" firstAttribute="top" secondItem="ycC-rO-pvV" secondAttribute="bottom" constant="11" id="Ibz-Zi-1xP"/>
+                                                <constraint firstItem="HFm-dg-oIy" firstAttribute="top" secondItem="Lhs-r3-0Fd" secondAttribute="top" constant="9" id="RTu-4l-xzc"/>
+                                                <constraint firstAttribute="trailing" secondItem="zrS-dV-C7S" secondAttribute="trailing" constant="10" id="T0f-He-7O2"/>
+                                                <constraint firstItem="ycC-rO-pvV" firstAttribute="leading" secondItem="HFm-dg-oIy" secondAttribute="trailing" constant="5" id="X8T-tS-vTq"/>
+                                                <constraint firstItem="HFm-dg-oIy" firstAttribute="leading" secondItem="Lhs-r3-0Fd" secondAttribute="leading" constant="10" id="eDH-jx-9yY"/>
+                                                <constraint firstItem="ycC-rO-pvV" firstAttribute="top" secondItem="Lhs-r3-0Fd" secondAttribute="top" constant="12" id="mYl-6g-OYB"/>
+                                                <constraint firstAttribute="trailing" secondItem="ycC-rO-pvV" secondAttribute="trailing" constant="10" id="r43-po-Tqo"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="contentLabel" destination="zrS-dV-C7S" id="oDd-f8-PTF"/>
+                                            <outlet property="userNameLabel" destination="ycC-rO-pvV" id="T0I-Vl-MVv"/>
+                                            <outlet property="userPicImageView" destination="HFm-dg-oIy" id="FtI-kN-B2h"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="YgN-Li-0qf" id="d3C-tU-KbU"/>
                                     <outlet property="delegate" destination="YgN-Li-0qf" id="Qzr-ej-XHQ"/>
@@ -714,11 +860,10 @@
                                                     <color key="backgroundColor" red="0.26960112580000001" green="0.21246824219999999" blue="0.94999998809999997" alpha="1" colorSpace="calibratedRGB"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
                                                     <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                    <state key="normal" title="Follow">
+                                                    <state key="normal">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
-                                                    <state key="selected" title="Following"/>
                                                     <connections>
                                                         <action selector="tappedFollowButton:" destination="czD-bm-gLZ" eventType="touchUpInside" id="muh-5r-Vwr"/>
                                                     </connections>
@@ -823,7 +968,7 @@ Help spread the word! :)</string>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="80A-ZN-vz5">
-                                                    <rect key="frame" x="10" y="5" width="30" height="34"/>
+                                                    <rect key="frame" x="10" y="7" width="30" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 </imageView>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Ron Alivia" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dR1-VC-Tb8">
@@ -838,11 +983,10 @@ Help spread the word! :)</string>
                                                     <color key="backgroundColor" red="0.26960112580000001" green="0.21246824219999999" blue="0.94999998809999997" alpha="1" colorSpace="calibratedRGB"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
                                                     <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                    <state key="normal" title="Follow">
+                                                    <state key="normal">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
-                                                    <state key="selected" title="Following"/>
                                                     <connections>
                                                         <action selector="tappedFollowButton:" destination="fZU-jn-Aev" eventType="touchUpInside" id="3DB-CY-4fj"/>
                                                     </connections>
@@ -853,6 +997,49 @@ Help spread the word! :)</string>
                                             <outlet property="followButton" destination="Zxv-rl-XTF" id="Xjb-m1-avY"/>
                                             <outlet property="nameLabel" destination="dR1-VC-Tb8" id="FJr-XC-v8M"/>
                                             <outlet property="profilePic" destination="80A-ZN-vz5" id="rWY-1M-tby"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="BIPaginationTableViewCell" rowHeight="30" id="VOh-9t-tZW" customClass="BIPaginationTableViewCell">
+                                        <rect key="frame" x="0.0" y="66" width="320" height="30"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="VOh-9t-tZW" id="KjI-R4-qH1">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="29"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="aCB-78-Bcj">
+                                                    <rect key="frame" x="150" y="5" width="20" height="20"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </activityIndicatorView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="centerX" secondItem="aCB-78-Bcj" secondAttribute="centerX" id="6xi-z8-rwY"/>
+                                                <constraint firstAttribute="centerY" secondItem="aCB-78-Bcj" secondAttribute="centerY" constant="-0.5" id="lFm-j9-RKW"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="aiv" destination="aCB-78-Bcj" id="Ztg-LF-8QB"/>
+                                        </connections>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="BINoFollowResultsTableViewCell" rowHeight="70" id="s1z-5p-1dP" customClass="BINoFollowResultsTableViewCell">
+                                        <rect key="frame" x="0.0" y="96" width="320" height="70"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="s1z-5p-1dP" id="mvt-oJ-vFA">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="69"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="300" translatesAutoresizingMaskIntoConstraints="NO" id="q4v-eF-zb2">
+                                                    <rect key="frame" x="12" y="0.0" width="300" height="69"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <string key="text">You have no followers yet.
+Help spread the word so you can start sharing!</string>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                                    <color key="textColor" white="0.57009198589999999" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="noResultsLabel" destination="q4v-eF-zb2" id="YhK-l5-9rj"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

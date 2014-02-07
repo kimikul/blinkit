@@ -30,11 +30,18 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
+    
     _followButton.layer.cornerRadius = 3.0;
     _followButton.clipsToBounds = YES;
     
     _profilePic.layer.cornerRadius = 2.0;
     _profilePic.clipsToBounds = YES;
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateButtonForUser:) name:@"BITappedFollowButtonNotification" object:_user];
+}
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 #pragma mark - getter/setter
@@ -54,21 +61,38 @@
 
 - (IBAction)tappedFollowButton:(id)sender {
     PFUser *user = _user;
-    
+
+    // update database with new follow state
     if (_followButton.isSelected) {
-        [self setButtonToUnselected];
         [BIFollowManager unfollowUserEventually:user block:^(NSError *error) {
             if (!error) {
                 [[BIDataStore shared] removeFollowedFriend:user];
             }
         }];
     } else {
-        [self setButtonToSelected];
         [BIFollowManager followUserEventually:user block:^(BOOL succeeded, NSError *error) {
             if (succeeded) {
                 [[BIDataStore shared] addFollowedFriend:user];
             }
         }];
+    }
+    
+    // notify all affected cells to update UI
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"BITappedFollowButtonNotification" object:_user];
+}
+
+- (void)updateButtonForUser:(NSNotification*)note {
+    PFUser *user = _user;
+    PFUser *tappedUser = note.object;
+    NSString *userID = [user objectId];
+    NSString *tappedUserID = [tappedUser objectId];
+
+    if ([tappedUserID isEqual:userID]) {
+        if (_followButton.isSelected) {
+            [self setButtonToUnselected];
+        } else {
+            [self setButtonToSelected];
+        }
     }
 }
 
@@ -77,11 +101,13 @@
 - (void)setButtonToSelected {
     _followButton.selected = YES;
     _followButton.backgroundColor = [UIColor lightGrayColor];
+    [_followButton setTitle:@"Following" forState:UIControlStateNormal];
 }
 
 - (void)setButtonToUnselected {
     _followButton.selected = NO;
     _followButton.backgroundColor = [UIColor blueColor];
+    [_followButton setTitle:@"Follow" forState:UIControlStateNormal];
 }
 
 @end
