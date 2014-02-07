@@ -9,8 +9,10 @@
 #import "BIFollowingViewController.h"
 #import "BIFollowingTableViewCell.h"
 #import "BIFollowManager.h"
+#import "BIPaginationTableViewCell.h"
+#import "BINoFollowResultsTableViewCell.h"
 
-@interface BIFollowingViewController () <BIFollowingTableViewCellDelegate>
+@interface BIFollowingViewController ()
 @property (nonatomic, strong) NSArray *friendsArray;
 @end
 
@@ -31,12 +33,16 @@
 }
 
 - (void)fetchFriends {
+    self.loading = YES;
+    
     NSArray *facebookFriends = [BIDataStore shared].facebookFriends.allKeys;
 
     PFQuery *friendsQuery = [PFUser query];
     [friendsQuery whereKey:@"facebookID" containedIn:facebookFriends];
     [friendsQuery orderByAscending:@"name"];
     [friendsQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        self.loading = NO;
+        
         _friendsArray = objects;
         [self reloadTableData];
     }];
@@ -49,48 +55,47 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return _friendsArray.count;
+    if (_friendsArray.count == 0) {
+        return 1;
+    } else {
+        return _friendsArray.count;
+    }
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return [BIFollowingTableViewCell cellHeight];
+    if (self.isLoading) {
+        return [BIPaginationTableViewCell cellHeight];
+    } else if (_friendsArray.count == 0) {
+        return [BINoFollowResultsTableViewCell cellHeight];
+    } else {
+        return [BIFollowingTableViewCell cellHeight];
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    PFUser *user = [_friendsArray objectAtIndex:indexPath.row];
-    BIFollowingTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:[BIFollowingTableViewCell reuseIdentifier]];
-    
-    cell.delegate = self;
-    cell.user = user;
-    
-    return cell;
+    if (self.isLoading) {
+        BIPaginationTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:[BIPaginationTableViewCell reuseIdentifier]];
+        [cell.aiv startAnimating];
+        return cell;
+    } else if (_friendsArray.count == 0) {
+        tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+
+        BINoFollowResultsTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:[BINoFollowResultsTableViewCell reuseIdentifier]];
+        cell.noResultsLabel.text = kLABEL_NOFRIENDS;
+        return cell;
+    } else {
+        PFUser *user = [_friendsArray objectAtIndex:indexPath.row];
+        BIFollowingTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:[BIFollowingTableViewCell reuseIdentifier]];
+        
+        cell.user = user;
+        
+        return cell;
+    }
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
-}
-
-#pragma mark - BIFollowingTableViewCellDelegate
-
-- (void)followingCell:(BIFollowingTableViewCell*)followingCell tappedFollowButton:(UIButton*)button {
-    PFUser *user = followingCell.user;
-    
-    if (followingCell.followButton.isSelected) {
-        followingCell.followButton.selected = NO;
-        [BIFollowManager unfollowUserEventually:user block:^(NSError *error) {
-            if (!error) {
-                [[BIDataStore shared] removeFollowedFriend:user];
-            }
-        }];
-    } else {
-        followingCell.followButton.selected = YES;
-        [BIFollowManager followUserEventually:user block:^(BOOL succeeded, NSError *error) {
-            if (succeeded) {
-                [[BIDataStore shared] addFollowedFriend:user];
-            }
-        }];
-    }
 }
 
 @end

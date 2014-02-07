@@ -39,7 +39,7 @@ static BIFacebookUserManager *shared = nil;
             currentUser[@"username"] = userData[@"email"];
             currentUser[@"facebookID"] = facebookID;
             
-            NSString *pictureURL = [NSString stringWithFormat:@"https://graph.facebook.com/%@/picture?type=large&return_ssl_resources=1", facebookID];
+            NSString *pictureURL = [NSString stringWithFormat:@"https://graph.facebook.com/%@/picture?type=square&return_ssl_resources=1", facebookID];
             currentUser[@"photoURL"] = pictureURL;
             
             // save fb info into parse user

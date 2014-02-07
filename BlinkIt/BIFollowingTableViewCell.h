@@ -11,17 +11,16 @@
 @class BIFollowingTableViewCell;
 
 @protocol BIFollowingTableViewCellDelegate <NSObject>
-
-- (void)followingCell:(BIFollowingTableViewCell*)followingCell tappedFollowButton:(UIButton*)button;
-
+// nothing yet
 @end
 
 @interface BIFollowingTableViewCell : UITableViewCell
 
 + (NSString*)reuseIdentifier;
 + (CGFloat)cellHeight;
+- (void)setButtonToSelected;
+- (void)setButtonToUnselected;
 
-@property (nonatomic, weak) id <BIFollowingTableViewCellDelegate> delegate;
 @property (nonatomic, strong) PFUser *user;
 @property (weak, nonatomic) IBOutlet UIButton *followButton;
 

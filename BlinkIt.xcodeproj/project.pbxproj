@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5E2F088C188F7B1400C633C7 /* BIPaginationTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E2F088B188F7B1400C633C7 /* BIPaginationTableViewCell.m */; };
+		5E3420D618A488240088A270 /* BINoFollowResultsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E3420D518A488240088A270 /* BINoFollowResultsTableViewCell.m */; };
 		5E42D3EF189C9FFD00F651E0 /* BIFeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E42D3EE189C9FFD00F651E0 /* BIFeedViewController.m */; };
 		5E42D3F4189CA40800F651E0 /* BIFollowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E42D3F3189CA40800F651E0 /* BIFollowViewController.m */; };
 		5E42D3F7189CA77200F651E0 /* BIFollowingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E42D3F6189CA77200F651E0 /* BIFollowingViewController.m */; };
@@ -78,6 +79,8 @@
 /* Begin PBXFileReference section */
 		5E2F088A188F7B1400C633C7 /* BIPaginationTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BIPaginationTableViewCell.h; sourceTree = "<group>"; };
 		5E2F088B188F7B1400C633C7 /* BIPaginationTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BIPaginationTableViewCell.m; sourceTree = "<group>"; };
+		5E3420D418A488240088A270 /* BINoFollowResultsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BINoFollowResultsTableViewCell.h; sourceTree = "<group>"; };
+		5E3420D518A488240088A270 /* BINoFollowResultsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BINoFollowResultsTableViewCell.m; sourceTree = "<group>"; };
 		5E42D3ED189C9FFD00F651E0 /* BIFeedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BIFeedViewController.h; sourceTree = "<group>"; };
 		5E42D3EE189C9FFD00F651E0 /* BIFeedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BIFeedViewController.m; sourceTree = "<group>"; };
 		5E42D3F2189CA40800F651E0 /* BIFollowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BIFollowViewController.h; sourceTree = "<group>"; };
@@ -232,6 +235,8 @@
 			children = (
 				5E42D402189CB7C300F651E0 /* BIFollowingTableViewCell.h */,
 				5E42D403189CB7C300F651E0 /* BIFollowingTableViewCell.m */,
+				5E3420D418A488240088A270 /* BINoFollowResultsTableViewCell.h */,
+				5E3420D518A488240088A270 /* BINoFollowResultsTableViewCell.m */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -546,6 +551,7 @@
 				5EAB8B491883B5FA00B02953 /* BIPlaceholderTextView.m in Sources */,
 				5EAB8B3B1881300E00B02953 /* UIView+BlinkIt.m in Sources */,
 				5E2F088C188F7B1400C633C7 /* BIPaginationTableViewCell.m in Sources */,
+				5E3420D618A488240088A270 /* BINoFollowResultsTableViewCell.m in Sources */,
 				5E63927B1889227F00D1AE80 /* BIHomePhotoTableViewCell.m in Sources */,
 				5E639297188BB5CE00D1AE80 /* BIUserDefaultsKeys.m in Sources */,
 				5E42D3FA189CA77C00F651E0 /* BIFollowersViewController.m in Sources */,
