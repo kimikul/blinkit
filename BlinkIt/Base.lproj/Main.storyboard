@@ -329,6 +329,9 @@ Happy blinking :)</string>
                                                     <state key="normal" backgroundImage="private">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="tappedPrivacyButton:" destination="TOJ-wG-qgS" eventType="touchUpInside" id="zWO-wi-yYU"/>
+                                                    </connections>
                                                 </button>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10:43 pm" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ih2-OL-m7L">
                                                     <rect key="frame" x="10" y="27" width="278" height="21"/>
@@ -393,6 +396,9 @@ Happy blinking :)</string>
                                                     <state key="normal" backgroundImage="private">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="tappedPrivacyButton:" destination="lMP-qc-Kjl" eventType="touchUpInside" id="45F-Dl-tXP"/>
+                                                    </connections>
                                                 </button>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10:43 pm" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HVB-o0-27A">
                                                     <rect key="frame" x="10" y="27" width="278" height="21"/>
@@ -435,6 +441,8 @@ Happy blinking :)</string>
                                             <outlet property="attachedImageView" destination="ZIQ-2i-chW" id="C4r-i3-yzs"/>
                                             <outlet property="contentLabel" destination="z0U-m8-2fY" id="1TK-tM-xYV"/>
                                             <outlet property="dateLabel" destination="hJI-g2-NR8" id="vfp-N6-hgl"/>
+                                            <outlet property="privacyButton" destination="gF2-80-Sv6" id="sQn-g4-JWJ"/>
+                                            <outlet property="timeLabel" destination="HVB-o0-27A" id="aHt-ed-6OB"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="gray" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="BIPaginationTableViewCell" rowHeight="30" id="1EJ-Ct-Xqs" customClass="BIPaginationTableViewCell">
@@ -465,12 +473,12 @@ Happy blinking :)</string>
                                 </connections>
                             </tableView>
                             <view hidden="YES" alpha="0.69999999999999996" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WfG-xA-xzb" userLabel="Fade Layer">
-                                <rect key="frame" x="-400" y="0.0" width="320" height="568"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <view hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ov9-8Z-61I" userLabel="Error View">
-                                <rect key="frame" x="-400" y="0.0" width="320" height="519"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="There was an error loading your entries. Tap to refresh." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="pyx-3Z-fgZ">

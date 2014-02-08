@@ -49,4 +49,8 @@
     _privacyButton.hidden = ![blink[@"private"] boolValue];
 }
 
+- (IBAction)tappedPrivacyButton:(id)sender {
+    NSLog(@"hi");
+}
+
 @end
