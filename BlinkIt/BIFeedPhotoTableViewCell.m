@@ -1,0 +1,40 @@
+//
+//  BIFeedPhotoTableViewCell.m
+//  BlinkIt
+//
+//  Created by Kimberly Hsiao on 2/7/14.
+//  Copyright (c) 2014 hsiao. All rights reserved.
+//
+
+#import "BIFeedPhotoTableViewCell.h"
+
+@interface BIFeedPhotoTableViewCell ()
+@property (weak, nonatomic) IBOutlet PFImageView *attachedImageView;
+@end
+
+
+@implementation BIFeedPhotoTableViewCell
+
++ (NSString*)reuseIdentifier {
+    return @"BIFeedPhotoTableViewCell";
+}
+
++ (CGFloat)heightForContent:(NSString*)content {
+    CGFloat baseHeight = [super heightForContent:content];
+    CGFloat photoHeight = 315;
+    
+    return baseHeight + photoHeight;
+}
+
+- (void)setBlink:(PFObject *)blink {
+    [super setBlink:blink];
+    
+    PFFile *imageFile = blink[@"imageFile"];
+    if (imageFile) {
+        self.attachedImageView.file = imageFile;
+        [self.attachedImageView loadInBackground:^(UIImage *image, NSError *error) {
+            NSLog(@"downloaded image");
+        }];
+    }
+}
+@end

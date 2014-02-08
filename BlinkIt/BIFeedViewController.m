@@ -11,6 +11,7 @@
 #import "BIPaginationTableViewCell.h"
 #import "BINoFollowResultsTableViewCell.h"
 #import "BIFeedTableViewCell.h"
+#import "BIFeedPhotoTableViewCell.h"
 
 @interface BIFeedViewController ()
 @property (nonatomic, strong) NSArray *dateArray;       // array of dates with 1+ associated blinks
@@ -122,6 +123,18 @@
     NSArray *blinksOnDate = [_blinksArray objectAtIndex:indexPath.section];
     PFObject *blink = [blinksOnDate objectAtIndex:indexPath.row];
     
+    CGFloat height = 0;
+    NSString *content = blink[@"content"];
+    PFFile *imageFile = blink[@"imageFile"];
+    
+    if (imageFile) {
+        height = [BIFeedPhotoTableViewCell heightForContent:content];
+    } else {
+        height = [BIFeedTableViewCell heightForContent:content];
+    }
+    
+    return height;
+    
     return [BIFeedTableViewCell heightForContent:blink[@"content"]];
 }
 
@@ -150,7 +163,12 @@
     NSArray *blinksOnDate = [_blinksArray objectAtIndex:indexPath.section];
     PFObject *blink = [blinksOnDate objectAtIndex:indexPath.row];
     
-    BIFeedTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:[BIFeedTableViewCell reuseIdentifier]];
+    BIFeedTableViewCell *cell;
+    if (blink[@"imageFile"]) {
+        cell = [self.tableView dequeueReusableCellWithIdentifier:[BIFeedPhotoTableViewCell reuseIdentifier]];
+    } else {
+        cell = [self.tableView dequeueReusableCellWithIdentifier:[BIFeedTableViewCell reuseIdentifier]];
+    }
     
     cell.blink = blink;
     
