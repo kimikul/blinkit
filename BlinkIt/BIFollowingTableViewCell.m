@@ -7,7 +7,6 @@
 //
 
 #import "BIFollowingTableViewCell.h"
-#import "BIFollowManager.h"
 
 @interface BIFollowingTableViewCell ()
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;

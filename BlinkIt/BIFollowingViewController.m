@@ -8,7 +8,6 @@
 
 #import "BIFollowingViewController.h"
 #import "BIFollowingTableViewCell.h"
-#import "BIFollowManager.h"
 #import "BIPaginationTableViewCell.h"
 #import "BINoFollowResultsTableViewCell.h"
 

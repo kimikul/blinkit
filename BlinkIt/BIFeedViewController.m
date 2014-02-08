@@ -40,8 +40,16 @@
 
 - (void)setupButtons {
     UIImage *friendsImage = [[UIImage imageNamed:@"Tab-friends"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-    UIBarButtonItem *friendsButton = [[UIBarButtonItem alloc] initWithImage:friendsImage style:UIBarButtonItemStylePlain target:self action:@selector(tappedFriends:)];
-    self.navigationItem.rightBarButtonItem = friendsButton;
+    
+    BIButton *friendsButton = [BIButton buttonWithType:UIButtonTypeCustom];
+    friendsButton.frame = CGRectMake(0, 0, 40, 30);
+    friendsButton.barButtonSide = BIBarButtonTypeRight;
+    [friendsButton setImage:friendsImage forState:UIControlStateNormal];
+    [friendsButton addTarget:self action:@selector(tappedFriends:) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIBarButtonItem *rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:friendsButton];
+    
+    self.navigationItem.rightBarButtonItem = rightBarButtonItem;
 }
 
 - (void)setupNav {

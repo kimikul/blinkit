@@ -10,7 +10,6 @@
 #import "BISplashViewController.h"
 #import "BIAppDelegate.h"
 #import "BIFacebookUserManager.h"
-#import "BIFollowManager.h"
 
 #define kTableSectionAccount 0
 #define kTableSectionNotifications 1

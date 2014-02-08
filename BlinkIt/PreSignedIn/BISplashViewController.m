@@ -12,7 +12,6 @@
 #import "BIHomeViewController.h"
 #import "BIAppDelegate.h"
 #import "BIFacebookUserManager.h"
-#import "BIFollowManager.h"
 
 @interface BISplashViewController () <BILoginViewControllerDelegate, BISignUpViewControllerDelegate>
 @property (weak, nonatomic) IBOutlet UIButton *loginButton;

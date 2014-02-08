@@ -10,7 +10,6 @@
 #import "BISplashViewController.h"
 #import "BIHomeViewController.h"
 #import "BIFacebookUserManager.h"
-#import "BIFollowManager.h"
 
 @implementation BIAppDelegate
 

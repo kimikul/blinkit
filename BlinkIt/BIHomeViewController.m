@@ -91,7 +91,8 @@
 }
 
 - (void)setupButtons {
-    UIButton *settingsButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    BIButton *settingsButton = [BIButton buttonWithType:UIButtonTypeCustom];
+    settingsButton.barButtonSide = BIBarButtonTypeLeft;
     settingsButton.frame = CGRectMake(0,0,24,24);
     
     UIImage *settingsImage = [[UIImage imageNamed:@"settings"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];

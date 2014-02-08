@@ -23,5 +23,7 @@
     #import "BIUserDefaultsKeys.h"
     #import "BIConstants.h"
     #import "BIDataStore.h"
+    #import "BIButton.h"
+    #import "BIFollowManager.h"
 
 #endif
