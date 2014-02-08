@@ -13,7 +13,8 @@
 #import "BIFeedTableViewCell.h"
 
 @interface BIFeedViewController ()
-@property (nonatomic, strong) NSArray *blinksArray;
+@property (nonatomic, strong) NSArray *dateArray;       // array of dates with 1+ associated blinks
+@property (nonatomic, strong) NSArray *blinksArray;     // array of array of blinks associated with the date
 @end
 
 @implementation BIFeedViewController
@@ -32,6 +33,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setupButtons];
+    [self setupNav];
     [self fetchFeed];
 }
 
@@ -39,6 +41,15 @@
     UIImage *friendsImage = [[UIImage imageNamed:@"Tab-friends"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     UIBarButtonItem *friendsButton = [[UIBarButtonItem alloc] initWithImage:friendsImage style:UIBarButtonItemStylePlain target:self action:@selector(tappedFriends:)];
     self.navigationItem.rightBarButtonItem = friendsButton;
+}
+
+- (void)setupNav {
+    self.navigationController.navigationBar.barTintColor = [UIColor mintGreen];
+    UIImageView *logoImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"logo.png"]];
+    logoImageView.contentMode = UIViewContentModeScaleAspectFit;
+    logoImageView.frame = CGRectMake(0, 0, 160, 24);
+    logoImageView.autoresizingMask = self.navigationItem.titleView.autoresizingMask;
+    self.navigationItem.titleView = logoImageView;
 }
 
 #pragma mark - requests
@@ -61,55 +72,87 @@
         self.loading = NO;
         
         if (!error) {
-            _blinksArray = objects;
-            [self reloadTableData];
+            [self sectionalizeBlinks:objects];
         }
     }];
+}
+
+- (void)sectionalizeBlinks:(NSArray*)blinks {
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+    [dateFormat setDateFormat:@"MMMM dd, YYYY"];
+    
+    NSMutableArray *dateArray = [NSMutableArray new];
+    NSMutableArray *blinkArray = [NSMutableArray new];
+    NSMutableArray *innerBlinkArray = [NSMutableArray new];
+    
+    for (PFObject *blink in blinks) {
+        NSDate *date = blink[@"date"];
+        NSString *spelledOutDate = [NSDate spelledOutDate:date];
+        if (![dateArray containsObject:spelledOutDate]) {
+            [dateArray addObject:spelledOutDate];
+            innerBlinkArray = [NSMutableArray arrayWithObject:blink];
+        } else {
+            [innerBlinkArray addObject:blink];
+        }
+        
+        NSInteger index = [dateArray indexOfObject:spelledOutDate];
+        [blinkArray setObject:innerBlinkArray atIndexedSubscript:index];
+    }
+    
+    _dateArray = [dateArray copy];
+    _blinksArray = [blinkArray copy];
+    
+    [self reloadTableData];
 }
 
 #pragma mark - UITableViewDelegate / UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
+    return _dateArray.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if (_blinksArray.count == 0) {
-        return 1;
-    }
+    NSArray *blinksOnDate = [_blinksArray objectAtIndex:section];
     
-    return _blinksArray.count;
+    return blinksOnDate.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (self.isLoading) {
-        return [BIPaginationTableViewCell cellHeight];
-    } else if (_blinksArray.count == 0) {
-        return [BINoFollowResultsTableViewCell cellHeight];
-    } else {
-        PFObject *blink = [_blinksArray objectAtIndex:indexPath.row];
-        return [BIFeedTableViewCell heightForContent:blink[@"content"]];
-    }
+
+    NSArray *blinksOnDate = [_blinksArray objectAtIndex:indexPath.section];
+    PFObject *blink = [blinksOnDate objectAtIndex:indexPath.row];
+    
+    return [BIFeedTableViewCell heightForContent:blink[@"content"]];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return 30;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    NSString *date = [_dateArray objectAtIndex:section];
+
+    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0,0,320,30)];
+    headerView.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1.0];
+    
+    UILabel *dateLabel = [[UILabel alloc] initWithFrame:CGRectMake(10,0,300,30)];
+    dateLabel.text = date;
+    dateLabel.font = [UIFont boldSystemFontOfSize:15];
+    dateLabel.textColor = [UIColor colorWithWhite:0.5 alpha:1.0];
+    [headerView addSubview:dateLabel];
+    
+    return headerView;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (self.isLoading) {
-        BIPaginationTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:[BIPaginationTableViewCell reuseIdentifier]];
-        [cell.aiv startAnimating];
-        return cell;
-    } else if (_blinksArray.count == 0) {
-        tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-        
-        BINoFollowResultsTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:[BINoFollowResultsTableViewCell reuseIdentifier]];
-        return cell;
-    } else {
-        PFObject *blink = [_blinksArray objectAtIndex:indexPath.row];
-        BIFeedTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:[BIFeedTableViewCell reuseIdentifier]];
-        
-        cell.blink = blink;
-        
-        return cell;
-    }
+    NSArray *blinksOnDate = [_blinksArray objectAtIndex:indexPath.section];
+    PFObject *blink = [blinksOnDate objectAtIndex:indexPath.row];
+    
+    BIFeedTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:[BIFeedTableViewCell reuseIdentifier]];
+    
+    cell.blink = blink;
+    
+    return cell;
 }
 
 #pragma mark - button actions

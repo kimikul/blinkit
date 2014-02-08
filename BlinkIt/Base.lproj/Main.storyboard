@@ -417,7 +417,7 @@
             </objects>
             <point key="canvasLocation" x="3499" y="151"/>
         </scene>
-        <!--Feed View Controller - Feed-->
+        <!--Feed View Controller-->
         <scene sceneID="NWJ-gi-e8U">
             <objects>
                 <viewController storyboardIdentifier="BIFeedViewController" id="YgN-Li-0qf" customClass="BIFeedViewController" sceneMemberID="viewController">
@@ -587,7 +587,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Feed" id="gbk-VI-DXq"/>
+                    <navigationItem key="navigationItem" id="gbk-VI-DXq"/>
                     <connections>
                         <outlet property="tableView" destination="idx-SI-drK" id="Ylf-1N-W1v"/>
                     </connections>

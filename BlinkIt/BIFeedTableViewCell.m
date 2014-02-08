@@ -17,6 +17,8 @@
 
 @implementation BIFeedTableViewCell
 
+#pragma mark - class methods
+
 + (NSString*)reuseIdentifier {
     return @"BIFeedTableViewCell";
 }
@@ -38,6 +40,17 @@
     
     return rect.size.height + staticHeight;
 }
+
+#pragma mark - lifecycle
+
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    
+    _userPicImageView.layer.cornerRadius = 2.0;
+    _userPicImageView.clipsToBounds = YES;
+}
+
+#pragma mark - setter/getter
 
 - (void)setBlink:(PFObject *)blink {
     _blink = blink;
