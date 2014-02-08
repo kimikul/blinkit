@@ -267,8 +267,35 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <inset key="separatorInset" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="BINoFollowResultsTableViewCell" rowHeight="220" id="Krd-pe-o2e" customClass="BINoFollowResultsTableViewCell">
+                                        <rect key="frame" x="0.0" y="86" width="320" height="220"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Krd-pe-o2e" id="pQO-bR-bzV">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="219"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="300" translatesAutoresizingMaskIntoConstraints="NO" id="yBk-qJ-W5m">
+                                                    <rect key="frame" x="12" y="0.0" width="300" height="220"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <string key="text">What do you want to remember about today?
+
+Submit your first blink by tapping the drawer above!
+
+PRO TIP: You can edit your entry throughout the day if something more memorable happens. At midnight, your entry will be locked in for the day.
+
+Happy blinking :)</string>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                                    <color key="textColor" white="0.57009198589999999" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="noResultsLabel" destination="yBk-qJ-W5m" id="dsl-hw-1ih"/>
+                                        </connections>
+                                    </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="gray" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="BIHomeTableViewCell" rowHeight="100" id="TOJ-wG-qgS" customClass="BIHomeTableViewCell">
-                                        <rect key="frame" x="0.0" y="86" width="320" height="100"/>
+                                        <rect key="frame" x="0.0" y="306" width="320" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="TOJ-wG-qgS" id="M5Q-qU-vkK">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="99"/>
@@ -308,7 +335,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="gray" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="BIHomePhotoTableViewCell" rowHeight="200" id="lMP-qc-Kjl" customClass="BIHomePhotoTableViewCell">
-                                        <rect key="frame" x="0.0" y="186" width="320" height="200"/>
+                                        <rect key="frame" x="0.0" y="406" width="320" height="200"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="lMP-qc-Kjl" id="CEJ-q5-K3W">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="199"/>
@@ -358,7 +385,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="gray" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="BIPaginationTableViewCell" rowHeight="30" id="1EJ-Ct-Xqs" customClass="BIPaginationTableViewCell">
-                                        <rect key="frame" x="0.0" y="386" width="320" height="30"/>
+                                        <rect key="frame" x="0.0" y="606" width="320" height="30"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1EJ-Ct-Xqs" id="qPP-Gt-kTX">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="29"/>
@@ -456,16 +483,19 @@
                                             <outlet property="aiv" destination="Udc-2N-TaW" id="ghO-4P-nK3"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="BINoFollowResultsTableViewCell" rowHeight="70" id="7Jj-we-qyj" customClass="BINoFollowResultsTableViewCell">
-                                        <rect key="frame" x="0.0" y="116" width="320" height="70"/>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="BINoFollowResultsTableViewCell" rowHeight="90" id="7Jj-we-qyj" customClass="BINoFollowResultsTableViewCell">
+                                        <rect key="frame" x="0.0" y="116" width="320" height="90"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7Jj-we-qyj" id="HDR-mn-4FD">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="69"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="89"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Your friends have not shared any blinks yet." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="300" translatesAutoresizingMaskIntoConstraints="NO" id="8Vg-KL-Rih">
-                                                    <rect key="frame" x="12" y="0.0" width="300" height="69"/>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="300" translatesAutoresizingMaskIntoConstraints="NO" id="8Vg-KL-Rih">
+                                                    <rect key="frame" x="12" y="0.0" width="300" height="90"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <string key="text">No blinks shared with you so far
+
+PRO TIP: Click the top right button to follow friends if you haven't yet :)</string>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                                     <color key="textColor" white="0.57009198589999999" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
@@ -477,7 +507,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="BIFeedPhotoTableViewCell" rowHeight="200" id="5QN-ph-UmY" customClass="BIFeedPhotoTableViewCell">
-                                        <rect key="frame" x="0.0" y="186" width="320" height="200"/>
+                                        <rect key="frame" x="0.0" y="206" width="320" height="200"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5QN-ph-UmY" id="gxG-uq-bzV">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="199"/>
@@ -552,7 +582,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="BIFeedTableViewCell" rowHeight="100" id="bTh-7s-hV4" customClass="BIFeedTableViewCell">
-                                        <rect key="frame" x="0.0" y="386" width="320" height="100"/>
+                                        <rect key="frame" x="0.0" y="406" width="320" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bTh-7s-hV4" id="Lhs-r3-0Fd">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="99"/>
@@ -932,17 +962,18 @@
                                             <outlet property="aiv" destination="5Il-rK-fGA" id="Bxl-rL-dIT"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="BINoFollowResultsTableViewCell" rowHeight="70" id="zpi-iD-SO6" customClass="BINoFollowResultsTableViewCell">
-                                        <rect key="frame" x="0.0" y="96" width="320" height="70"/>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="BINoFollowResultsTableViewCell" rowHeight="90" id="zpi-iD-SO6" customClass="BINoFollowResultsTableViewCell">
+                                        <rect key="frame" x="0.0" y="96" width="320" height="90"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="zpi-iD-SO6" id="Rf8-aZ-CqB">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="69"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="89"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="300" translatesAutoresizingMaskIntoConstraints="NO" id="JoG-Vg-azS">
-                                                    <rect key="frame" x="12" y="0.0" width="300" height="69"/>
+                                                    <rect key="frame" x="12" y="10" width="300" height="69"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <string key="text">None of your friends are on BlinkIt. 
+                                                    <string key="text">None of your friends are on BlinkIt yet
+ 
 Help spread the word! :)</string>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                                     <color key="textColor" white="0.57009198588709675" alpha="1" colorSpace="calibratedWhite"/>
@@ -1055,18 +1086,19 @@ Help spread the word! :)</string>
                                             <outlet property="aiv" destination="aCB-78-Bcj" id="Ztg-LF-8QB"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="BINoFollowResultsTableViewCell" rowHeight="70" id="s1z-5p-1dP" customClass="BINoFollowResultsTableViewCell">
-                                        <rect key="frame" x="0.0" y="96" width="320" height="70"/>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="BINoFollowResultsTableViewCell" rowHeight="90" id="s1z-5p-1dP" customClass="BINoFollowResultsTableViewCell">
+                                        <rect key="frame" x="0.0" y="96" width="320" height="90"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="s1z-5p-1dP" id="mvt-oJ-vFA">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="69"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="89"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="300" translatesAutoresizingMaskIntoConstraints="NO" id="q4v-eF-zb2">
-                                                    <rect key="frame" x="12" y="0.0" width="300" height="69"/>
+                                                    <rect key="frame" x="12" y="8" width="300" height="72"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <string key="text">You have no followers yet.
-Help spread the word so you can start sharing!</string>
+                                                    <string key="text">You have no followers yet
+
+.. wah wahhhhhhh.</string>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                                     <color key="textColor" white="0.57009198589999999" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>

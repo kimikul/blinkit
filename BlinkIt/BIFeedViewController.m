@@ -109,16 +109,30 @@
 #pragma mark - UITableViewDelegate / UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    if (_dateArray.count == 0) {
+        return 1;
+    }
+    
     return _dateArray.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    if (_dateArray.count == 0) {
+        return 1;
+    }
+    
     NSArray *blinksOnDate = [_blinksArray objectAtIndex:section];
     
     return blinksOnDate.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+
+    if (self.isLoading) {
+        return [BIPaginationTableViewCell cellHeight];
+    } else if (_dateArray.count == 0) {
+        return [BINoFollowResultsTableViewCell cellHeight];
+    }
 
     NSArray *blinksOnDate = [_blinksArray objectAtIndex:indexPath.section];
     PFObject *blink = [blinksOnDate objectAtIndex:indexPath.row];
@@ -139,10 +153,18 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    if (_dateArray.count == 0) {
+        return 0;
+    }
+    
     return 34;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    if (_dateArray.count == 0) {
+        return [[UIView alloc] initWithFrame:CGRectZero];
+    }
+    
     NSString *date = [_dateArray objectAtIndex:section];
 
     UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0,0,320,34)];
@@ -160,6 +182,17 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (self.isLoading) {
+        BIPaginationTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:[BIPaginationTableViewCell reuseIdentifier]];
+        [cell.aiv startAnimating];
+        return cell;
+    } else if (_dateArray.count == 0) {
+        tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        
+        BINoFollowResultsTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:[BINoFollowResultsTableViewCell reuseIdentifier]];
+        return cell;
+    }
+    
     NSArray *blinksOnDate = [_blinksArray objectAtIndex:indexPath.section];
     PFObject *blink = [blinksOnDate objectAtIndex:indexPath.row];
     

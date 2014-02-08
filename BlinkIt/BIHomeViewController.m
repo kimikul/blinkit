@@ -14,6 +14,7 @@
 #import "BIHomePhotoTableViewCell.h"
 #import "BISettingsViewController.h"
 #import "BIPaginationTableViewCell.h"
+#import "BINoFollowResultsTableViewCell.h"
 
 #define kAttachPhotoActionSheet 0
 #define kDeleteBlinkActionSheet 1
@@ -235,10 +236,20 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    // no results row
+    if (_blinksArray.count == 0 && !self.isLoading) {
+        return 1;
+    }
+    
     return _blinksArray.count + self.canPaginate;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    // no results row
+    if (_blinksArray.count == 0 && !self.isLoading) {
+        return [BINoFollowResultsTableViewCell cellHeight];
+    }
+    
     // pagination row
     if (indexPath.row == _blinksArray.count) {
         return [BIPaginationTableViewCell cellHeight];
@@ -260,6 +271,15 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    // no results row
+    if (_blinksArray.count == 0 && !self.isLoading) {
+        tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+
+        BINoFollowResultsTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:[BINoFollowResultsTableViewCell reuseIdentifier]];
+        return cell;
+    }
+    
     // pagination row
     if (indexPath.row == _blinksArray.count) {
         BIPaginationTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:[BIPaginationTableViewCell reuseIdentifier]];
