@@ -75,7 +75,8 @@
     PFQuery *blinksFromFollowed = [PFQuery queryWithClassName:@"Blink"];
     [blinksFromFollowed whereKey:@"user" matchesQuery:followedUsers];
     [blinksFromFollowed includeKey:@"user"];
-    [blinksFromFollowed orderByDescending:@"updatedAt"];
+    [blinksFromFollowed whereKey:@"private" equalTo:@NO];
+    [blinksFromFollowed orderByDescending:@"date"];
     
     [blinksFromFollowed findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         self.loading = NO;
