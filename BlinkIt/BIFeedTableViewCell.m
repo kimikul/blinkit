@@ -11,6 +11,7 @@
 @interface BIFeedTableViewCell ()
 @property (weak, nonatomic) IBOutlet UIImageView *userPicImageView;
 @property (weak, nonatomic) IBOutlet UILabel *userNameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *timeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *contentLabel;
 @property (nonatomic, strong) PFUser *user;
 @end
@@ -28,7 +29,7 @@
 }
 
 + (CGFloat)heightForContent:(NSString*)content {
-    CGFloat staticHeight = 50;
+    CGFloat staticHeight = 58;
     UIFont *font = [BIFeedTableViewCell fontForContent];
     CGSize maxSize = CGSizeMake(300,1000);
     
@@ -58,7 +59,8 @@
     _user = blink[@"user"];
     _contentLabel.text = blink[@"content"];
     _userNameLabel.text = _user[@"name"];
-    
+    _timeLabel.text = [NSDate formattedTime:blink[@"date"]];
+                       
     _userPicImageView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:_user[@"photoURL"]]]];
 }
 

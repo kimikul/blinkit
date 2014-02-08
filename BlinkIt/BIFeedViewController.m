@@ -126,16 +126,18 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return 30;
+    return 34;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     NSString *date = [_dateArray objectAtIndex:section];
 
-    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0,0,320,30)];
+    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0,0,320,34)];
     headerView.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1.0];
+    headerView.layer.borderColor = [UIColor whiteColor].CGColor;
+    headerView.layer.borderWidth = 3.0;
     
-    UILabel *dateLabel = [[UILabel alloc] initWithFrame:CGRectMake(10,0,300,30)];
+    UILabel *dateLabel = [[UILabel alloc] initWithFrame:CGRectMake(10,0,300,34)];
     dateLabel.text = date;
     dateLabel.font = [UIFont boldSystemFontOfSize:15];
     dateLabel.textColor = [UIColor colorWithWhite:0.5 alpha:1.0];

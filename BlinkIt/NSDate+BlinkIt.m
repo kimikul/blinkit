@@ -22,4 +22,12 @@
     return [self spelledOutDate:[NSDate date]];
 }
 
++ (NSString*)formattedTime:(NSDate*)date {
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"hh:mm aa"];
+    
+    NSString *formattedDate = [dateFormatter stringFromDate:date];
+    return formattedDate;
+}
+
 @end
