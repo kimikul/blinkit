@@ -10,6 +10,7 @@
 #import "BISplashViewController.h"
 #import "BIAppDelegate.h"
 #import "BIFacebookUserManager.h"
+#import "BIFollowManager.h"
 
 #define kTableSectionAccount 0
 #define kTableSectionNotifications 1
@@ -95,6 +96,7 @@
                 [[BIFacebookUserManager shared] fetchAndSaveBasicUserInfoWithBlock:^(BOOL succeeded, NSError *error) {
                     if (!error) {
                         [[BIFacebookUserManager shared] refreshCurrentUserFacebookFriends];
+                        [BIFollowManager refreshFollowingList];
                         [self updateFacebookLinkLabel];
                     } else {
                         [self showFacebookLinkErrorAlert:error];

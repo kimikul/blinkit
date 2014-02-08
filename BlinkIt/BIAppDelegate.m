@@ -37,14 +37,9 @@
 #pragma mark - friends and follows
 
 - (void)refreshFriendsAndFollows {
-    [self reloadFacebookFriends];
-    [BIFollowManager refreshFollowingList];
-}
-
-- (void)reloadFacebookFriends {
-    PFUser *user = [PFUser currentUser];
-    if (user) {
+    if ([PFUser currentUser]) {
         [[BIFacebookUserManager shared] refreshCurrentUserFacebookFriends];
+        [BIFollowManager refreshFollowingList];
     }
 }
 

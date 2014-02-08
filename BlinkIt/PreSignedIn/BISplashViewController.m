@@ -12,6 +12,7 @@
 #import "BIHomeViewController.h"
 #import "BIAppDelegate.h"
 #import "BIFacebookUserManager.h"
+#import "BIFollowManager.h"
 
 @interface BISplashViewController () <BILoginViewControllerDelegate, BISignUpViewControllerDelegate>
 @property (weak, nonatomic) IBOutlet UIButton *loginButton;
@@ -72,6 +73,7 @@
             [[BIFacebookUserManager shared] fetchAndSaveBasicUserInfoWithBlock:^(BOOL succeeded, NSError *error) {
                 if (!error) {
                     [[BIFacebookUserManager shared] refreshCurrentUserFacebookFriends];
+                    [BIFollowManager refreshFollowingList];
                     [self transitionToHomeViewController];
                 } else {
                     [self showFacebookLoginErrorAlert:error];

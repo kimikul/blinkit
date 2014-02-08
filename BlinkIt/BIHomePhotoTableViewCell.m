@@ -26,6 +26,16 @@
     return baseHeight + photoHeight;
 }
 
+#pragma mark - lifeyccle
+
+- (void)prepareForReuse {
+    [super prepareForReuse];
+    
+    _attachedImageView.image = nil;
+}
+
+#pragma mark - getter/setter
+
 - (void)setBlink:(PFObject *)blink {
     [super setBlink:blink];
     
