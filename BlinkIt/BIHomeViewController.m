@@ -321,7 +321,7 @@
         UIActionSheet *deleteActionSheet = [[UIActionSheet alloc] initWithTitle:@"This will permanently delete your entry. Are you sure?" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:@"Delete" otherButtonTitles:nil];
         deleteActionSheet.tag = kDeletePreviousBlinkActionSheet;
         deleteActionSheet.accessibilityLabel = [NSString stringWithFormat:@"%d",indexPath.row];
-        [deleteActionSheet showInView:self.view];
+        [deleteActionSheet showFromTabBar:self.tabBarController.tabBar];
     }
 }
 
@@ -397,6 +397,7 @@
         theBlink = [PFObject objectWithClassName:@"Blink"];
         theBlink[@"date"] = [NSDate date];
         theBlink[@"user"] = [PFUser currentUser];
+        theBlink[@"private"] = [NSNumber numberWithBool:_todayView.privateButton.selected];
     } else {
         theBlink = blink;
     }
@@ -431,13 +432,13 @@
 - (void)todayView:(BITodayView *)todayView didTapDeleteExistingBlink:(PFObject*)blink {
     UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"This will clear your entry for today. Are you sure?" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:@"Continue" otherButtonTitles:nil];
     actionSheet.tag = kDeleteBlinkActionSheet;
-    [actionSheet showInView:self.view];
+    [actionSheet showFromTabBar:self.tabBarController.tabBar];
 }
 
 - (void)todayView:(BITodayView *)todayView addPhotoToBlink:(PFObject*)blink {
     UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Take New Photo", @"Choose Existing Photo", nil];
     actionSheet.tag = kAttachPhotoActionSheet;
-    [actionSheet showInView:self.view];
+    [actionSheet showFromTabBar:self.tabBarController.tabBar];
 }
 
 - (void)todayView:(BITodayView *)todayView showExistingPhotoForBlink:(PFObject*)blink {

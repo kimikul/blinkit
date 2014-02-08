@@ -19,6 +19,7 @@ const CGFloat EXPANDED_HEIGHT = 170;
 @property (weak, nonatomic) IBOutlet UIView *separatorView;
 @property (weak, nonatomic) IBOutlet UIButton *deleteButton;
 @property (weak, nonatomic) IBOutlet UIButton *cameraButton;
+@property (weak, nonatomic) IBOutlet UILabel *privateLabel;
 
 @end
 
@@ -52,6 +53,7 @@ const CGFloat EXPANDED_HEIGHT = 170;
     if (blink) {
         _placeholderLabel.text = blink[@"content"];
         
+        // set image
         PFFile *imageFile = blink[@"imageFile"];
         if (imageFile) {
             NSData *imageData = [imageFile getData];
@@ -61,8 +63,19 @@ const CGFloat EXPANDED_HEIGHT = 170;
             self.selectedImage = nil;
         }
         
+        // set privacy setting
+        [self updatePrivateButtonForBlink:blink];
         [self updateForCondensedView];
     } else {
+        // set privacy setting
+        BOOL private = [[NSUserDefaults standardUserDefaults] boolForKey:BIPrivacyDefaultSettings];
+        if (private) {
+            [self selectPrivateButton];
+        } else {
+            [self unselectPrivateButton];
+        }
+        
+        // reset label and image
         _placeholderLabel.text = @"Click to edit today's blink";
         self.selectedImage = nil;
     }
@@ -119,6 +132,16 @@ const CGFloat EXPANDED_HEIGHT = 170;
 
 #pragma mark - expand / condense helpers
 
+- (void)updatePrivateButtonForBlink:(PFObject*)blink {
+    NSNumber *private = blink[@"private"];
+    
+    if ([private boolValue]) {
+        [self selectPrivateButton];
+    } else {
+        [self unselectPrivateButton];
+    }
+}
+
 - (void)updateForExpandedView {
     [_editButton setTitle:@"Cancel" forState:UIControlStateNormal];
     _editButton.hidden = NO;
@@ -127,14 +150,24 @@ const CGFloat EXPANDED_HEIGHT = 170;
     _contentTextView.editable = YES;
     _submitButton.hidden = NO;
     _cameraButton.hidden = NO;
+    _privateButton.hidden = NO;
+    _privateLabel.hidden = NO;
     _remainingCharactersLabel.hidden = NO;
     
     // update textview and trash button based on whether there is an existing entry
     if (_blink) {
         _contentTextView.text = _blink[@"content"];
         _deleteButton.hidden = NO;
+        [self updatePrivateButtonForBlink:_blink];
     } else {
         _deleteButton.hidden = YES;
+        
+        BOOL private = [[NSUserDefaults standardUserDefaults] boolForKey:BIPrivacyDefaultSettings];
+        if (private) {
+            [self selectPrivateButton];
+        } else {
+            [self unselectPrivateButton];
+        }
     }
     
     // enable submit button or not
@@ -148,6 +181,8 @@ const CGFloat EXPANDED_HEIGHT = 170;
     _submitButton.hidden = YES;
     _cameraButton.hidden = YES;
     _deleteButton.hidden = YES;
+    _privateLabel.hidden = YES;
+    _privateButton.hidden = YES;
     _contentTextView.text = @"";
     _placeholderLabel.hidden = NO;
 
@@ -209,6 +244,40 @@ const CGFloat EXPANDED_HEIGHT = 170;
     } else {
         [self.delegate todayView:self showExistingPhotoForBlink:_blink];
     }
+}
+
+- (IBAction)privateButtonTapped:(id)sender {
+    if (_privateButton.selected) {
+        [self unselectPrivateButton];
+    } else {
+        [self selectPrivateButton];
+    }
+}
+
+- (void)unselectPrivateButton {
+    UIImage *publicImage = [[UIImage imageNamed:@"private"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    
+    [_privateButton setImage:publicImage forState:UIControlStateNormal];
+    _privateButton.tintColor = [UIColor darkGrayColor];
+    _privateButton.selected = NO;
+    
+    _privateLabel.text = @"Public";
+    _privateLabel.textColor = [UIColor colorWithWhite:0.5 alpha:1.0];
+    
+    _blink[@"private"] = [NSNumber numberWithBool:NO];
+}
+
+- (void)selectPrivateButton {
+    UIImage *publicImage = [[UIImage imageNamed:@"private"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    
+    [_privateButton setImage:publicImage forState:UIControlStateNormal];
+    _privateButton.tintColor = [UIColor blueColor];
+    _privateButton.selected = YES;
+    
+    _privateLabel.text = @"Private";
+    _privateLabel.textColor = [UIColor blueColor];
+    
+    _blink[@"private"] = [NSNumber numberWithBool:YES];
 }
 
 @end

@@ -49,7 +49,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cif-Aw-vxS">
-                    <rect key="frame" x="50" y="138" width="25" height="25"/>
+                    <rect key="frame" x="124" y="138" width="25" height="25"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <state key="normal" backgroundImage="trash2">
                         <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -59,7 +59,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E9k-bF-m9k">
-                    <rect key="frame" x="10" y="138" width="25" height="25"/>
+                    <rect key="frame" x="87" y="138" width="25" height="25"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <state key="normal" backgroundImage="camera">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -86,6 +86,23 @@
                         <action selector="editTapped:" destination="5jo-rP-r5V" eventType="touchUpInside" id="ams-rX-LTL"/>
                     </connections>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2IP-Af-IRr">
+                    <rect key="frame" x="7" y="141" width="20" height="20"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" backgroundImage="private">
+                        <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="privateButtonTapped:" destination="5jo-rP-r5V" eventType="touchUpInside" id="IaU-Wd-tFr"/>
+                    </connections>
+                </button>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Private" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Aid-Pt-YCV">
+                    <rect key="frame" x="35" y="141" width="48" height="21"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" white="0.94999999999999996" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
@@ -101,6 +118,8 @@
                 <outlet property="deleteButton" destination="Cif-Aw-vxS" id="z3i-3X-Msh"/>
                 <outlet property="editButton" destination="7EZ-l5-8ca" id="Gme-zt-0Ea"/>
                 <outlet property="placeholderLabel" destination="A44-H5-Nd3" id="N1H-9m-Ff3"/>
+                <outlet property="privateButton" destination="2IP-Af-IRr" id="l2w-hp-EDc"/>
+                <outlet property="privateLabel" destination="Aid-Pt-YCV" id="WED-yK-tk9"/>
                 <outlet property="remainingCharactersLabel" destination="9fM-U4-grm" id="sHa-TU-7Xd"/>
                 <outlet property="separatorView" destination="lqR-fB-Ruf" id="ETL-X8-zjh"/>
                 <outlet property="submitButton" destination="ahM-CK-k03" id="8KD-jK-DRx"/>
@@ -109,6 +128,7 @@
     </objects>
     <resources>
         <image name="camera" width="25" height="25"/>
+        <image name="private" width="20" height="21"/>
         <image name="trash2" width="128" height="128"/>
     </resources>
 </document>
