@@ -19,7 +19,7 @@
 #define kTableRowFacebook 1
 #define kTableRowDefaultPrivacy 2
 
-#define kTableRowReminders 0
+//#define kTableRowReminders 0
 
 #define kTableRowLogout 0
 
@@ -28,7 +28,7 @@
 @property (nonatomic, strong) PFUser *currentUser;
 @property (weak, nonatomic) IBOutlet UILabel *emailLabel;
 @property (weak, nonatomic) IBOutlet UISwitch *privacySwitch;
-@property (weak, nonatomic) IBOutlet UISwitch *dailyRemindersSwitch;
+//@property (weak, nonatomic) IBOutlet UISwitch *dailyRemindersSwitch;
 @property (weak, nonatomic) IBOutlet UILabel *facebookLinkLabel;
 
 @end
@@ -56,7 +56,7 @@
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     _privacySwitch.on = [defaults boolForKey:BIPrivacyDefaultSettings];
-    _dailyRemindersSwitch.on = [defaults boolForKey:BIDailyReminderSettings];
+//    _dailyRemindersSwitch.on = [defaults boolForKey:BIDailyReminderSettings];
 
     [self updateFacebookLinkLabel];
 }

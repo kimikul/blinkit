@@ -845,37 +845,10 @@ PRO TIP: Click the top right button to follow friends if you haven't yet :)</str
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
-                            <tableViewSection headerTitle="Notifications" id="EMv-rX-afg">
-                                <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="LmY-CN-Xye">
-                                        <rect key="frame" x="0.0" y="299" width="320" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="LmY-CN-Xye" id="0Be-nS-BJi">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Daily Reminders" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="29P-XD-1ha">
-                                                    <rect key="frame" x="10" y="12" width="125" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zgC-iP-b1v">
-                                                    <rect key="frame" x="263" y="6" width="51" height="31"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <connections>
-                                                        <action selector="toggleDailyReminders:" destination="JhV-QC-qar" eventType="valueChanged" id="9Ac-2X-ILv"/>
-                                                    </connections>
-                                                </switch>
-                                            </subviews>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </cells>
-                            </tableViewSection>
                             <tableViewSection headerTitle="Logout" id="xtO-Nm-0xq">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="gray" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="PEr-Tj-FIw">
-                                        <rect key="frame" x="0.0" y="391" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="299" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="PEr-Tj-FIw" id="XdR-h3-lQy">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -900,7 +873,6 @@ PRO TIP: Click the top right button to follow friends if you haven't yet :)</str
                     </tableView>
                     <navigationItem key="navigationItem" title="Settings" id="bTd-Uq-Poj"/>
                     <connections>
-                        <outlet property="dailyRemindersSwitch" destination="zgC-iP-b1v" id="Ghe-GV-myl"/>
                         <outlet property="emailLabel" destination="yeU-TL-SNt" id="nSY-UY-cr8"/>
                         <outlet property="facebookLinkLabel" destination="bCY-Yo-WLf" id="lTC-sY-Uja"/>
                         <outlet property="privacySwitch" destination="i4A-Sc-ayB" id="c6f-tH-7wK"/>
