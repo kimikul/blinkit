@@ -12,13 +12,20 @@
 
 + (BIDataStore*)shared;
 
+// facebook friends
 - (void)setFacebookFriends:(NSDictionary *)friends;  // dict of facebookID => PFUser
 - (NSDictionary *)facebookFriends;
 
+
+// followed friends
 - (void)setFollowedFriends:(NSArray*)followedFriends;   // array of facebookIDs
 - (NSArray*)followedFriends;
 - (void)addFollowedFriend:(PFUser*)user;
 - (void)removeFollowedFriend:(PFUser*)user;
 - (BOOL)isFollowingUser:(PFUser*)user;
+
+
+// cached profile pics
+- (void)addProfilePic:(UIImage*)image withURL:(NSString*)url;
 
 @end

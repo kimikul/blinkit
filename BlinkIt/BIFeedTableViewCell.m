@@ -60,8 +60,16 @@
     _contentLabel.text = blink[@"content"];
     _userNameLabel.text = _user[@"name"];
     _timeLabel.text = [NSDate formattedTime:blink[@"date"]];
-                       
-    _userPicImageView.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:_user[@"photoURL"]]]];
+    
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0ul);
+    
+    dispatch_async(queue, ^{
+        UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:_user[@"photoURL"]]]];
+        
+        dispatch_sync(dispatch_get_main_queue(), ^{
+            _userPicImageView.image = image;
+        });
+    });
 }
 
 @end
