@@ -13,12 +13,28 @@
 #import "BIFeedTableViewCell.h"
 #import "BIFeedPhotoTableViewCell.h"
 
+#define kNumFeedEntriesPerPage 15
+
 @interface BIFeedViewController ()
+@property (nonatomic, strong) NSMutableArray *allBlinksArray; // total list of blinks displayed
+
 @property (nonatomic, strong) NSArray *dateArray;       // array of dates with 1+ associated blinks
 @property (nonatomic, strong) NSArray *blinksArray;     // array of array of blinks associated with the date
+
+@property (nonatomic, assign) BOOL canPaginate;
 @end
 
 @implementation BIFeedViewController
+
+#pragma mark - getter/setter
+
+- (NSMutableArray*)allBlinksArray {
+    if (!_allBlinksArray) {
+        _allBlinksArray = [NSMutableArray new];
+    }
+    
+    return _allBlinksArray;
+}
 
 #pragma mark - lifecycle
 
@@ -26,6 +42,7 @@
     self = [super initWithCoder:aDecoder];
     if (self) {
         self.useEmptyTableFooter = YES;
+        self.useRefreshTableHeaderView = YES;
     }
     
     return self;
@@ -35,7 +52,6 @@
     [super viewDidLoad];
     [self setupButtons];
     [self setupNav];
-    [self fetchFeed];
 }
 
 - (void)setupButtons {
@@ -61,18 +77,25 @@
     self.navigationItem.titleView = logoImageView;
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    [self fetchFeedForPagination:NO];
+}
+
 #pragma mark - requests
 
-- (void)fetchFeed {
+- (void)fetchFeedForPagination:(BOOL)pagination {
     self.loading = YES;
     
-    // Query for the friends the current user is following
+    // ppl i'm following
     PFQuery *followedUsers = [PFUser query];
     [followedUsers whereKey:@"facebookID" containedIn:[BIDataStore shared].followedFriends];
     
-    // Using the activities from the query above, we find all of the photos taken by
-    // the friends the current user is following
+    // their public blinks
     PFQuery *blinksFromFollowed = [PFQuery queryWithClassName:@"Blink"];
+    blinksFromFollowed.limit = kNumFeedEntriesPerPage;
+    blinksFromFollowed.skip = pagination ? self.allBlinksArray.count : 0;
     [blinksFromFollowed whereKey:@"user" matchesQuery:followedUsers];
     [blinksFromFollowed includeKey:@"user"];
     [blinksFromFollowed whereKey:@"private" equalTo:@NO];
@@ -82,18 +105,23 @@
         self.loading = NO;
         
         if (!error) {
-            [self sectionalizeBlinks:objects];
+            self.canPaginate = objects.count > 0 && (objects.count % kNumFeedEntriesPerPage == 0);
+
+            NSMutableArray *blinks = pagination ? [[self.allBlinksArray arrayByAddingObjectsFromArray:objects] mutableCopy] : [objects mutableCopy];
+            self.allBlinksArray = [blinks copy];
+            
+            [self sectionalizeBlinks:objects pagination:pagination];
         }
     }];
 }
 
-- (void)sectionalizeBlinks:(NSArray*)blinks {
+- (void)sectionalizeBlinks:(NSArray*)blinks pagination:(BOOL)pagination {
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
     [dateFormat setDateFormat:@"MMMM dd, YYYY"];
     
-    NSMutableArray *dateArray = [NSMutableArray new];
-    NSMutableArray *blinkArray = [NSMutableArray new];
-    NSMutableArray *innerBlinkArray = [NSMutableArray new];
+    NSMutableArray *dateArray = pagination ? [_dateArray mutableCopy] :[NSMutableArray new];
+    NSMutableArray *blinkArray = pagination ? [_blinksArray mutableCopy] : [NSMutableArray new];
+    NSMutableArray *innerBlinkArray = pagination ? [[_blinksArray lastObject] mutableCopy] : [NSMutableArray new];
     
     for (PFObject *blink in blinks) {
         NSDate *date = blink[@"date"];
@@ -115,6 +143,18 @@
     [self reloadTableData];
 }
 
+#pragma mark - refresh and pagination
+
+- (void)refreshTableHeaderDidTriggerRefresh {
+    [self fetchFeedForPagination:NO];
+}
+
+- (void)performPaginationRequestIfNecessary {
+    if([self hasReachedTableEnd:self.tableView] && self.canPaginate) {
+        [self fetchFeedForPagination:YES];
+    }
+}
+
 #pragma mark - UITableViewDelegate / UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -122,7 +162,7 @@
         return 1;
     }
     
-    return _dateArray.count;
+    return _dateArray.count + self.canPaginate;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -130,8 +170,11 @@
         return 1;
     }
     
-    NSArray *blinksOnDate = [_blinksArray objectAtIndex:section];
+    if (self.canPaginate && (section == _dateArray.count)) {
+        return 1;
+    }
     
+    NSArray *blinksOnDate = [_blinksArray objectAtIndex:section];
     return blinksOnDate.count;
 }
 
@@ -141,6 +184,8 @@
         return [BIPaginationTableViewCell cellHeight];
     } else if (_dateArray.count == 0) {
         return [BINoFollowResultsTableViewCell cellHeight];
+    } else if (self.canPaginate && (indexPath.section == _dateArray.count)) {
+        return [BIPaginationTableViewCell cellHeight];
     }
 
     NSArray *blinksOnDate = [_blinksArray objectAtIndex:indexPath.section];
@@ -164,6 +209,8 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     if (_dateArray.count == 0) {
         return 0;
+    } else if (self.canPaginate && (section == _dateArray.count)) {
+        return 0;
     }
     
     return 34;
@@ -171,6 +218,8 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     if (_dateArray.count == 0) {
+        return [[UIView alloc] initWithFrame:CGRectZero];
+    } else if (self.canPaginate && (section == _dateArray.count)) {
         return [[UIView alloc] initWithFrame:CGRectZero];
     }
     
@@ -199,6 +248,10 @@
         tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         
         BINoFollowResultsTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:[BINoFollowResultsTableViewCell reuseIdentifier]];
+        return cell;
+    } else if (self.canPaginate && (indexPath.section == _dateArray.count)) {
+        BIPaginationTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:[BIPaginationTableViewCell reuseIdentifier]];
+        [cell.aiv startAnimating];
         return cell;
     }
     
