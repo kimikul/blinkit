@@ -122,10 +122,14 @@
     BITodayView *todayView = [nibs objectAtIndex:0];
     todayView.frameY = 64;
     todayView.delegate = self;
+    
+    UIView *view = [[UIView alloc] initWithFrame:todayView.frame];
+    view.backgroundColor = [UIColor redColor];
+    
     _todayView = todayView;
     _todayView.contentTextView.delegate = self;
 
-    [self.view addSubview:todayView];
+    [self.view addSubview:_todayView];
 
     UITapGestureRecognizer *tapGR = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tappedFadeLayer:)];
     [_fadeLayer addGestureRecognizer:tapGR];
