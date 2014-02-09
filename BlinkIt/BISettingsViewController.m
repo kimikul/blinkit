@@ -138,6 +138,10 @@
 - (void)logout {
     [PFUser logOut];
     
+    // clear userdefaults
+    NSString *appDomain = [[NSBundle mainBundle] bundleIdentifier];
+    [[NSUserDefaults standardUserDefaults] removePersistentDomainForName:appDomain];
+    
     UIStoryboard *mainStoryboard = [UIStoryboard mainStoryboard];
     BISplashViewController *splashVC = [mainStoryboard instantiateViewControllerWithIdentifier:@"BISplashViewController"];
     

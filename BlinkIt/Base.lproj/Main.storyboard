@@ -274,14 +274,14 @@
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="89"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="300" translatesAutoresizingMaskIntoConstraints="NO" id="yBk-qJ-W5m">
-                                                    <rect key="frame" x="12" y="0.0" width="300" height="220"/>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="300" translatesAutoresizingMaskIntoConstraints="NO" id="yBk-qJ-W5m">
+                                                    <rect key="frame" x="12" y="0.0" width="300" height="240"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <string key="text">What do you want to remember about today?
 
 Submit your first blink by tapping the drawer above!
 
-PRO TIP: You can edit your entry throughout the day if something more memorable happens. At midnight, your entry will be locked in for the day.
+PRO TIP : You can edit your entry throughout the day if something more memorable happens. At midnight, your entry will be locked in for the day.
 
 Happy blinking :)</string>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
@@ -552,7 +552,7 @@ Happy blinking :)</string>
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="89"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="300" translatesAutoresizingMaskIntoConstraints="NO" id="8Vg-KL-Rih">
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="300" translatesAutoresizingMaskIntoConstraints="NO" id="8Vg-KL-Rih">
                                                     <rect key="frame" x="12" y="0.0" width="300" height="90"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <string key="text">No blinks shared with you so far
@@ -902,7 +902,7 @@ PRO TIP: Click the top right button to follow friends if you haven't yet :)</str
                             <rect key="frame" x="88" y="7" width="145" height="31"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <segments>
-                                <segment title="Follow"/>
+                                <segment title="Following"/>
                                 <segment title="Followers"/>
                             </segments>
                             <connections>
@@ -996,19 +996,19 @@ PRO TIP: Click the top right button to follow friends if you haven't yet :)</str
                                             <outlet property="aiv" destination="5Il-rK-fGA" id="Bxl-rL-dIT"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="BINoFollowResultsTableViewCell" rowHeight="90" id="zpi-iD-SO6" customClass="BINoFollowResultsTableViewCell">
-                                        <rect key="frame" x="0.0" y="96" width="320" height="90"/>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="BINoFollowResultsTableViewCell" rowHeight="240" id="zpi-iD-SO6" customClass="BINoFollowResultsTableViewCell">
+                                        <rect key="frame" x="0.0" y="96" width="320" height="240"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="zpi-iD-SO6" id="Rf8-aZ-CqB">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="89"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="239"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="300" translatesAutoresizingMaskIntoConstraints="NO" id="JoG-Vg-azS">
-                                                    <rect key="frame" x="12" y="10" width="300" height="69"/>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="300" translatesAutoresizingMaskIntoConstraints="NO" id="JoG-Vg-azS">
+                                                    <rect key="frame" x="12" y="10" width="300" height="120"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <string key="text">None of your friends are on BlinkIt yet
- 
-Help spread the word! :)</string>
+                                                    <string key="text">None of your friends are on BlinkIt yet. Help spread the word! :)
+
+PRO TIP : Link your Facebook in Settings to find friends if you haven't yet</string>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                                     <color key="textColor" white="0.57009198588709675" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
@@ -1120,19 +1120,20 @@ Help spread the word! :)</string>
                                             <outlet property="aiv" destination="aCB-78-Bcj" id="Ztg-LF-8QB"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="BINoFollowResultsTableViewCell" rowHeight="90" id="s1z-5p-1dP" customClass="BINoFollowResultsTableViewCell">
-                                        <rect key="frame" x="0.0" y="96" width="320" height="90"/>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="BINoFollowResultsTableViewCell" rowHeight="240" id="s1z-5p-1dP" customClass="BINoFollowResultsTableViewCell">
+                                        <rect key="frame" x="0.0" y="96" width="320" height="240"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="s1z-5p-1dP" id="mvt-oJ-vFA">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="89"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="239"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="300" translatesAutoresizingMaskIntoConstraints="NO" id="q4v-eF-zb2">
-                                                    <rect key="frame" x="12" y="8" width="300" height="72"/>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="300" translatesAutoresizingMaskIntoConstraints="NO" id="q4v-eF-zb2">
+                                                    <rect key="frame" x="12" y="8" width="300" height="120"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <string key="text">You have no followers yet
+.. wah wahhhhhhh.
 
-.. wah wahhhhhhh.</string>
+PRO TIP : Link your Facebook in Settings so friends can find you.</string>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                                     <color key="textColor" white="0.57009198589999999" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>

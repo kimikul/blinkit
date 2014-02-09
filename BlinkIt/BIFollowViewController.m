@@ -36,8 +36,8 @@
 }
 
 - (void)setupButtons {
-    UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStylePlain target:self action:@selector(cancelTapped:)];
-    self.navigationItem.leftBarButtonItem = cancelButton;
+    UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStylePlain target:self action:@selector(doneTapped:)];
+    self.navigationItem.rightBarButtonItem = doneButton;
 }
 
 - (void)setupViewControllers {
@@ -52,7 +52,7 @@
 
 #pragma mark - ibactions
 
-- (void)cancelTapped:(id)sender {
+- (void)doneTapped:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
