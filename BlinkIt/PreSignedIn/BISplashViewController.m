@@ -71,8 +71,6 @@
         } else {
             [[BIFacebookUserManager shared] fetchAndSaveBasicUserInfoWithBlock:^(BOOL succeeded, NSError *error) {
                 if (!error) {
-                    [[BIFacebookUserManager shared] refreshCurrentUserFacebookFriends];
-                    [BIFollowManager refreshFollowingList];
                     [self transitionToHomeViewController];
                 } else {
                     [self showFacebookLoginErrorAlert:error];
@@ -92,6 +90,9 @@
 #pragma mark - transition
 
 - (void)transitionToHomeViewController {
+    [[BIFacebookUserManager shared] refreshCurrentUserFacebookFriends];
+    [BIFollowManager refreshFollowingList];
+    
     UIStoryboard *mainStoryboard = [UIStoryboard mainStoryboard];
     UINavigationController *homeVC = [mainStoryboard instantiateViewControllerWithIdentifier:@"BITabBarController"];
     

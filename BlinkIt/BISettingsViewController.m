@@ -12,8 +12,7 @@
 #import "BIFacebookUserManager.h"
 
 #define kTableSectionAccount 0
-#define kTableSectionNotifications 1
-#define kTableSectionLogout 2
+#define kTableSectionLogout 1
 
 #define kTableRowEmail 0
 #define kTableRowFacebook 1
