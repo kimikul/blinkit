@@ -360,6 +360,7 @@ Happy blinking :)</string>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="contentLabel" destination="zSy-fq-t3e" id="jOv-9Z-c63"/>
+                                            <outlet property="dateLabel" destination="zpR-TS-B4T" id="zT3-oZ-xcp"/>
                                             <outlet property="privacyButton" destination="HDX-fc-xSC" id="K61-d8-QcR"/>
                                             <outlet property="timeLabel" destination="Ih2-OL-m7L" id="0tS-3b-ddz"/>
                                         </connections>
