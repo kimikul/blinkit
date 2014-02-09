@@ -11,6 +11,7 @@
 @interface BIFollowingTableViewCell ()
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *profilePic;
+@property (nonatomic, assign) BIFollowingState followingState;
 @end
 
 @implementation BIFollowingTableViewCell
@@ -49,10 +50,13 @@
     _user = user;
     _nameLabel.text = user[@"name"];
     _profilePic.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:user[@"photoURL"]]]];
+    
     if ([[BIDataStore shared] isFollowingUser:user]) {
-        [self setButtonToSelected];
+        [self setButtonToShowFollowing];
+    } else if ([[BIDataStore shared] hasRequestedUser:user]) {
+        [self setButtonToShowRequested];
     } else {
-        [self setButtonToUnselected];
+        [self setButtonToShowNoFollowStatus];
     }
 }
 
@@ -62,16 +66,23 @@
     PFUser *user = _user;
 
     // update database with new follow state
-    if (_followButton.isSelected) {
+    
+    if (_followingState == BIFollowingStateFollowing) {
         [BIFollowManager unfollowUserEventually:user block:^(NSError *error) {
             if (!error) {
                 [[BIDataStore shared] removeFollowedFriend:user];
             }
         }];
-    } else {
+    } else if (_followingState == BIFollowingStateRequested) {
+        [BIFollowManager cancelRequestToFollowUserEventually:user block:^(NSError *error) {
+            if (!error) {
+                [[BIDataStore shared] removeRequestedFriend:user];
+            }
+        }];
+    } else if (_followingState == BIFollowingStateNone) {
         [BIFollowManager followUserEventually:user block:^(BOOL succeeded, NSError *error) {
             if (succeeded) {
-                [[BIDataStore shared] addFollowedFriend:user];
+                [[BIDataStore shared] addRequestedFriend:user];
             }
         }];
     }
@@ -87,24 +98,39 @@
     NSString *tappedUserID = [tappedUser objectId];
 
     if ([tappedUserID isEqual:userID]) {
-        if (_followButton.isSelected) {
-            [self setButtonToUnselected];
-        } else {
-            [self setButtonToSelected];
-        }
+        [self updateFollowButtonState];
     }
 }
 
 #pragma mark - follow button state change
 
-- (void)setButtonToSelected {
-    _followButton.selected = YES;
+- (void)updateFollowButtonState {
+    
+    BIFollowingState currentFollowingStatus = _followingState;
+    
+    if (currentFollowingStatus == BIFollowingStateNone) {
+        [self setButtonToShowRequested];
+    } else if (currentFollowingStatus == BIFollowingStateRequested) {
+        [self setButtonToShowNoFollowStatus];
+    } else if (currentFollowingStatus == BIFollowingStateFollowing) {
+        [self setButtonToShowNoFollowStatus];
+    }
+}
+
+- (void)setButtonToShowFollowing {
+    _followingState = BIFollowingStateFollowing;
     _followButton.backgroundColor = [UIColor lightGrayColor];
     [_followButton setTitle:@"Following" forState:UIControlStateNormal];
 }
 
-- (void)setButtonToUnselected {
-    _followButton.selected = NO;
+- (void)setButtonToShowRequested {
+    _followingState = BIFollowingStateRequested;
+    _followButton.backgroundColor = [UIColor orangeColor];
+    [_followButton setTitle:@"Requested" forState:UIControlStateNormal];
+}
+
+- (void)setButtonToShowNoFollowStatus {
+    _followingState = BIFollowingStateNone;
     _followButton.backgroundColor = [UIColor blueColor];
     [_followButton setTitle:@"Follow" forState:UIControlStateNormal];
 }

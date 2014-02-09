@@ -8,6 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+typedef enum {
+    BIFollowingStateRequested,
+    BIFollowingStateFollowing,
+    BIFollowingStateNone
+} BIFollowingState;
+
 @class BIFollowingTableViewCell;
 
 @protocol BIFollowingTableViewCellDelegate <NSObject>

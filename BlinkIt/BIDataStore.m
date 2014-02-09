@@ -109,4 +109,49 @@ static BIDataStore *shared = nil;
     return [followedFriends containsObject:user[@"facebookID"]];
 }
 
+#pragma mark - requested friends
+
+- (NSArray*)requestedFriends {
+    NSString *key = kBIUserDefaultsRequestedFriendsKey;
+    if ([self.cache objectForKey:key]) {
+        return [self.cache objectForKey:key];
+    }
+    
+    NSArray *requestedFriends = [[NSUserDefaults standardUserDefaults] objectForKey:key];
+    if (requestedFriends) {
+        [self.cache setObject:requestedFriends forKey:key];
+    } else {
+        requestedFriends = [NSArray new];
+    }
+    
+    return requestedFriends;
+}
+
+- (void)setRequestedFriends:(NSArray *)requestedFriends {
+    NSString *key = kBIUserDefaultsRequestedFriendsKey;
+    [self.cache setObject:requestedFriends forKey:key];
+    [[NSUserDefaults standardUserDefaults] setObject:requestedFriends forKey:key];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+- (void)addRequestedFriend:(PFUser*)user {
+    NSMutableArray *requestedFriends = [[self requestedFriends] mutableCopy];
+    if (![requestedFriends containsObject:user[@"facebookID"]]) {
+        [requestedFriends addObject:user[@"facebookID"]];
+    }
+    
+    [self setRequestedFriends:[requestedFriends copy]];
+}
+
+- (void)removeRequestedFriend:(PFUser*)user {
+    NSMutableArray *requestedFriends = [[self requestedFriends] mutableCopy];
+    [requestedFriends removeObject:user[@"facebookID"]];
+    [self setRequestedFriends:[requestedFriends copy]];
+}
+
+- (BOOL)hasRequestedUser:(PFUser*)user {
+    NSArray *requestedFriends = [self requestedFriends];
+    return [requestedFriends containsObject:user[@"facebookID"]];
+}
+
 @end

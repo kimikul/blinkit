@@ -10,6 +10,43 @@
 
 @implementation BIFollowManager
 
+#pragma mark - follow request
+
++ (void)requestToFollowUserEventually:(PFUser *)user block:(void (^)(BOOL succeeded, NSError *error))completionBlock {
+    if ([[user objectId] isEqualToString:[[PFUser currentUser] objectId]]) {
+        return;
+    }
+    
+    // Create follow activity
+    PFObject *requestFollowActivity = [PFObject objectWithClassName:@"Activity"];
+    [requestFollowActivity setObject:[PFUser currentUser] forKey:@"fromUser"];
+    [requestFollowActivity setObject:user forKey:@"toUser"];
+    [requestFollowActivity setObject:@"request to follow" forKey:@"type"];
+    
+    [requestFollowActivity saveEventually:completionBlock];
+}
+
++ (void)cancelRequestToFollowUserEventually:(PFUser *)user block:(void (^)(NSError *error))completionBlock {
+    PFQuery *query = [PFQuery queryWithClassName:@"Activity"];
+    [query whereKey:@"fromUser" equalTo:[PFUser currentUser]];
+    [query whereKey:@"toUser" equalTo:user];
+    [query whereKey:@"type" equalTo:@"request to follow"];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *requestToFollowActivities, NSError *error) {
+        
+        if (!error) {
+            for (PFObject *requestToFollowActivity in requestToFollowActivities) {
+                [requestToFollowActivity deleteEventually];
+            }
+            
+            if (completionBlock) {
+                completionBlock(error);
+            }
+        }
+    }];
+}
+
+#pragma mark - follow
+
 + (void)followUserEventually:(PFUser *)user block:(void (^)(BOOL succeeded, NSError *error))completionBlock {
     if ([[user objectId] isEqualToString:[[PFUser currentUser] objectId]]) {
         return;

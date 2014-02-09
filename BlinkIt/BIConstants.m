@@ -11,6 +11,8 @@
 #pragma mark - NSUserDefaults
 NSString *const kBIUserDefaultsFacebookFriendsKey = @"kBIUserDefaultsFacebookFriendsKey";
 NSString *const kBIUserDefaultsFollowedFriendsKey = @"kBIUserDefaultsFollowedFriendsKey";
+NSString *const kBIUserDefaultsRequestedFriendsKey = @"kBIUserDefaultsRequestedFriendsKey";
+
 
 #pragma mark - Notifications
 NSString *const kBIRefreshHomeAndFeedNotification = @"kBIRefreshHomeAndFeedNotification";

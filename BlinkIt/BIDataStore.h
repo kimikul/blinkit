@@ -25,6 +25,14 @@
 - (BOOL)isFollowingUser:(PFUser*)user;
 
 
+// requested freinds
+- (void)setRequestedFriends:(NSArray*)requestedFriends;   // array of facebookIDs
+- (NSArray*)requestedFriends;
+- (void)addRequestedFriend:(PFUser*)user;
+- (void)removeRequestedFriend:(PFUser*)user;
+- (BOOL)hasRequestedUser:(PFUser*)user;
+
+
 // cached profile pics
 - (void)addProfilePic:(UIImage*)image withURL:(NSString*)url;
 

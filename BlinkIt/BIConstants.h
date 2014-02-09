@@ -11,6 +11,7 @@
 #pragma mark - NSUserDefaults
 extern NSString *const kBIUserDefaultsFacebookFriendsKey;
 extern NSString *const kBIUserDefaultsFollowedFriendsKey;
+extern NSString *const kBIUserDefaultsRequestedFriendsKey;
 
 #pragma mark - Notifications
 extern NSString *const kBIRefreshHomeAndFeedNotification;
