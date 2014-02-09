@@ -11,8 +11,8 @@
 @interface BIHomeTableViewCell ()
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 @property (weak, nonatomic) IBOutlet UILabel *contentLabel;
-@property (weak, nonatomic) IBOutlet UIButton *privacyButton;
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
+@property (weak, nonatomic) IBOutlet UIButton *privacyButton;
 @end
 
 @implementation BIHomeTableViewCell
@@ -39,6 +39,8 @@
     return rect.size.height + staticHeight;
 }
 
+#pragma mark - setter/getter
+
 - (void)setBlink:(PFObject *)blink {
     _blink = blink;
     
@@ -46,11 +48,23 @@
     _dateLabel.text = [NSDate spelledOutDate:_blink[@"date"]];
     _timeLabel.text = [NSDate formattedTime:_blink[@"date"]];
     
-    _privacyButton.hidden = ![blink[@"private"] boolValue];
+    BOOL isPrivate = [_blink[@"private"] boolValue];
+    [self updatePrivacyButtonTo:isPrivate];
 }
 
-- (IBAction)tappedPrivacyButton:(id)sender {
-    NSLog(@"hi");
+#pragma mark - privacy button
+
+- (void)updatePrivacyButtonTo:(BOOL)isPrivate {
+    UIImage *privacyImage = [[UIImage imageNamed:@"private"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    
+    _privacyButton.tintColor = isPrivate ? [UIColor blueColor] : [UIColor colorWithWhite:0.8 alpha:1.0];
+    _privacyButton.selected = isPrivate ? YES : NO;
+    
+    [_privacyButton setImage:privacyImage forState:UIControlStateNormal];
+}
+
+- (IBAction)tappedPrivacyButton:(UIButton*)sender {
+    [self.delegate homeCell:self togglePrivacyTo:!_privacyButton.selected];
 }
 
 @end

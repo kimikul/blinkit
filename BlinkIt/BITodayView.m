@@ -264,7 +264,7 @@ const CGFloat EXPANDED_HEIGHT = 170;
     _privateLabel.text = @"Public";
     _privateLabel.textColor = [UIColor colorWithWhite:0.5 alpha:1.0];
     
-    _blink[@"private"] = [NSNumber numberWithBool:NO];
+    _blink[@"private"] = @NO;
 }
 
 - (void)selectPrivateButton {
@@ -277,7 +277,7 @@ const CGFloat EXPANDED_HEIGHT = 170;
     _privateLabel.text = @"Private";
     _privateLabel.textColor = [UIColor blueColor];
     
-    _blink[@"private"] = [NSNumber numberWithBool:YES];
+    _blink[@"private"] = @YES;
 }
 
 @end

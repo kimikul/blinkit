@@ -8,11 +8,19 @@
 
 #import <UIKit/UIKit.h>
 
+@class BIHomeTableViewCell;
+
+@protocol BIHomeTableViewCellDelegate <NSObject>
+- (void)homeCell:(BIHomeTableViewCell*)homeCell togglePrivacyTo:(BOOL)private;
+@end
+
 @interface BIHomeTableViewCell : UITableViewCell
 
 + (NSString*)reuseIdentifier;
 + (CGFloat)heightForContent:(NSString*)content;
+- (void)updatePrivacyButtonTo:(BOOL)isPrivate;
 
+@property (nonatomic, weak) id <BIHomeTableViewCellDelegate> delegate;
 @property (nonatomic, strong) PFObject *blink;
 
 @end

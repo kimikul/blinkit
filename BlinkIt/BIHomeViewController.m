@@ -23,17 +23,21 @@
 #define kActionSheetPhotoLibrary 1
 #define kNumBlinksPerPage 15
 
-@interface BIHomeViewController () <UITextViewDelegate, BITodayViewDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, BIImageUploadManagerDelegate, BIPhotoViewControllerDelegate>
+@interface BIHomeViewController () <UITextViewDelegate, BITodayViewDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, BIImageUploadManagerDelegate, BIPhotoViewControllerDelegate, BIHomeTableViewCellDelegate>
 
 @property (nonatomic, strong) NSMutableArray *allBlinksArray;
 @property (nonatomic, strong) NSMutableArray *blinksArray;
 @property (nonatomic, strong) BITodayView *todayView;
 @property (nonatomic, strong) IBOutlet UIView *fadeLayer;
+@property (weak, nonatomic) IBOutlet UIView *errorView;
+
 @property (nonatomic, strong) UIImagePickerController *imagePickerController;
 @property (nonatomic, strong) BIImageUploadManager *imageUploadManager;
-//@property (nonatomic, assign) BOOL isPresentingOtherVC;
-@property (weak, nonatomic) IBOutlet UIView *errorView;
+
+@property (nonatomic, strong) BIHomeTableViewCell *togglePrivacyCell;
+
 @property (nonatomic, assign) BOOL canPaginate;
+
 @end
 
 @implementation BIHomeViewController
@@ -142,16 +146,6 @@
     UITapGestureRecognizer *tapGR = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(fetchBlinks)];
     [_errorView addGestureRecognizer:tapGR];
 }
-
-//- (void)viewWillAppear:(BOOL)animated {
-//    [super viewWillAppear:animated];
-//    
-//    if (!_isPresentingOtherVC) {
-//        [self fetchBlinksForPagination:NO];
-//    } else {
-//        _isPresentingOtherVC = NO;
-//    }
-//}
 
 - (void)setupObservers {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshHome) name:kBIRefreshHomeAndFeedNotification object:nil];
@@ -320,6 +314,7 @@
     }
     
     cell.blink = blink;
+    cell.delegate = self;
     
     return cell;
 }
@@ -465,7 +460,6 @@
     photoVC.delegate = self;
     
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:photoVC];
-//    _isPresentingOtherVC = YES;
     
     [self presentViewController:nav animated:YES completion:nil];
 }
@@ -529,8 +523,6 @@
         self.imagePickerController.cameraOverlayView = overlayIV;
     }
     
-//    _isPresentingOtherVC = YES;
-    
     [self.navigationController presentViewController:self.imagePickerController animated:YES completion:^{
         [[UIApplication sharedApplication] setStatusBarHidden:YES];
     }];
@@ -574,6 +566,42 @@
 
 - (void)photoViewController:(BIPhotoViewController*)photoViewController didRemovePhotoFromBlink:(PFObject*)blink {
     _todayView.selectedImage = nil;
+}
+
+#pragma mark - BIHomeTableViewCellDelegate
+
+- (void)homeCell:(BIHomeTableViewCell*)homeCell togglePrivacyTo:(BOOL)private {
+    _togglePrivacyCell = homeCell;
+    
+    NSString *msg = private ? @"Are you sure you want to make this blink private?" : @"Are you sure you want to make this blink public to your followers?";
+
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Toggle Privacy Setting" message:msg delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Continue",nil];
+    alertView.tag = private;
+    [alertView show];
+}
+
+#pragma mark - UIAlertViewDelegate
+
+- (void)alertView:(UIAlertView *)alertView willDismissWithButtonIndex:(NSInteger)buttonIndex {
+    
+    // remember to reset toggle properties after its over
+    if (buttonIndex != alertView.cancelButtonIndex) {
+        BOOL newPrivacySetting = alertView.tag;
+        
+        PFObject *blink = _togglePrivacyCell.blink;
+        blink[@"private"] = [NSNumber numberWithBool:newPrivacySetting];
+    
+        [blink saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+            if (!error) {
+                [_togglePrivacyCell updatePrivacyButtonTo:newPrivacySetting];
+            } else {
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Privacy setting was not updated. Please try again" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                [alertView show];
+            }
+            
+            _togglePrivacyCell = nil;
+        }];
+    }
 }
 
 #pragma mark - ibactions
