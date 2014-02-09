@@ -22,6 +22,7 @@
 @property (nonatomic, strong) NSArray *blinksArray;     // array of array of blinks associated with the date
 
 @property (nonatomic, assign) BOOL canPaginate;
+@property (nonatomic, assign) BOOL isPresentingOtherVC;
 @end
 
 @implementation BIFeedViewController
@@ -52,6 +53,8 @@
     [super viewDidLoad];
     [self setupButtons];
     [self setupNav];
+    [self setupObservers];
+    [self fetchFeedForPagination:NO];
 }
 
 - (void)setupButtons {
@@ -77,11 +80,24 @@
     self.navigationItem.titleView = logoImageView;
 }
 
+- (void)setupObservers {
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshFeed) name:kBIRefreshHomeAndFeedNotification object:nil];
+}
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    [self fetchFeedForPagination:NO];
+    if (_isPresentingOtherVC) {
+        [self refreshFeed];
+    }
+    
+    _isPresentingOtherVC = NO;
 }
+
 
 #pragma mark - requests
 
@@ -141,6 +157,11 @@
     _blinksArray = [blinkArray copy];
     
     [self reloadTableData];
+}
+
+- (void)refreshFeed {
+    [self.tableView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:YES];
+    [self fetchFeedForPagination:NO];
 }
 
 #pragma mark - refresh and pagination
@@ -275,6 +296,8 @@
 - (void)tappedFriends:(id)sender {
     UIStoryboard *mainStoryboard = [UIStoryboard mainStoryboard];
     UINavigationController *nav = [mainStoryboard instantiateViewControllerWithIdentifier:@"BIFollowNavigationController"];
+    
+    _isPresentingOtherVC = YES;
     
     [self presentViewController:nav animated:YES completion:nil];
 }

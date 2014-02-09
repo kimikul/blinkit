@@ -31,7 +31,7 @@
 @property (nonatomic, strong) IBOutlet UIView *fadeLayer;
 @property (nonatomic, strong) UIImagePickerController *imagePickerController;
 @property (nonatomic, strong) BIImageUploadManager *imageUploadManager;
-@property (nonatomic, assign) BOOL isPresentingOtherVC;
+//@property (nonatomic, assign) BOOL isPresentingOtherVC;
 @property (weak, nonatomic) IBOutlet UIView *errorView;
 @property (nonatomic, assign) BOOL canPaginate;
 @end
@@ -88,6 +88,8 @@
     [self setupTableView];
     [self setupTodayView];
     [self setupErrorView];
+    [self setupObservers];
+    [self fetchBlinksForPagination:NO];
 }
 
 - (void)setupButtons {
@@ -141,14 +143,18 @@
     [_errorView addGestureRecognizer:tapGR];
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    
-    if (!_isPresentingOtherVC) {
-        [self fetchBlinksForPagination:NO];
-    } else {
-        _isPresentingOtherVC = NO;
-    }
+//- (void)viewWillAppear:(BOOL)animated {
+//    [super viewWillAppear:animated];
+//    
+//    if (!_isPresentingOtherVC) {
+//        [self fetchBlinksForPagination:NO];
+//    } else {
+//        _isPresentingOtherVC = NO;
+//    }
+//}
+
+- (void)setupObservers {
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshHome) name:kBIRefreshHomeAndFeedNotification object:nil];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -158,6 +164,10 @@
         [self.navigationItem.titleView fadeInWithDuration:0.5 completion:nil];
         [self.navigationItem.leftBarButtonItem.customView fadeInWithDuration:0.5 completion:nil];
     }
+}
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 #pragma mark - requests
@@ -223,6 +233,13 @@
     
     return NO;
 }
+
+- (void)refreshHome {
+    [self.tableView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:YES];
+    [self fetchBlinksForPagination:NO];
+}
+
+#pragma mark - refresh and pagination
 
 - (void)refreshTableHeaderDidTriggerRefresh {
     [self fetchBlinksForPagination:NO];
@@ -448,7 +465,7 @@
     photoVC.delegate = self;
     
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:photoVC];
-    _isPresentingOtherVC = YES;
+//    _isPresentingOtherVC = YES;
     
     [self presentViewController:nav animated:YES completion:nil];
 }
@@ -512,7 +529,7 @@
         self.imagePickerController.cameraOverlayView = overlayIV;
     }
     
-    _isPresentingOtherVC = YES;
+//    _isPresentingOtherVC = YES;
     
     [self.navigationController presentViewController:self.imagePickerController animated:YES completion:^{
         [[UIApplication sharedApplication] setStatusBarHidden:YES];

@@ -36,7 +36,7 @@
     _profilePic.layer.cornerRadius = 2.0;
     _profilePic.clipsToBounds = YES;
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateButtonForUser:) name:@"BITappedFollowButtonNotification" object:_user];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateButtonForUser:) name:kBITappedFollowButtonNotification object:_user];
 }
 
 - (void)dealloc {
@@ -77,7 +77,7 @@
     }
     
     // notify all affected cells to update UI
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"BITappedFollowButtonNotification" object:_user];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kBITappedFollowButtonNotification object:_user];
 }
 
 - (void)updateButtonForUser:(NSNotification*)note {
