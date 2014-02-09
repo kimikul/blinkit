@@ -319,14 +319,15 @@ Happy blinking :)</string>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HDX-fc-xSC">
-                                                    <rect key="frame" x="297" y="9" width="15" height="15"/>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HDX-fc-xSC">
+                                                    <rect key="frame" x="270" y="0.0" width="50" height="35"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="15" id="aG0-wK-xRV"/>
-                                                        <constraint firstAttribute="width" constant="15" id="yGy-Fd-379"/>
+                                                        <constraint firstAttribute="height" constant="35" id="aG0-wK-xRV"/>
+                                                        <constraint firstAttribute="width" constant="50" id="yGy-Fd-379"/>
                                                     </constraints>
-                                                    <state key="normal" backgroundImage="private">
+                                                    <inset key="imageEdgeInsets" minX="24" minY="8" maxX="10" maxY="12"/>
+                                                    <state key="normal" image="private">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                     <connections>
@@ -347,9 +348,9 @@ Happy blinking :)</string>
                                             <constraints>
                                                 <constraint firstItem="Ih2-OL-m7L" firstAttribute="top" secondItem="zpR-TS-B4T" secondAttribute="bottom" constant="1" id="7rU-lc-VD7"/>
                                                 <constraint firstItem="zSy-fq-t3e" firstAttribute="top" secondItem="Ih2-OL-m7L" secondAttribute="bottom" constant="2" id="9rx-ng-CjK"/>
-                                                <constraint firstAttribute="trailing" secondItem="HDX-fc-xSC" secondAttribute="trailing" constant="8" id="RdD-sg-iKe"/>
+                                                <constraint firstAttribute="trailing" secondItem="HDX-fc-xSC" secondAttribute="trailing" id="RdD-sg-iKe"/>
                                                 <constraint firstItem="zpR-TS-B4T" firstAttribute="top" secondItem="M5Q-qU-vkK" secondAttribute="top" constant="8" id="b20-OT-6xe"/>
-                                                <constraint firstItem="HDX-fc-xSC" firstAttribute="top" secondItem="M5Q-qU-vkK" secondAttribute="top" constant="9" id="bpu-9y-hsN"/>
+                                                <constraint firstItem="HDX-fc-xSC" firstAttribute="top" secondItem="M5Q-qU-vkK" secondAttribute="top" id="bpu-9y-hsN"/>
                                                 <constraint firstItem="zSy-fq-t3e" firstAttribute="leading" secondItem="M5Q-qU-vkK" secondAttribute="leading" constant="10" id="fOt-g8-FYU"/>
                                                 <constraint firstAttribute="trailing" secondItem="zpR-TS-B4T" secondAttribute="trailing" constant="32" id="h2V-oW-zWl"/>
                                                 <constraint firstItem="Ih2-OL-m7L" firstAttribute="leading" secondItem="zpR-TS-B4T" secondAttribute="leading" id="vmU-zV-pFc"/>
@@ -387,14 +388,15 @@ Happy blinking :)</string>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gF2-80-Sv6">
-                                                    <rect key="frame" x="297" y="9" width="15" height="15"/>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gF2-80-Sv6">
+                                                    <rect key="frame" x="270" y="0.0" width="50" height="35"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="15" id="Cg4-cY-8vB"/>
-                                                        <constraint firstAttribute="height" constant="15" id="bbl-hF-gxd"/>
+                                                        <constraint firstAttribute="width" constant="50" id="Cg4-cY-8vB"/>
+                                                        <constraint firstAttribute="height" constant="35" id="bbl-hF-gxd"/>
                                                     </constraints>
-                                                    <state key="normal" backgroundImage="private">
+                                                    <inset key="imageEdgeInsets" minX="24" minY="8" maxX="10" maxY="12"/>
+                                                    <state key="normal" image="private">
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                     <connections>
@@ -427,9 +429,9 @@ Happy blinking :)</string>
                                                 <constraint firstAttribute="trailing" secondItem="ZIQ-2i-chW" secondAttribute="trailing" constant="10" id="Qwp-CZ-NX9"/>
                                                 <constraint firstItem="ZIQ-2i-chW" firstAttribute="leading" secondItem="CEJ-q5-K3W" secondAttribute="leading" constant="10" id="Rax-TS-QDJ"/>
                                                 <constraint firstItem="HVB-o0-27A" firstAttribute="top" secondItem="hJI-g2-NR8" secondAttribute="bottom" constant="1" id="SBQ-LY-MS0"/>
-                                                <constraint firstItem="gF2-80-Sv6" firstAttribute="top" secondItem="CEJ-q5-K3W" secondAttribute="top" constant="9" id="TxE-KX-WsY"/>
+                                                <constraint firstItem="gF2-80-Sv6" firstAttribute="top" secondItem="CEJ-q5-K3W" secondAttribute="top" id="TxE-KX-WsY"/>
                                                 <constraint firstAttribute="trailing" secondItem="hJI-g2-NR8" secondAttribute="trailing" constant="32" id="aE4-po-scO"/>
-                                                <constraint firstAttribute="trailing" secondItem="gF2-80-Sv6" secondAttribute="trailing" constant="8" id="b1Z-ca-77t"/>
+                                                <constraint firstAttribute="trailing" secondItem="gF2-80-Sv6" secondAttribute="trailing" id="b1Z-ca-77t"/>
                                                 <constraint firstItem="z0U-m8-2fY" firstAttribute="top" secondItem="HVB-o0-27A" secondAttribute="bottom" constant="2" id="f7o-at-XAr"/>
                                                 <constraint firstItem="hJI-g2-NR8" firstAttribute="top" secondItem="CEJ-q5-K3W" secondAttribute="top" constant="8" id="g9s-ae-Ebw"/>
                                                 <constraint firstItem="hJI-g2-NR8" firstAttribute="leading" secondItem="CEJ-q5-K3W" secondAttribute="leading" constant="10" id="ojA-Vm-GbA"/>
