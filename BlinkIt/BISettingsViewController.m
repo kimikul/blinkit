@@ -81,7 +81,7 @@
             [self linkToFacebook];
         }
     } else if (section == kTableSectionLogout) {
-        [self logout];
+        [self promptForLogout];
     }
 }
 
@@ -109,6 +109,7 @@
 
 - (void)promptForUnlinkWithFacebook {
     UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"This will disconnect your account with Facebook. Are you sure?" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:@"Continue" otherButtonTitles:nil];
+    actionSheet.tag = kTableSectionAccount;
     [actionSheet showInView:self.view];
 }
 
@@ -133,6 +134,14 @@
 
 - (void)tappedDone:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+#pragma mark - logout
+
+- (void)promptForLogout {
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Are you sure you want to logout?" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:@"Continue" otherButtonTitles:nil];
+    actionSheet.tag = kTableSectionLogout;
+    [actionSheet showInView:self.view];
 }
 
 - (void)logout {
@@ -170,7 +179,11 @@
 
 - (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex {
     if (buttonIndex == actionSheet.destructiveButtonIndex) {
-        [self unlinkWithFacebook];
+        if (actionSheet.tag == kTableSectionAccount) {
+            [self unlinkWithFacebook];
+        } else if (actionSheet.tag == kTableSectionLogout) {
+            [self logout];
+        }
     }
 }
 
