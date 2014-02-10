@@ -30,17 +30,22 @@ static BIFacebookUserManager *shared = nil;
             NSDictionary *userData = (NSDictionary *)result;
             
             PFUser *currentUser = [PFUser currentUser];
+            
             NSString *facebookID = userData[@"id"];
-
-            currentUser[@"name"] = userData[@"name"];
-            currentUser[@"location"] = userData[@"location"][@"name"];
-            currentUser[@"gender"] = userData[@"gender"];
-            currentUser[@"email"] = userData[@"email"];
-            currentUser[@"username"] = userData[@"email"];
-            currentUser[@"facebookID"] = facebookID;
+            NSString *name = userData[@"name"];
+            NSString *location = userData[@"location"][@"name"];
+            NSString *gender = userData[@"gender"];
+            NSString *email = userData[@"email"];
+            
+            currentUser[@"name"] = name ? name : @"";
+            currentUser[@"location"] = location ? location : @"";
+            currentUser[@"gender"] = gender ? gender : @"";
+            currentUser[@"email"] = email ? email : @"";
+            currentUser[@"username"] = email ? email : @"";
+            currentUser[@"facebookID"] = facebookID ? facebookID : @"";
             
             NSString *pictureURL = [NSString stringWithFormat:@"https://graph.facebook.com/%@/picture?type=square&return_ssl_resources=1", facebookID];
-            currentUser[@"photoURL"] = pictureURL;
+            currentUser[@"photoURL"] = pictureURL ? pictureURL : @"";
             
             // save fb info into parse user
             [currentUser saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
