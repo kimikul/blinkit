@@ -40,8 +40,8 @@ static BIFacebookUserManager *shared = nil;
             currentUser[@"name"] = name ? name : @"";
             currentUser[@"location"] = location ? location : @"";
             currentUser[@"gender"] = gender ? gender : @"";
-            currentUser[@"email"] = email ? email : @"";
-            currentUser[@"username"] = email ? email : @"";
+            currentUser[@"email"] = email ? [email lowercaseString] : @"";
+            currentUser[@"username"] = email ? [email lowercaseString] : @"";
             currentUser[@"facebookID"] = facebookID ? facebookID : @"";
             
             NSString *pictureURL = [NSString stringWithFormat:@"https://graph.facebook.com/%@/picture?type=square&return_ssl_resources=1", facebookID];

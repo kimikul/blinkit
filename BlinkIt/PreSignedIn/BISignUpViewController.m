@@ -47,7 +47,7 @@
     BOOL validFields = [self validateFields];
     if (validFields) {
         PFUser *user = [PFUser user];
-        user.username = [_emailTextField.text stringByTrimmingWhiteSpace];
+        user.username = [[_emailTextField.text stringByTrimmingWhiteSpace] lowercaseString];
         user.password = [_passwordTextField.text stringByTrimmingWhiteSpace];
         
         [user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {

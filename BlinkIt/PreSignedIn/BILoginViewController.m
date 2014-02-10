@@ -43,7 +43,7 @@
 }
 
 - (IBAction)loginTapped:(id)sender {
-    NSString *username = [_emailTextField.text stringByTrimmingWhiteSpace];
+    NSString *username = [[_emailTextField.text stringByTrimmingWhiteSpace] lowercaseString];
     NSString *password = [_passwordTextField.text stringByTrimmingWhiteSpace];
     
     [PFUser logInWithUsernameInBackground:username password:password
