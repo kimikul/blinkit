@@ -92,6 +92,7 @@
 - (void)transitionToHomeViewController {
     [[BIFacebookUserManager shared] refreshCurrentUserFacebookFriends];
     [BIFollowManager refreshFollowingList];
+    [BIFollowManager refreshRequestToFollowList];
     
     UIStoryboard *mainStoryboard = [UIStoryboard mainStoryboard];
     UINavigationController *homeVC = [mainStoryboard instantiateViewControllerWithIdentifier:@"BITabBarController"];

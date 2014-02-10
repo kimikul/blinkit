@@ -102,6 +102,7 @@
 #pragma mark - requests
 
 - (void)fetchFeedForPagination:(BOOL)pagination {
+    if (self.isLoading) return;
     self.loading = YES;
     
     // ppl i'm following
@@ -118,8 +119,6 @@
     [blinksFromFollowed orderByDescending:@"date"];
     
     [blinksFromFollowed findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        self.loading = NO;
-        
         if (!error) {
             self.canPaginate = objects.count > 0 && (objects.count % kNumFeedEntriesPerPage == 0);
 
@@ -128,6 +127,8 @@
             
             [self sectionalizeBlinks:objects pagination:pagination];
         }
+        
+        self.loading = NO;
     }];
 }
 
@@ -201,7 +202,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
 
-    if (self.isLoading) {
+    if (self.isLoading && _dateArray.count == 0) {
         return [BIPaginationTableViewCell cellHeight];
     } else if (_dateArray.count == 0) {
         return [BINoFollowResultsTableViewCell cellHeight];
@@ -261,7 +262,7 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (self.isLoading) {
+    if (self.isLoading && _dateArray.count == 0) {
         BIPaginationTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:[BIPaginationTableViewCell reuseIdentifier]];
         [cell.aiv startAnimating];
         return cell;

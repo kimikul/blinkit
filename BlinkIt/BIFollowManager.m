@@ -12,6 +12,27 @@
 
 #pragma mark - follow request
 
++ (void)refreshRequestToFollowList {
+    PFQuery *query = [PFQuery queryWithClassName:@"Activity"];
+    [query whereKey:@"fromUser" equalTo:[PFUser currentUser]];
+    [query whereKey:@"type" equalTo:@"request to follow"];
+    [query includeKey:@"toUser"];
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        if (!error) {
+            NSMutableArray *requestsToFollow = [NSMutableArray new];
+            for (PFObject *activity in objects) {
+                PFUser *user = activity[@"toUser"];
+                NSString *fbID = user[@"facebookID"];
+                if (fbID) {
+                    [requestsToFollow addObject:fbID];
+                }
+            }
+            
+            [[BIDataStore shared] setRequestedFriends:[requestsToFollow copy]];
+        }
+    }];
+}
+
 + (void)requestToFollowUserEventually:(PFUser *)user block:(void (^)(BOOL succeeded, NSError *error))completionBlock {
     if ([[user objectId] isEqualToString:[[PFUser currentUser] objectId]]) {
         return;
@@ -100,4 +121,5 @@
         }
     }];
 }
+
 @end

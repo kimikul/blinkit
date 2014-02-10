@@ -171,6 +171,7 @@
 }
 
 - (void)fetchBlinksForPagination:(BOOL)pagination {
+    if (self.isLoading) return;
     self.loading = YES;
     
     PFQuery *query = [PFQuery queryWithClassName:@"Blink"];
@@ -180,7 +181,6 @@
     [query whereKey:@"user" equalTo:[PFUser currentUser]];
     
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        self.loading = NO;
         self.canPaginate = objects.count > 0 && (objects.count % kNumBlinksPerPage == 0);
         
         if (!error) {
@@ -213,6 +213,8 @@
         } else {
             [_errorView fadeInWithDuration:0.4 completion:nil];
         }
+        
+        self.loading = NO;
     }];
 }
 

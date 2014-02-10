@@ -80,7 +80,7 @@
             }
         }];
     } else if (_followingState == BIFollowingStateNone) {
-        [BIFollowManager followUserEventually:user block:^(BOOL succeeded, NSError *error) {
+        [BIFollowManager requestToFollowUserEventually:user block:^(BOOL succeeded, NSError *error) {
             if (succeeded) {
                 [[BIDataStore shared] addRequestedFriend:user];
             }

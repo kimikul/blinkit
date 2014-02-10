@@ -39,6 +39,7 @@
     if ([PFUser currentUser]) {
         [[BIFacebookUserManager shared] refreshCurrentUserFacebookFriends];
         [BIFollowManager refreshFollowingList];
+        [BIFollowManager refreshRequestToFollowList];
     }
 }
 

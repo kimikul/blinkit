@@ -95,6 +95,7 @@
                     if (!error) {
                         [[BIFacebookUserManager shared] refreshCurrentUserFacebookFriends];
                         [BIFollowManager refreshFollowingList];
+                        [BIFollowManager refreshRequestToFollowList];
                         [self updateFacebookLinkLabel];
                     } else {
                         [self showFacebookLinkErrorAlert:error];
