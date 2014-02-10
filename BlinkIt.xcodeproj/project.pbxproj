@@ -12,6 +12,7 @@
 		5E3420D918A4B3CD0088A270 /* BIFeedTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E3420D818A4B3CD0088A270 /* BIFeedTableViewCell.m */; };
 		5E3420EA18A5E5950088A270 /* BIFeedPhotoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E3420E918A5E5950088A270 /* BIFeedPhotoTableViewCell.m */; };
 		5E3420ED18A613490088A270 /* BIButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E3420EC18A613490088A270 /* BIButton.m */; };
+		5E3420F018A8B47C0088A270 /* BIPendingRequestTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E3420EF18A8B47C0088A270 /* BIPendingRequestTableViewCell.m */; };
 		5E42D3EF189C9FFD00F651E0 /* BIFeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E42D3EE189C9FFD00F651E0 /* BIFeedViewController.m */; };
 		5E42D3F4189CA40800F651E0 /* BIFollowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E42D3F3189CA40800F651E0 /* BIFollowViewController.m */; };
 		5E42D3F7189CA77200F651E0 /* BIFollowingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E42D3F6189CA77200F651E0 /* BIFollowingViewController.m */; };
@@ -90,6 +91,8 @@
 		5E3420E918A5E5950088A270 /* BIFeedPhotoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BIFeedPhotoTableViewCell.m; sourceTree = "<group>"; };
 		5E3420EB18A613490088A270 /* BIButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BIButton.h; sourceTree = "<group>"; };
 		5E3420EC18A613490088A270 /* BIButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BIButton.m; sourceTree = "<group>"; };
+		5E3420EE18A8B47C0088A270 /* BIPendingRequestTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BIPendingRequestTableViewCell.h; sourceTree = "<group>"; };
+		5E3420EF18A8B47C0088A270 /* BIPendingRequestTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BIPendingRequestTableViewCell.m; sourceTree = "<group>"; };
 		5E42D3ED189C9FFD00F651E0 /* BIFeedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BIFeedViewController.h; sourceTree = "<group>"; };
 		5E42D3EE189C9FFD00F651E0 /* BIFeedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BIFeedViewController.m; sourceTree = "<group>"; };
 		5E42D3F2189CA40800F651E0 /* BIFollowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BIFollowViewController.h; sourceTree = "<group>"; };
@@ -250,6 +253,8 @@
 				5E42D403189CB7C300F651E0 /* BIFollowingTableViewCell.m */,
 				5E3420D418A488240088A270 /* BINoFollowResultsTableViewCell.h */,
 				5E3420D518A488240088A270 /* BINoFollowResultsTableViewCell.m */,
+				5E3420EE18A8B47C0088A270 /* BIPendingRequestTableViewCell.h */,
+				5E3420EF18A8B47C0088A270 /* BIPendingRequestTableViewCell.m */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -579,6 +584,7 @@
 				5EAB8B2C1881062A00B02953 /* UIStoryboard+BlinkIt.m in Sources */,
 				5EAB8AE4187E7D3600B02953 /* BISplashViewController.m in Sources */,
 				5E42D3EF189C9FFD00F651E0 /* BIFeedViewController.m in Sources */,
+				5E3420F018A8B47C0088A270 /* BIPendingRequestTableViewCell.m in Sources */,
 				5EAB8AB0187E73DF00B02953 /* main.m in Sources */,
 				5EAB8ADB187E7CFF00B02953 /* BILoginViewController.m in Sources */,
 				5EB3A5C01887A14100BCA8DB /* MBProgressHUD.m in Sources */,
