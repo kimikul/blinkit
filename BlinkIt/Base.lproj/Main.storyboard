@@ -1006,7 +1006,7 @@ PRO TIP: Click the top right button to follow friends if you haven't yet :)</str
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="300" translatesAutoresizingMaskIntoConstraints="NO" id="JoG-Vg-azS">
-                                                    <rect key="frame" x="12" y="10" width="300" height="120"/>
+                                                    <rect key="frame" x="12" y="10" width="300" height="90"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <string key="text">None of your friends are on BlinkIt yet. Help spread the word! :)
 
@@ -1130,7 +1130,7 @@ PRO TIP : Link your Facebook in Settings to find friends if you haven't yet</str
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="300" translatesAutoresizingMaskIntoConstraints="NO" id="q4v-eF-zb2">
-                                                    <rect key="frame" x="12" y="8" width="300" height="120"/>
+                                                    <rect key="frame" x="12" y="8" width="300" height="90"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <string key="text">You have no followers yet
 .. wah wahhhhhhh.
