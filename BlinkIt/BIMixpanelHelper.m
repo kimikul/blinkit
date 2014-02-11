@@ -41,11 +41,6 @@
     if ([self shouldDisableTracking]) return;
 
     Mixpanel *mixpanel = [Mixpanel sharedInstance];
-    NSString *timeStamp = [NSString stringWithFormat:@"%.0f", [[NSDate date] timeIntervalSince1970]];
-    
-    NSMutableDictionary *newDict = propDict ? [propDict mutableCopy] : [NSMutableDictionary new];
-    [newDict setObject:timeStamp forKey:@"timestamp"];
-    
     [mixpanel track:eventName properties:propDict];
 }
 

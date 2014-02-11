@@ -131,7 +131,9 @@
         self.loading = NO;
     }];
     
-    [BIMixpanelHelper sendMixpanelEvent:@"FEED_fetchFeed" withProperties:@{@"forPagination":@(pagination)}];
+    if (pagination) {
+        [BIMixpanelHelper sendMixpanelEvent:@"FEED_paginateFeed" withProperties:nil];
+    }
 }
 
 - (void)sectionalizeBlinks:(NSArray*)blinks pagination:(BOOL)pagination {

@@ -217,7 +217,9 @@
         self.loading = NO;
     }];
     
-    [BIMixpanelHelper sendMixpanelEvent:@"HOME_fetchBlinks" withProperties:@{@"forPagination":@(pagination)}];
+    if (pagination) {
+        [BIMixpanelHelper sendMixpanelEvent:@"HOME_paginateHome" withProperties:nil];
+    }
 }
 
 - (BOOL)isDateToday:(NSDate*)date {

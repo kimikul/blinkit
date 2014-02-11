@@ -1206,7 +1206,7 @@ PRO TIP : Link your Facebook in Settings so friends can find you.</string>
         <!--Tab Bar Controller-->
         <scene sceneID="Sdq-Gx-Edp">
             <objects>
-                <tabBarController storyboardIdentifier="BITabBarController" automaticallyAdjustsScrollViewInsets="NO" id="yV4-go-GVc" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="BITabBarController" automaticallyAdjustsScrollViewInsets="NO" id="yV4-go-GVc" customClass="BITabBarController" sceneMemberID="viewController">
                     <toolbarItems/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" translucent="NO" id="3hJ-6b-jC6">

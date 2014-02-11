@@ -47,6 +47,7 @@
 		5E79D004189A363600529EBE /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E79D003189A363600529EBE /* FacebookSDK.framework */; };
 		5E79D006189A372000529EBE /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E79D005189A372000529EBE /* StoreKit.framework */; };
 		5E79D009189A45AE00529EBE /* BIFacebookUserManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E79D008189A45AE00529EBE /* BIFacebookUserManager.m */; };
+		5E9DF17E18AA348000FA69E5 /* BITabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E9DF17D18AA348000FA69E5 /* BITabBarController.m */; };
 		5EAB8AA4187E73DF00B02953 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EAB8AA3187E73DF00B02953 /* Foundation.framework */; };
 		5EAB8AA6187E73DF00B02953 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EAB8AA5187E73DF00B02953 /* CoreGraphics.framework */; };
 		5EAB8AA8187E73DF00B02953 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EAB8AA7187E73DF00B02953 /* UIKit.framework */; };
@@ -171,6 +172,8 @@
 		5E79D005189A372000529EBE /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		5E79D007189A45AE00529EBE /* BIFacebookUserManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BIFacebookUserManager.h; sourceTree = "<group>"; };
 		5E79D008189A45AE00529EBE /* BIFacebookUserManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BIFacebookUserManager.m; sourceTree = "<group>"; };
+		5E9DF17C18AA348000FA69E5 /* BITabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BITabBarController.h; sourceTree = "<group>"; };
+		5E9DF17D18AA348000FA69E5 /* BITabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BITabBarController.m; sourceTree = "<group>"; };
 		5EAB8AA0187E73DF00B02953 /* BlinkIt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BlinkIt.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5EAB8AA3187E73DF00B02953 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		5EAB8AA5187E73DF00B02953 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -541,6 +544,8 @@
 				5E42D3FF189CAE3700F651E0 /* BIDataStore.m */,
 				5E42D409189CDF3500F651E0 /* BIConstants.h */,
 				5E42D40A189CDF3500F651E0 /* BIConstants.m */,
+				5E9DF17C18AA348000FA69E5 /* BITabBarController.h */,
+				5E9DF17D18AA348000FA69E5 /* BITabBarController.m */,
 			);
 			name = Main;
 			sourceTree = "<group>";
@@ -688,6 +693,7 @@
 				5E639297188BB5CE00D1AE80 /* BIUserDefaultsKeys.m in Sources */,
 				5E7297BC18AA237C008D356C /* MPSurvey.m in Sources */,
 				5E7297CD18AA23A0008D356C /* UIView+MPSnapshotImage.m in Sources */,
+				5E9DF17E18AA348000FA69E5 /* BITabBarController.m in Sources */,
 				5E7297D718AA23C9008D356C /* MPSurveyNavigationController.m in Sources */,
 				5E42D3FA189CA77C00F651E0 /* BIFollowersViewController.m in Sources */,
 				5E7297D818AA23C9008D356C /* MPSurveyQuestion.m in Sources */,
