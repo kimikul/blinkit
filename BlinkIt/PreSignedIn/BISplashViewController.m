@@ -52,12 +52,17 @@
 
 - (void)signUpViewController:(BISignUpViewController*)signupVC didSignUp:(PFUser*)user {
     [self transitionToHomeViewController];
+    
+    [BIMixpanelHelper sendMixpanelEvent:@"SIGNUP_regularSignUp" withProperties:nil];
 }
 
 #pragma mark - BILoginViewControllerDelegate
 
 - (void)loginViewController:(BILoginViewController*)loginVC didLoginUser:(PFUser*)user {
     [self transitionToHomeViewController];
+    
+    [BIMixpanelHelper sendMixpanelEvent:@"LOGIN_regularLogin" withProperties:nil];
+
 }
 
 #pragma mark - facebook / BIFacebookUserManagerDelegate
@@ -72,12 +77,15 @@
             [[BIFacebookUserManager shared] fetchAndSaveBasicUserInfoWithBlock:^(BOOL succeeded, NSError *error) {
                 if (!error) {
                     [self transitionToHomeViewController];
+                    [BIMixpanelHelper sendMixpanelEvent:@"FACEBOOK_linkFacebookSuccess" withProperties:@{@"source":@"login"}];
                 } else {
                     [self showFacebookLoginErrorAlert:error];
                 }
             }];
         }
     }];
+    
+    [BIMixpanelHelper sendMixpanelEvent:@"FACEBOOK_attemptLinkFacebook" withProperties:@{@"source":@"login"}];
 }
 
 - (void)showFacebookLoginErrorAlert:(NSError*)error {
@@ -93,6 +101,7 @@
     [[BIFacebookUserManager shared] refreshCurrentUserFacebookFriends];
     [BIFollowManager refreshFollowingList];
     [BIFollowManager refreshRequestToFollowList];
+    [BIMixpanelHelper setupSuperPropertiesForUser:[PFUser currentUser]];
     
     UIStoryboard *mainStoryboard = [UIStoryboard mainStoryboard];
     UINavigationController *homeVC = [mainStoryboard instantiateViewControllerWithIdentifier:@"BITabBarController"];

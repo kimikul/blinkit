@@ -43,6 +43,8 @@
 
     [self setupButtons];
     [self displayCurrentSettings];
+    
+    [BIMixpanelHelper sendMixpanelEvent:@"SETTINGS_viewSettings" withProperties:nil];
 }
 
 - (void)setupButtons {
@@ -96,7 +98,10 @@
                         [[BIFacebookUserManager shared] refreshCurrentUserFacebookFriends];
                         [BIFollowManager refreshFollowingList];
                         [BIFollowManager refreshRequestToFollowList];
+                        [BIMixpanelHelper setupSuperPropertiesForUser:[PFUser currentUser]];
                         [self updateFacebookLinkLabel];
+                        
+                        [BIMixpanelHelper sendMixpanelEvent:@"FACEBOOK_linkFacebookSuccess" withProperties:@{@"source":@"settings"}];
                     } else {
                         [self showFacebookLinkErrorAlert:error];
                     }
@@ -106,6 +111,8 @@
             }
         }];
     }
+    
+    [BIMixpanelHelper sendMixpanelEvent:@"FACEBOOK_attemptLinkFacebook" withProperties:@{@"source":@"settings"}];
 }
 
 - (void)promptForUnlinkWithFacebook {
@@ -122,6 +129,8 @@
             [self showFacebookLinkErrorAlert:error];
         }
     }];
+    
+    [BIMixpanelHelper sendMixpanelEvent:@"FACEBOOK_unlinkFacebook" withProperties:nil];
 }
 
 - (void)showFacebookLinkErrorAlert:(NSError*)error {
@@ -158,6 +167,8 @@
     BIAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     
     [appDelegate setRootViewController:splashVC];
+    
+    [BIMixpanelHelper sendMixpanelEvent:@"LOGOUT" withProperties:nil];
 }
 
 - (IBAction)togglePrivacySettings:(UISwitch*)privacySwitch {
@@ -166,6 +177,8 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setBool:newValue forKey:BIPrivacyDefaultSettings];
     [defaults synchronize];
+    
+    [BIMixpanelHelper sendMixpanelEvent:@"SETTINGS_togglePrivacy" withProperties:@{@"changeToPrivate":@(newValue)}];
 }
 
 - (IBAction)toggleDailyReminders:(UISwitch*)remindersSwitch {

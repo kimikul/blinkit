@@ -130,8 +130,6 @@ const CGFloat EXPANDED_HEIGHT = 170;
     self.remainingCharactersLabel.text = remainingCharactersLabel;
 }
 
-#pragma mark - expand / condense helpers
-
 - (void)updatePrivateButtonForBlink:(PFObject*)blink {
     NSNumber *private = blink[@"private"];
     
@@ -141,6 +139,8 @@ const CGFloat EXPANDED_HEIGHT = 170;
         [self unselectPrivateButton];
     }
 }
+
+#pragma mark - expand / condense helpers
 
 - (void)updateForExpandedView {
     [_editButton setTitle:@"Cancel" forState:UIControlStateNormal];
@@ -231,6 +231,7 @@ const CGFloat EXPANDED_HEIGHT = 170;
         [self.delegate todayView:self didTapCancelEditExistingBlink:_blink];
     } else {
         [self.delegate todayView:self didTapEditExistingBlink:_blink];
+        [BIMixpanelHelper sendMixpanelEvent:@"TODAY_tappedToEditTodaysBlink" withProperties:@{@"source":@"edit existing entry"}];
     }
 }
 

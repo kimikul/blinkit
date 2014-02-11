@@ -11,15 +11,24 @@
 #import "BIHomeViewController.h"
 #import "BIFacebookUserManager.h"
 
+#define MIXPANEL_TOKEN @"3b0685b355f044f58e9ac31f6e733cf1"
+
 @implementation BIAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    // start 3rd party stuff
     [self startParseWithLaunchOptions:launchOptions];
     [PFFacebookUtils initializeFacebook];
+    [self setupMixpanel];
+    
+    // refresh stuff
     [self refreshFriendsAndFollows];
     
+    // continue
     [PFImageView class];
     [self presentCorrectRootController];
+    
+    [BIMixpanelHelper sendMixpanelEvent:@"APP_Open" withProperties:nil];
     
     return YES;
 }
@@ -31,6 +40,13 @@
                   clientKey:@"wytpn1ob1jPfhbQKaa1RUw1CUrynyVnTWfg8RaDE"];
     [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
     
+}
+
+#pragma mark - setup Mixpanel
+
+- (void)setupMixpanel {
+    [Mixpanel sharedInstanceWithToken:MIXPANEL_TOKEN];
+    [BIMixpanelHelper setupSuperPropertiesForUser:[PFUser currentUser]];
 }
 
 #pragma mark - friends and follows
@@ -81,6 +97,8 @@
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
     [self refreshFriendsAndFollows];
     [[NSNotificationCenter defaultCenter] postNotificationName:kBIRefreshHomeAndFeedNotification object:nil];
+    
+    [BIMixpanelHelper sendMixpanelEvent:@"APP_Open" withProperties:nil];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {

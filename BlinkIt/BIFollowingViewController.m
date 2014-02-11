@@ -31,6 +31,12 @@
     [self fetchFriends];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    [BIMixpanelHelper sendMixpanelEvent:@"FOLLOW_viewedFollowing" withProperties:nil];
+}
+
 - (void)fetchFriends {
     self.loading = YES;
     
@@ -121,11 +127,6 @@
         
         return cell;
     }
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 @end

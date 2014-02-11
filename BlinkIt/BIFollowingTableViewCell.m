@@ -73,18 +73,24 @@
                 [[BIDataStore shared] removeFollowedFriend:user];
             }
         }];
+        
+        [BIMixpanelHelper sendMixpanelEvent:@"FOLLOW_unfollowUser" withProperties:nil];
     } else if (_followingState == BIFollowingStateRequested) {
         [BIFollowManager cancelRequestToFollowUserEventually:user block:^(NSError *error) {
             if (!error) {
                 [[BIDataStore shared] removeRequestedFriend:user];
             }
         }];
+        
+        [BIMixpanelHelper sendMixpanelEvent:@"FOLLOW_unrequestFollowRequest" withProperties:nil];
     } else if (_followingState == BIFollowingStateNone) {
         [BIFollowManager requestToFollowUserEventually:user block:^(BOOL succeeded, NSError *error) {
             if (succeeded) {
                 [[BIDataStore shared] addRequestedFriend:user];
             }
         }];
+        
+        [BIMixpanelHelper sendMixpanelEvent:@"FOLLOW_requestToFollowUser" withProperties:nil];
     }
     
     // notify all affected cells to update UI

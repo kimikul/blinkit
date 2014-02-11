@@ -216,6 +216,8 @@
         
         self.loading = NO;
     }];
+    
+    [BIMixpanelHelper sendMixpanelEvent:@"HOME_fetchBlinks" withProperties:@{@"forPagination":@(pagination)}];
 }
 
 - (BOOL)isDateToday:(NSDate*)date {
@@ -365,6 +367,8 @@
         
         _todayView.isExpanded = YES;
         [_fadeLayer fadeInToOpacity:0.7 duration:0.5 completion:nil];
+        
+        [BIMixpanelHelper sendMixpanelEvent:@"TODAY_tappedToEditTodaysBlink" withProperties:@{@"source":@"first entry"}];
     }
     
     [_todayView updateRemainingCharLabel];
@@ -419,8 +423,10 @@
     theBlink[@"content"] = content;
     
     UIImage *image = _todayView.selectedImage;
+    BOOL hasImage = NO;
     if (image) {
         [self.imageUploadManager uploadImage:image forBlink:theBlink];
+        hasImage = YES;
     } else {
         [theBlink removeObjectForKey:@"imageFile"];
         [theBlink saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
@@ -432,6 +438,22 @@
             }
         }];
     }
+    
+    [self sendMixpanelForSubmittingBlink:theBlink hasImage:hasImage];
+}
+
+- (void)sendMixpanelForSubmittingBlink:(PFObject*)blink hasImage:(BOOL)hasImage {
+    NSMutableDictionary *propDict = [@{@"private" : blink[@"private"],
+                                       @"contentLength" : @([blink[@"content"] length])
+                                       } mutableCopy];
+    
+    if (hasImage) {
+        propDict[@"hasPhoto"] = @(1);
+    } else {
+        propDict[@"hasPhoto"] = @(0);
+    }
+    
+    [BIMixpanelHelper sendMixpanelEvent:@"TODAY_updatedTodaysBlink" withProperties:propDict];
 }
 
 - (void)todayView:(BITodayView *)todayView didTapEditExistingBlink:(PFObject*)blink {
@@ -480,17 +502,23 @@
                     }
                 }];
             }
+            
+            [BIMixpanelHelper sendMixpanelEvent:@"TODAY_deleteTodaysBlink" withProperties:nil];
         }
     } else if (actionSheet.tag == kAttachPhotoActionSheet) {
         if (buttonIndex == kActionSheetPhotoLibrary) {
             [self showImagePickerForSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
+            [BIMixpanelHelper sendMixpanelEvent:@"PHOTO_chooseExisting" withProperties:nil];
         } else if (buttonIndex == kActionSheetTakePhoto) {
             [self showImagePickerForSourceType:UIImagePickerControllerSourceTypeCamera];
+            [BIMixpanelHelper sendMixpanelEvent:@"PHOTO_takeNewPhoto" withProperties:nil];
         }
     } else if (actionSheet.tag == kDeletePreviousBlinkActionSheet) {
         if (buttonIndex == actionSheet.destructiveButtonIndex) {
             NSInteger indexOfDeletedBlink = [actionSheet.accessibilityLabel integerValue];
             [self deleteBlinkAtIndex:indexOfDeletedBlink];
+            
+            [BIMixpanelHelper sendMixpanelEvent:@"MYBLINKS_deletedPreviousBlink" withProperties:nil];
         }
     }
 }
@@ -603,6 +631,8 @@
             
             _togglePrivacyCell = nil;
         }];
+        
+        [BIMixpanelHelper sendMixpanelEvent:@"MYBLINKS_updatePrivacyOfPreviousBlink" withProperties:@{@"changeToPrivate":@(newPrivacySetting)}];
     }
 }
 

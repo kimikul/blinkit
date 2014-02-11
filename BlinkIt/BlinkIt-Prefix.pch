@@ -25,5 +25,6 @@
     #import "BIDataStore.h"
     #import "BIButton.h"
     #import "BIFollowManager.h"
-
+    #import "Mixpanel.h"
+    #import "BIMixpanelHelper.h"
 #endif

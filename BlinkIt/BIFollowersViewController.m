@@ -36,6 +36,12 @@
     [self fetchFollowers];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    [BIMixpanelHelper sendMixpanelEvent:@"FOLLOW_viewedFollowers" withProperties:nil];
+}
+
 - (void)fetchFollowers {
     self.loading = YES;
     
@@ -181,6 +187,8 @@
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"There was an error accepting this follower. Please try again." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alert show];
     }
+    
+    [BIMixpanelHelper sendMixpanelEvent:@"FOLLOW_acceptedFollower" withProperties:nil];
 }
 
 @end

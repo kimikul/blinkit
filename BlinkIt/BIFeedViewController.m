@@ -130,6 +130,8 @@
         
         self.loading = NO;
     }];
+    
+    [BIMixpanelHelper sendMixpanelEvent:@"FEED_fetchFeed" withProperties:@{@"forPagination":@(pagination)}];
 }
 
 - (void)sectionalizeBlinks:(NSArray*)blinks pagination:(BOOL)pagination {
@@ -302,6 +304,8 @@
     _isPresentingOtherVC = YES;
     
     [self presentViewController:nav animated:YES completion:nil];
+    
+    [BIMixpanelHelper sendMixpanelEvent:@"FOLLOW_tappedFriendsButton" withProperties:nil];
 }
 
 
