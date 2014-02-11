@@ -71,6 +71,38 @@
     }
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return (_friendsArray.count == 0) ? 0 : 34;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    
+    UIView *emptyView = [[UIView alloc] initWithFrame:CGRectZero];
+
+    if (_friendsArray.count == 0) {
+        return emptyView;
+    } else {
+        NSInteger numFollowing = [[BIDataStore shared] followedFriends].count;
+        NSString *title = [NSString stringWithFormat:@"Following (%d)", numFollowing];
+        return [self headerWithTitle:title];
+    }
+}
+
+- (UIView*)headerWithTitle:(NSString*)title {
+    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0,0,320,34)];
+    headerView.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1.0];
+    headerView.layer.borderColor = [UIColor whiteColor].CGColor;
+    headerView.layer.borderWidth = 3.0;
+    
+    UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(10,0,300,34)];
+    titleLabel.text = title;
+    titleLabel.font = [UIFont fontWithName:@"Thonburi" size:17.0];
+    titleLabel.textColor = [UIColor colorWithWhite:0.5 alpha:1.0];
+    [headerView addSubview:titleLabel];
+    
+    return headerView;
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (self.isLoading) {
         BIPaginationTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:[BIPaginationTableViewCell reuseIdentifier]];

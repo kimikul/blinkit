@@ -254,7 +254,8 @@
     
     UILabel *dateLabel = [[UILabel alloc] initWithFrame:CGRectMake(10,0,300,34)];
     dateLabel.text = date;
-    dateLabel.font = [UIFont boldSystemFontOfSize:15];
+    dateLabel.font = [UIFont fontWithName:@"Thonburi" size:17.0];
+    
     dateLabel.textColor = [UIColor colorWithWhite:0.5 alpha:1.0];
     [headerView addSubview:dateLabel];
     

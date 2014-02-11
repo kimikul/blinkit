@@ -105,7 +105,7 @@
     if (section == kTABLE_SECTION_REQUESTS) {
         return (_requestToFollowArray.count == 0) ? 0 : height;
     } else {
-        return (_followersArray.count == 0) ? 0 : height;
+        return height;
     }
 }
 
@@ -120,7 +120,7 @@
     } else {
         NSInteger numFollowers = _followersArray.count;
         NSString *title = [NSString stringWithFormat:@"Followers (%d)",numFollowers];
-        return (numFollowers == 0) ? emptyView : [self headerWithTitle:title];
+        return [self headerWithTitle:title];
     }
 }
 
@@ -132,7 +132,7 @@
     
     UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(10,0,300,34)];
     titleLabel.text = title;
-    titleLabel.font = [UIFont boldSystemFontOfSize:15];
+    titleLabel.font = [UIFont fontWithName:@"Thonburi" size:17.0];
     titleLabel.textColor = [UIColor colorWithWhite:0.5 alpha:1.0];
     [headerView addSubview:titleLabel];
     
