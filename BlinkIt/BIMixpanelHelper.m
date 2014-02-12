@@ -11,9 +11,9 @@
 @implementation BIMixpanelHelper
 
 + (BOOL)shouldDisableTracking {
-//#ifdef DEBUG
-//    return YES;
-//#endif
+#ifdef DEBUG
+    return YES;
+#endif
     return NO;
 }
 

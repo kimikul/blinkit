@@ -420,6 +420,7 @@
         theBlink[@"private"] = [NSNumber numberWithBool:_todayView.privateButton.selected];
     } else {
         theBlink = blink;
+        theBlink[@"date"] = [NSDate date];
     }
 
     theBlink[@"content"] = content;
