@@ -830,6 +830,8 @@ PRO TIP : Link your Facebook in Settings so friends can find you.</string>
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                     <connections>
+                                                        <action selector="dragOutsideAcceptButton:" destination="kVD-qX-VzR" eventType="touchDragOutside" id="x7D-02-ucU"/>
+                                                        <action selector="highlightAcceptButton:" destination="kVD-qX-VzR" eventType="touchDown" id="yQ8-tI-2FZ"/>
                                                         <action selector="tappedAccept:" destination="kVD-qX-VzR" eventType="touchUpInside" id="Db5-UR-E70"/>
                                                     </connections>
                                                 </button>

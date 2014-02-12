@@ -58,6 +58,16 @@
     [_activity saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         [self.delegate pendingRequestCell:self tappedAcceptRequestForUser:_activity[@"fromUser"] error:error];
     }];
+    
+    _actionButton.backgroundColor = [UIColor acceptGreen];
+}
+
+- (IBAction)highlightAcceptButton:(id)sender {
+    _actionButton.backgroundColor = [UIColor highlightAcceptGreen];
+}
+
+- (IBAction)dragOutsideAcceptButton:(id)sender {
+    _actionButton.backgroundColor = [UIColor acceptGreen];
 }
 
 @end

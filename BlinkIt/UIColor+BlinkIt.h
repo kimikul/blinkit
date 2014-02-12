@@ -11,5 +11,10 @@
 @interface UIColor (BlinkIt)
 
 + (UIColor*)mintGreen;
-
++ (UIColor*)acceptGreen;
++ (UIColor*)highlightAcceptGreen;
++ (UIColor*)followBlue;
++ (UIColor*)highlightFollowBlue;
++ (UIColor*)requestedOrange;
++ (UIColor*)highlightRequestedOrange;
 @end

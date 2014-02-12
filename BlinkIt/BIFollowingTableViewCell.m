@@ -33,7 +33,7 @@
     
     _followButton.layer.cornerRadius = 3.0;
     _followButton.clipsToBounds = YES;
-    
+
     _profilePic.layer.cornerRadius = 2.0;
     _profilePic.clipsToBounds = YES;
     
@@ -72,6 +72,8 @@
 #pragma mark - actions
 
 - (IBAction)tappedFollowButton:(id)sender {
+    _followButton.backgroundColor = [UIColor greenColor];
+    
     PFUser *user = _user;
 
     // update database with new follow state
