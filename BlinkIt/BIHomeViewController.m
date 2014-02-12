@@ -100,10 +100,10 @@
     //settings
     BIButton *settingsButton = [BIButton buttonWithType:UIButtonTypeCustom];
     settingsButton.barButtonSide = BIBarButtonTypeLeft;
-    settingsButton.frame = CGRectMake(0,0,25,25);
+    settingsButton.frame = CGRectMake(0,0,30,30);
     
     UIImage *settingsImage = [[UIImage imageNamed:@"settings"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-    [settingsButton setImage:settingsImage forState:UIControlStateNormal];
+    [settingsButton setBackgroundImage:settingsImage forState:UIControlStateNormal];
     [settingsButton addTarget:self action:@selector(tappedSettings:) forControlEvents:UIControlEventTouchUpInside];
     
     UIBarButtonItem *settingsBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:settingsButton];

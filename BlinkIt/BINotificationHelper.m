@@ -16,7 +16,9 @@
     [query whereKey:@"toUser" equalTo:[PFUser currentUser]];
     [query whereKey:@"type" equalTo:@"request to follow"];
     [query countObjectsInBackgroundWithBlock:^(int count, NSError *error) {
-        [self updateBadgeCount:count];
+        if (!error) {
+            [self updateBadgeCount:count];
+        }
     }];
 }
 
