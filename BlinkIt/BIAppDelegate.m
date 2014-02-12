@@ -10,6 +10,7 @@
 #import "BISplashViewController.h"
 #import "BIHomeViewController.h"
 #import "BIFacebookUserManager.h"
+#import <Crashlytics/Crashlytics.h>
 
 #define MIXPANEL_TOKEN @"3b0685b355f044f58e9ac31f6e733cf1"
 
@@ -20,6 +21,7 @@
     [self startParseWithLaunchOptions:launchOptions];
     [PFFacebookUtils initializeFacebook];
     [self setupMixpanel];
+    [self setupCrashlytics];
     
     // refresh stuff
     [self refreshFriendsAndFollows];
@@ -47,6 +49,13 @@
 - (void)setupMixpanel {
     [Mixpanel sharedInstanceWithToken:MIXPANEL_TOKEN];
     [BIMixpanelHelper setupSuperPropertiesForUser:[PFUser currentUser]];
+}
+
+#pragma mark - crashlytics
+
+- (void)setupCrashlytics {
+    [Crashlytics startWithAPIKey:@"639c04cf03ff76c8b837221e8d6882adef379e3e"];
+    [BICrashlyticsHelper setupCrashlyticsProperties];
 }
 
 #pragma mark - friends and follows

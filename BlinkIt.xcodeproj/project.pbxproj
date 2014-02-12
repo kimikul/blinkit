@@ -47,6 +47,8 @@
 		5E79D004189A363600529EBE /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E79D003189A363600529EBE /* FacebookSDK.framework */; };
 		5E79D006189A372000529EBE /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E79D005189A372000529EBE /* StoreKit.framework */; };
 		5E79D009189A45AE00529EBE /* BIFacebookUserManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E79D008189A45AE00529EBE /* BIFacebookUserManager.m */; };
+		5E9D037218AB2FD900634EB9 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9D037118AB2FD900634EB9 /* Crashlytics.framework */; };
+		5E9D037818AB30F800634EB9 /* BICrashlyticsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E9D037718AB30F800634EB9 /* BICrashlyticsHelper.m */; };
 		5E9DF17E18AA348000FA69E5 /* BITabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E9DF17D18AA348000FA69E5 /* BITabBarController.m */; };
 		5EAB8AA4187E73DF00B02953 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EAB8AA3187E73DF00B02953 /* Foundation.framework */; };
 		5EAB8AA6187E73DF00B02953 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EAB8AA5187E73DF00B02953 /* CoreGraphics.framework */; };
@@ -172,6 +174,9 @@
 		5E79D005189A372000529EBE /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		5E79D007189A45AE00529EBE /* BIFacebookUserManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BIFacebookUserManager.h; sourceTree = "<group>"; };
 		5E79D008189A45AE00529EBE /* BIFacebookUserManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BIFacebookUserManager.m; sourceTree = "<group>"; };
+		5E9D037118AB2FD900634EB9 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
+		5E9D037618AB30F800634EB9 /* BICrashlyticsHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BICrashlyticsHelper.h; sourceTree = "<group>"; };
+		5E9D037718AB30F800634EB9 /* BICrashlyticsHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BICrashlyticsHelper.m; sourceTree = "<group>"; };
 		5E9DF17C18AA348000FA69E5 /* BITabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BITabBarController.h; sourceTree = "<group>"; };
 		5E9DF17D18AA348000FA69E5 /* BITabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BITabBarController.m; sourceTree = "<group>"; };
 		5EAB8AA0187E73DF00B02953 /* BlinkIt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BlinkIt.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -250,6 +255,7 @@
 				5EAB8B09187FC90000B02953 /* MobileCoreServices.framework in Frameworks */,
 				5EAB8B07187FC8CD00B02953 /* libz.1.1.3.dylib in Frameworks */,
 				5EAB8B05187FC8C600B02953 /* CoreLocation.framework in Frameworks */,
+				5E9D037218AB2FD900634EB9 /* Crashlytics.framework in Frameworks */,
 				5EAB8B03187FC8BF00B02953 /* CFNetwork.framework in Frameworks */,
 				5EAB8B01187FC8BA00B02953 /* AudioToolbox.framework in Frameworks */,
 				5E79D004189A363600529EBE /* FacebookSDK.framework in Frameworks */,
@@ -321,6 +327,8 @@
 				5E42D407189CDB7200F651E0 /* BIFollowManager.m */,
 				5E6F4B5C18A9E9B7006289D0 /* BIMixpanelHelper.h */,
 				5E6F4B5D18A9E9B7006289D0 /* BIMixpanelHelper.m */,
+				5E9D037618AB30F800634EB9 /* BICrashlyticsHelper.h */,
+				5E9D037718AB30F800634EB9 /* BICrashlyticsHelper.m */,
 			);
 			name = Helper;
 			sourceTree = "<group>";
@@ -417,6 +425,7 @@
 		5EAB8AA2187E73DF00B02953 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5E9D037118AB2FD900634EB9 /* Crashlytics.framework */,
 				5E72976C18A9F32A008D356C /* CoreTelephony.framework */,
 				5E72976A18A9F31C008D356C /* Accelerate.framework */,
 				5E72976818A9F312008D356C /* AdSupport.framework */,
@@ -590,6 +599,7 @@
 				5EAB8A9C187E73DF00B02953 /* Sources */,
 				5EAB8A9D187E73DF00B02953 /* Frameworks */,
 				5EAB8A9E187E73DF00B02953 /* Resources */,
+				5E9D037018AB2FB500634EB9 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -680,6 +690,22 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		5E9D037018AB2FB500634EB9 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Crashlytics.framework/run 639c04cf03ff76c8b837221e8d6882adef379e3e 86cd1d25c91cdbdd629eb95bd07c64fcd2c204b542d7945923a580ff0ed3016b";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		5EAB8A9C187E73DF00B02953 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -701,6 +727,7 @@
 				5EB3A5C31887A18F00BCA8DB /* BIViewController.m in Sources */,
 				5E6F4B5E18A9E9B7006289D0 /* BIMixpanelHelper.m in Sources */,
 				5E639291188BA52F00D1AE80 /* BISettingsViewController.m in Sources */,
+				5E9D037818AB30F800634EB9 /* BICrashlyticsHelper.m in Sources */,
 				5EAB8B2C1881062A00B02953 /* UIStoryboard+BlinkIt.m in Sources */,
 				5EAB8AE4187E7D3600B02953 /* BISplashViewController.m in Sources */,
 				5E7297B318A9F472008D356C /* Mixpanel.m in Sources */,

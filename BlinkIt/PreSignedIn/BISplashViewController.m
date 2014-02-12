@@ -102,6 +102,7 @@
     [BIFollowManager refreshFollowingList];
     [BIFollowManager refreshRequestToFollowList];
     [BIMixpanelHelper setupSuperPropertiesForUser:[PFUser currentUser]];
+    [BICrashlyticsHelper setupCrashlyticsProperties];
     
     UIStoryboard *mainStoryboard = [UIStoryboard mainStoryboard];
     UINavigationController *homeVC = [mainStoryboard instantiateViewControllerWithIdentifier:@"BITabBarController"];

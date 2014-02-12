@@ -99,6 +99,7 @@
                         [BIFollowManager refreshFollowingList];
                         [BIFollowManager refreshRequestToFollowList];
                         [BIMixpanelHelper setupSuperPropertiesForUser:[PFUser currentUser]];
+                        [BICrashlyticsHelper setupCrashlyticsProperties];
                         [self updateFacebookLinkLabel];
                         
                         [BIMixpanelHelper sendMixpanelEvent:@"FACEBOOK_linkFacebookSuccess" withProperties:@{@"source":@"settings"}];

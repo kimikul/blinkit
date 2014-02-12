@@ -27,4 +27,6 @@
     #import "BIFollowManager.h"
     #import "Mixpanel.h"
     #import "BIMixpanelHelper.h"
+    #import "BICrashlyticsHelper.h"
+
 #endif
