@@ -278,15 +278,17 @@
     NSNumber *count = note.object;
     
     UIImage *notificationImage;
-
+    NSString *buttonText = @"";
+    
     if ([count integerValue] > 0) {
         notificationImage = [[UIImage imageNamed:@"Notification-icon"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+        buttonText = [NSString stringWithFormat:@"%@",count];
     } else {
         notificationImage = [[UIImage imageNamed:@"Notification-icon"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     }
     
     UIButton *notieButton = (UIButton*)self.navigationItem.rightBarButtonItem.customView;
-    [notieButton setTitle:[NSString stringWithFormat:@"%@",count] forState:UIControlStateNormal];
+    [notieButton setTitle:buttonText forState:UIControlStateNormal];
     [notieButton setBackgroundImage:notificationImage forState:UIControlStateNormal];
 }
 

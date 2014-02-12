@@ -24,7 +24,12 @@
     // update tab badge
     BIAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     UITabBarController *tabBarController = (UITabBarController*)appDelegate.window.rootViewController;
-    [[tabBarController.tabBar.items objectAtIndex:0] setBadgeValue:[NSString stringWithFormat:@"%d",count]];
+    NSString *tabBadgeText = nil;
+    if (count > 0) {
+        tabBadgeText = [NSString stringWithFormat:@"%d",count];
+    }
+
+    [[tabBarController.tabBar.items objectAtIndex:0] setBadgeValue:tabBadgeText];
     
     // update app badge
     [[UIApplication sharedApplication] setApplicationIconBadgeNumber:count];
