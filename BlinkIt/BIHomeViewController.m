@@ -97,9 +97,10 @@
 }
 
 - (void)setupButtons {
+    //settings
     BIButton *settingsButton = [BIButton buttonWithType:UIButtonTypeCustom];
     settingsButton.barButtonSide = BIBarButtonTypeLeft;
-    settingsButton.frame = CGRectMake(0,0,24,24);
+    settingsButton.frame = CGRectMake(0,0,22,22);
     
     UIImage *settingsImage = [[UIImage imageNamed:@"settings"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     [settingsButton setImage:settingsImage forState:UIControlStateNormal];
@@ -108,6 +109,19 @@
     UIBarButtonItem *settingsBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:settingsButton];
     settingsBarButtonItem.customView.hidden = YES;
     self.navigationItem.leftBarButtonItem = settingsBarButtonItem;
+    
+    // notifications
+    BIButton *notificationButton = [BIButton buttonWithType:UIButtonTypeCustom];
+    notificationButton.barButtonSide = BIBarButtonTypeRight;
+    notificationButton.frame = CGRectMake(0,0,24,24);
+    
+    UIImage *notificationImage = [[UIImage imageNamed:@"Notification-icon"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    [notificationButton setImage:notificationImage forState:UIControlStateNormal];
+    [notificationButton addTarget:self action:@selector(tappedNotifications:) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIBarButtonItem *notificationBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:notificationButton];
+    notificationBarButtonItem.customView.hidden = YES;
+    self.navigationItem.rightBarButtonItem = notificationBarButtonItem;
 }
 
 - (void)setupNav {
@@ -160,6 +174,7 @@
     if (self.navigationItem.titleView.hidden) {
         [self.navigationItem.titleView fadeInWithDuration:0.5 completion:nil];
         [self.navigationItem.leftBarButtonItem.customView fadeInWithDuration:0.5 completion:nil];
+        [self.navigationItem.rightBarButtonItem.customView fadeInWithDuration:0.5 completion:nil];
     }
 }
 
@@ -659,6 +674,13 @@
     
     UINavigationController *settingsNav = [mainStoryboard instantiateViewControllerWithIdentifier:@"BISettingsNavigationController"];
     [self presentViewController:settingsNav animated:YES completion:nil];
+}
+
+- (void)tappedNotifications:(id)sender {
+    UIStoryboard *mainStoryboard = [UIStoryboard mainStoryboard];
+    
+    UINavigationController *notificationsNav = [mainStoryboard instantiateViewControllerWithIdentifier:@"BINotificationsNavigationController"];
+    [self presentViewController:notificationsNav animated:YES completion:nil];
 }
 
 

@@ -32,8 +32,4 @@
 - (void)removeRequestedFriend:(PFUser*)user;
 - (BOOL)hasRequestedUser:(PFUser*)user;
 
-
-// cached profile pics
-- (void)addProfilePic:(UIImage*)image withURL:(NSString*)url;
-
 @end

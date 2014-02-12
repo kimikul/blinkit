@@ -709,6 +709,80 @@ PRO TIP : Link your Facebook in Settings to find friends if you haven't yet</str
             </objects>
             <point key="canvasLocation" x="4869" y="129"/>
         </scene>
+        <!--Notifications View Controller - Notifications-->
+        <scene sceneID="uRz-fY-bJt">
+            <objects>
+                <viewController storyboardIdentifier="BINotificationsViewController" id="eKF-AC-OtH" customClass="BINotificationsViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="qWK-75-zKa">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="lW1-ZJ-Xcu">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="BINotificationFollowRequestCell" rowHeight="44" id="PNw-X0-ChM" customClass="BINotificationFollowRequestCell">
+                                        <rect key="frame" x="0.0" y="86" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="PNw-X0-ChM" id="XlK-fk-HoS">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="cYS-fk-xhT">
+                                                    <rect key="frame" x="10" y="7" width="30" height="30"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                </imageView>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ron Alivia has requested to follow you" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="krc-lo-zq8">
+                                                    <rect key="frame" x="47" y="-1" width="190" height="43"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="mum-01-8nd">
+                                                    <rect key="frame" x="245" y="8" width="70" height="28"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <color key="backgroundColor" red="0.12858245330000001" green="0.61981997280000001" blue="0.11280838429999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
+                                                    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                    <state key="normal" title="Accept">
+                                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="dragOutsideAcceptButton:" destination="PNw-X0-ChM" eventType="touchDragOutside" id="guw-qp-yL3"/>
+                                                        <action selector="highlightAcceptButton:" destination="PNw-X0-ChM" eventType="touchDown" id="5y8-hX-uYj"/>
+                                                        <action selector="tappedAccept:" destination="PNw-X0-ChM" eventType="touchUpInside" id="3fc-CI-Qej"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="acceptButton" destination="mum-01-8nd" id="kh5-dA-FxQ"/>
+                                            <outlet property="actionButton" destination="mum-01-8nd" id="xBr-vT-5I1"/>
+                                            <outlet property="nameLabel" destination="krc-lo-zq8" id="dKR-lM-0g5"/>
+                                            <outlet property="notificationLabel" destination="krc-lo-zq8" id="vzt-hs-JwG"/>
+                                            <outlet property="profilePic" destination="cYS-fk-xhT" id="DR1-rr-Kps"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="eKF-AC-OtH" id="6k2-FB-JGJ"/>
+                                    <outlet property="delegate" destination="eKF-AC-OtH" id="2uf-f5-Bd3"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Notifications" id="Q7G-Wx-LB9"/>
+                    <connections>
+                        <outlet property="tableView" destination="lW1-ZJ-Xcu" id="Gh8-mJ-7sy"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4rw-K3-MRc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5495" y="825"/>
+        </scene>
         <!--Followers View Controller-->
         <scene sceneID="59F-wN-dCH">
             <objects>
@@ -918,6 +992,24 @@ PRO TIP : Link your Facebook in Settings so friends can find you.</string>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0le-1Q-d9a" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3815" y="-548"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="NT0-SI-Usc">
+            <objects>
+                <navigationController storyboardIdentifier="BINotificationsNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="L5u-uL-6vf" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="PFz-hY-EWR">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="eKF-AC-OtH" kind="relationship" relationship="rootViewController" id="yGq-Kr-DWe"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FUz-er-iF3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4969" y="825"/>
         </scene>
     </scenes>
     <resources>
