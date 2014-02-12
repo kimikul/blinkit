@@ -17,3 +17,4 @@ NSString *const kBIUserDefaultsRequestedFriendsKey = @"kBIUserDefaultsRequestedF
 #pragma mark - Notifications
 NSString *const kBIRefreshHomeAndFeedNotification = @"kBIRefreshHomeAndFeedNotification";
 NSString *const kBITappedFollowButtonNotification = @"kBITappedFollowButtonNotification";
+NSString *const kBIUpdateHomeNotificationBadgeNotification = @"kBIUpdateHomeNotificationBadgeNotification";

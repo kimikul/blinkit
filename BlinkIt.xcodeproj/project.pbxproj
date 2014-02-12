@@ -55,6 +55,7 @@
 		5E9D038018AB3E0600634EB9 /* BIHomePhotoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E9D037F18AB3E0600634EB9 /* BIHomePhotoTableViewCell.xib */; };
 		5E9D038818AB724000634EB9 /* BINotificationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E9D038718AB724000634EB9 /* BINotificationsViewController.m */; };
 		5E9D038B18AB736C00634EB9 /* BINotificationFollowRequestCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E9D038A18AB736C00634EB9 /* BINotificationFollowRequestCell.m */; };
+		5E9D038E18AB87E600634EB9 /* BINotificationHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E9D038D18AB87E600634EB9 /* BINotificationHelper.m */; };
 		5E9DF17E18AA348000FA69E5 /* BITabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E9DF17D18AA348000FA69E5 /* BITabBarController.m */; };
 		5EAB8AA4187E73DF00B02953 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EAB8AA3187E73DF00B02953 /* Foundation.framework */; };
 		5EAB8AA6187E73DF00B02953 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EAB8AA5187E73DF00B02953 /* CoreGraphics.framework */; };
@@ -191,6 +192,8 @@
 		5E9D038718AB724000634EB9 /* BINotificationsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BINotificationsViewController.m; sourceTree = "<group>"; };
 		5E9D038918AB736C00634EB9 /* BINotificationFollowRequestCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BINotificationFollowRequestCell.h; sourceTree = "<group>"; };
 		5E9D038A18AB736C00634EB9 /* BINotificationFollowRequestCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BINotificationFollowRequestCell.m; sourceTree = "<group>"; };
+		5E9D038C18AB87E600634EB9 /* BINotificationHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BINotificationHelper.h; sourceTree = "<group>"; };
+		5E9D038D18AB87E600634EB9 /* BINotificationHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BINotificationHelper.m; sourceTree = "<group>"; };
 		5E9DF17C18AA348000FA69E5 /* BITabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BITabBarController.h; sourceTree = "<group>"; };
 		5E9DF17D18AA348000FA69E5 /* BITabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BITabBarController.m; sourceTree = "<group>"; };
 		5EAB8AA0187E73DF00B02953 /* BlinkIt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BlinkIt.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -426,6 +429,8 @@
 				5E9D038718AB724000634EB9 /* BINotificationsViewController.m */,
 				5E9D038918AB736C00634EB9 /* BINotificationFollowRequestCell.h */,
 				5E9D038A18AB736C00634EB9 /* BINotificationFollowRequestCell.m */,
+				5E9D038C18AB87E600634EB9 /* BINotificationHelper.h */,
+				5E9D038D18AB87E600634EB9 /* BINotificationHelper.m */,
 			);
 			name = Notifications;
 			sourceTree = "<group>";
@@ -759,6 +764,7 @@
 				5E42D3FA189CA77C00F651E0 /* BIFollowersViewController.m in Sources */,
 				5E7297D818AA23C9008D356C /* MPSurveyQuestion.m in Sources */,
 				5EAB8B3318811E8600B02953 /* BITableViewController.m in Sources */,
+				5E9D038E18AB87E600634EB9 /* BINotificationHelper.m in Sources */,
 				5EB3A5C31887A18F00BCA8DB /* BIViewController.m in Sources */,
 				5E9D038B18AB736C00634EB9 /* BINotificationFollowRequestCell.m in Sources */,
 				5E6F4B5E18A9E9B7006289D0 /* BIMixpanelHelper.m in Sources */,

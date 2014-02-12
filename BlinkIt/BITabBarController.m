@@ -17,6 +17,12 @@
 
 @implementation BITabBarController
 
+- (void)viewDidLoad {
+    [super viewDidLoad];
+
+    self.tabBar.barTintColor = [UIColor colorWithWhite:0.95 alpha:1];
+}
+
 - (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item  {
     NSInteger selectedIndex = self.selectedIndex;
     if (selectedIndex == kTABBAR_ME) {

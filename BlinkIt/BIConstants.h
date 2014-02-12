@@ -16,3 +16,4 @@ extern NSString *const kBIUserDefaultsRequestedFriendsKey;
 #pragma mark - Notifications
 extern NSString *const kBIRefreshHomeAndFeedNotification;
 extern NSString *const kBITappedFollowButtonNotification;
+extern NSString *const kBIUpdateHomeNotificationBadgeNotification;

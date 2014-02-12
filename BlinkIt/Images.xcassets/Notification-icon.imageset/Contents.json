@@ -4,11 +4,6 @@
       "idiom" : "universal",
       "scale" : "1x",
       "filename" : "Notification-icon.png"
-    },
-    {
-      "idiom" : "universal",
-      "scale" : "2x",
-      "filename" : "Notification-icon@2x.png"
     }
   ],
   "info" : {

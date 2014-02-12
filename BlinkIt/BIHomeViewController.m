@@ -100,7 +100,7 @@
     //settings
     BIButton *settingsButton = [BIButton buttonWithType:UIButtonTypeCustom];
     settingsButton.barButtonSide = BIBarButtonTypeLeft;
-    settingsButton.frame = CGRectMake(0,0,22,22);
+    settingsButton.frame = CGRectMake(0,0,25,25);
     
     UIImage *settingsImage = [[UIImage imageNamed:@"settings"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     [settingsButton setImage:settingsImage forState:UIControlStateNormal];
@@ -113,10 +113,12 @@
     // notifications
     BIButton *notificationButton = [BIButton buttonWithType:UIButtonTypeCustom];
     notificationButton.barButtonSide = BIBarButtonTypeRight;
-    notificationButton.frame = CGRectMake(0,0,24,24);
+    notificationButton.frame = CGRectMake(0,0,35,30);
+    notificationButton.titleLabel.font = [UIFont boldSystemFontOfSize:15.0];
+    notificationButton.titleEdgeInsets = UIEdgeInsetsMake(0, 9, 2, 0);
     
     UIImage *notificationImage = [[UIImage imageNamed:@"Notification-icon"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-    [notificationButton setImage:notificationImage forState:UIControlStateNormal];
+    [notificationButton setBackgroundImage:notificationImage forState:UIControlStateNormal];
     [notificationButton addTarget:self action:@selector(tappedNotifications:) forControlEvents:UIControlEventTouchUpInside];
     
     UIBarButtonItem *notificationBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:notificationButton];
@@ -166,6 +168,7 @@
 
 - (void)setupObservers {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshHome) name:kBIRefreshHomeAndFeedNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateHomeBadgeCount:) name:kBIUpdateHomeNotificationBadgeNotification object:nil];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -267,6 +270,24 @@
     if([self hasReachedTableEnd:self.tableView] && self.canPaginate) {
         [self fetchBlinksForPagination:YES];
     }
+}
+
+#pragma mark - notifications
+
+- (void)updateHomeBadgeCount:(NSNotification*)note {
+    NSNumber *count = note.object;
+    
+    UIImage *notificationImage;
+
+    if ([count integerValue] > 0) {
+        notificationImage = [[UIImage imageNamed:@"Notification-icon"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    } else {
+        notificationImage = [[UIImage imageNamed:@"Notification-icon"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    }
+    
+    UIButton *notieButton = (UIButton*)self.navigationItem.rightBarButtonItem.customView;
+    [notieButton setTitle:[NSString stringWithFormat:@"%@",count] forState:UIControlStateNormal];
+    [notieButton setBackgroundImage:notificationImage forState:UIControlStateNormal];
 }
 
 #pragma mark - UITableViewDelegate / UITableViewDataSource

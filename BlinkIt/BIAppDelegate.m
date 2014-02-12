@@ -25,6 +25,7 @@
     
     // refresh stuff
     [self refreshFriendsAndFollows];
+    [self refreshBadgeCounts];
     
     // continue
     [PFImageView class];
@@ -68,6 +69,10 @@
     }
 }
 
+- (void)refreshBadgeCounts {
+    [BINotificationHelper fetchBadgeCount];
+}
+
 #pragma mark - transition
 
 - (void)presentCorrectRootController {
@@ -108,6 +113,7 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:kBIRefreshHomeAndFeedNotification object:nil];
     
     [BIMixpanelHelper sendMixpanelEvent:@"APP_Open" withProperties:nil];
+    [self refreshBadgeCounts];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {

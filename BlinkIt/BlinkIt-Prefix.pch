@@ -28,4 +28,6 @@
     #import "Mixpanel.h"
     #import "BIMixpanelHelper.h"
     #import "BICrashlyticsHelper.h"
+    #import "BINotificationHelper.h"
+
 #endif
