@@ -51,12 +51,6 @@
     _userPicImageView.clipsToBounds = YES;
 }
 
-//- (void)prepareForReuse {
-//    [super prepareForReuse];
-//    
-//    _userPicImageView.image = nil;
-//}
-
 #pragma mark - setter/getter
 
 - (void)setBlink:(PFObject *)blink {

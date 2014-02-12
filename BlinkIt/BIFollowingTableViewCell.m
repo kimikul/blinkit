@@ -49,7 +49,16 @@
 - (void)setUser:(PFUser *)user {
     _user = user;
     _nameLabel.text = user[@"name"];
-    _profilePic.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:user[@"photoURL"]]]];
+    
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0ul);
+    
+    dispatch_async(queue, ^{
+        UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:user[@"photoURL"]]]];
+        
+        dispatch_sync(dispatch_get_main_queue(), ^{
+            _profilePic.image = image;
+        });
+    });
     
     if ([[BIDataStore shared] isFollowingUser:user]) {
         [self setButtonToShowFollowing];

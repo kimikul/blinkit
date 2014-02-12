@@ -572,7 +572,7 @@ PRO TIP: Click the top right button to follow friends if you haven't yet :)</str
                 <viewController storyboardIdentifier="BIFollowViewController" id="zYa-Co-Rj9" customClass="BIFollowViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="2vh-00-bZb">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="gkF-Ku-lHd">
@@ -603,10 +603,10 @@ PRO TIP: Click the top right button to follow friends if you haven't yet :)</str
                 <viewController storyboardIdentifier="BIFollowingViewController" id="Zqy-Vp-gMZ" customClass="BIFollowingViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="hLj-Hc-FZz">
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="iNU-qq-f7G">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="440"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <inset key="separatorInset" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -699,6 +699,7 @@ PRO TIP : Link your Facebook in Settings to find friends if you haven't yet</str
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" id="PKN-OR-gR0"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <connections>
                         <outlet property="tableView" destination="iNU-qq-f7G" id="E2m-mq-zRl"/>
@@ -706,7 +707,7 @@ PRO TIP : Link your Facebook in Settings to find friends if you haven't yet</str
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1Sa-4R-DmN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4343" y="129"/>
+            <point key="canvasLocation" x="4869" y="129"/>
         </scene>
         <!--Followers View Controller-->
         <scene sceneID="59F-wN-dCH">
@@ -714,10 +715,10 @@ PRO TIP : Link your Facebook in Settings to find friends if you haven't yet</str
                 <viewController storyboardIdentifier="BIFollowersViewController" id="e3d-qn-9Yc" customClass="BIFollowersViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="CPh-CY-1gY">
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="FlI-f7-UeK">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="440"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -856,7 +857,7 @@ PRO TIP : Link your Facebook in Settings so friends can find you.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cYo-82-dUJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4707" y="129"/>
+            <point key="canvasLocation" x="5233" y="129"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="Sdq-Gx-Edp">
