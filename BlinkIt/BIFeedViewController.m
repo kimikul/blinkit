@@ -60,10 +60,10 @@
 }
 
 - (void)setupButtons {
-    UIImage *friendsImage = [[UIImage imageNamed:@"Tab-friends"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    UIImage *friendsImage = [[UIImage imageNamed:@"add-friend"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     
     BIButton *friendsButton = [BIButton buttonWithType:UIButtonTypeCustom];
-    friendsButton.frame = CGRectMake(0, 0, 40, 30);
+    friendsButton.frame = CGRectMake(0, 0, 30, 30);
     friendsButton.barButtonSide = BIBarButtonTypeRight;
     [friendsButton setImage:friendsImage forState:UIControlStateNormal];
     [friendsButton addTarget:self action:@selector(tappedFriends:) forControlEvents:UIControlEventTouchUpInside];
