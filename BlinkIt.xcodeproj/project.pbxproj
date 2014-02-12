@@ -49,6 +49,10 @@
 		5E79D009189A45AE00529EBE /* BIFacebookUserManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E79D008189A45AE00529EBE /* BIFacebookUserManager.m */; };
 		5E9D037218AB2FD900634EB9 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9D037118AB2FD900634EB9 /* Crashlytics.framework */; };
 		5E9D037818AB30F800634EB9 /* BICrashlyticsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E9D037718AB30F800634EB9 /* BICrashlyticsHelper.m */; };
+		5E9D037A18AB3D2000634EB9 /* BIFeedTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E9D037918AB3D2000634EB9 /* BIFeedTableViewCell.xib */; };
+		5E9D037C18AB3D2B00634EB9 /* BIFeedPhotoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E9D037B18AB3D2B00634EB9 /* BIFeedPhotoTableViewCell.xib */; };
+		5E9D037E18AB3DFA00634EB9 /* BIHomeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E9D037D18AB3DFA00634EB9 /* BIHomeTableViewCell.xib */; };
+		5E9D038018AB3E0600634EB9 /* BIHomePhotoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E9D037F18AB3E0600634EB9 /* BIHomePhotoTableViewCell.xib */; };
 		5E9DF17E18AA348000FA69E5 /* BITabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E9DF17D18AA348000FA69E5 /* BITabBarController.m */; };
 		5EAB8AA4187E73DF00B02953 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EAB8AA3187E73DF00B02953 /* Foundation.framework */; };
 		5EAB8AA6187E73DF00B02953 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EAB8AA5187E73DF00B02953 /* CoreGraphics.framework */; };
@@ -177,6 +181,10 @@
 		5E9D037118AB2FD900634EB9 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		5E9D037618AB30F800634EB9 /* BICrashlyticsHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BICrashlyticsHelper.h; sourceTree = "<group>"; };
 		5E9D037718AB30F800634EB9 /* BICrashlyticsHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BICrashlyticsHelper.m; sourceTree = "<group>"; };
+		5E9D037918AB3D2000634EB9 /* BIFeedTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BIFeedTableViewCell.xib; sourceTree = "<group>"; };
+		5E9D037B18AB3D2B00634EB9 /* BIFeedPhotoTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BIFeedPhotoTableViewCell.xib; sourceTree = "<group>"; };
+		5E9D037D18AB3DFA00634EB9 /* BIHomeTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BIHomeTableViewCell.xib; sourceTree = "<group>"; };
+		5E9D037F18AB3E0600634EB9 /* BIHomePhotoTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BIHomePhotoTableViewCell.xib; sourceTree = "<group>"; };
 		5E9DF17C18AA348000FA69E5 /* BITabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BITabBarController.h; sourceTree = "<group>"; };
 		5E9DF17D18AA348000FA69E5 /* BITabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BITabBarController.m; sourceTree = "<group>"; };
 		5EAB8AA0187E73DF00B02953 /* BlinkIt.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BlinkIt.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -288,6 +296,8 @@
 				5E3420D818A4B3CD0088A270 /* BIFeedTableViewCell.m */,
 				5E3420E818A5E5950088A270 /* BIFeedPhotoTableViewCell.h */,
 				5E3420E918A5E5950088A270 /* BIFeedPhotoTableViewCell.m */,
+				5E9D037918AB3D2000634EB9 /* BIFeedTableViewCell.xib */,
+				5E9D037B18AB3D2B00634EB9 /* BIFeedPhotoTableViewCell.xib */,
 			);
 			name = Feed;
 			sourceTree = "<group>";
@@ -539,6 +549,8 @@
 				5EAB8B4218831B0700B02953 /* BITodayView.xib */,
 				5E6392791889227F00D1AE80 /* BIHomePhotoTableViewCell.h */,
 				5E63927A1889227F00D1AE80 /* BIHomePhotoTableViewCell.m */,
+				5E9D037D18AB3DFA00634EB9 /* BIHomeTableViewCell.xib */,
+				5E9D037F18AB3E0600634EB9 /* BIHomePhotoTableViewCell.xib */,
 			);
 			name = Home;
 			sourceTree = "<group>";
@@ -670,8 +682,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5E9D037C18AB3D2B00634EB9 /* BIFeedPhotoTableViewCell.xib in Resources */,
+				5E9D038018AB3E0600634EB9 /* BIHomePhotoTableViewCell.xib in Resources */,
+				5E9D037E18AB3DFA00634EB9 /* BIHomeTableViewCell.xib in Resources */,
 				5EAB8ABC187E73DF00B02953 /* Images.xcassets in Resources */,
 				5E6392721888F09600D1AE80 /* BIPhotoViewController.xib in Resources */,
+				5E9D037A18AB3D2000634EB9 /* BIFeedTableViewCell.xib in Resources */,
 				5E7297D518AA23C9008D356C /* MPNotification.storyboard in Resources */,
 				5EAB8AAE187E73DF00B02953 /* InfoPlist.strings in Resources */,
 				5E7297D618AA23C9008D356C /* MPSurvey.storyboard in Resources */,

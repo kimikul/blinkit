@@ -51,7 +51,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     [self setupButtons];
+    [self setupTableView];
     [self setupNav];
     [self setupObservers];
     [self fetchFeedForPagination:NO];
@@ -69,6 +71,11 @@
     UIBarButtonItem *rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:friendsButton];
     
     self.navigationItem.rightBarButtonItem = rightBarButtonItem;
+}
+
+- (void)setupTableView {
+    [self.tableView registerNib:[UINib nibWithNibName:[BIFeedPhotoTableViewCell reuseIdentifier] bundle:[NSBundle mainBundle]] forCellReuseIdentifier:[BIFeedPhotoTableViewCell reuseIdentifier]];
+    [self.tableView registerNib:[UINib nibWithNibName:[BIFeedTableViewCell reuseIdentifier] bundle:[NSBundle mainBundle]] forCellReuseIdentifier:[BIFeedTableViewCell reuseIdentifier]];
 }
 
 - (void)setupNav {

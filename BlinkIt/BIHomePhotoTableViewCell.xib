@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="4514" systemVersion="13B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="gray" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="BIHomePhotoTableViewCell" rowHeight="200" id="gOB-mc-Gh7" customClass="BIHomePhotoTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="200"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gOB-mc-Gh7" id="bGP-72-Ha8">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="199"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wednesday, September 25, 2014" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E0J-Hm-pMt">
+                        <rect key="frame" x="10" y="8" width="278" height="18"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="18" id="egs-cH-lNw"/>
+                            <constraint firstAttribute="width" constant="278" id="ilL-tt-A9M"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="15"/>
+                        <color key="textColor" red="0.99607843139999996" green="0.50196078430000002" blue="0.50196078430000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="300" translatesAutoresizingMaskIntoConstraints="NO" id="May-zF-iCb">
+                        <rect key="frame" x="10" y="50" width="300" height="51"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="300" id="HJ4-J9-vIt"/>
+                        </constraints>
+                        <string key="text">Today, I learned how to edit client-side code through a web browser and was able to hack into Coachella's waiting page for Weekend 1 tickets.</string>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dCt-KL-Qpq">
+                        <rect key="frame" x="270" y="0.0" width="50" height="35"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="50" id="aGz-lu-ZjP"/>
+                            <constraint firstAttribute="height" constant="35" id="s8S-Aj-rgC"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <inset key="imageEdgeInsets" minX="24" minY="8" maxX="10" maxY="12"/>
+                        <state key="normal" image="private">
+                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                        <connections>
+                            <action selector="tappedPrivacyButton:" destination="gOB-mc-Gh7" eventType="touchUpInside" id="gSN-Ao-4wC"/>
+                        </connections>
+                    </button>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10:43 pm" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7jk-lQ-KwY">
+                        <rect key="frame" x="10" y="27" width="278" height="21"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="GiA-Ge-SYc"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" white="0.57009198589999999" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8Ci-fo-tyd" customClass="PFImageView">
+                        <rect key="frame" x="10" y="114" width="300" height="300"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="300" id="9R3-fR-Zb3"/>
+                            <constraint firstAttribute="width" constant="300" id="hHb-CU-bm5"/>
+                        </constraints>
+                    </imageView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="dCt-KL-Qpq" firstAttribute="top" secondItem="bGP-72-Ha8" secondAttribute="top" id="ACa-Gd-qE9"/>
+                    <constraint firstItem="E0J-Hm-pMt" firstAttribute="leading" secondItem="bGP-72-Ha8" secondAttribute="leading" constant="10" id="GMP-kR-EbT"/>
+                    <constraint firstItem="7jk-lQ-KwY" firstAttribute="top" secondItem="E0J-Hm-pMt" secondAttribute="bottom" constant="1" id="Mbm-Fl-lPE"/>
+                    <constraint firstItem="7jk-lQ-KwY" firstAttribute="leading" secondItem="E0J-Hm-pMt" secondAttribute="leading" id="N3Q-aD-Ztd"/>
+                    <constraint firstItem="7jk-lQ-KwY" firstAttribute="width" secondItem="E0J-Hm-pMt" secondAttribute="width" id="OaV-F5-Ciy"/>
+                    <constraint firstItem="May-zF-iCb" firstAttribute="top" secondItem="7jk-lQ-KwY" secondAttribute="bottom" constant="2" id="Se5-FB-90F"/>
+                    <constraint firstAttribute="trailing" secondItem="dCt-KL-Qpq" secondAttribute="trailing" id="cVE-DP-YGi"/>
+                    <constraint firstItem="8Ci-fo-tyd" firstAttribute="top" secondItem="May-zF-iCb" secondAttribute="bottom" constant="13" id="mOj-ZW-HFb"/>
+                    <constraint firstItem="May-zF-iCb" firstAttribute="leading" secondItem="8Ci-fo-tyd" secondAttribute="leading" id="sNG-6q-qx6"/>
+                    <constraint firstItem="7jk-lQ-KwY" firstAttribute="leading" secondItem="May-zF-iCb" secondAttribute="leading" id="xkA-g4-moE"/>
+                    <constraint firstItem="E0J-Hm-pMt" firstAttribute="top" secondItem="bGP-72-Ha8" secondAttribute="top" constant="8" id="xki-oa-BnX"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="attachedImageView" destination="8Ci-fo-tyd" id="fIK-Kt-59P"/>
+                <outlet property="contentLabel" destination="May-zF-iCb" id="ttV-gs-x4j"/>
+                <outlet property="dateLabel" destination="E0J-Hm-pMt" id="1b6-N7-AzB"/>
+                <outlet property="privacyButton" destination="dCt-KL-Qpq" id="WAF-XH-A3H"/>
+                <outlet property="timeLabel" destination="7jk-lQ-KwY" id="uHo-Jw-LsK"/>
+            </connections>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="private" width="20" height="21"/>
+    </resources>
+</document>
