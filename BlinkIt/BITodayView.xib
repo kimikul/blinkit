@@ -76,17 +76,7 @@
                         <constraint firstAttribute="height" constant="2" id="pfN-6T-wZ7"/>
                     </constraints>
                 </view>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7EZ-l5-8ca">
-                    <rect key="frame" x="254" y="1" width="60" height="30"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <state key="normal">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="editTapped:" destination="5jo-rP-r5V" eventType="touchUpInside" id="ams-rX-LTL"/>
-                    </connections>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2IP-Af-IRr">
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2IP-Af-IRr" userLabel="Button - Privacy">
                     <rect key="frame" x="7" y="141" width="20" height="20"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <state key="normal" backgroundImage="private">
@@ -103,12 +93,32 @@
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tEx-m3-U2i" userLabel="Tap View">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="58"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="58" id="YeC-3a-lRd"/>
+                    </constraints>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7EZ-l5-8ca" userLabel="Button - Edit/Cancel">
+                    <rect key="frame" x="254" y="1" width="60" height="30"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="editTapped:" destination="5jo-rP-r5V" eventType="touchUpInside" id="ams-rX-LTL"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" white="0.94999999999999996" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="tEx-m3-U2i" firstAttribute="top" secondItem="5jo-rP-r5V" secondAttribute="top" id="CwB-qT-FZ6"/>
                 <constraint firstAttribute="trailing" secondItem="lqR-fB-Ruf" secondAttribute="trailing" id="WTu-Zd-jti"/>
                 <constraint firstItem="lqR-fB-Ruf" firstAttribute="leading" secondItem="5jo-rP-r5V" secondAttribute="leading" id="fj5-Bb-eE1"/>
                 <constraint firstAttribute="bottom" secondItem="lqR-fB-Ruf" secondAttribute="bottom" constant="-1" id="gQA-MN-cZd"/>
+                <constraint firstAttribute="trailing" secondItem="tEx-m3-U2i" secondAttribute="trailing" id="p37-61-4SW"/>
+                <constraint firstItem="tEx-m3-U2i" firstAttribute="leading" secondItem="5jo-rP-r5V" secondAttribute="leading" id="uG3-ls-bVi"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
@@ -123,6 +133,7 @@
                 <outlet property="remainingCharactersLabel" destination="9fM-U4-grm" id="sHa-TU-7Xd"/>
                 <outlet property="separatorView" destination="lqR-fB-Ruf" id="ETL-X8-zjh"/>
                 <outlet property="submitButton" destination="ahM-CK-k03" id="8KD-jK-DRx"/>
+                <outlet property="tapView" destination="tEx-m3-U2i" id="aND-at-C3p"/>
             </connections>
         </view>
     </objects>

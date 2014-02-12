@@ -20,6 +20,7 @@ const CGFloat EXPANDED_HEIGHT = 170;
 @property (weak, nonatomic) IBOutlet UIButton *deleteButton;
 @property (weak, nonatomic) IBOutlet UIButton *cameraButton;
 @property (weak, nonatomic) IBOutlet UILabel *privateLabel;
+@property (weak, nonatomic) IBOutlet UIView *tapView;
 
 @end
 
@@ -43,6 +44,9 @@ const CGFloat EXPANDED_HEIGHT = 170;
     _editButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
 
     _dateLabel.text = [NSDate spelledOutTodaysDate];
+    
+    UITapGestureRecognizer *tapGR = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(expandDrawer:)];
+    [_tapView addGestureRecognizer:tapGR];
 }
 
 #pragma mark - setter/getter
@@ -185,6 +189,7 @@ const CGFloat EXPANDED_HEIGHT = 170;
     _privateButton.hidden = YES;
     _contentTextView.text = @"";
     _placeholderLabel.hidden = NO;
+    _tapView.hidden = NO;
 
     if (_blink) {
         [_editButton setTitle:@"Edit" forState:UIControlStateNormal];
@@ -232,6 +237,7 @@ const CGFloat EXPANDED_HEIGHT = 170;
     } else {
         [self.delegate todayView:self didTapEditExistingBlink:_blink];
         [BIMixpanelHelper sendMixpanelEvent:@"TODAY_tappedToEditTodaysBlink" withProperties:@{@"source":@"edit existing entry"}];
+        _tapView.hidden = YES;
     }
 }
 
@@ -279,6 +285,10 @@ const CGFloat EXPANDED_HEIGHT = 170;
     _privateLabel.textColor = [UIColor blueColor];
     
     _blink[@"private"] = @YES;
+}
+
+- (void)expandDrawer:(UITapGestureRecognizer*)tapGR {
+    [self editTapped:nil];
 }
 
 @end
