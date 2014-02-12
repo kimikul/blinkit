@@ -3,12 +3,11 @@
     {
       "idiom" : "universal",
       "scale" : "1x",
-      "filename" : "add-friend.png"
+      "filename" : "add-friend@2x.png"
     },
     {
       "idiom" : "universal",
-      "scale" : "2x",
-      "filename" : "add-friend@2x.png"
+      "scale" : "2x"
     }
   ],
   "info" : {
