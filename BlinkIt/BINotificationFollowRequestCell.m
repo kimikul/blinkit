@@ -16,6 +16,18 @@
 
 @implementation BINotificationFollowRequestCell
 
+#pragma mark - class methods
+
++ (CGFloat)cellHeight {
+    return 50;
+}
+
++ (NSString*)reuseIdentifier {
+    return @"BINotificationFollowRequestCell";
+}
+
+#pragma mark - lifecycle
+
 - (void)awakeFromNib {
     [super awakeFromNib];
     
@@ -26,10 +38,13 @@
     _profilePic.clipsToBounds = YES;
 }
 
-- (void)setNotification:(PFObject *)notification {
-    _notification = notification;
+#pragma mark - setter/getter
+
+- (void)setActivity:(PFObject *)activity {
     
-    PFUser *user = notification[@"fromUser"];
+    _activity = activity;
+    
+    PFUser *user = activity[@"fromUser"];
     
     _notificationLabel.text = [NSString stringWithFormat:@"%@ has requested to follow you",user[@"name"]];
     
@@ -42,6 +57,26 @@
             _profilePic.image = image;
         });
     });
+}
+
+#pragma mark - actions
+
+- (IBAction)tappedAccept:(id)sender {
+    _activity[@"type"] = @"follow";
+    
+    [_activity saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        [self.delegate notificationCell:self tappedAcceptRequestForActivity:_activity error:error];
+    }];
+    
+    _acceptButton.backgroundColor = [UIColor acceptGreen];
+}
+
+- (IBAction)highlightAcceptButton:(id)sender {
+    _acceptButton.backgroundColor = [UIColor highlightAcceptGreen];
+}
+
+- (IBAction)dragOutsideAcceptButton:(id)sender {
+    _acceptButton.backgroundColor = [UIColor acceptGreen];
 }
 
 @end

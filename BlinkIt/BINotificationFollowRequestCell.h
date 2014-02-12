@@ -8,8 +8,18 @@
 
 #import <UIKit/UIKit.h>
 
+@class BINotificationFollowRequestCell;
+
+@protocol BINotificationFollowRequestCellDelegate <NSObject>
+- (void)notificationCell:(BINotificationFollowRequestCell*)cell tappedAcceptRequestForActivity:(PFObject*)activity error:(NSError*)error;
+@end
+
 @interface BINotificationFollowRequestCell : UITableViewCell
 
-@property (nonatomic, strong) PFObject *notification;
+@property (nonatomic, strong) PFObject *activity;
+@property (nonatomic, weak) id <BINotificationFollowRequestCellDelegate> delegate;
+
++ (CGFloat)cellHeight;
++ (NSString*)reuseIdentifier;
 
 @end

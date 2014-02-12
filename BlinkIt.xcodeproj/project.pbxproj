@@ -53,7 +53,6 @@
 		5E9D037C18AB3D2B00634EB9 /* BIFeedPhotoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E9D037B18AB3D2B00634EB9 /* BIFeedPhotoTableViewCell.xib */; };
 		5E9D037E18AB3DFA00634EB9 /* BIHomeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E9D037D18AB3DFA00634EB9 /* BIHomeTableViewCell.xib */; };
 		5E9D038018AB3E0600634EB9 /* BIHomePhotoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E9D037F18AB3E0600634EB9 /* BIHomePhotoTableViewCell.xib */; };
-		5E9D038518AB6C6A00634EB9 /* BINotificationHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E9D038418AB6C6A00634EB9 /* BINotificationHelper.m */; };
 		5E9D038818AB724000634EB9 /* BINotificationsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E9D038718AB724000634EB9 /* BINotificationsViewController.m */; };
 		5E9D038B18AB736C00634EB9 /* BINotificationFollowRequestCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E9D038A18AB736C00634EB9 /* BINotificationFollowRequestCell.m */; };
 		5E9DF17E18AA348000FA69E5 /* BITabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E9DF17D18AA348000FA69E5 /* BITabBarController.m */; };
@@ -188,8 +187,6 @@
 		5E9D037B18AB3D2B00634EB9 /* BIFeedPhotoTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BIFeedPhotoTableViewCell.xib; sourceTree = "<group>"; };
 		5E9D037D18AB3DFA00634EB9 /* BIHomeTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BIHomeTableViewCell.xib; sourceTree = "<group>"; };
 		5E9D037F18AB3E0600634EB9 /* BIHomePhotoTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BIHomePhotoTableViewCell.xib; sourceTree = "<group>"; };
-		5E9D038318AB6C6A00634EB9 /* BINotificationHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BINotificationHelper.h; sourceTree = "<group>"; };
-		5E9D038418AB6C6A00634EB9 /* BINotificationHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BINotificationHelper.m; sourceTree = "<group>"; };
 		5E9D038618AB724000634EB9 /* BINotificationsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BINotificationsViewController.h; sourceTree = "<group>"; };
 		5E9D038718AB724000634EB9 /* BINotificationsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BINotificationsViewController.m; sourceTree = "<group>"; };
 		5E9D038918AB736C00634EB9 /* BINotificationFollowRequestCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BINotificationFollowRequestCell.h; sourceTree = "<group>"; };
@@ -425,22 +422,12 @@
 		5E9D038118AB6C5200634EB9 /* Notifications */ = {
 			isa = PBXGroup;
 			children = (
-				5E9D038218AB6C5700634EB9 /* Helper */,
 				5E9D038618AB724000634EB9 /* BINotificationsViewController.h */,
 				5E9D038718AB724000634EB9 /* BINotificationsViewController.m */,
 				5E9D038918AB736C00634EB9 /* BINotificationFollowRequestCell.h */,
 				5E9D038A18AB736C00634EB9 /* BINotificationFollowRequestCell.m */,
 			);
 			name = Notifications;
-			sourceTree = "<group>";
-		};
-		5E9D038218AB6C5700634EB9 /* Helper */ = {
-			isa = PBXGroup;
-			children = (
-				5E9D038318AB6C6A00634EB9 /* BINotificationHelper.h */,
-				5E9D038418AB6C6A00634EB9 /* BINotificationHelper.m */,
-			);
-			name = Helper;
 			sourceTree = "<group>";
 		};
 		5EAB8A97187E73DF00B02953 = {
@@ -774,7 +761,6 @@
 				5EAB8B3318811E8600B02953 /* BITableViewController.m in Sources */,
 				5EB3A5C31887A18F00BCA8DB /* BIViewController.m in Sources */,
 				5E9D038B18AB736C00634EB9 /* BINotificationFollowRequestCell.m in Sources */,
-				5E9D038518AB6C6A00634EB9 /* BINotificationHelper.m in Sources */,
 				5E6F4B5E18A9E9B7006289D0 /* BIMixpanelHelper.m in Sources */,
 				5E639291188BA52F00D1AE80 /* BISettingsViewController.m in Sources */,
 				5E9D037818AB30F800634EB9 /* BICrashlyticsHelper.m in Sources */,

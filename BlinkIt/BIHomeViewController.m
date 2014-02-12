@@ -199,9 +199,9 @@
     [query whereKey:@"user" equalTo:[PFUser currentUser]];
     
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        self.canPaginate = objects.count > 0 && (objects.count % kNumBlinksPerPage == 0);
-        
         if (!error) {
+            self.canPaginate = objects.count > 0 && (objects.count % kNumBlinksPerPage == 0);
+
             if (!_errorView.hidden) {
                 [_errorView fadeOutWithDuration:0.4 completion:nil];
             }
