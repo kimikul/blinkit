@@ -98,6 +98,7 @@
         [BIFollowManager requestToFollowUserEventually:user block:^(BOOL succeeded, NSError *error) {
             if (succeeded) {
                 [[BIDataStore shared] addRequestedFriend:user];
+                [BINotificationHelper sendPushNotificationToUser:user];
             }
         }];
         

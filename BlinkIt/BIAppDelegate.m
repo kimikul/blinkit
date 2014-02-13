@@ -23,9 +23,13 @@
     [self setupMixpanel];
     [self setupCrashlytics];
     
+    // register for push notifications
+    [[UIApplication sharedApplication] registerForRemoteNotificationTypes: UIRemoteNotificationTypeBadge | UIRemoteNotificationTypeAlert | UIRemoteNotificationTypeSound];
+    
     // refresh stuff
     [self refreshFriendsAndFollows];
-    [BINotificationHelper fetchAndUpdateBadgeCountWithCompletion:nil];
+    [self refreshNotificationStuff];
+
     [[UIApplication sharedApplication] setMinimumBackgroundFetchInterval:UIApplicationBackgroundFetchIntervalMinimum];
 
     // continue
@@ -68,6 +72,13 @@
         [BIFollowManager refreshFollowingList];
         [BIFollowManager refreshRequestToFollowList];
     }
+}
+
+#pragma mark - notifications
+
+- (void)refreshNotificationStuff {
+    [BINotificationHelper fetchAndUpdateBadgeCountWithCompletion:nil];
+    [BINotificationHelper registerUserToInstallation];
 }
 
 #pragma mark - transition
@@ -130,6 +141,20 @@
 
 - (void)application:(UIApplication *)application performFetchWithCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
     [BINotificationHelper fetchAndUpdateBadgeCountWithCompletion:completionHandler];
+}
+
+#pragma mark - push notifications
+
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)newDeviceToken {
+    // Store the deviceToken in the current installation and save it to Parse.
+    PFInstallation *currentInstallation = [PFInstallation currentInstallation];
+    [currentInstallation setDeviceTokenFromData:newDeviceToken];
+    [currentInstallation saveInBackground];
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
+    [PFPush handlePush:userInfo];
+    [BINotificationHelper fetchAndUpdateBadgeCountWithCompletion:nil];
 }
 
 @end

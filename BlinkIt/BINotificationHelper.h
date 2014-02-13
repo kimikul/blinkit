@@ -13,5 +13,7 @@
 + (void)fetchAndUpdateBadgeCountWithCompletion:(void (^)(UIBackgroundFetchResult))completion;
 + (void)updateBadgeCount:(NSInteger)count;
 + (void)decrementBadgeCount;
++ (void)sendPushNotificationToUser:(PFUser*)user;
++ (void)registerUserToInstallation;
 
 @end

@@ -101,6 +101,7 @@
     [[BIFacebookUserManager shared] refreshCurrentUserFacebookFriends];
     [BIFollowManager refreshFollowingList];
     [BIFollowManager refreshRequestToFollowList];
+    [BINotificationHelper registerUserToInstallation];
     [BIMixpanelHelper setupSuperPropertiesForUser:[PFUser currentUser]];
     [BICrashlyticsHelper setupCrashlyticsProperties];
     

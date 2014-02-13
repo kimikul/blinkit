@@ -11,7 +11,11 @@
 
 @implementation BINotificationHelper
 
+#pragma mark - badge counts
+
 + (void)fetchAndUpdateBadgeCountWithCompletion:(void (^)(UIBackgroundFetchResult))completion {
+    if (![PFUser currentUser]) return;
+    
     PFQuery *query = [PFQuery queryWithClassName:@"Activity"];
     [query whereKey:@"toUser" equalTo:[PFUser currentUser]];
     [query whereKey:@"type" equalTo:@"request to follow"];
@@ -40,6 +44,11 @@
     // update app badge
     [[UIApplication sharedApplication] setApplicationIconBadgeNumber:count];
     
+    // update parse object
+    PFInstallation *currentInstallation = [PFInstallation currentInstallation];
+    [currentInstallation setBadge:count];
+    [currentInstallation saveInBackground];
+    
     [[NSNotificationCenter defaultCenter] postNotificationName:kBIUpdateHomeNotificationBadgeNotification object:@(count)];
 }
 
@@ -51,6 +60,32 @@
     NSInteger currentCount = [self currentBadgeCount];
     NSInteger newCount = MAX(currentCount - 1, 0);
     [self updateBadgeCount:newCount];
+}
+
+#pragma mark - push notifications
+
++ (void)registerUserToInstallation {
+    PFUser *currentUser = [PFUser currentUser];
+    if (!currentUser) return;
+    
+    static dispatch_once_t onceToken = 0;
+    dispatch_once(&onceToken, ^{
+        PFInstallation *installation = [PFInstallation currentInstallation];
+        installation[@"user"] = currentUser;
+        [installation saveInBackground];
+    });
+}
+
++ (void)sendPushNotificationToUser:(PFUser*)user {
+    PFUser *currentUser = [PFUser currentUser];
+    
+    PFQuery *pushQuery = [PFInstallation query];
+    [pushQuery whereKey:@"user" equalTo:user];
+    
+    PFPush *push = [[PFPush alloc] init];
+    [push setQuery:pushQuery];
+    [push setMessage:[NSString stringWithFormat: @"%@ wants to follow you!",  currentUser[@"name"]]];
+    [push sendPushInBackground];
 }
 
 @end
