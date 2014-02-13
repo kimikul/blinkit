@@ -67,13 +67,10 @@
 + (void)registerUserToInstallation {
     PFUser *currentUser = [PFUser currentUser];
     if (!currentUser) return;
-    
-    static dispatch_once_t onceToken = 0;
-    dispatch_once(&onceToken, ^{
-        PFInstallation *installation = [PFInstallation currentInstallation];
-        installation[@"user"] = currentUser;
-        [installation saveInBackground];
-    });
+
+    PFInstallation *installation = [PFInstallation currentInstallation];
+    installation[@"user"] = currentUser;
+    [installation saveInBackground];
 }
 
 + (void)sendPushNotificationToUser:(PFUser*)user {
