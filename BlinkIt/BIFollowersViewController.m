@@ -169,6 +169,7 @@
             BIFollowingTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:[BIFollowingTableViewCell reuseIdentifier]];
             
             cell.user = user;
+            cell.followButton.hidden = YES;
             
             return cell;
         }

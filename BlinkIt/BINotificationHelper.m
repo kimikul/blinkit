@@ -79,9 +79,16 @@
     PFQuery *pushQuery = [PFInstallation query];
     [pushQuery whereKey:@"user" equalTo:user];
     
+    NSString *msg = [NSString stringWithFormat: @"%@ wants to follow you!",  currentUser[@"name"]];
+    
+    NSDictionary *data = [NSDictionary dictionaryWithObjectsAndKeys:
+                          msg, @"alert",
+                          @"Increment", @"badge",
+                          nil];
+    
     PFPush *push = [[PFPush alloc] init];
     [push setQuery:pushQuery];
-    [push setMessage:[NSString stringWithFormat: @"%@ wants to follow you!",  currentUser[@"name"]]];
+    [push setData:data];
     [push sendPushInBackground];
 }
 
