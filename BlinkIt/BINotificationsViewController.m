@@ -56,14 +56,12 @@
     [query orderByDescending:@"createdAt"];
     [query includeKey:@"fromUser"];
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        
+        self.loading = NO;
+
         if (!error) {
-            
             _notificationsArray = [objects mutableCopy];
             [self reloadTableData];
         }
-        
-        self.loading = NO;
     }];
 
 }

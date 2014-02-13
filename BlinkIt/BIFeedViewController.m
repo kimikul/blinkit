@@ -126,6 +126,8 @@
     [blinksFromFollowed orderByDescending:@"date"];
     
     [blinksFromFollowed findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        self.loading = NO;
+
         if (!error) {
             self.canPaginate = objects.count > 0 && (objects.count % kNumFeedEntriesPerPage == 0);
 
@@ -134,8 +136,6 @@
             
             [self sectionalizeBlinks:objects pagination:pagination];
         }
-        
-        self.loading = NO;
     }];
     
     if (pagination) {

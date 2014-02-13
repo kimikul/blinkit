@@ -202,6 +202,8 @@
     [query whereKey:@"user" equalTo:[PFUser currentUser]];
     
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        self.loading = NO;
+
         if (!error) {
             self.canPaginate = objects.count > 0 && (objects.count % kNumBlinksPerPage == 0);
 
@@ -229,13 +231,10 @@
             
             // append or replace existing data source
             _blinksArray = blinks;
-            
             [self reloadTableData];
         } else {
             [_errorView fadeInWithDuration:0.4 completion:nil];
         }
-        
-        self.loading = NO;
     }];
     
     if (pagination) {

@@ -11,7 +11,7 @@
 @implementation BINoFollowResultsTableViewCell
 
 + (CGFloat)cellHeight {
-    return 240;
+    return 280;
 }
 
 + (NSString*)reuseIdentifier {

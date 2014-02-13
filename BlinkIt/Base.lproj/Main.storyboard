@@ -251,21 +251,23 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <inset key="separatorInset" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="BINoFollowResultsTableViewCell" rowHeight="90" id="Krd-pe-o2e" customClass="BINoFollowResultsTableViewCell">
-                                        <rect key="frame" x="0.0" y="86" width="320" height="90"/>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="BINoFollowResultsTableViewCell" rowHeight="300" id="Krd-pe-o2e" customClass="BINoFollowResultsTableViewCell">
+                                        <rect key="frame" x="0.0" y="86" width="320" height="300"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Krd-pe-o2e" id="pQO-bR-bzV">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="89"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="299"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="yBk-qJ-W5m">
-                                                    <rect key="frame" x="12" y="0.0" width="300" height="240"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <rect key="frame" x="12" y="0.0" width="300" height="280"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
                                                     <string key="text">What do you want to remember about today?
 
 Submit your first blink by tapping the drawer above!
 
-PRO TIP : You can edit your entry throughout the day if something more memorable happens. At midnight, your entry will be locked in for the day.
+PRO TIP : You can edit your entry throughout the day if something more memorable happens. 
+
+At midnight, your entry will be locked in for the day. Locked blinks will be displayed here in the future.
 
 Happy blinking :)</string>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
@@ -279,7 +281,7 @@ Happy blinking :)</string>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="gray" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="BIPaginationTableViewCell" rowHeight="30" id="1EJ-Ct-Xqs" customClass="BIPaginationTableViewCell">
-                                        <rect key="frame" x="0.0" y="176" width="320" height="30"/>
+                                        <rect key="frame" x="0.0" y="386" width="320" height="30"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1EJ-Ct-Xqs" id="qPP-Gt-kTX">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="29"/>
