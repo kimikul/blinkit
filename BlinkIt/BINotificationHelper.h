@@ -10,7 +10,8 @@
 
 @interface BINotificationHelper : NSObject
 
-+ (void)fetchBadgeCount;
++ (void)fetchAndUpdateBadgeCountWithCompletion:(void (^)(UIBackgroundFetchResult))completion;
 + (void)updateBadgeCount:(NSInteger)count;
++ (void)decrementBadgeCount;
 
 @end

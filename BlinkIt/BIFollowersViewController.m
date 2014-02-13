@@ -181,8 +181,9 @@
     if (!error) {
         [_followersArray addObject:user];
         [_requestToFollowArray removeObject:cell.activity];
-        
         [self reloadTableData];
+        
+        [BINotificationHelper decrementBadgeCount];
     } else {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"There was an error accepting this follower. Please try again." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alert show];

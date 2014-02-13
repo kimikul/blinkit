@@ -25,8 +25,9 @@
     
     // refresh stuff
     [self refreshFriendsAndFollows];
-    [BINotificationHelper fetchBadgeCount];
-    
+    [BINotificationHelper fetchAndUpdateBadgeCountWithCompletion:nil];
+    [[UIApplication sharedApplication] setMinimumBackgroundFetchInterval:UIApplicationBackgroundFetchIntervalMinimum];
+
     // continue
     [PFImageView class];
     [self presentCorrectRootController];
@@ -109,7 +110,7 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:kBIRefreshHomeAndFeedNotification object:nil];
     
     [BIMixpanelHelper sendMixpanelEvent:@"APP_Open" withProperties:nil];
-    [BINotificationHelper fetchBadgeCount];
+    [BINotificationHelper fetchAndUpdateBadgeCountWithCompletion:nil];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
@@ -123,6 +124,12 @@
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation {
     return [FBAppCall handleOpenURL:url sourceApplication:sourceApplication withSession:[PFFacebookUtils session]];
+}
+
+#pragma mark - background updates in ios7
+
+- (void)application:(UIApplication *)application performFetchWithCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
+    [BINotificationHelper fetchAndUpdateBadgeCountWithCompletion:completionHandler];
 }
 
 @end

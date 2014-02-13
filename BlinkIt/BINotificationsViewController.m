@@ -128,8 +128,12 @@
 #pragma mark - BINotificationFollowRequestCellDelegate
 
 - (void)notificationCell:(BINotificationFollowRequestCell*)cell tappedAcceptRequestForActivity:(PFObject*)activity error:(NSError*)error {
-    [_notificationsArray removeObject:activity];
-    [self reloadTableData];
+    if (!error) {
+        [_notificationsArray removeObject:activity];
+        [self reloadTableData];
+        
+        [BINotificationHelper decrementBadgeCount];
+    }
 }
 
 #pragma mark - ibactions

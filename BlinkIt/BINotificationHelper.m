@@ -11,14 +11,18 @@
 
 @implementation BINotificationHelper
 
-+ (void)fetchBadgeCount {
++ (void)fetchAndUpdateBadgeCountWithCompletion:(void (^)(UIBackgroundFetchResult))completion {
     PFQuery *query = [PFQuery queryWithClassName:@"Activity"];
     [query whereKey:@"toUser" equalTo:[PFUser currentUser]];
     [query whereKey:@"type" equalTo:@"request to follow"];
     [query countObjectsInBackgroundWithBlock:^(int count, NSError *error) {
         if (!error) {
             [self updateBadgeCount:count];
+            if (completion) { completion(UIBackgroundFetchResultNewData); }
+        } else {
+            if (completion) { completion(UIBackgroundFetchResultFailed); }
         }
+        
     }];
 }
 
@@ -28,7 +32,7 @@
     UITabBarController *tabBarController = (UITabBarController*)appDelegate.window.rootViewController;
     NSString *tabBadgeText = nil;
     if (count > 0) {
-        tabBadgeText = [NSString stringWithFormat:@"%d",count];
+        tabBadgeText = [NSString stringWithFormat:@"%@",@(count)];
     }
 
     [[tabBarController.tabBar.items objectAtIndex:0] setBadgeValue:tabBadgeText];
@@ -37,6 +41,16 @@
     [[UIApplication sharedApplication] setApplicationIconBadgeNumber:count];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:kBIUpdateHomeNotificationBadgeNotification object:@(count)];
+}
+
++ (NSInteger)currentBadgeCount {
+    return [[UIApplication sharedApplication] applicationIconBadgeNumber];
+}
+
++ (void)decrementBadgeCount {
+    NSInteger currentCount = [self currentBadgeCount];
+    NSInteger newCount = MAX(currentCount - 1, 0);
+    [self updateBadgeCount:newCount];
 }
 
 @end
