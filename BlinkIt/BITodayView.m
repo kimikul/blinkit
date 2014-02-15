@@ -60,9 +60,10 @@ const CGFloat EXPANDED_HEIGHT = 170;
         // set image
         PFFile *imageFile = blink[@"imageFile"];
         if (imageFile) {
-            NSData *imageData = [imageFile getData];
-            UIImage *image = [UIImage imageWithData:imageData];
-            self.selectedImage = image;
+            [imageFile getDataInBackgroundWithBlock:^(NSData *data, NSError *error) {
+                UIImage *image = [UIImage imageWithData:data];
+                self.selectedImage = image;
+            }];
         } else {
             self.selectedImage = nil;
         }
