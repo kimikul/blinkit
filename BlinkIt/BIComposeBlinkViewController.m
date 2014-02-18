@@ -151,7 +151,8 @@
 
 - (void)keyboardWillShow:(NSNotification*)note {
     CGPoint keyboardOrigin = [[note.userInfo objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].origin;
-    _buttonContainerView.frameMaxY = keyboardOrigin.y;
+    _buttonContainerView.frameY = keyboardOrigin.y - 44;
+    _contentTextView.frameHeight = _buttonContainerView.frameY - _contentTextView.frameY - 5;
 }
 
 #pragma mark - helper

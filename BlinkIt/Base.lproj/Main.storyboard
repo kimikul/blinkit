@@ -1020,7 +1020,7 @@ PRO TIP : Link your Facebook in Settings so friends can find you.</string>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" id="w5Q-ei-bvD" userLabel="button container view">
-                                <rect key="frame" x="0.0" y="230" width="320" height="44"/>
+                                <rect key="frame" x="0.0" y="230" width="320" height="338"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" id="wFb-Yb-014" userLabel="separator">
