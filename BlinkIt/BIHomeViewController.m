@@ -8,31 +8,24 @@
 
 #import "BIHomeViewController.h"
 #import "BIHomeTableViewCell.h"
-#import "BITodayView.h"
+//#import "BITodayView.h"
 #import "BIImageUploadManager.h"
-#import "BIPhotoViewController.h"
 #import "BIHomePhotoTableViewCell.h"
 #import "BISettingsViewController.h"
 #import "BIPaginationTableViewCell.h"
 #import "BINoFollowResultsTableViewCell.h"
 
-#define kAttachPhotoActionSheet 0
-#define kDeleteBlinkActionSheet 1
 #define kDeletePreviousBlinkActionSheet 2
-#define kActionSheetTakePhoto 0
-#define kActionSheetPhotoLibrary 1
 #define kNumBlinksPerPage 15
 
-@interface BIHomeViewController () <UITextViewDelegate, BITodayViewDelegate, UIActionSheetDelegate, UIImagePickerControllerDelegate, BIImageUploadManagerDelegate, BIPhotoViewControllerDelegate, BIHomeTableViewCellDelegate>
+@interface BIHomeViewController () <UITextViewDelegate, UIActionSheetDelegate, BIHomeTableViewCellDelegate>
 
 @property (nonatomic, strong) NSMutableArray *allBlinksArray;
 @property (nonatomic, strong) NSMutableArray *blinksArray;
-@property (nonatomic, strong) BITodayView *todayView;
-@property (nonatomic, strong) IBOutlet UIView *fadeLayer;
+@property (nonatomic, strong) PFObject *todaysBlink;
+//@property (nonatomic, strong) BITodayView *todayView;
+//@property (nonatomic, strong) IBOutlet UIView *fadeLayer;
 @property (weak, nonatomic) IBOutlet UIView *errorView;
-
-@property (nonatomic, strong) UIImagePickerController *imagePickerController;
-@property (nonatomic, strong) BIImageUploadManager *imageUploadManager;
 
 @property (nonatomic, strong) BIHomeTableViewCell *togglePrivacyCell;
 
@@ -56,24 +49,6 @@
 
 #pragma mark - setter/getter
 
-- (UIImagePickerController*)imagePickerController {
-    if (!_imagePickerController) {
-        _imagePickerController = [UIImagePickerController new];
-        _imagePickerController.delegate = self;
-    }
-    
-    return _imagePickerController;
-}
-
-- (BIImageUploadManager*)imageUploadManager {
-    if (!_imageUploadManager) {
-        _imageUploadManager = [BIImageUploadManager new];
-        _imageUploadManager.delegate = self;
-    }
-    
-    return _imageUploadManager;
-}
-
 - (NSMutableArray*)allBlinksArray {
     if (!_allBlinksArray) {
         _allBlinksArray = [NSMutableArray new];
@@ -90,7 +65,7 @@
     [self setupButtons];
     [self setupNav];
     [self setupTableView];
-    [self setupTodayView];
+//    [self setupTodayView];
     [self setupErrorView];
     [self setupObservers];
     [self fetchBlinksForPagination:NO];
@@ -143,23 +118,23 @@
     [self.tableView registerNib:[UINib nibWithNibName:[BIHomeTableViewCell reuseIdentifier] bundle:[NSBundle mainBundle]] forCellReuseIdentifier:[BIHomeTableViewCell reuseIdentifier]];
 }
 
-- (void)setupTodayView {
-    NSArray *nibs = [[NSBundle mainBundle] loadNibNamed:@"BITodayView" owner:nil options:nil];
-    BITodayView *todayView = [nibs objectAtIndex:0];
-    todayView.frameY = 64;
-    todayView.delegate = self;
-    
-    UIView *view = [[UIView alloc] initWithFrame:todayView.frame];
-    view.backgroundColor = [UIColor redColor];
-    
-    _todayView = todayView;
-    _todayView.contentTextView.delegate = self;
-
-    [self.view addSubview:_todayView];
-
-    UITapGestureRecognizer *tapGR = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tappedFadeLayer:)];
-    [_fadeLayer addGestureRecognizer:tapGR];
-}
+//- (void)setupTodayView {
+//    NSArray *nibs = [[NSBundle mainBundle] loadNibNamed:@"BITodayView" owner:nil options:nil];
+//    BITodayView *todayView = [nibs objectAtIndex:0];
+//    todayView.frameY = 64;
+//    todayView.delegate = self;
+//    
+//    UIView *view = [[UIView alloc] initWithFrame:todayView.frame];
+//    view.backgroundColor = [UIColor redColor];
+//    
+//    _todayView = todayView;
+//    _todayView.contentTextView.delegate = self;
+//
+//    [self.view addSubview:_todayView];
+//
+//    UITapGestureRecognizer *tapGR = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tappedFadeLayer:)];
+//    [_fadeLayer addGestureRecognizer:tapGR];
+//}
 
 - (void)setupErrorView {
     UITapGestureRecognizer *tapGR = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(fetchBlinks)];
@@ -219,14 +194,14 @@
                 NSDate *date = blink[@"date"];
                 if ([self isDateToday:date]) {
                     [blinks removeObject:blink];
-                    _todayView.blink = blink;
+                    _todaysBlink = blink;
                     isBlinkToday = YES;
                     break;
                 }
             }
             
             if (!isBlinkToday) {
-                _todayView.blink = nil;
+                _todaysBlink = nil;
             }
             
             // append or replace existing data source
@@ -405,163 +380,118 @@
     }];
 }
 
-#pragma mark - uitextviewdelegate
-
-- (void)textViewDidBeginEditing:(UITextView *)textView {
-    if (!_todayView.isExpanded) {
-        self.progressHUD.mode = MBProgressHUDModeIndeterminate;
-        self.progressHUD.labelText = nil;
-        
-        _todayView.isExpanded = YES;
-        [_fadeLayer fadeInToOpacity:0.7 duration:0.5 completion:nil];
-        
-        [BIMixpanelHelper sendMixpanelEvent:@"TODAY_tappedToEditTodaysBlink" withProperties:@{@"source":@"first entry"}];
-    }
-    
-    [_todayView updateRemainingCharLabel];
-}
-
-- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
-    if (textView.text.length < 200 || text.length == 0) {
-        return YES;
-    }
-    
-    return NO;
-}
-
-- (void)textViewDidChange:(UITextView *)textView {
-    // update remaining char count label
-    [_todayView updateRemainingCharLabel];
-    
-    // enable / disable submit button
-    _todayView.submitButton.enabled = ([_todayView contentTextFieldHasContent] || _todayView.selectedImage) ? YES : NO;
-    
-    [textView scrollRangeToVisible:NSMakeRange(textView.text.length + 10, 0)];
-}
+//#pragma mark - uitextviewdelegate
+//
+//- (void)textViewDidBeginEditing:(UITextView *)textView {
+//    if (!_todayView.isExpanded) {
+//        self.progressHUD.mode = MBProgressHUDModeIndeterminate;
+//        self.progressHUD.labelText = nil;
+//        
+//        _todayView.isExpanded = YES;
+//        [_fadeLayer fadeInToOpacity:0.7 duration:0.5 completion:nil];
+//        
+//        [BIMixpanelHelper sendMixpanelEvent:@"TODAY_tappedToEditTodaysBlink" withProperties:@{@"source":@"first entry"}];
+//    }
+//    
+//    [_todayView updateRemainingCharLabel];
+//}
+//
+//- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
+//    if (textView.text.length < 200 || text.length == 0) {
+//        return YES;
+//    }
+//    
+//    return NO;
+//}
+//
+//- (void)textViewDidChange:(UITextView *)textView {
+//    // update remaining char count label
+//    [_todayView updateRemainingCharLabel];
+//    
+//    // enable / disable submit button
+//    _todayView.submitButton.enabled = ([_todayView contentTextFieldHasContent] || _todayView.selectedImage) ? YES : NO;
+//    
+//    [textView scrollRangeToVisible:NSMakeRange(textView.text.length + 10, 0)];
+//}
 
 #pragma mark - BITodayViewDelegate
 
-- (void)finishSuccessfulBlinkUpdate:(PFObject*)blink {
-    self.progressHUD.mode = MBProgressHUDModeText;
-    self.progressHUD.labelText = @"Saved!";
-    [self showProgressHUDForDuration:0.8];
-    
-    [self unfocusTodayView];
-    _todayView.blink = blink;
-}
+//- (void)finishSuccessfulBlinkUpdate:(PFObject*)blink {
+//    self.progressHUD.mode = MBProgressHUDModeText;
+//    self.progressHUD.labelText = @"Saved!";
+//    [self showProgressHUDForDuration:0.8];
+//    
+//    [self unfocusTodayView];
+//    _todayView.blink = blink;
+//}
 
-- (void)todayView:(BITodayView *)todayView didSubmitBlink:(PFObject *)blink {
-    
-    [self showProgressHUD];
-
-    NSString *content = [_todayView.contentTextView.text stringByTrimmingWhiteSpace];
-    
-    PFObject *theBlink;
-    
-    if (!blink) {
-        theBlink = [PFObject objectWithClassName:@"Blink"];
-        theBlink[@"date"] = [NSDate date];
-        theBlink[@"user"] = [PFUser currentUser];
-        theBlink[@"private"] = [NSNumber numberWithBool:_todayView.privateButton.selected];
-    } else {
-        theBlink = blink;
-        theBlink[@"date"] = [NSDate date];
-    }
-
-    theBlink[@"content"] = content;
-    
-    UIImage *image = _todayView.selectedImage;
-    BOOL hasImage = NO;
-    if (image) {
-        [self.imageUploadManager uploadImage:image forBlink:theBlink];
-        hasImage = YES;
-    } else {
-        [theBlink removeObjectForKey:@"imageFile"];
-        [theBlink saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-            if (!error) {
-                [self finishSuccessfulBlinkUpdate:theBlink];
-            } else {
-                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error" message:@"There was an error saving your entry. Please try again." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-                [alertView show];
-            }
-        }];
-    }
-    
-    [self sendMixpanelForSubmittingBlink:theBlink hasImage:hasImage];
-}
-
-- (void)sendMixpanelForSubmittingBlink:(PFObject*)blink hasImage:(BOOL)hasImage {
-    NSMutableDictionary *propDict = [@{@"private" : blink[@"private"],
-                                       @"contentLength" : @([blink[@"content"] length])
-                                       } mutableCopy];
-    
-    if (hasImage) {
-        propDict[@"hasPhoto"] = @(1);
-    } else {
-        propDict[@"hasPhoto"] = @(0);
-    }
-    
-    [BIMixpanelHelper sendMixpanelEvent:@"TODAY_updatedTodaysBlink" withProperties:propDict];
-}
-
-- (void)todayView:(BITodayView *)todayView didTapEditExistingBlink:(PFObject*)blink {
-    [self textViewDidBeginEditing:todayView.contentTextView];
-}
-
-- (void)todayView:(BITodayView *)todayView didTapCancelEditExistingBlink:(PFObject*)blink {
-    [self unfocusTodayView];
-    _todayView.blink = _todayView.blink;
-}
-
-- (void)todayView:(BITodayView *)todayView didTapDeleteExistingBlink:(PFObject*)blink {
-    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"This will clear your entry for today. Are you sure?" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:@"Continue" otherButtonTitles:nil];
-    actionSheet.tag = kDeleteBlinkActionSheet;
-    [actionSheet showFromTabBar:self.tabBarController.tabBar];
-}
-
-- (void)todayView:(BITodayView *)todayView addPhotoToBlink:(PFObject*)blink {
-    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:@"Take New Photo", @"Choose Existing Photo", nil];
-    actionSheet.tag = kAttachPhotoActionSheet;
-    [actionSheet showFromTabBar:self.tabBarController.tabBar];
-}
-
-- (void)todayView:(BITodayView *)todayView showExistingPhotoForBlink:(PFObject*)blink {
-    BIPhotoViewController *photoVC = [BIPhotoViewController new];
-    photoVC.attachedImage = todayView.selectedImage;
-    photoVC.blink = blink;
-    photoVC.delegate = self;
-    
-    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:photoVC];
-    
-    [self presentViewController:nav animated:YES completion:nil];
-}
+//- (void)todayView:(BITodayView *)todayView didSubmitBlink:(PFObject *)blink {
+//    
+//    [self showProgressHUD];
+//
+//    NSString *content = [_todayView.contentTextView.text stringByTrimmingWhiteSpace];
+//    
+//    PFObject *theBlink;
+//    
+//    if (!blink) {
+//        theBlink = [PFObject objectWithClassName:@"Blink"];
+//        theBlink[@"date"] = [NSDate date];
+//        theBlink[@"user"] = [PFUser currentUser];
+//        theBlink[@"private"] = [NSNumber numberWithBool:_todayView.privateButton.selected];
+//    } else {
+//        theBlink = blink;
+//        theBlink[@"date"] = [NSDate date];
+//    }
+//
+//    theBlink[@"content"] = content;
+//    
+//    UIImage *image = _todayView.selectedImage;
+//    BOOL hasImage = NO;
+//    if (image) {
+//        [self.imageUploadManager uploadImage:image forBlink:theBlink];
+//        hasImage = YES;
+//    } else {
+//        [theBlink removeObjectForKey:@"imageFile"];
+//        [theBlink saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+//            if (!error) {
+//                [self finishSuccessfulBlinkUpdate:theBlink];
+//            } else {
+//                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error" message:@"There was an error saving your entry. Please try again." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+//                [alertView show];
+//            }
+//        }];
+//    }
+//    
+//    [self sendMixpanelForSubmittingBlink:theBlink hasImage:hasImage];
+//}
+//
+//- (void)sendMixpanelForSubmittingBlink:(PFObject*)blink hasImage:(BOOL)hasImage {
+//    NSMutableDictionary *propDict = [@{@"private" : blink[@"private"],
+//                                       @"contentLength" : @([blink[@"content"] length])
+//                                       } mutableCopy];
+//    
+//    if (hasImage) {
+//        propDict[@"hasPhoto"] = @(1);
+//    } else {
+//        propDict[@"hasPhoto"] = @(0);
+//    }
+//    
+//    [BIMixpanelHelper sendMixpanelEvent:@"TODAY_updatedTodaysBlink" withProperties:propDict];
+//}
+//
+//- (void)todayView:(BITodayView *)todayView didTapEditExistingBlink:(PFObject*)blink {
+//    [self textViewDidBeginEditing:todayView.contentTextView];
+//}
+//
+//- (void)todayView:(BITodayView *)todayView didTapCancelEditExistingBlink:(PFObject*)blink {
+//    [self unfocusTodayView];
+//    _todayView.blink = _todayView.blink;
+//}
 
 #pragma mark - UIActionSheetDelegate
 
 - (void)actionSheet:(UIActionSheet *)actionSheet willDismissWithButtonIndex:(NSInteger)buttonIndex {
-    if (actionSheet.tag == kDeleteBlinkActionSheet) {
-        if (buttonIndex == actionSheet.destructiveButtonIndex) {
-            PFObject *existingBlink = _todayView.blink;
-            if (existingBlink) {
-                [existingBlink deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-                    if (succeeded) {
-                        _todayView.blink = nil;
-                        [self unfocusTodayView];
-                    }
-                }];
-            }
-            
-            [BIMixpanelHelper sendMixpanelEvent:@"TODAY_deleteTodaysBlink" withProperties:nil];
-        }
-    } else if (actionSheet.tag == kAttachPhotoActionSheet) {
-        if (buttonIndex == kActionSheetPhotoLibrary) {
-            [self showImagePickerForSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
-            [BIMixpanelHelper sendMixpanelEvent:@"PHOTO_chooseExisting" withProperties:nil];
-        } else if (buttonIndex == kActionSheetTakePhoto) {
-            [self showImagePickerForSourceType:UIImagePickerControllerSourceTypeCamera];
-            [BIMixpanelHelper sendMixpanelEvent:@"PHOTO_takeNewPhoto" withProperties:nil];
-        }
-    } else if (actionSheet.tag == kDeletePreviousBlinkActionSheet) {
+    if (actionSheet.tag == kDeletePreviousBlinkActionSheet) {
         if (buttonIndex == actionSheet.destructiveButtonIndex) {
             NSInteger indexOfDeletedBlink = [actionSheet.accessibilityLabel integerValue];
             [self deleteBlinkAtIndex:indexOfDeletedBlink];
@@ -569,81 +499,6 @@
             [BIMixpanelHelper sendMixpanelEvent:@"MYBLINKS_deletedPreviousBlink" withProperties:nil];
         }
     }
-}
-
-#pragma mark - UIImagePickerControllerDelegate
-
-- (void)showImagePickerForSourceType:(UIImagePickerControllerSourceType)sourceType {
-    if(![UIImagePickerController isSourceTypeAvailable:sourceType]) {
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Your device does not support this type of functionality" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-        [alertView show];
-        return;
-    }
-    
-    self.imagePickerController.sourceType = sourceType;
-    self.imagePickerController.allowsEditing = YES;
-
-    if (sourceType == UIImagePickerControllerSourceTypeCamera) {
-        CGRect frame = self.imagePickerController.view.bounds;
-        frame.size.height -= self.imagePickerController.navigationBar.bounds.size.height; // subtract 44
-        CGFloat barHeight = (frame.size.height - frame.size.width) / 2; // 102
-        
-        UIGraphicsBeginImageContext(frame.size);
-        [[UIColor blackColor] set];
-        UIRectFillUsingBlendMode(CGRectMake(0, 30, frame.size.width, barHeight-35), kCGBlendModeNormal);
-        UIRectFillUsingBlendMode(CGRectMake(0, frame.size.height - barHeight, frame.size.width, barHeight-26), kCGBlendModeNormal);
-        UIImage *overlayImage = UIGraphicsGetImageFromCurrentImageContext();
-        UIGraphicsEndImageContext();
-        
-        UIImageView *overlayIV = [[UIImageView alloc] initWithFrame:frame];
-        overlayIV.userInteractionEnabled = NO;
-        overlayIV.image = overlayImage;
-        self.imagePickerController.cameraOverlayView = overlayIV;
-    }
-    
-    [self.navigationController presentViewController:self.imagePickerController animated:YES completion:^{
-        [[UIApplication sharedApplication] setStatusBarHidden:YES];
-    }];
-}
-
-
-// This method is called when an image has been chosen from the library or taken from the camera.
-- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
-    UIImage *image = [info valueForKey:UIImagePickerControllerEditedImage];
-    
-    _todayView.selectedImage = image;
-    self.imageUploadManager.sourceType = picker.sourceType;
-    
-    [self dismissViewControllerAnimated:YES completion:^{
-        [_todayView.contentTextView becomeFirstResponder];
-        
-        _todayView.submitButton.enabled = ([_todayView contentTextFieldHasContent] || _todayView.selectedImage) ? YES : NO;
-    }];
-}
-
-- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
-    [self dismissViewControllerAnimated:YES completion:NULL];
-}
-
-#pragma mark - BIImageUploadManagerDelegate
-
-- (void)imageUploadManager:(BIImageUploadManager*)imageUploadManager didUploadImage:(UIImage*)image forBlink:(PFObject*)blink withError:(NSError*)error {
-    if (!error) {
-        if (imageUploadManager.sourceType == UIImagePickerControllerSourceTypeCamera) {
-                UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil);
-        }
-        
-        [self finishSuccessfulBlinkUpdate:blink];
-    } else {
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error" message:@"There was an error uploading your entry. Please try again!" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-        [alertView show];
-    }
-}
-
-#pragma mark - BIPhotoViewControllerDelegate
-
-- (void)photoViewController:(BIPhotoViewController*)photoViewController didRemovePhotoFromBlink:(PFObject*)blink {
-    _todayView.selectedImage = nil;
 }
 
 #pragma mark - BIHomeTableViewCellDelegate
@@ -685,16 +540,16 @@
 }
 
 #pragma mark - ibactions
+//
+//- (void)tappedFadeLayer:(UITapGestureRecognizer*)tapGR {
+//    [self unfocusTodayView];
+//    _todayView.blink = _todayView.blink;
+//}
 
-- (void)tappedFadeLayer:(UITapGestureRecognizer*)tapGR {
-    [self unfocusTodayView];
-    _todayView.blink = _todayView.blink;
-}
-
-- (void)unfocusTodayView {
-    _todayView.isExpanded = NO;
-    [_fadeLayer fadeOutWithDuration:0.5 completion:nil];
-}
+//- (void)unfocusTodayView {
+//    _todayView.isExpanded = NO;
+//    [_fadeLayer fadeOutWithDuration:0.5 completion:nil];
+//}
 
 - (void)tappedSettings:(id)sender {
     UIStoryboard *mainStoryboard = [UIStoryboard mainStoryboard];
