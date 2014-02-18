@@ -24,6 +24,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *deleteButton;
 @property (weak, nonatomic) IBOutlet UIButton *cameraButton;
 @property (weak, nonatomic) IBOutlet UILabel *privateLabel;
+@property (weak, nonatomic) IBOutlet UIView *buttonContainerView;
 
 @property (nonatomic, strong) UIImagePickerController *imagePickerController;
 @property (nonatomic, strong) BIImageUploadManager *imageUploadManager;
@@ -44,6 +45,7 @@
     [super viewDidLoad];
     
     [self setupButtons];
+    [self setupObservers];
     [self initializeView];
 }
 
@@ -56,6 +58,10 @@
     // blink
     UIBarButtonItem *blinkButton = [[UIBarButtonItem alloc] initWithTitle:@"Save" style:UIBarButtonItemStylePlain target:self action:@selector(tappedSave:)];
     self.navigationItem.rightBarButtonItem = blinkButton;
+}
+
+- (void)setupObservers {
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
 }
 
 - (void)initializeView {
@@ -84,6 +90,24 @@
     
     return _imageUploadManager;
 }
+
+- (void)setSelectedImage:(UIImage *)selectedImage {
+    _selectedImage = selectedImage;
+    
+    [self toggleCameraIconForSelectedImage:selectedImage];
+}
+
+- (void)toggleCameraIconForSelectedImage:(UIImage*)image {
+    UIImage *cameraImage = [UIImage imageNamed:@"camera"];
+    
+    if (image) {
+        cameraImage = [cameraImage imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    }
+    
+    [_cameraButton setBackgroundImage:cameraImage forState:UIControlStateNormal];
+}
+
+#pragma mark - set blink and update ui
 
 - (void)updateViewForBlink:(PFObject*)blink {
     if (blink) {
@@ -123,20 +147,11 @@
     _dateLabel.text = [NSDate spelledOutTodaysDate];
 }
 
-- (void)setSelectedImage:(UIImage *)selectedImage {
-    _selectedImage = selectedImage;
-    
-    [self toggleCameraIconForSelectedImage:selectedImage];
-}
+#pragma mark - notifications 
 
-- (void)toggleCameraIconForSelectedImage:(UIImage*)image {
-    UIImage *cameraImage = [UIImage imageNamed:@"camera"];
-    
-    if (image) {
-        cameraImage = [cameraImage imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-    }
-    
-    [_cameraButton setBackgroundImage:cameraImage forState:UIControlStateNormal];
+- (void)keyboardWillShow:(NSNotification*)note {
+    CGPoint keyboardOrigin = [[note.userInfo objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].origin;
+    _buttonContainerView.frameMaxY = keyboardOrigin.y;
 }
 
 #pragma mark - helper
