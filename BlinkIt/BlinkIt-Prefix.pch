@@ -29,5 +29,5 @@
     #import "BIMixpanelHelper.h"
     #import "BICrashlyticsHelper.h"
     #import "BINotificationHelper.h"
-
+#import "BIDeleteBlinkHelper.h"
 #endif

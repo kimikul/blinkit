@@ -98,7 +98,7 @@
 - (void)setupObservers {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshFeed) name:kBIRefreshHomeAndFeedNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateForTodaysBlink:) name:kBIUpdateSavedBlinkNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deletedTodaysBlink:) name:kBIDeleteTodaysBlinkNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deletedTodaysBlink:) name:kBIDeleteBlinkNotification object:nil];
 }
 
 - (void)dealloc {
@@ -148,7 +148,7 @@
             self.canPaginate = objects.count > 0 && (objects.count % kNumFeedEntriesPerPage == 0);
 
             NSMutableArray *blinks = pagination ? [[self.allBlinksArray arrayByAddingObjectsFromArray:objects] mutableCopy] : [objects mutableCopy];
-            self.allBlinksArray = [blinks copy];
+            self.allBlinksArray = [blinks mutableCopy];
             
             [self sectionalizeBlinks:objects pagination:pagination];
         }
@@ -357,13 +357,9 @@
 
 - (void)deletedTodaysBlink:(NSNotification*)note {
     PFObject *deletedBlink = note.object;
-    NSMutableArray *todaysBlinks = [[_blinksArray objectAtIndex:0] mutableCopy];
-    PFObject *myExistingBlinkToday = [self blinkWithID:[deletedBlink objectId] fromBlinks:todaysBlinks];
-    
-    [todaysBlinks removeObject:myExistingBlinkToday];
-    
-    [_blinksArray replaceObjectAtIndex:0 withObject:todaysBlinks];
-    [self reloadTableData];
+    PFObject *deletedBlinkInArray = [self blinkWithID:deletedBlink.objectId fromBlinks:_allBlinksArray];
+    [_allBlinksArray removeObject:deletedBlinkInArray];
+    [self sectionalizeBlinks:_allBlinksArray pagination:NO];
 }
 
 @end

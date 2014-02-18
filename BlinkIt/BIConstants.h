@@ -18,4 +18,4 @@ extern NSString *const kBIRefreshHomeAndFeedNotification;
 extern NSString *const kBITappedFollowButtonNotification;
 extern NSString *const kBIUpdateHomeNotificationBadgeNotification;
 extern NSString *const kBIUpdateSavedBlinkNotification;
-extern NSString *const kBIDeleteTodaysBlinkNotification;
+extern NSString *const kBIDeleteBlinkNotification;

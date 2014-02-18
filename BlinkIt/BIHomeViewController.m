@@ -123,7 +123,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshHome) name:kBIRefreshHomeAndFeedNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateHomeBadgeCount:) name:kBIUpdateHomeNotificationBadgeNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateForTodaysBlink:) name:kBIUpdateSavedBlinkNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deletedTodaysBlink:) name:kBIDeleteTodaysBlinkNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deletedTodaysBlink:) name:kBIDeleteBlinkNotification object:nil];
 
 }
 
@@ -349,12 +349,8 @@
 - (void)deleteBlinkAtIndex:(NSInteger)row {
     PFObject *blinkToDelete = [self.allBlinksArray objectAtIndex:row];
 
-    [blinkToDelete deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-        if (!error) {
-            // clear todays blink if that is the one you deleted
-            PFObject *blinkToDelete = [self.allBlinksArray objectAtIndex:row];
-            [self updateForDeletingBlink:blinkToDelete];
-        } else {
+    [BIDeleteBlinkHelper deleteBlink:blinkToDelete completion:^(NSError* error) {
+        if (error) {
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"There was an error deleting your entry. Please try again!" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
             [alert show];
         }

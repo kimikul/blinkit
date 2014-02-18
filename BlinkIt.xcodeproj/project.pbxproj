@@ -48,6 +48,7 @@
 		5E79D006189A372000529EBE /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E79D005189A372000529EBE /* StoreKit.framework */; };
 		5E79D009189A45AE00529EBE /* BIFacebookUserManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E79D008189A45AE00529EBE /* BIFacebookUserManager.m */; };
 		5E99D19F18B324DB00862462 /* BIComposeBlinkViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E99D19E18B324DB00862462 /* BIComposeBlinkViewController.m */; };
+		5E99D1A218B38D1A00862462 /* BIDeleteBlinkHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E99D1A118B38D1A00862462 /* BIDeleteBlinkHelper.m */; };
 		5E9D037218AB2FD900634EB9 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9D037118AB2FD900634EB9 /* Crashlytics.framework */; };
 		5E9D037818AB30F800634EB9 /* BICrashlyticsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E9D037718AB30F800634EB9 /* BICrashlyticsHelper.m */; };
 		5E9D037A18AB3D2000634EB9 /* BIFeedTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E9D037918AB3D2000634EB9 /* BIFeedTableViewCell.xib */; };
@@ -184,6 +185,8 @@
 		5E79D008189A45AE00529EBE /* BIFacebookUserManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BIFacebookUserManager.m; sourceTree = "<group>"; };
 		5E99D19D18B324DB00862462 /* BIComposeBlinkViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BIComposeBlinkViewController.h; sourceTree = "<group>"; };
 		5E99D19E18B324DB00862462 /* BIComposeBlinkViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BIComposeBlinkViewController.m; sourceTree = "<group>"; };
+		5E99D1A018B38D1A00862462 /* BIDeleteBlinkHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BIDeleteBlinkHelper.h; sourceTree = "<group>"; };
+		5E99D1A118B38D1A00862462 /* BIDeleteBlinkHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BIDeleteBlinkHelper.m; sourceTree = "<group>"; };
 		5E9D037118AB2FD900634EB9 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		5E9D037618AB30F800634EB9 /* BICrashlyticsHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BICrashlyticsHelper.h; sourceTree = "<group>"; };
 		5E9D037718AB30F800634EB9 /* BICrashlyticsHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BICrashlyticsHelper.m; sourceTree = "<group>"; };
@@ -434,6 +437,15 @@
 			name = Compose;
 			sourceTree = "<group>";
 		};
+		5E99D1A318B38D2000862462 /* Delete */ = {
+			isa = PBXGroup;
+			children = (
+				5E99D1A018B38D1A00862462 /* BIDeleteBlinkHelper.h */,
+				5E99D1A118B38D1A00862462 /* BIDeleteBlinkHelper.m */,
+			);
+			name = Delete;
+			sourceTree = "<group>";
+		};
 		5E9D038118AB6C5200634EB9 /* Notifications */ = {
 			isa = PBXGroup;
 			children = (
@@ -495,6 +507,7 @@
 		5EAB8AA9187E73DF00B02953 /* BlinkIt */ = {
 			isa = PBXGroup;
 			children = (
+				5E99D1A318B38D2000862462 /* Delete */,
 				5E99D19C18B324C900862462 /* Compose */,
 				5E9D038118AB6C5200634EB9 /* Notifications */,
 				5E42D3F1189CA3F300F651E0 /* Follow */,
@@ -789,6 +802,7 @@
 				5E6F4B5E18A9E9B7006289D0 /* BIMixpanelHelper.m in Sources */,
 				5E639291188BA52F00D1AE80 /* BISettingsViewController.m in Sources */,
 				5E9D037818AB30F800634EB9 /* BICrashlyticsHelper.m in Sources */,
+				5E99D1A218B38D1A00862462 /* BIDeleteBlinkHelper.m in Sources */,
 				5EAB8B2C1881062A00B02953 /* UIStoryboard+BlinkIt.m in Sources */,
 				5EAB8AE4187E7D3600B02953 /* BISplashViewController.m in Sources */,
 				5E7297B318A9F472008D356C /* Mixpanel.m in Sources */,

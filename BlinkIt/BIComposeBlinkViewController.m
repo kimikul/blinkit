@@ -71,6 +71,10 @@
     [_contentTextView becomeFirstResponder];
 }
 
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 #pragma mark - setter/getter
 
 - (UIImagePickerController*)imagePickerController {
@@ -312,12 +316,9 @@
     if (actionSheet.tag == kDeleteBlinkActionSheet) {
         if (buttonIndex == actionSheet.destructiveButtonIndex) {
             if (_blink) {
-                [_blink deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-                    if (succeeded) {
-                        [[NSNotificationCenter defaultCenter] postNotificationName:kBIDeleteTodaysBlinkNotification object:_blink];
-                        [_contentTextView resignFirstResponder];
-                        [self dismissViewControllerAnimated:YES completion:nil];
-                    }
+                [BIDeleteBlinkHelper deleteBlink:_blink completion:^(NSError *error) {
+                    [_contentTextView resignFirstResponder];
+                    [self dismissViewControllerAnimated:YES completion:nil];
                 }];
             }
             
