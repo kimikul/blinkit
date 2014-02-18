@@ -18,3 +18,5 @@ NSString *const kBIUserDefaultsRequestedFriendsKey = @"kBIUserDefaultsRequestedF
 NSString *const kBIRefreshHomeAndFeedNotification = @"kBIRefreshHomeAndFeedNotification";
 NSString *const kBITappedFollowButtonNotification = @"kBITappedFollowButtonNotification";
 NSString *const kBIUpdateHomeNotificationBadgeNotification = @"kBIUpdateHomeNotificationBadgeNotification";
+NSString *const kBIUpdateSavedBlinkNotification = @"kBIUpdateSavedBlinkNotification";
+NSString *const kBIDeleteTodaysBlinkNotification = @"kBIDeleteTodaysBlinkNotification";

@@ -115,7 +115,7 @@
         
         // reset label and image
         _placeholderLabel.hidden = NO;
-        _placeholderLabel.text = @"Click to edit today's blink";
+        _placeholderLabel.text = @"What do you want to remember about today?";
         _deleteButton.hidden = YES;
         self.selectedImage = nil;
     }
@@ -166,6 +166,7 @@
 #pragma mark - button actions
 
 - (void)tappedCancel:(id)sender {
+    [_contentTextView resignFirstResponder];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -224,7 +225,7 @@
 - (IBAction)deleteTapped:(id)sender {
     UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"This will clear your entry for today. Are you sure?" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:@"Continue" otherButtonTitles:nil];
     actionSheet.tag = kDeleteBlinkActionSheet;
-    [actionSheet showFromTabBar:self.tabBarController.tabBar];
+    [actionSheet showInView:self.view];
 }
 
 - (IBAction)cameraTapped:(id)sender {
@@ -292,11 +293,11 @@
 - (void)actionSheet:(UIActionSheet *)actionSheet willDismissWithButtonIndex:(NSInteger)buttonIndex {
     if (actionSheet.tag == kDeleteBlinkActionSheet) {
         if (buttonIndex == actionSheet.destructiveButtonIndex) {
-            PFObject *existingBlink = _blink;
-            if (existingBlink) {
-                [existingBlink deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+            if (_blink) {
+                [_blink deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
                     if (succeeded) {
-                        self.blink = nil;
+                        [[NSNotificationCenter defaultCenter] postNotificationName:kBIDeleteTodaysBlinkNotification object:_blink];
+                        [_contentTextView resignFirstResponder];
                         [self dismissViewControllerAnimated:YES completion:nil];
                     }
                 }];
@@ -391,6 +392,7 @@
 }
 
 - (void)finishSuccessfulBlinkUpdate:(PFObject*)blink {
+    [[NSNotificationCenter defaultCenter] postNotificationName:kBIUpdateSavedBlinkNotification object:blink];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 

@@ -8,7 +8,6 @@
 
 #import "BIHomeViewController.h"
 #import "BIHomeTableViewCell.h"
-//#import "BITodayView.h"
 #import "BIImageUploadManager.h"
 #import "BIHomePhotoTableViewCell.h"
 #import "BISettingsViewController.h"
@@ -19,13 +18,10 @@
 #define kDeletePreviousBlinkActionSheet 2
 #define kNumBlinksPerPage 15
 
-@interface BIHomeViewController () <UITextViewDelegate, UIActionSheetDelegate, BIHomeTableViewCellDelegate>
+@interface BIHomeViewController () <UIActionSheetDelegate, BIHomeTableViewCellDelegate>
 
 @property (nonatomic, strong) NSMutableArray *allBlinksArray;
-@property (nonatomic, strong) NSMutableArray *blinksArray;
 @property (nonatomic, strong) PFObject *todaysBlink;
-//@property (nonatomic, strong) BITodayView *todayView;
-//@property (nonatomic, strong) IBOutlet UIView *fadeLayer;
 @property (weak, nonatomic) IBOutlet UIView *errorView;
 
 @property (nonatomic, strong) BIHomeTableViewCell *togglePrivacyCell;
@@ -66,7 +62,6 @@
     [self setupButtons];
     [self setupNav];
     [self setupTableView];
-//    [self setupTodayView];
     [self setupErrorView];
     [self setupObservers];
     [self fetchBlinksForPagination:NO];
@@ -119,24 +114,6 @@
     [self.tableView registerNib:[UINib nibWithNibName:[BIHomeTableViewCell reuseIdentifier] bundle:[NSBundle mainBundle]] forCellReuseIdentifier:[BIHomeTableViewCell reuseIdentifier]];
 }
 
-//- (void)setupTodayView {
-//    NSArray *nibs = [[NSBundle mainBundle] loadNibNamed:@"BITodayView" owner:nil options:nil];
-//    BITodayView *todayView = [nibs objectAtIndex:0];
-//    todayView.frameY = 64;
-//    todayView.delegate = self;
-//    
-//    UIView *view = [[UIView alloc] initWithFrame:todayView.frame];
-//    view.backgroundColor = [UIColor redColor];
-//    
-//    _todayView = todayView;
-//    _todayView.contentTextView.delegate = self;
-//
-//    [self.view addSubview:_todayView];
-//
-//    UITapGestureRecognizer *tapGR = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tappedFadeLayer:)];
-//    [_fadeLayer addGestureRecognizer:tapGR];
-//}
-
 - (void)setupErrorView {
     UITapGestureRecognizer *tapGR = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(fetchBlinks)];
     [_errorView addGestureRecognizer:tapGR];
@@ -145,6 +122,9 @@
 - (void)setupObservers {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshHome) name:kBIRefreshHomeAndFeedNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateHomeBadgeCount:) name:kBIUpdateHomeNotificationBadgeNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateForTodaysBlink:) name:kBIUpdateSavedBlinkNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deletedTodaysBlink:) name:kBIDeleteTodaysBlinkNotification object:nil];
+
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -188,13 +168,12 @@
             }
             
             NSMutableArray *blinks = pagination ? [[self.allBlinksArray arrayByAddingObjectsFromArray:objects] mutableCopy] : [objects mutableCopy];
-            self.allBlinksArray = [blinks copy];
+            self.allBlinksArray = [blinks mutableCopy];
             
             BOOL isBlinkToday = NO;
             for (PFObject *blink in blinks) {
                 NSDate *date = blink[@"date"];
                 if ([self isDateToday:date]) {
-                    [blinks removeObject:blink];
                     _todaysBlink = blink;
                     isBlinkToday = YES;
                     break;
@@ -206,7 +185,6 @@
             }
             
             // append or replace existing data source
-            _blinksArray = blinks;
             [self reloadTableData];
         } else {
             [_errorView fadeInWithDuration:0.4 completion:nil];
@@ -267,6 +245,22 @@
     [notieButton setBackgroundImage:notificationImage forState:UIControlStateNormal];
 }
 
+- (void)updateForTodaysBlink:(NSNotification*)note {
+    PFObject *blink = note.object;
+    
+    if (!_todaysBlink) {
+        [self.allBlinksArray insertObject:blink atIndex:0];
+    }
+    
+    _todaysBlink = blink;
+    [self reloadTableData];
+}
+
+- (void)deletedTodaysBlink:(NSNotification*)note {
+    PFObject *blinkToDelete = note.object;
+    [self updateForDeletingBlink:blinkToDelete];
+}
+
 #pragma mark - UITableViewDelegate / UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -275,27 +269,27 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // no results row
-    if (_blinksArray.count == 0 && !self.isLoading) {
+    if (self.allBlinksArray.count == 0 && !self.isLoading) {
         return 1;
     }
     
-    return _blinksArray.count + self.canPaginate;
+    return self.allBlinksArray.count + self.canPaginate;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     // no results row
-    if (_blinksArray.count == 0 && !self.isLoading) {
+    if (self.allBlinksArray.count == 0 && !self.isLoading) {
         return [BINoFollowResultsTableViewCell cellHeight];
     }
     
     // pagination row
-    if (indexPath.row == _blinksArray.count) {
+    if (indexPath.row == self.allBlinksArray.count) {
         return [BIPaginationTableViewCell cellHeight];
     }
     
     // regular row
     CGFloat height = 0;
-    PFObject *blink = [_blinksArray objectAtIndex:indexPath.row];
+    PFObject *blink = [self.allBlinksArray objectAtIndex:indexPath.row];
     NSString *content = blink[@"content"];
     PFFile *imageFile = blink[@"imageFile"];
     
@@ -311,7 +305,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     // no results row
-    if (_blinksArray.count == 0 && !self.isLoading) {
+    if (self.allBlinksArray.count == 0 && !self.isLoading) {
         tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 
         BINoFollowResultsTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:[BINoFollowResultsTableViewCell reuseIdentifier]];
@@ -319,14 +313,14 @@
     }
     
     // pagination row
-    if (indexPath.row == _blinksArray.count) {
+    if (indexPath.row == self.allBlinksArray.count) {
         BIPaginationTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:[BIPaginationTableViewCell reuseIdentifier]];
         [cell.aiv startAnimating];
         return cell;
     }
     
     // regular row
-    PFObject *blink = [_blinksArray objectAtIndex:indexPath.row];
+    PFObject *blink = [self.allBlinksArray objectAtIndex:indexPath.row];
     BIHomeTableViewCell *cell;
     
     if (blink[@"imageFile"]) {
@@ -365,15 +359,13 @@
 }
 
 - (void)deleteBlinkAtIndex:(NSInteger)row {
-    PFObject *blinkToDelete = [_blinksArray objectAtIndex:row];
+    PFObject *blinkToDelete = [self.allBlinksArray objectAtIndex:row];
 
     [blinkToDelete deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (!error) {
-            [_blinksArray removeObjectAtIndex:row];
-            
-            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:0];
-            [self.tableView deleteRowsAtIndexPaths:@[indexPath]
-                                  withRowAnimation:UITableViewRowAnimationLeft];
+            // clear todays blink if that is the one you deleted
+            PFObject *blinkToDelete = [self.allBlinksArray objectAtIndex:row];
+            [self updateForDeletingBlink:blinkToDelete];
         } else {
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"There was an error deleting your entry. Please try again!" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
             [alert show];
@@ -381,113 +373,14 @@
     }];
 }
 
-//#pragma mark - uitextviewdelegate
-//
-//- (void)textViewDidBeginEditing:(UITextView *)textView {
-//    if (!_todayView.isExpanded) {
-//        self.progressHUD.mode = MBProgressHUDModeIndeterminate;
-//        self.progressHUD.labelText = nil;
-//        
-//        _todayView.isExpanded = YES;
-//        [_fadeLayer fadeInToOpacity:0.7 duration:0.5 completion:nil];
-//        
-//        [BIMixpanelHelper sendMixpanelEvent:@"TODAY_tappedToEditTodaysBlink" withProperties:@{@"source":@"first entry"}];
-//    }
-//    
-//    [_todayView updateRemainingCharLabel];
-//}
-//
-//- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
-//    if (textView.text.length < 200 || text.length == 0) {
-//        return YES;
-//    }
-//    
-//    return NO;
-//}
-//
-//- (void)textViewDidChange:(UITextView *)textView {
-//    // update remaining char count label
-//    [_todayView updateRemainingCharLabel];
-//    
-//    // enable / disable submit button
-//    _todayView.submitButton.enabled = ([_todayView contentTextFieldHasContent] || _todayView.selectedImage) ? YES : NO;
-//    
-//    [textView scrollRangeToVisible:NSMakeRange(textView.text.length + 10, 0)];
-//}
-
-#pragma mark - BITodayViewDelegate
-
-//- (void)finishSuccessfulBlinkUpdate:(PFObject*)blink {
-//    self.progressHUD.mode = MBProgressHUDModeText;
-//    self.progressHUD.labelText = @"Saved!";
-//    [self showProgressHUDForDuration:0.8];
-//    
-//    [self unfocusTodayView];
-//    _todayView.blink = blink;
-//}
-
-//- (void)todayView:(BITodayView *)todayView didSubmitBlink:(PFObject *)blink {
-//    
-//    [self showProgressHUD];
-//
-//    NSString *content = [_todayView.contentTextView.text stringByTrimmingWhiteSpace];
-//    
-//    PFObject *theBlink;
-//    
-//    if (!blink) {
-//        theBlink = [PFObject objectWithClassName:@"Blink"];
-//        theBlink[@"date"] = [NSDate date];
-//        theBlink[@"user"] = [PFUser currentUser];
-//        theBlink[@"private"] = [NSNumber numberWithBool:_todayView.privateButton.selected];
-//    } else {
-//        theBlink = blink;
-//        theBlink[@"date"] = [NSDate date];
-//    }
-//
-//    theBlink[@"content"] = content;
-//    
-//    UIImage *image = _todayView.selectedImage;
-//    BOOL hasImage = NO;
-//    if (image) {
-//        [self.imageUploadManager uploadImage:image forBlink:theBlink];
-//        hasImage = YES;
-//    } else {
-//        [theBlink removeObjectForKey:@"imageFile"];
-//        [theBlink saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-//            if (!error) {
-//                [self finishSuccessfulBlinkUpdate:theBlink];
-//            } else {
-//                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error" message:@"There was an error saving your entry. Please try again." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-//                [alertView show];
-//            }
-//        }];
-//    }
-//    
-//    [self sendMixpanelForSubmittingBlink:theBlink hasImage:hasImage];
-//}
-//
-//- (void)sendMixpanelForSubmittingBlink:(PFObject*)blink hasImage:(BOOL)hasImage {
-//    NSMutableDictionary *propDict = [@{@"private" : blink[@"private"],
-//                                       @"contentLength" : @([blink[@"content"] length])
-//                                       } mutableCopy];
-//    
-//    if (hasImage) {
-//        propDict[@"hasPhoto"] = @(1);
-//    } else {
-//        propDict[@"hasPhoto"] = @(0);
-//    }
-//    
-//    [BIMixpanelHelper sendMixpanelEvent:@"TODAY_updatedTodaysBlink" withProperties:propDict];
-//}
-//
-//- (void)todayView:(BITodayView *)todayView didTapEditExistingBlink:(PFObject*)blink {
-//    [self textViewDidBeginEditing:todayView.contentTextView];
-//}
-//
-//- (void)todayView:(BITodayView *)todayView didTapCancelEditExistingBlink:(PFObject*)blink {
-//    [self unfocusTodayView];
-//    _todayView.blink = _todayView.blink;
-//}
+- (void)updateForDeletingBlink:(PFObject*)blinkToDelete {
+    if ([[blinkToDelete objectId] isEqualToString:[_todaysBlink objectId]]) {
+        _todaysBlink = nil;
+    }
+    
+    [self.allBlinksArray removeObject:blinkToDelete];
+    [self reloadTableData];
+}
 
 #pragma mark - UIActionSheetDelegate
 
@@ -541,16 +434,6 @@
 }
 
 #pragma mark - ibactions
-//
-//- (void)tappedFadeLayer:(UITapGestureRecognizer*)tapGR {
-//    [self unfocusTodayView];
-//    _todayView.blink = _todayView.blink;
-//}
-
-//- (void)unfocusTodayView {
-//    _todayView.isExpanded = NO;
-//    [_fadeLayer fadeOutWithDuration:0.5 completion:nil];
-//}
 
 - (void)tappedSettings:(id)sender {
     UIStoryboard *mainStoryboard = [UIStoryboard mainStoryboard];
