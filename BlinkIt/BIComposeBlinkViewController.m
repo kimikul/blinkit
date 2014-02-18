@@ -40,19 +40,11 @@
 
 #pragma mark - lifeyccle
 
-- (id)initWithCoder:(NSCoder *)aDecoder {
-    self = [super initWithCoder:aDecoder];
-    if (self) {
-        _dateLabel.text = [NSDate spelledOutTodaysDate];
-    }
-    
-    return self;
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     [self setupButtons];
+    [self initializeView];
 }
 
 - (void)setupButtons {
@@ -64,6 +56,13 @@
     // blink
     UIBarButtonItem *blinkButton = [[UIBarButtonItem alloc] initWithTitle:@"Save" style:UIBarButtonItemStylePlain target:self action:@selector(tappedSave:)];
     self.navigationItem.rightBarButtonItem = blinkButton;
+}
+
+- (void)initializeView {
+    [self updateViewForBlink:_blink];
+    
+    _dateLabel.text = [NSDate spelledOutTodaysDate];
+    [_contentTextView becomeFirstResponder];
 }
 
 #pragma mark - setter/getter
@@ -86,12 +85,12 @@
     return _imageUploadManager;
 }
 
-- (void)setBlink:(PFObject *)blink {
-    _blink = blink;
-    
+- (void)updateViewForBlink:(PFObject*)blink {
     if (blink) {
-        _placeholderLabel.text = blink[@"content"];
-        
+        _contentTextView.text = _blink[@"content"];
+        _deleteButton.hidden = NO;
+        _placeholderLabel.hidden = YES;
+
         // set image
         PFFile *imageFile = blink[@"imageFile"];
         if (imageFile) {
@@ -115,7 +114,9 @@
         }
         
         // reset label and image
+        _placeholderLabel.hidden = NO;
         _placeholderLabel.text = @"Click to edit today's blink";
+        _deleteButton.hidden = YES;
         self.selectedImage = nil;
     }
     
@@ -165,7 +166,6 @@
 #pragma mark - button actions
 
 - (void)tappedCancel:(id)sender {
-    self.blink = _blink;
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -296,7 +296,7 @@
             if (existingBlink) {
                 [existingBlink deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
                     if (succeeded) {
-                        _blink = nil;
+                        self.blink = nil;
                         [self dismissViewControllerAnimated:YES completion:nil];
                     }
                 }];
@@ -318,7 +318,7 @@
 #pragma mark - BIPhotoViewControllerDelegate
 
 - (void)photoViewController:(BIPhotoViewController*)photoViewController didRemovePhotoFromBlink:(PFObject*)blink {
-    _selectedImage = nil;
+    self.selectedImage = nil;
 }
 
 #pragma mark - UIImagePickerControllerDelegate
@@ -361,7 +361,7 @@
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
     UIImage *image = [info valueForKey:UIImagePickerControllerEditedImage];
     
-    _selectedImage = image;
+    self.selectedImage = image;
     self.imageUploadManager.sourceType = picker.sourceType;
     
     [self dismissViewControllerAnimated:YES completion:^{
@@ -391,12 +391,7 @@
 }
 
 - (void)finishSuccessfulBlinkUpdate:(PFObject*)blink {
-    self.progressHUD.mode = MBProgressHUDModeText;
-    self.progressHUD.labelText = @"Saved!";
-    [self showProgressHUDForDuration:0.8];
-    
-//    [self unfocusTodayView];
-    _blink = blink;
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark - uitextviewdelegate

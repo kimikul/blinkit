@@ -7,7 +7,7 @@
 //
 
 #import "BITabBarController.h"
-#import "BIComposeBlinkViewController.h"
+#import "BIHomeViewController.h"
 
 #define kTABBAR_ME 0
 #define kTABBAR_FEED 1
@@ -34,7 +34,7 @@
     UIButton* button = [UIButton buttonWithType:UIButtonTypeCustom];
     button.frame = CGRectMake(0.0, 0.0, buttonImage.size.width, buttonImage.size.height);
     [button setBackgroundImage:buttonImage forState:UIControlStateNormal];
-    [button addTarget:self action:@selector(composeBlink:) forControlEvents:UIControlEventTouchUpInside];
+    [button addTarget:self action:@selector(presentTodaysBlinkVC:) forControlEvents:UIControlEventTouchUpInside];
     
     CGFloat heightDifference = buttonImage.size.height - self.tabBar.frame.size.height;
     if (heightDifference < 0)
@@ -61,12 +61,10 @@
 
 #pragma mark - ibaction
 
-- (void)composeBlink:(UIButton*)sender {
-    UIStoryboard *mainStoryboard = [UIStoryboard mainStoryboard];
-    UINavigationController *nav = [mainStoryboard instantiateViewControllerWithIdentifier:@"BIComposeBlinkNavigationController"];
-    [self presentViewController:nav animated:YES completion:nil];
-    
-    [BIMixpanelHelper sendMixpanelEvent:@"TODAY_composeBlink" withProperties:nil];
+- (void)presentTodaysBlinkVC:(UIButton*)sender {
+    UINavigationController *nav = [self.viewControllers objectAtIndex:0];
+    BIHomeViewController *homeVC = (BIHomeViewController*)nav.topViewController;
+    [homeVC presentTodaysBlinkVC];
 }
 
 @end

@@ -1063,11 +1063,6 @@ PRO TIP : Link your Facebook in Settings so friends can find you.</string>
                                     <action selector="privateButtonTapped:" destination="HpA-au-tTx" eventType="touchUpInside" id="k9l-jL-jnn"/>
                                 </connections>
                             </button>
-                            <view contentMode="scaleToFill" id="7WZ-Nq-Lkz" userLabel="Separator">
-                                <rect key="frame" x="0.0" y="102" width="320" height="1"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.90000000000000002" alpha="1" colorSpace="calibratedWhite"/>
-                            </view>
                             <view contentMode="scaleToFill" id="NAp-PH-Dzk" userLabel="Separator">
                                 <rect key="frame" x="0.0" y="230" width="320" height="1"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>

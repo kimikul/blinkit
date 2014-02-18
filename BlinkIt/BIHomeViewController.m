@@ -14,6 +14,7 @@
 #import "BISettingsViewController.h"
 #import "BIPaginationTableViewCell.h"
 #import "BINoFollowResultsTableViewCell.h"
+#import "BIComposeBlinkViewController.h"
 
 #define kDeletePreviousBlinkActionSheet 2
 #define kNumBlinksPerPage 15
@@ -565,6 +566,16 @@
     [self presentViewController:notificationsNav animated:YES completion:nil];
 }
 
+- (void)presentTodaysBlinkVC {
+    UIStoryboard *mainStoryboard = [UIStoryboard mainStoryboard];
+    UINavigationController *nav = [mainStoryboard instantiateViewControllerWithIdentifier:@"BIComposeBlinkNavigationController"];
+    BIComposeBlinkViewController *todaysBlinkVC = (BIComposeBlinkViewController*)nav.topViewController;
+    todaysBlinkVC.blink = _todaysBlink;
+    
+    [self presentViewController:nav animated:YES completion:nil];
+    
+    [BIMixpanelHelper sendMixpanelEvent:@"TODAY_composeBlink" withProperties:nil];
+}
 
 
 @end
