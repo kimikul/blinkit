@@ -98,7 +98,7 @@
 - (void)setupObservers {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshFeed) name:kBIRefreshHomeAndFeedNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateForTodaysBlink:) name:kBIUpdateSavedBlinkNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deletedTodaysBlink:) name:kBIDeleteBlinkNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deletedBlink:) name:kBIDeleteBlinkNotification object:nil];
 }
 
 - (void)dealloc {
@@ -355,7 +355,7 @@
     return nil;
 }
 
-- (void)deletedTodaysBlink:(NSNotification*)note {
+- (void)deletedBlink:(NSNotification*)note {
     PFObject *deletedBlink = note.object;
     PFObject *deletedBlinkInArray = [self blinkWithID:deletedBlink.objectId fromBlinks:_allBlinksArray];
     [_allBlinksArray removeObject:deletedBlinkInArray];

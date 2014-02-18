@@ -123,7 +123,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshHome) name:kBIRefreshHomeAndFeedNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateHomeBadgeCount:) name:kBIUpdateHomeNotificationBadgeNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateForTodaysBlink:) name:kBIUpdateSavedBlinkNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deletedTodaysBlink:) name:kBIDeleteBlinkNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deletedBlink:) name:kBIDeleteBlinkNotification object:nil];
 
 }
 
@@ -244,7 +244,7 @@
     [self reloadTableData];
 }
 
-- (void)deletedTodaysBlink:(NSNotification*)note {
+- (void)deletedBlink:(NSNotification*)note {
     PFObject *blinkToDelete = note.object;
     [self updateForDeletingBlink:blinkToDelete];
 }
