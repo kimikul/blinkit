@@ -30,4 +30,16 @@
     return formattedDate;
 }
 
++ (BOOL)isToday:(NSDate*)date {
+    NSDateComponents *otherDay = [[NSCalendar currentCalendar] components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit fromDate:date];
+    NSDateComponents *today = [[NSCalendar currentCalendar] components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit fromDate:[NSDate date]];
+    if([today day] == [otherDay day] &&
+       [today month] == [otherDay month] &&
+       [today year] == [otherDay year]) {
+        return YES;
+    }
+    
+    return NO;
+}
+
 @end

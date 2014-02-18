@@ -13,5 +13,6 @@
 + (NSString*)spelledOutDate:(NSDate*)date;
 + (NSString*)spelledOutTodaysDate;
 + (NSString*)formattedTime:(NSDate*)date;
++ (BOOL)isToday:(NSDate*)date;
 
 @end

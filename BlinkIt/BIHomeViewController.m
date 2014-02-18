@@ -173,7 +173,7 @@
             BOOL isBlinkToday = NO;
             for (PFObject *blink in blinks) {
                 NSDate *date = blink[@"date"];
-                if ([self isDateToday:date]) {
+                if ([NSDate isToday:date]) {
                     _todaysBlink = blink;
                     isBlinkToday = YES;
                     break;
@@ -194,18 +194,6 @@
     if (pagination) {
         [BIMixpanelHelper sendMixpanelEvent:@"HOME_paginateHome" withProperties:nil];
     }
-}
-
-- (BOOL)isDateToday:(NSDate*)date {
-    NSDateComponents *otherDay = [[NSCalendar currentCalendar] components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit fromDate:date];
-    NSDateComponents *today = [[NSCalendar currentCalendar] components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit fromDate:[NSDate date]];
-    if([today day] == [otherDay day] &&
-       [today month] == [otherDay month] &&
-       [today year] == [otherDay year]) {
-        return YES;
-    }
-    
-    return NO;
 }
 
 - (void)refreshHome {

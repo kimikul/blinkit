@@ -45,8 +45,10 @@
     _blink = blink;
     
     _contentLabel.text = blink[@"content"];
-    _dateLabel.text = [NSDate spelledOutDate:_blink[@"date"]];
-    _timeLabel.text = [NSDate formattedTime:_blink[@"date"]];
+    
+    NSDate *date = _blink[@"date"];
+    _timeLabel.text = [NSDate formattedTime:date];
+    _dateLabel.text = [NSDate isToday:date] ? @"Today" : [NSDate spelledOutDate:date];
     
     BOOL isPrivate = [_blink[@"private"] boolValue];
     [self updatePrivacyButtonTo:isPrivate];

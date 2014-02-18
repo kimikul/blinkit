@@ -89,6 +89,8 @@
 
 - (void)setupObservers {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshFeed) name:kBIRefreshHomeAndFeedNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateForTodaysBlink:) name:kBIUpdateSavedBlinkNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deletedTodaysBlink:) name:kBIDeleteTodaysBlinkNotification object:nil];
 }
 
 - (void)dealloc {
@@ -112,10 +114,16 @@
     if (self.isLoading) return;
     self.loading = YES;
     
-    // ppl i'm following
-    PFQuery *followedUsers = [PFUser query];
-    [followedUsers whereKey:@"facebookID" containedIn:[BIDataStore shared].followedFriends];
+    // ppl i'm following + me
+    NSMutableArray *followedFriends = [[BIDataStore shared].followedFriends mutableCopy];
+    NSString *myID = [[PFUser currentUser] objectForKey:@"facebookID"];
+    if (myID) {
+        [followedFriends addObject:myID];
+    }
     
+    PFQuery *followedUsers = [PFUser query];
+    [followedUsers whereKey:@"facebookID" containedIn:followedFriends];
+
     // their public blinks
     PFQuery *blinksFromFollowed = [PFQuery queryWithClassName:@"Blink"];
     blinksFromFollowed.limit = kNumFeedEntriesPerPage;
@@ -317,5 +325,12 @@
     [BIMixpanelHelper sendMixpanelEvent:@"FOLLOW_tappedFriendsButton" withProperties:nil];
 }
 
+- (void)updateForTodaysBlink:(NSNotification*)note {
+    [self reloadTableData];
+}
+
+- (void)deletedTodaysBlink:(NSNotification*)note {
+    [self reloadTableData];
+}
 
 @end
