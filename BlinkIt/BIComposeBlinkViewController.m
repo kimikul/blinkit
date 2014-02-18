@@ -150,6 +150,8 @@
     NSInteger remainingCharacterCount = 200 - _contentTextView.text.length;
     NSString *remainingCharactersLabel = [NSString stringWithFormat:@"%ld", (long)remainingCharacterCount];
     
+    _remainingCharactersLabel.textColor = remainingCharacterCount <= 20 ? [UIColor redColor] : [UIColor darkGrayColor];
+
     self.remainingCharactersLabel.text = remainingCharactersLabel;
 }
 
