@@ -1029,9 +1029,10 @@ PRO TIP : Link your Facebook in Settings so friends can find you.</string>
                                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="iAp-yW-6YP">
-                                        <rect key="frame" x="162" y="9" width="25" height="25"/>
+                                        <rect key="frame" x="152" y="0.0" width="44" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" backgroundImage="trash2">
+                                        <inset key="imageEdgeInsets" minX="8" minY="6" maxX="8" maxY="9"/>
+                                        <state key="normal" image="trash2">
                                             <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
@@ -1052,10 +1053,10 @@ PRO TIP : Link your Facebook in Settings so friends can find you.</string>
                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Y9d-t0-CH9">
-                                        <rect key="frame" x="105" y="9" width="25" height="25"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Y9d-t0-CH9">
+                                        <rect key="frame" x="95" y="0.0" width="44" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" backgroundImage="camera">
+                                        <state key="normal" image="camera">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
@@ -1063,9 +1064,10 @@ PRO TIP : Link your Facebook in Settings so friends can find you.</string>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="V8m-Js-tnl" userLabel="Button - Privacy">
-                                        <rect key="frame" x="6" y="12" width="20" height="20"/>
+                                        <rect key="frame" x="6" y="0.0" width="76" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" backgroundImage="private">
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="12" maxX="56" maxY="12"/>
+                                        <state key="normal" image="private">
                                             <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>

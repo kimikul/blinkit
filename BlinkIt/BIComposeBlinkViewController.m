@@ -104,7 +104,7 @@
         cameraImage = [cameraImage imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     }
     
-    [_cameraButton setBackgroundImage:cameraImage forState:UIControlStateNormal];
+    [_cameraButton setImage:cameraImage forState:UIControlStateNormal];
 }
 
 #pragma mark - set blink and update ui
