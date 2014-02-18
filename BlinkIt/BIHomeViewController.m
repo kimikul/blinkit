@@ -404,6 +404,7 @@
     
         [blink saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
             if (!error) {
+                [[NSNotificationCenter defaultCenter] postNotificationName:kBIBlinkPrivacyUpdatedNotification object:blink];
                 [_togglePrivacyCell updatePrivacyButtonTo:newPrivacySetting];
             } else {
                 UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Privacy setting was not updated. Please try again" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];

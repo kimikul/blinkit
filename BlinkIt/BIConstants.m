@@ -20,3 +20,4 @@ NSString *const kBITappedFollowButtonNotification = @"kBITappedFollowButtonNotif
 NSString *const kBIUpdateHomeNotificationBadgeNotification = @"kBIUpdateHomeNotificationBadgeNotification";
 NSString *const kBIUpdateSavedBlinkNotification = @"kBIUpdateSavedBlinkNotification";
 NSString *const kBIDeleteBlinkNotification = @"kBIDeleteTodaysBlinkNotification";
+NSString *const kBIBlinkPrivacyUpdatedNotification = @"kBIBlinkPrivacyUpdatedNotification";

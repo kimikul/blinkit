@@ -99,6 +99,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshFeed) name:kBIRefreshHomeAndFeedNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateForTodaysBlink:) name:kBIUpdateSavedBlinkNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deletedBlink:) name:kBIDeleteBlinkNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggledBlinkPrivacy:) name:kBIBlinkPrivacyUpdatedNotification object:nil];
 }
 
 - (void)dealloc {
@@ -360,6 +361,18 @@
     PFObject *deletedBlinkInArray = [self blinkWithID:deletedBlink.objectId fromBlinks:_allBlinksArray];
     [_allBlinksArray removeObject:deletedBlinkInArray];
     [self sectionalizeBlinks:_allBlinksArray pagination:NO];
+}
+
+- (void)toggledBlinkPrivacy:(NSNotification*)note {
+    PFObject *updatedBlink = note.object;
+    
+    if ([updatedBlink[@"private"] boolValue]) {
+        PFObject *updatedBlinkInArray = [self blinkWithID:updatedBlink.objectId fromBlinks:_allBlinksArray];
+        [_allBlinksArray removeObject:updatedBlinkInArray];
+        [self sectionalizeBlinks:_allBlinksArray pagination:NO];
+    } else {
+        [self refreshFeed];
+    }
 }
 
 @end
