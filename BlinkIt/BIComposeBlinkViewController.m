@@ -178,7 +178,6 @@
     if (!_blink) {
         theBlink = [PFObject objectWithClassName:@"Blink"];
         theBlink[@"date"] = [NSDate date];
-        theBlink[@"user"] = [PFUser currentUser];
         theBlink[@"private"] = [NSNumber numberWithBool:_privateButton.selected];
     } else {
         theBlink = _blink;
@@ -186,7 +185,8 @@
     }
     
     theBlink[@"content"] = content;
-    
+    theBlink[@"user"] = [PFUser currentUser];
+
     UIImage *image = _selectedImage;
     BOOL hasImage = NO;
     if (image) {

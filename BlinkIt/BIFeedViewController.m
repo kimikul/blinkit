@@ -19,7 +19,7 @@
 @property (nonatomic, strong) NSMutableArray *allBlinksArray; // total list of blinks displayed
 
 @property (nonatomic, strong) NSArray *dateArray;       // array of dates with 1+ associated blinks
-@property (nonatomic, strong) NSArray *blinksArray;     // array of array of blinks associated with the date
+@property (nonatomic, strong) NSMutableArray *blinksArray;     // array of array of blinks associated with the date
 
 @property (nonatomic, assign) BOOL canPaginate;
 @property (nonatomic, assign) BOOL isPresentingOtherVC;
@@ -35,6 +35,14 @@
     }
     
     return _allBlinksArray;
+}
+
+- (NSMutableArray*)blinksArray {
+    if (!_blinksArray) {
+        _blinksArray = [NSMutableArray new];
+    }
+    
+    return _blinksArray;
 }
 
 #pragma mark - lifecycle
@@ -174,7 +182,7 @@
     }
     
     _dateArray = [dateArray copy];
-    _blinksArray = [blinkArray copy];
+    _blinksArray = blinkArray;
     
     [self reloadTableData];
 }
@@ -326,10 +334,35 @@
 }
 
 - (void)updateForTodaysBlink:(NSNotification*)note {
+    PFObject *updatedBlink = note.object;
+    NSMutableArray *todaysBlinks = [[_blinksArray objectAtIndex:0] mutableCopy];
+    PFObject *myExistingBlinkToday = [self blinkWithID:[updatedBlink objectId] fromBlinks:todaysBlinks];
+    
+    [todaysBlinks removeObject:myExistingBlinkToday];
+    [todaysBlinks insertObject:updatedBlink atIndex:0];
+    
+    [_blinksArray replaceObjectAtIndex:0 withObject:todaysBlinks];
     [self reloadTableData];
 }
 
+- (PFObject*)blinkWithID:(NSString*)objectID fromBlinks:(NSArray*)blinkArray {
+    for (PFObject *blink in blinkArray) {
+        if ([[blink objectId] isEqualToString:objectID]) {
+            return blink;
+        }
+    }
+    
+    return nil;
+}
+
 - (void)deletedTodaysBlink:(NSNotification*)note {
+    PFObject *deletedBlink = note.object;
+    NSMutableArray *todaysBlinks = [[_blinksArray objectAtIndex:0] mutableCopy];
+    PFObject *myExistingBlinkToday = [self blinkWithID:[deletedBlink objectId] fromBlinks:todaysBlinks];
+    
+    [todaysBlinks removeObject:myExistingBlinkToday];
+    
+    [_blinksArray replaceObjectAtIndex:0 withObject:todaysBlinks];
     [self reloadTableData];
 }
 
