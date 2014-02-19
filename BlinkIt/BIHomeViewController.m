@@ -26,11 +26,6 @@
 @property (nonatomic, strong) BIHomeTableViewCell *togglePrivacyCell;
 
 @property (nonatomic, assign) BOOL canPaginate;
-@property (nonatomic, strong) IBOutlet UIView *profileHeaderView;
-@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
-@property (weak, nonatomic) IBOutlet UILabel *numBlinksLabel;
-@property (weak, nonatomic) IBOutlet UILabel *dateJoinedLabel;
-@property (weak, nonatomic) IBOutlet UIImageView *profilePicImageView;
 
 @end
 
@@ -65,10 +60,8 @@
     
     [self setupButtons];
     [self setupNav];
-    [self setupProfileHeader];
     [self setupTableView];
     [self setupObservers];
-    [self fetchCount];
     [self fetchBlinksForPagination:NO];
 }
 
@@ -112,30 +105,6 @@
     self.navigationItem.titleView = logoImageView;
 }
 
-- (void)setupProfileHeader {
-    _profileHeaderView.layer.borderColor = [UIColor whiteColor].CGColor;
-    _profileHeaderView.layer.borderWidth = 2.0;
-    
-    PFUser *user = [PFUser currentUser];
-    
-    _nameLabel.text = user[@"name"];
-    _dateJoinedLabel.text = [NSString stringWithFormat:@"Joined %@",[NSDate spelledOutDateNoDay:user.createdAt]];
-    
-    _profilePicImageView.layer.cornerRadius = 3.0;
-    _profilePicImageView.clipsToBounds = YES;
-    
-    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0ul);
-    
-    dispatch_async(queue, ^{
-        UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:user[@"photoURL"]]]];
-        
-        dispatch_sync(dispatch_get_main_queue(), ^{
-            _profilePicImageView.image = image;
-        });
-    });
-    
-}
-
 - (void)setupTableView {
     self.tableView.scrollsToTop = YES;
     
@@ -166,22 +135,6 @@
 }
 
 #pragma mark - requests
-
-- (void)fetchCount {
-    PFUser *user = [PFUser currentUser];
-    
-    PFQuery *query = [PFQuery queryWithClassName:@"Blink"];
-    [query whereKey:@"user" equalTo:user];
-    [query countObjectsInBackgroundWithBlock:^(int number, NSError *error) {
-        
-        NSInteger numDaysSinceJoined = [NSDate numDaysSinceDate:user.createdAt];
-        
-        NSString *label = [NSString stringWithFormat:@"You've logged %d of %d days",number, numDaysSinceJoined];
-
-        _numBlinksLabel.text = label;
-        [_numBlinksLabel fadeTransitionWithDuration:0.2];
-    }];
-}
 
 - (void)fetchBlinksForPagination:(BOOL)pagination {
     if (self.isLoading) return;
@@ -229,7 +182,6 @@
 - (void)refreshHome {
     [self.tableView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:YES];
     [self fetchBlinksForPagination:NO];
-    [self fetchCount];
 }
 
 #pragma mark - refresh and pagination
@@ -273,14 +225,11 @@
     
     _todaysBlink = blink;
     [self reloadTableData];
-    [self fetchCount];
 }
 
 - (void)deletedBlink:(NSNotification*)note {
     PFObject *blinkToDelete = note.object;
     [self updateForDeletingBlink:blinkToDelete];
-    
-    [self fetchCount];
 }
 
 #pragma mark - UITableViewDelegate / UITableViewDataSource
