@@ -28,6 +28,7 @@
 
 @property (nonatomic, strong) UIImagePickerController *imagePickerController;
 @property (nonatomic, strong) BIImageUploadManager *imageUploadManager;
+@property (nonatomic, strong) UIImageView *thumbnailPreviewImageView;
 
 @end
 
@@ -47,6 +48,7 @@
     [self setupButtons];
     [self setupObservers];
     [self initializeView];
+    [self setupThumbailPreviewImageView];
 }
 
 - (void)setupButtons {
@@ -69,6 +71,15 @@
     
     _dateLabel.text = [NSDate spelledOutTodaysDate];
     [_contentTextView becomeFirstResponder];
+}
+
+- (void)setupThumbailPreviewImageView {
+    UIImageView *photoPreviewImage = [[UIImageView alloc] initWithFrame:CGRectMake(5,0,60,60)];
+    photoPreviewImage.contentMode = UIViewContentModeScaleAspectFit;
+    photoPreviewImage.backgroundColor = [UIColor blackColor];
+    photoPreviewImage.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    photoPreviewImage.layer.borderWidth = 1.0;
+    _thumbnailPreviewImageView = photoPreviewImage;
 }
 
 - (void)dealloc {
@@ -99,18 +110,20 @@
     _selectedImage = selectedImage;
     
     if (selectedImage) {
-        UIImageView *photoPreviewImage = [[UIImageView alloc] initWithFrame:CGRectMake(5,0,60,60)];
-        photoPreviewImage.frameMaxY = _contentTextView.frameHeight - 5;
-        photoPreviewImage.contentMode = UIViewContentModeScaleAspectFit;
-        photoPreviewImage.backgroundColor = [UIColor blackColor];
-        photoPreviewImage.layer.borderColor = [UIColor lightGrayColor].CGColor;
-        photoPreviewImage.layer.borderWidth = 1.0;
-        photoPreviewImage.image = selectedImage;
-        [_contentTextView addSubview:photoPreviewImage];
+        _thumbnailPreviewImageView.image = selectedImage;
+        _thumbnailPreviewImageView.frameMaxY = _buttonContainerView.frameY - 10;
+
+        [self.view addSubview:_thumbnailPreviewImageView];
+        [_thumbnailPreviewImageView fadeInWithDuration:0.3 completion:nil];
         
-        _contentTextView.frameHeight =- (photoPreviewImage.frameHeight + 10);
+        _contentTextView.frameHeight = _contentTextView.frameHeight - _thumbnailPreviewImageView.frameHeight - 10;
     } else {
+        [_thumbnailPreviewImageView fadeOutWithDuration:0.3 completion:^{
+            _thumbnailPreviewImageView.image = nil;
+            [_thumbnailPreviewImageView removeFromSuperview];
+        }];
         
+        _contentTextView.frameHeight = _contentTextView.frameHeight + _thumbnailPreviewImageView.frameHeight + 10;
     }
     
     [self toggleCameraIconForSelectedImage:selectedImage];
@@ -172,6 +185,8 @@
     CGPoint keyboardOrigin = [[note.userInfo objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].origin;
     _buttonContainerView.frameY = keyboardOrigin.y - 44;
     _contentTextView.frameHeight = _buttonContainerView.frameY - _contentTextView.frameY - 5;
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
 }
 
 #pragma mark - helper
