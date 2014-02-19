@@ -284,12 +284,17 @@
 }
 
 - (void)unselectPrivateButton {
-    UIImage *publicImage = [[UIImage imageNamed:@"private"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    [_privateButton fadeTransitionWithDuration:0.2];
+    [_privateLabel fadeTransitionWithDuration:0.2];
+    
+    _privateButton.imageEdgeInsets = UIEdgeInsetsMake(10, 0, 12, 51);
+
+    UIImage *publicImage = [[UIImage imageNamed:@"Tab-friends"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     
     [_privateButton setImage:publicImage forState:UIControlStateNormal];
     _privateButton.tintColor = [UIColor darkGrayColor];
     _privateButton.selected = NO;
-    
+
     _privateLabel.text = @"Public";
     _privateLabel.textColor = [UIColor colorWithWhite:0.5 alpha:1.0];
     
@@ -297,12 +302,17 @@
 }
 
 - (void)selectPrivateButton {
+    _privateButton.imageEdgeInsets = UIEdgeInsetsMake(12, 0, 12, 56);
+
+    [_privateButton fadeTransitionWithDuration:0.2];
+    [_privateLabel fadeTransitionWithDuration:0.2];
+
     UIImage *publicImage = [[UIImage imageNamed:@"private"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     
     [_privateButton setImage:publicImage forState:UIControlStateNormal];
     _privateButton.tintColor = [UIColor blueColor];
     _privateButton.selected = YES;
-    
+
     _privateLabel.text = @"Private";
     _privateLabel.textColor = [UIColor blueColor];
     

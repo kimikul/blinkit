@@ -55,8 +55,11 @@
 
 #pragma mark - privacy button
 
-- (void)updatePrivacyButtonTo:(BOOL)isPrivate {
-    UIImage *privacyImage = [[UIImage imageNamed:@"private"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+- (void)updatePrivacyButtonTo:(BOOL)isPrivate {    
+    NSString *imageString = isPrivate ? @"private" : @"Tab-friends";
+    _privacyButton.imageEdgeInsets = isPrivate ? UIEdgeInsetsMake(8, 24, 12, 10) : UIEdgeInsetsMake(7, 20, 11, 8);
+    
+    UIImage *privacyImage = [[UIImage imageNamed:imageString] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     
     _privacyButton.tintColor = isPrivate ? [UIColor blueColor] : [UIColor colorWithWhite:0.8 alpha:1.0];
     _privacyButton.selected = isPrivate ? YES : NO;
