@@ -1097,7 +1097,7 @@ PRO TIP : Link your Facebook in Settings so friends can find you.</string>
             </objects>
             <point key="canvasLocation" x="2576" y="1093"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Table View Controller - Today's Blink-->
         <scene sceneID="Wcw-Ek-48V">
             <objects>
                 <tableViewController id="cjd-kh-sht" sceneMemberID="viewController">
@@ -1120,7 +1120,9 @@ PRO TIP : Link your Facebook in Settings so friends can find you.</string>
                             <outlet property="delegate" destination="cjd-kh-sht" id="IRb-7s-Iqp"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="" id="Xc4-xV-Nbc"/>
+                    <tabBarItem key="tabBarItem" title="Today's Blink" id="Xc4-xV-Nbc">
+                        <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="-3"/>
+                    </tabBarItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eeO-N8-Wg0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

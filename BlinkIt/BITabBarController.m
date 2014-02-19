@@ -13,7 +13,6 @@
 #define kTABBAR_FEED 1
 
 @interface BITabBarController ()
-
 @end
 
 @implementation BITabBarController
@@ -29,21 +28,24 @@
 }
 
 - (void)setupCustomButton {
-    UIImage *buttonImage = [UIImage imageNamed:@"Notification-icon"];
+    UIImage *buttonImage = [UIImage imageNamed:@"blink"];
+    UIImage *highlightImage = [buttonImage imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     
     UIButton* button = [UIButton buttonWithType:UIButtonTypeCustom];
-    button.frame = CGRectMake(0.0, 0.0, buttonImage.size.width, buttonImage.size.height);
-    [button setBackgroundImage:buttonImage forState:UIControlStateNormal];
-    [button addTarget:self action:@selector(presentTodaysBlinkVC:) forControlEvents:UIControlEventTouchUpInside];
+    button.frame = CGRectMake(0.0, 0.0,100,49);
+    button.tintColor = [UIColor coral];
+    button.imageEdgeInsets = UIEdgeInsetsMake(0, 32, 16, 32);
     
-    CGFloat heightDifference = buttonImage.size.height - self.tabBar.frame.size.height;
-    if (heightDifference < 0)
-        button.center = self.tabBar.center;
-    else {
-        CGPoint center = self.tabBar.center;
-        center.y = center.y - heightDifference/2.0;
-        button.center = center;
-    }
+    [button setImage:highlightImage forState:UIControlStateHighlighted];
+    [button setImage:buttonImage forState:UIControlStateNormal];
+    [button addTarget:self action:@selector(presentTodaysBlinkVC:) forControlEvents:UIControlEventTouchUpInside];
+    [button addTarget:self action:@selector(highlightButton:) forControlEvents:UIControlEventTouchDown];
+
+    [button addTarget:self action:@selector(unhighlightButton:) forControlEvents:UIControlEventTouchUpInside];
+    [button addTarget:self action:@selector(unhighlightButton:) forControlEvents:UIControlEventTouchDragOutside];
+
+
+    button.center = self.tabBar.center;
     
     [self.view addSubview:button];
 }
@@ -65,6 +67,14 @@
     UINavigationController *nav = [self.viewControllers objectAtIndex:0];
     BIHomeViewController *homeVC = (BIHomeViewController*)nav.topViewController;
     [homeVC presentTodaysBlinkVC];
+}
+
+- (void)highlightButton:(UIButton*)todaysBlinkButton {
+    todaysBlinkButton.backgroundColor = [UIColor colorWithWhite:0.85 alpha:1.0];
+}
+
+- (void)unhighlightButton:(UIButton*)todaysBlinkButton {
+    todaysBlinkButton.backgroundColor = [UIColor clearColor];
 }
 
 @end

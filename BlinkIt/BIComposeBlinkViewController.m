@@ -98,6 +98,21 @@
 - (void)setSelectedImage:(UIImage *)selectedImage {
     _selectedImage = selectedImage;
     
+    if (selectedImage) {
+        UIImageView *photoPreviewImage = [[UIImageView alloc] initWithFrame:CGRectMake(5,0,60,60)];
+        photoPreviewImage.frameMaxY = _contentTextView.frameHeight - 5;
+        photoPreviewImage.contentMode = UIViewContentModeScaleAspectFit;
+        photoPreviewImage.backgroundColor = [UIColor blackColor];
+        photoPreviewImage.layer.borderColor = [UIColor lightGrayColor].CGColor;
+        photoPreviewImage.layer.borderWidth = 1.0;
+        photoPreviewImage.image = selectedImage;
+        [_contentTextView addSubview:photoPreviewImage];
+        
+        _contentTextView.frameHeight =- (photoPreviewImage.frameHeight + 10);
+    } else {
+        
+    }
+    
     [self toggleCameraIconForSelectedImage:selectedImage];
 }
 

@@ -14,6 +14,10 @@
     return [UIColor colorWithRed:170/255.0 green:235/255.0 blue:207/255.0 alpha:1.0];
 }
 
++ (UIColor*)coral {
+    return [UIColor colorWithRed:254/255.0 green:128/255.0 blue:128/255.0 alpha:1.0];
+}
+
 + (UIColor*)acceptGreen {
     return [UIColor colorWithRed:33/255.0 green:158/255.0 blue:29/255.0 alpha:1.0];
 }

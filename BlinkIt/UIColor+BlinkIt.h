@@ -14,7 +14,6 @@
 + (UIColor*)acceptGreen;
 + (UIColor*)highlightAcceptGreen;
 + (UIColor*)followBlue;
-+ (UIColor*)highlightFollowBlue;
 + (UIColor*)requestedOrange;
-+ (UIColor*)highlightRequestedOrange;
++ (UIColor*)coral;
 @end
