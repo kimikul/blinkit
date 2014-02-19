@@ -11,6 +11,7 @@
 @interface BIDataStore : NSObject
 
 + (BIDataStore*)shared;
+- (void)reset;
 
 // facebook friends
 - (void)setFacebookFriends:(NSDictionary *)friends;  // dict of facebookID => PFUser

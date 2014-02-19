@@ -10,6 +10,7 @@
 #import "BIFollowingTableViewCell.h"
 #import "BIPaginationTableViewCell.h"
 #import "BINoFollowResultsTableViewCell.h"
+#import "BIProfileViewController.h"
 
 @interface BIFollowingViewController ()
 @property (nonatomic, strong) NSArray *friendsArray;
@@ -129,6 +130,24 @@
         
         return cell;
     }
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    // do not allow selection on cells not connected to users
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    if (![cell isKindOfClass:[BIFollowingTableViewCell class]]) return;
+    
+    PFUser *user = [_friendsArray objectAtIndex:indexPath.row];
+    
+    UIStoryboard *mainStoryboard = [UIStoryboard mainStoryboard];
+    
+    UINavigationController *profileNav = [mainStoryboard instantiateViewControllerWithIdentifier:@"BIProfileNavigationController"];
+    BIProfileViewController *profileVC = (BIProfileViewController*)profileNav.topViewController;
+    profileVC.user = user;
+    [self presentViewController:profileNav animated:YES completion:nil];
 }
 
 @end

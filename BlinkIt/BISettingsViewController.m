@@ -162,6 +162,9 @@
     NSString *appDomain = [[NSBundle mainBundle] bundleIdentifier];
     [[NSUserDefaults standardUserDefaults] removePersistentDomainForName:appDomain];
     
+    // clear cache
+    [[BIDataStore shared] reset];
+    
     UIStoryboard *mainStoryboard = [UIStoryboard mainStoryboard];
     BISplashViewController *splashVC = [mainStoryboard instantiateViewControllerWithIdentifier:@"BISplashViewController"];
     

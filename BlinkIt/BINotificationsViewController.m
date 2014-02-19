@@ -10,6 +10,7 @@
 #import "BINoFollowResultsTableViewCell.h"
 #import "BIPaginationTableViewCell.h"
 #import "BINotificationFollowRequestCell.h"
+#import "BIProfileViewController.h"
 
 #define kNumNotificationsPerPage 15
 
@@ -123,6 +124,25 @@
     
     return cell;
 }
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+
+    // do not allow selection on cells not connected to users
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    if (![cell isKindOfClass:[BINotificationFollowRequestCell class]]) return;
+    
+    PFObject *activity = [_notificationsArray objectAtIndex:indexPath.row];
+    PFUser *user = activity[@"fromUser"];
+    
+    UIStoryboard *mainStoryboard = [UIStoryboard mainStoryboard];
+    
+    UINavigationController *profileNav = [mainStoryboard instantiateViewControllerWithIdentifier:@"BIProfileNavigationController"];
+    BIProfileViewController *profileVC = (BIProfileViewController*)profileNav.topViewController;
+    profileVC.user = user;
+    [self presentViewController:profileNav animated:YES completion:nil];
+}
+
 
 #pragma mark - BINotificationFollowRequestCellDelegate
 
