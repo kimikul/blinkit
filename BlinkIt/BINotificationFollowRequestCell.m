@@ -9,9 +9,11 @@
 #import "BINotificationFollowRequestCell.h"
 
 @interface BINotificationFollowRequestCell ()
+
 @property (weak, nonatomic) IBOutlet UIImageView *profilePic;
 @property (weak, nonatomic) IBOutlet UILabel *notificationLabel;
 @property (weak, nonatomic) IBOutlet UIButton *acceptButton;
+
 @end
 
 @implementation BINotificationFollowRequestCell
@@ -46,7 +48,19 @@
     
     PFUser *user = activity[@"fromUser"];
     
-    _notificationLabel.text = [NSString stringWithFormat:@"%@ has requested to follow you",user[@"name"]];
+    NSString *type = activity[@"type"];
+    if ([type isEqualToString:@"request to follow"]) {
+        _notificationLabel.text = [NSString stringWithFormat:@"%@ has requested to follow you",user[@"name"]];
+        [self setupAcceptButton];
+    } else if ([type isEqualToString:@"follow"]) {
+        _notificationLabel.text = [NSString stringWithFormat:@"%@ is now following you",user[@"name"]];
+        BOOL isFollowingUser = [[BIDataStore shared] isFollowingUser:user];
+        if (!isFollowingUser) {
+            [self setupFollowBackButton];
+        } else {
+            _acceptButton.hidden = YES;
+        }
+    }
     
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0ul);
 
@@ -59,9 +73,27 @@
     });
 }
 
+#pragma mark - setup buttons
+
+- (void)setupAcceptButton {
+    [_acceptButton setTitle:@"Accept" forState:UIControlStateNormal];
+    _acceptButton.backgroundColor = [UIColor acceptGreen];
+    
+    [_acceptButton removeTarget:nil action:NULL forControlEvents:UIControlEventAllEvents];
+    [_acceptButton addTarget:self action:@selector(tappedAccept:) forControlEvents:UIControlEventTouchUpInside];
+}
+
+- (void)setupFollowBackButton {
+    [_acceptButton setTitle:@"Follow" forState:UIControlStateNormal];
+    _acceptButton.backgroundColor = [UIColor requestedOrange];
+    
+    [_acceptButton removeTarget:nil action:NULL forControlEvents:UIControlEventAllEvents];
+    [_acceptButton addTarget:self action:@selector(tappedFollowBack:) forControlEvents:UIControlEventTouchUpInside];
+}
+
 #pragma mark - actions
 
-- (IBAction)tappedAccept:(id)sender {
+- (void)tappedAccept:(id)sender {
     _activity[@"type"] = @"follow";
     
     [_activity saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
@@ -71,12 +103,10 @@
     _acceptButton.backgroundColor = [UIColor acceptGreen];
 }
 
-- (IBAction)highlightAcceptButton:(id)sender {
-    _acceptButton.backgroundColor = [UIColor highlightAcceptGreen];
-}
-
-- (IBAction)dragOutsideAcceptButton:(id)sender {
-    _acceptButton.backgroundColor = [UIColor acceptGreen];
+- (void)tappedFollowBack:(id)sender {
+    [BIFollowManager requestToFollowUserEventually:_activity[@"fromUser"] block:^(BOOL succeeded, NSError *error) {
+        [self.delegate notificationCell:self tappedFollowBackForActivity:_activity error:error];
+    }];
 }
 
 @end

@@ -22,11 +22,15 @@
 
 @property (nonatomic, strong) NSMutableArray *allBlinksArray;
 @property (nonatomic, strong) PFObject *todaysBlink;
-@property (weak, nonatomic) IBOutlet UIView *errorView;
 
 @property (nonatomic, strong) BIHomeTableViewCell *togglePrivacyCell;
 
 @property (nonatomic, assign) BOOL canPaginate;
+@property (nonatomic, strong) IBOutlet UIView *profileHeaderView;
+@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *numBlinksLabel;
+@property (weak, nonatomic) IBOutlet UILabel *dateJoinedLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *profilePicImageView;
 
 @end
 
@@ -61,9 +65,10 @@
     
     [self setupButtons];
     [self setupNav];
+    [self setupProfileHeader];
     [self setupTableView];
-    [self setupErrorView];
     [self setupObservers];
+    [self fetchCount];
     [self fetchBlinksForPagination:NO];
 }
 
@@ -107,16 +112,35 @@
     self.navigationItem.titleView = logoImageView;
 }
 
+- (void)setupProfileHeader {
+    _profileHeaderView.layer.borderColor = [UIColor whiteColor].CGColor;
+    _profileHeaderView.layer.borderWidth = 2.0;
+    
+    PFUser *user = [PFUser currentUser];
+    
+    _nameLabel.text = user[@"name"];
+    _dateJoinedLabel.text = [NSString stringWithFormat:@"Joined %@",[NSDate spelledOutDateNoDay:user.createdAt]];
+    
+    _profilePicImageView.layer.cornerRadius = 3.0;
+    _profilePicImageView.clipsToBounds = YES;
+    
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0ul);
+    
+    dispatch_async(queue, ^{
+        UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:user[@"photoURL"]]]];
+        
+        dispatch_sync(dispatch_get_main_queue(), ^{
+            _profilePicImageView.image = image;
+        });
+    });
+    
+}
+
 - (void)setupTableView {
     self.tableView.scrollsToTop = YES;
     
     [self.tableView registerNib:[UINib nibWithNibName:[BIHomePhotoTableViewCell reuseIdentifier] bundle:[NSBundle mainBundle]] forCellReuseIdentifier:[BIHomePhotoTableViewCell reuseIdentifier]];
     [self.tableView registerNib:[UINib nibWithNibName:[BIHomeTableViewCell reuseIdentifier] bundle:[NSBundle mainBundle]] forCellReuseIdentifier:[BIHomeTableViewCell reuseIdentifier]];
-}
-
-- (void)setupErrorView {
-    UITapGestureRecognizer *tapGR = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(fetchBlinks)];
-    [_errorView addGestureRecognizer:tapGR];
 }
 
 - (void)setupObservers {
@@ -143,8 +167,20 @@
 
 #pragma mark - requests
 
-- (void)fetchBlinks {
-    [self fetchBlinksForPagination:NO];
+- (void)fetchCount {
+    PFUser *user = [PFUser currentUser];
+    
+    PFQuery *query = [PFQuery queryWithClassName:@"Blink"];
+    [query whereKey:@"user" equalTo:user];
+    [query countObjectsInBackgroundWithBlock:^(int number, NSError *error) {
+        
+        NSInteger numDaysSinceJoined = [NSDate numDaysSinceDate:user.createdAt];
+        
+        NSString *label = [NSString stringWithFormat:@"You've logged %d of %d days",number, numDaysSinceJoined];
+
+        _numBlinksLabel.text = label;
+        [_numBlinksLabel fadeTransitionWithDuration:0.2];
+    }];
 }
 
 - (void)fetchBlinksForPagination:(BOOL)pagination {
@@ -163,10 +199,6 @@
         if (!error) {
             self.canPaginate = objects.count > 0 && (objects.count % kNumBlinksPerPage == 0);
 
-            if (!_errorView.hidden) {
-                [_errorView fadeOutWithDuration:0.4 completion:nil];
-            }
-            
             NSMutableArray *blinks = pagination ? [[self.allBlinksArray arrayByAddingObjectsFromArray:objects] mutableCopy] : [objects mutableCopy];
             self.allBlinksArray = [blinks mutableCopy];
             
@@ -186,8 +218,6 @@
             
             // append or replace existing data source
             [self reloadTableData];
-        } else {
-            [_errorView fadeInWithDuration:0.4 completion:nil];
         }
     }];
     
@@ -199,6 +229,7 @@
 - (void)refreshHome {
     [self.tableView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:YES];
     [self fetchBlinksForPagination:NO];
+    [self fetchCount];
 }
 
 #pragma mark - refresh and pagination
@@ -242,11 +273,14 @@
     
     _todaysBlink = blink;
     [self reloadTableData];
+    [self fetchCount];
 }
 
 - (void)deletedBlink:(NSNotification*)note {
     PFObject *blinkToDelete = note.object;
     [self updateForDeletingBlink:blinkToDelete];
+    
+    [self fetchCount];
 }
 
 #pragma mark - UITableViewDelegate / UITableViewDataSource

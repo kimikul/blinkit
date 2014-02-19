@@ -148,11 +148,15 @@
 
 - (void)notificationCell:(BINotificationFollowRequestCell*)cell tappedAcceptRequestForActivity:(PFObject*)activity error:(NSError*)error {
     if (!error) {
-        [_notificationsArray removeObject:activity];
         [self reloadTableData];
         
         [BINotificationHelper decrementBadgeCount];
     }
+}
+
+- (void)notificationCell:(BINotificationFollowRequestCell*)cell tappedFollowBackForActivity:(PFObject*)activity error:(NSError*)error {
+    [_notificationsArray removeObject:activity];
+    [self reloadTableData];
 }
 
 #pragma mark - ibactions
