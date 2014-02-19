@@ -51,7 +51,8 @@
 }
 
 + (NSInteger)numDaysSinceDate:(NSDate*)startDate {
-    NSDate *endDate = [NSDate date];
+    NSDate *endDate = [NSDate dateWithOutTime:[NSDate date]];
+    startDate = [NSDate dateWithOutTime:startDate];
     
     NSCalendar *gregorianCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
     NSDateComponents *components = [gregorianCalendar components:NSDayCalendarUnit
@@ -59,7 +60,12 @@
                                                           toDate:endDate
                                                          options:0];
     
-    return [components day];
+    return [components day] + 1;
+}
+
++ (NSDate*)dateWithOutTime:(NSDate *)date {
+    NSDateComponents* comps = [[NSCalendar currentCalendar] components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit fromDate:date];
+    return [[NSCalendar currentCalendar] dateFromComponents:comps];
 }
 
 @end
