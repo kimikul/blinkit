@@ -12,6 +12,8 @@
 
 @protocol BIFeedTableViewCellDelegate <NSObject>
 - (void)feedCell:(BIFeedTableViewCell*)feedCell didTapUserProfile:(PFUser*)user;
+- (void)feedCell:(BIFeedTableViewCell *)feedCell didLoadPhoto:(UIImage*)photo forUser:(PFUser*)user;
+
 @end
 
 @interface BIFeedTableViewCell : UITableViewCell
@@ -21,5 +23,5 @@
 
 @property (nonatomic, strong) PFObject *blink;
 @property (nonatomic, weak) id <BIFeedTableViewCellDelegate> delegate;
-
+@property (nonatomic, strong) UIImage *profPicImage;
 @end

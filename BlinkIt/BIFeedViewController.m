@@ -24,6 +24,8 @@
 
 @property (nonatomic, assign) BOOL canPaginate;
 @property (nonatomic, assign) BOOL isPresentingOtherVC;
+
+@property (nonatomic, strong) NSMutableDictionary *profPicDict;
 @end
 
 @implementation BIFeedViewController
@@ -44,6 +46,14 @@
     }
     
     return _blinksArray;
+}
+
+- (NSMutableDictionary*)profPicDict {
+    if (!_profPicDict) {
+        _profPicDict = [NSMutableDictionary new];
+    }
+    
+    return _profPicDict;
 }
 
 #pragma mark - lifecycle
@@ -319,6 +329,8 @@
         cell = [self.tableView dequeueReusableCellWithIdentifier:[BIFeedTableViewCell reuseIdentifier]];
     }
     
+    PFUser *user = blink[@"user"];
+    cell.profPicImage = [self.profPicDict objectForKey:user[@"photoURL"]];
     cell.blink = blink;
     cell.delegate = self;
     
@@ -388,6 +400,10 @@
     BIProfileViewController *profileVC = (BIProfileViewController*)profileNav.topViewController;
     profileVC.user = user;
     [self presentViewController:profileNav animated:YES completion:nil];
+}
+
+- (void)feedCell:(BIFeedTableViewCell *)feedCell didLoadPhoto:(UIImage*)photo forUser:(PFUser*)user {
+    [self.profPicDict setObject:photo forKey:user[@"photoURL"]];
 }
 
 @end

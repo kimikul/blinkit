@@ -71,15 +71,21 @@
     _userNameLabel.text = _user[@"name"];
     _timeLabel.text = [NSDate formattedTime:blink[@"date"]];
     
-    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0ul);
-    
-    dispatch_async(queue, ^{
-        UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:_user[@"photoURL"]]]];
+    if (_profPicImage) {
+        _userPicImageView.image = _profPicImage;
+    } else {
+        dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0ul);
         
-        dispatch_sync(dispatch_get_main_queue(), ^{
-            _userPicImageView.image = image;
+        dispatch_async(queue, ^{
+            UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:_user[@"photoURL"]]]];
+            
+            dispatch_sync(dispatch_get_main_queue(), ^{
+                _userPicImageView.image = image;
+                [_userPicImageView fadeInWithDuration:0.2 completion:nil];
+                [self.delegate feedCell:self didLoadPhoto:image forUser:_user];
+            });
         });
-    });
+    }
 }
 
 #pragma mark - ibactions
