@@ -70,7 +70,6 @@
     [self updateViewForBlink:_blink];
     
     _dateLabel.text = [NSDate spelledOutTodaysDate];
-    [_contentTextView becomeFirstResponder];
 }
 
 - (void)setupThumbailPreviewImageView {
@@ -79,7 +78,18 @@
     photoPreviewImage.backgroundColor = [UIColor blackColor];
     photoPreviewImage.layer.borderColor = [UIColor lightGrayColor].CGColor;
     photoPreviewImage.layer.borderWidth = 1.0;
+    photoPreviewImage.userInteractionEnabled = YES;
+    
+    UITapGestureRecognizer *tapGR = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tappedThumbnailPreview:)];
+    [photoPreviewImage addGestureRecognizer:tapGR];
+    
     _thumbnailPreviewImageView = photoPreviewImage;
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    [_contentTextView becomeFirstResponder];
 }
 
 - (void)dealloc {
@@ -305,6 +315,10 @@
     [self presentViewController:nav animated:YES completion:nil];
 }
 
+- (void)tappedThumbnailPreview:(UITapGestureRecognizer*)tapGR {
+    [self showExistingPhotoForBlink:_blink];
+}
+
 - (IBAction)privateButtonTapped:(id)sender {
     if (_privateButton.selected) {
         [self unselectPrivateButton];
@@ -425,8 +439,6 @@
     self.imageUploadManager.sourceType = picker.sourceType;
     
     [self dismissViewControllerAnimated:YES completion:^{
-        [_contentTextView becomeFirstResponder];
-        
         self.navigationItem.rightBarButtonItem.enabled = ([self contentTextFieldHasContent] || _selectedImage) ? YES : NO;
     }];
 }
