@@ -1126,11 +1126,11 @@ PRO TIP : Link your Facebook in Settings so friends can find you.</string>
             </objects>
             <point key="canvasLocation" x="3023" y="879"/>
         </scene>
-        <!--Navigation Controller - Following-->
+        <!--Navigation Controller - Feed-->
         <scene sceneID="MAc-BV-JNV">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Jdg-E3-URZ" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Following" image="Tab-friends" id="kyB-5v-mAF">
+                    <tabBarItem key="tabBarItem" title="Feed" image="Tab-friends" id="kyB-5v-mAF">
                         <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="-3"/>
                     </tabBarItem>
                     <toolbarItems/>
