@@ -155,6 +155,8 @@
         
         return cell;
     } else {
+        tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+
         if (self.isLoading) {
             BIPaginationTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:[BIPaginationTableViewCell reuseIdentifier]];
             [cell.aiv startAnimating];

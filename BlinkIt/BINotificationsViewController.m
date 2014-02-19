@@ -97,7 +97,8 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+    tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+
     // no results row
     if (_notificationsArray.count == 0 && !self.isLoading) {
         tableView.separatorStyle = UITableViewCellSeparatorStyleNone;

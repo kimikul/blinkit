@@ -22,6 +22,14 @@
     return [self spelledOutDate:[NSDate date]];
 }
 
++ (NSString*)spelledOutDateNoDay:(NSDate*)date {
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"MMMM d, yyyy"];
+    
+    NSString *formattedDate = [dateFormatter stringFromDate:date];
+    return formattedDate;
+}
+
 + (NSString*)formattedTime:(NSDate*)date {
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"hh:mm aa"];
@@ -40,6 +48,18 @@
     }
     
     return NO;
+}
+
++ (NSInteger)numDaysSinceDate:(NSDate*)startDate {
+    NSDate *endDate = [NSDate date];
+    
+    NSCalendar *gregorianCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    NSDateComponents *components = [gregorianCalendar components:NSDayCalendarUnit
+                                                        fromDate:startDate
+                                                          toDate:endDate
+                                                         options:0];
+    
+    return [components day];
 }
 
 @end

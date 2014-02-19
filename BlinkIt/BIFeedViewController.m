@@ -12,10 +12,11 @@
 #import "BINoFollowResultsTableViewCell.h"
 #import "BIFeedTableViewCell.h"
 #import "BIFeedPhotoTableViewCell.h"
+#import "BIProfileViewController.h"
 
 #define kNumFeedEntriesPerPage 15
 
-@interface BIFeedViewController ()
+@interface BIFeedViewController () <BIFeedTableViewCellDelegate>
 @property (nonatomic, strong) NSMutableArray *allBlinksArray; // total list of blinks displayed
 
 @property (nonatomic, strong) NSArray *dateArray;       // array of dates with 1+ associated blinks
@@ -291,6 +292,8 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+
     if (self.isLoading && _dateArray.count == 0) {
         BIPaginationTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:[BIPaginationTableViewCell reuseIdentifier]];
         [cell.aiv startAnimating];
@@ -317,6 +320,7 @@
     }
     
     cell.blink = blink;
+    cell.delegate = self;
     
     return cell;
 }
@@ -373,6 +377,17 @@
     } else {
         [self refreshFeed];
     }
+}
+
+#pragma mark - BIFeedTableViewCellDelegate
+
+- (void)feedCell:(BIFeedTableViewCell*)feedCell didTapUserProfile:(PFUser*)user {
+    UIStoryboard *mainStoryboard = [UIStoryboard mainStoryboard];
+    
+    UINavigationController *profileNav = [mainStoryboard instantiateViewControllerWithIdentifier:@"BIProfileNavigationController"];
+    BIProfileViewController *profileVC = (BIProfileViewController*)profileNav.topViewController;
+    profileVC.user = user;
+    [self presentViewController:profileNav animated:YES completion:nil];
 }
 
 @end

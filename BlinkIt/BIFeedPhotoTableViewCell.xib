@@ -55,6 +55,11 @@
                         <color key="textColor" white="0.57009198589999999" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="msy-kK-Ki9" userLabel="profile tap view">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="40"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </view>
                 </subviews>
                 <constraints>
                     <constraint firstItem="cIA-Zb-Gq1" firstAttribute="top" secondItem="96l-gS-HSV" secondAttribute="top" constant="7" id="8vb-4w-aFY"/>
@@ -79,6 +84,7 @@
                 <outlet property="timeLabel" destination="JJU-3o-Fg6" id="yG3-TF-a0k"/>
                 <outlet property="userNameLabel" destination="cIA-Zb-Gq1" id="Fkj-gM-2oH"/>
                 <outlet property="userPicImageView" destination="1ZI-j0-tbO" id="bja-aE-kO9"/>
+                <outlet property="viewProfileTapView" destination="msy-kK-Ki9" id="fsb-9h-bc4"/>
             </connections>
         </tableViewCell>
     </objects>

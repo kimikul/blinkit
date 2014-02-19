@@ -110,6 +110,8 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+
     if (self.isLoading) {
         BIPaginationTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:[BIPaginationTableViewCell reuseIdentifier]];
         [cell.aiv startAnimating];

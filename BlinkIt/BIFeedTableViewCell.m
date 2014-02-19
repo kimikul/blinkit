@@ -14,6 +14,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *contentLabel;
 @property (nonatomic, strong) PFUser *user;
+@property (weak, nonatomic) IBOutlet UIView *viewProfileTapView;
 @end
 
 @implementation BIFeedTableViewCell
@@ -49,6 +50,9 @@
     
     _userPicImageView.layer.cornerRadius = 2.0;
     _userPicImageView.clipsToBounds = YES;
+    
+    UITapGestureRecognizer *tapGR = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapProfile:)];
+    [_viewProfileTapView addGestureRecognizer:tapGR];
 }
 
 - (void)prepareForReuse {
@@ -76,6 +80,12 @@
             _userPicImageView.image = image;
         });
     });
+}
+
+#pragma mark - ibactions
+
+- (void)didTapProfile:(id)sender {
+    [self.delegate feedCell:self didTapUserProfile:_user];
 }
 
 @end

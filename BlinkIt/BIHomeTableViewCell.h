@@ -22,5 +22,6 @@
 
 @property (nonatomic, weak) id <BIHomeTableViewCellDelegate> delegate;
 @property (nonatomic, strong) PFObject *blink;
+@property (weak, nonatomic) IBOutlet UIButton *privacyButton;
 
 @end

@@ -8,11 +8,18 @@
 
 #import <UIKit/UIKit.h>
 
+@class BIFeedTableViewCell;
+
+@protocol BIFeedTableViewCellDelegate <NSObject>
+- (void)feedCell:(BIFeedTableViewCell*)feedCell didTapUserProfile:(PFUser*)user;
+@end
+
 @interface BIFeedTableViewCell : UITableViewCell
 
 + (NSString*)reuseIdentifier;
 + (CGFloat)heightForContent:(NSString*)content;
 
 @property (nonatomic, strong) PFObject *blink;
+@property (nonatomic, weak) id <BIFeedTableViewCellDelegate> delegate;
 
 @end

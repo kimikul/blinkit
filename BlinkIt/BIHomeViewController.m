@@ -291,7 +291,8 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+    tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+
     // no results row
     if (self.allBlinksArray.count == 0 && !self.isLoading) {
         tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
