@@ -34,7 +34,7 @@
                                @"gender" : gender,
                                };
     
-    [mixpanel registerSuperPropertiesOnce:propDict];
+    [mixpanel registerSuperProperties:propDict];
 }
 
 + (void)sendMixpanelEvent:(NSString*)eventName withProperties:(NSDictionary*)propDict {
