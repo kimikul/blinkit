@@ -32,7 +32,6 @@
     [super awakeFromNib];
     
     _followButton.layer.cornerRadius = 3.0;
-    _followButton.clipsToBounds = YES;
 
     _profilePic.layer.cornerRadius = 2.0;
     _profilePic.clipsToBounds = YES;
