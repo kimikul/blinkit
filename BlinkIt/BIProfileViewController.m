@@ -89,6 +89,10 @@
 
 #pragma mark - requests
 
+- (BOOL)hasAccessToUser {
+    return [[BIDataStore shared] isFollowingUser:_user];
+}
+
 - (void)fetchCount {
     PFQuery *query = [PFQuery queryWithClassName:@"Blink"];
     [query whereKey:@"user" equalTo:_user];
@@ -110,6 +114,11 @@
 }
 
 - (void)fetchUsersBlinksForPagination:(BOOL)pagination {
+    if (![self hasAccessToUser]) {
+        
+        return;
+    }
+    
     self.loading = YES;
     
     PFQuery *query = [PFQuery queryWithClassName:@"Blink"];
@@ -194,6 +203,8 @@
         tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         
         BINoFollowResultsTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:[BINoFollowResultsTableViewCell reuseIdentifier]];
+        cell.noResultsLabel.text = [self hasAccessToUser] ? @"This user has no public posts" : @"You can only view blinks of friends you are following";
+
         return cell;
     }
     
