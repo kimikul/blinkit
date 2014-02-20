@@ -927,7 +927,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "B2E79828-B50A-4E11-B7A1-5279224E7577";
+				PROVISIONING_PROFILE = "B5056CED-7FF8-462D-8CD1-72C79796D06F";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -961,7 +961,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
-				PROVISIONING_PROFILE = "E3E497D4-6FB8-4242-8CBC-77352C5127F7";
+				PROVISIONING_PROFILE = "77F170C5-6332-4950-A92D-688D2961C61B";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -972,8 +972,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-2";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Kimberly Hsiao (89PY5FKKW7)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Kimberly Hsiao (89PY5FKKW7)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/kimberlyhsiao/Developer/Portfolio/BlinkIt,
@@ -989,7 +989,7 @@
 				INFOPLIST_FILE = "BlinkIt/BlinkIt-Info.plist";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "B2E79828-B50A-4E11-B7A1-5279224E7577";
+				PROVISIONING_PROFILE = "B5056CED-7FF8-462D-8CD1-72C79796D06F";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -999,8 +999,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-2";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Kimberly Hsiao (FA32RL3GUZ)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Kimberly Hsiao (FA32RL3GUZ)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/kimberlyhsiao/Developer/Portfolio/BlinkIt,
@@ -1011,7 +1011,7 @@
 				INFOPLIST_FILE = "BlinkIt/BlinkIt-Info.plist";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "E3E497D4-6FB8-4242-8CBC-77352C5127F7";
+				PROVISIONING_PROFILE = "77F170C5-6332-4950-A92D-688D2961C61B";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

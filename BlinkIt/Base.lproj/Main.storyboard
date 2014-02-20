@@ -259,17 +259,11 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="yBk-qJ-W5m">
-                                                    <rect key="frame" x="12" y="0.0" width="300" height="280"/>
+                                                    <rect key="frame" x="12" y="0.0" width="300" height="150"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
-                                                    <string key="text">What do you want to remember about today?
+                                                    <string key="text">200 characters and 1 photo per day.  Edit your entry throughout the day. It will lock at midnight. 
 
-Submit your first blink by tapping the drawer above!
-
-PRO TIP : You can edit your entry throughout the day if something more memorable happens. 
-
-At midnight, your entry will be locked in for the day. 
-
-Happy blinking :)</string>
+Click 'Todays Blink' to get started :)</string>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                                     <color key="textColor" white="0.57009198589999999" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
