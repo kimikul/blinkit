@@ -432,6 +432,11 @@
     
     [self.navigationController presentViewController:self.imagePickerController animated:YES completion:^{
         [[UIApplication sharedApplication] setStatusBarHidden:YES];
+        
+        // stop device from responding to orientation changes
+        UIDevice *currentDevice = [UIDevice currentDevice];
+        while ([currentDevice isGeneratingDeviceOrientationNotifications])
+            [currentDevice endGeneratingDeviceOrientationNotifications];
     }];
 }
 
