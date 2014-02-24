@@ -49,15 +49,21 @@
     _user = user;
     _nameLabel.text = user[@"name"];
     
-    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0ul);
-    
-    dispatch_async(queue, ^{
-        UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:user[@"photoURL"]]]];
+    if ([[BIDataStore shared] isCachedProfilePicForUser:user]) {
+        _profilePic.image = [[BIDataStore shared] profilePicForUser:user];
+    } else {
+        dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0ul);
         
-        dispatch_sync(dispatch_get_main_queue(), ^{
-            _profilePic.image = image;
+        dispatch_async(queue, ^{
+            UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:user[@"photoURL"]]]];
+            
+            dispatch_sync(dispatch_get_main_queue(), ^{
+                _profilePic.image = image;
+                [_profilePic fadeInWithDuration:0.2 completion:nil];
+                [[BIDataStore shared] addProfilePic:image ForUser:_user];
+            });
         });
-    });
+    }
     
     if ([[BIDataStore shared] isFollowingUser:user]) {
         [self setButtonToShowFollowing];

@@ -71,8 +71,8 @@
     _userNameLabel.text = _user[@"name"];
     _timeLabel.text = [NSDate formattedTime:blink[@"date"]];
     
-    if (_profPicImage) {
-        _userPicImageView.image = _profPicImage;
+    if ([[BIDataStore shared] isCachedProfilePicForUser:_user]) {
+        _userPicImageView.image = [[BIDataStore shared] profilePicForUser:_user];
     } else {
         dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0ul);
         
@@ -82,7 +82,7 @@
             dispatch_sync(dispatch_get_main_queue(), ^{
                 _userPicImageView.image = image;
                 [_userPicImageView fadeInWithDuration:0.2 completion:nil];
-                [self.delegate feedCell:self didLoadPhoto:image forUser:_user];
+                [[BIDataStore shared] addProfilePic:image ForUser:_user];
             });
         });
     }

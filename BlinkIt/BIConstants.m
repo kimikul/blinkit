@@ -13,6 +13,8 @@ NSString *const kBIUserDefaultsFacebookFriendsKey = @"kBIUserDefaultsFacebookFri
 NSString *const kBIUserDefaultsFollowedFriendsKey = @"kBIUserDefaultsFollowedFriendsKey";
 NSString *const kBIUserDefaultsRequestedFriendsKey = @"kBIUserDefaultsRequestedFriendsKey";
 
+#pragma mark - cache
+NSString *const kBICachedProfilePicsKey = @"kBICachedProfilePicsKey";
 
 #pragma mark - Notifications
 NSString *const kBIRefreshHomeAndFeedNotification = @"kBIRefreshHomeAndFeedNotification";

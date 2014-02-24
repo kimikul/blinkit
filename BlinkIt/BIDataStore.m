@@ -154,4 +154,38 @@ static BIDataStore *shared = nil;
     return [requestedFriends containsObject:user[@"facebookID"]];
 }
 
+
+#pragma mark - profile pics
+
+- (NSMutableDictionary*)cachedProfilePics {
+    NSString *key = kBICachedProfilePicsKey;
+    if ([self.cache objectForKey:key]) {
+        return [self.cache objectForKey:key];
+    }
+    
+    return [NSMutableDictionary new];
+}
+
+- (void)setCachedProfilePics:(NSDictionary*)profilePics {
+    NSString *key = kBICachedProfilePicsKey;
+    [self.cache setObject:profilePics forKey:key];
+}
+
+- (void)addProfilePic:(UIImage*)image ForUser:(PFUser*)user {
+    NSMutableDictionary *profilePicDict = [self cachedProfilePics];
+    [profilePicDict setObject:image forKey:user[@"photoURL"]];
+    [self setCachedProfilePics:profilePicDict];
+}
+
+- (UIImage*)profilePicForUser:(PFUser*)user {
+    NSMutableDictionary *profilePicDict = [self cachedProfilePics];
+    return [profilePicDict objectForKey:user[@"photoURL"]];
+}
+
+- (BOOL)isCachedProfilePicForUser:(PFUser*)user {
+    NSMutableDictionary *profilePicDict = [self cachedProfilePics];
+    NSArray *allPhotoURLs = [profilePicDict allKeys];
+    return [allPhotoURLs containsObject:user[@"photoURL"]];
+}
+
 @end
