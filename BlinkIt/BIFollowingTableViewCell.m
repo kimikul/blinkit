@@ -51,7 +51,7 @@
     
     if ([[BIDataStore shared] isCachedProfilePicForUser:user]) {
         _profilePic.image = [[BIDataStore shared] profilePicForUser:user];
-    } else {
+    } else if (user[@"photoURL"]){
         dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0ul);
         
         dispatch_async(queue, ^{

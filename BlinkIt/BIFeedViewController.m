@@ -19,7 +19,7 @@
 @interface BIFeedViewController () <BIFeedTableViewCellDelegate>
 @property (nonatomic, strong) NSMutableArray *allBlinksArray; // total list of blinks displayed
 
-@property (nonatomic, strong) NSArray *dateArray;       // array of dates with 1+ associated blinks
+@property (nonatomic, strong) NSMutableArray *dateArray;       // array of dates with 1+ associated blinks
 @property (nonatomic, strong) NSMutableArray *blinksArray;     // array of array of blinks associated with the date
 
 @property (nonatomic, assign) BOOL canPaginate;
@@ -45,6 +45,14 @@
     }
     
     return _blinksArray;
+}
+
+- (NSMutableArray*)dateArray {
+    if (!_dateArray) {
+        _dateArray = [NSMutableArray new];
+    }
+    
+    return _dateArray;
 }
 
 #pragma mark - lifecycle
@@ -184,7 +192,7 @@
         [blinkArray setObject:innerBlinkArray atIndexedSubscript:index];
     }
     
-    _dateArray = [dateArray copy];
+    _dateArray = [dateArray mutableCopy];
     _blinksArray = blinkArray;
     
     [self reloadTableData];
@@ -341,13 +349,22 @@
 
 - (void)updateForTodaysBlink:(NSNotification*)note {
     PFObject *updatedBlink = note.object;
-    NSMutableArray *todaysBlinks = [[_blinksArray objectAtIndex:0] mutableCopy];
-    PFObject *myExistingBlinkToday = [self blinkWithID:[updatedBlink objectId] fromBlinks:todaysBlinks];
     
-    [todaysBlinks removeObject:myExistingBlinkToday];
-    [todaysBlinks insertObject:updatedBlink atIndex:0];
+    NSString *todaysDate = [NSDate spelledOutDate:[NSDate date]];
+    NSString *mostRecentExistingDate = [self.dateArray safeObjectAtIndex:0];
     
-    [_blinksArray replaceObjectAtIndex:0 withObject:todaysBlinks];
+    if (self.blinksArray.count > 0 && [todaysDate isEqualToString:mostRecentExistingDate]) {
+        NSMutableArray *todaysBlinks = [[self.blinksArray safeObjectAtIndex:0] mutableCopy];
+        PFObject *myExistingBlinkToday = [self blinkWithID:[updatedBlink objectId] fromBlinks:todaysBlinks];
+        [todaysBlinks removeObject:myExistingBlinkToday];
+        [todaysBlinks insertObject:updatedBlink atIndex:0];
+        [self.blinksArray replaceObjectAtIndex:0 withObject:todaysBlinks];
+    } else {
+        NSMutableArray *todaysBlinks = [[NSMutableArray alloc] initWithObjects:updatedBlink, nil];
+        [self.dateArray insertObject:todaysDate atIndex:0];
+        [self.blinksArray insertObject:todaysBlinks atIndex:0];
+    }
+    
     [self reloadTableData];
 }
 
