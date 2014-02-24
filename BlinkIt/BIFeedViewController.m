@@ -350,22 +350,34 @@
 - (void)updateForTodaysBlink:(NSNotification*)note {
     PFObject *updatedBlink = note.object;
     
-    NSString *todaysDate = [NSDate spelledOutDate:[NSDate date]];
-    NSString *mostRecentExistingDate = [self.dateArray safeObjectAtIndex:0];
-    
-    if (self.blinksArray.count > 0 && [todaysDate isEqualToString:mostRecentExistingDate]) {
-        NSMutableArray *todaysBlinks = [[self.blinksArray safeObjectAtIndex:0] mutableCopy];
-        PFObject *myExistingBlinkToday = [self blinkWithID:[updatedBlink objectId] fromBlinks:todaysBlinks];
-        [todaysBlinks removeObject:myExistingBlinkToday];
-        [todaysBlinks insertObject:updatedBlink atIndex:0];
-        [self.blinksArray replaceObjectAtIndex:0 withObject:todaysBlinks];
+    if (![updatedBlink[@"private"] boolValue]) {
+        PFObject *existingBlink = [self blinkWithID:updatedBlink.objectId fromBlinks:_allBlinksArray];
+        if (existingBlink) {
+            [self.allBlinksArray removeObject:existingBlink];
+        }
+        
+        [self.allBlinksArray insertObject:updatedBlink atIndex:0];
+        [self sectionalizeBlinks:_allBlinksArray pagination:NO];
+
+        
+        
+        
+//        if (index != NSNotFound) {
+//            [todaysBlinks removeObject:myExistingBlinkToday];
+//            [todaysBlinks insertObject:updatedBlink atIndex:0];
+//            [self.blinksArray replaceObjectAtIndex:index withObject:todaysBlinks];
+//        } else {
+//            NSMutableArray *todaysBlinks = [[NSMutableArray alloc] initWithObjects:updatedBlink, nil];
+//            [self.dateArray insertObject:dateOfBlink atIndex:0];
+//            [self.blinksArray insertObject:todaysBlinks atIndex:0];
+//        }
+//        
+//        [self reloadTableData];
     } else {
-        NSMutableArray *todaysBlinks = [[NSMutableArray alloc] initWithObjects:updatedBlink, nil];
-        [self.dateArray insertObject:todaysDate atIndex:0];
-        [self.blinksArray insertObject:todaysBlinks atIndex:0];
+        PFObject *privatedBlink = [self blinkWithID:updatedBlink.objectId fromBlinks:_allBlinksArray];
+        [self.allBlinksArray removeObject:privatedBlink];
+        [self sectionalizeBlinks:_allBlinksArray pagination:NO];
     }
-    
-    [self reloadTableData];
 }
 
 - (PFObject*)blinkWithID:(NSString*)objectID fromBlinks:(NSArray*)blinkArray {
