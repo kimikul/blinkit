@@ -155,6 +155,12 @@
 }
 
 - (void)notificationCell:(BINotificationFollowRequestCell*)cell tappedFollowBackForActivity:(PFObject*)activity error:(NSError*)error {
+    if (!error) {
+        PFUser *user = activity[@"fromUser"];
+        [[BIDataStore shared] addRequestedFriend:user];
+        [BINotificationHelper sendPushNotificationToUser:user];
+    }
+    
     [_notificationsArray removeObject:activity];
     [self reloadTableData];
 }
