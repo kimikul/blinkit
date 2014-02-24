@@ -14,4 +14,8 @@
     return [self stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 }
 
+- (BOOL)hasContent {
+    return self && ![self isKindOfClass:[NSNull class]] && [self stringByTrimmingWhiteSpace].length > 0;
+}
+
 @end

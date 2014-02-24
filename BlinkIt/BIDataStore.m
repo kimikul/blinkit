@@ -172,9 +172,13 @@ static BIDataStore *shared = nil;
 }
 
 - (void)addProfilePic:(UIImage*)image ForUser:(PFUser*)user {
-    NSMutableDictionary *profilePicDict = [self cachedProfilePics];
-    [profilePicDict setObject:image forKey:user[@"photoURL"]];
-    [self setCachedProfilePics:profilePicDict];
+    NSString *photoURL = user[@"photoURL"];
+    
+    if (image && photoURL.hasContent) {
+        NSMutableDictionary *profilePicDict = [self cachedProfilePics];
+        [profilePicDict setObject:image forKey:user[@"photoURL"]];
+        [self setCachedProfilePics:profilePicDict];
+    }
 }
 
 - (UIImage*)profilePicForUser:(PFUser*)user {

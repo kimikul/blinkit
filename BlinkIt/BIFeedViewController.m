@@ -358,21 +358,6 @@
         
         [self.allBlinksArray insertObject:updatedBlink atIndex:0];
         [self sectionalizeBlinks:_allBlinksArray pagination:NO];
-
-        
-        
-        
-//        if (index != NSNotFound) {
-//            [todaysBlinks removeObject:myExistingBlinkToday];
-//            [todaysBlinks insertObject:updatedBlink atIndex:0];
-//            [self.blinksArray replaceObjectAtIndex:index withObject:todaysBlinks];
-//        } else {
-//            NSMutableArray *todaysBlinks = [[NSMutableArray alloc] initWithObjects:updatedBlink, nil];
-//            [self.dateArray insertObject:dateOfBlink atIndex:0];
-//            [self.blinksArray insertObject:todaysBlinks atIndex:0];
-//        }
-//        
-//        [self reloadTableData];
     } else {
         PFObject *privatedBlink = [self blinkWithID:updatedBlink.objectId fromBlinks:_allBlinksArray];
         [self.allBlinksArray removeObject:privatedBlink];

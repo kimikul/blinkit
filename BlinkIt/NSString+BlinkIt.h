@@ -11,5 +11,6 @@
 @interface NSString (BlinkIt)
 
 - (NSString*)stringByTrimmingWhiteSpace;
+- (BOOL)hasContent;
 
 @end
