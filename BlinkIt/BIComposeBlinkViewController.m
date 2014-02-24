@@ -233,6 +233,9 @@
 }
 
 - (void)tappedSave:(id)sender {
+    [self showProgressHUD];
+    self.navigationItem.rightBarButtonItem.enabled = NO;
+    
     NSString *content = [_contentTextView.text stringByTrimmingWhiteSpace];
     
     PFObject *theBlink;
@@ -262,6 +265,8 @@
             } else {
                 UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error" message:@"There was an error saving your entry. Please try again." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
                 [alertView show];
+                
+                [self hideProgressHUD];
             }
         }];
     }
@@ -331,7 +336,7 @@
     [_privateButton fadeTransitionWithDuration:0.2];
     [_privateLabel fadeTransitionWithDuration:0.2];
     
-    _privateButton.imageEdgeInsets = UIEdgeInsetsMake(10, 0, 12, 51);
+    _privateButton.imageEdgeInsets = UIEdgeInsetsMake(11, 0, 12, 65);
 
     UIImage *publicImage = [[UIImage imageNamed:@"Tab-friends"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     
@@ -339,14 +344,14 @@
     _privateButton.tintColor = [UIColor darkGrayColor];
     _privateButton.selected = NO;
 
-    _privateLabel.text = @"Public";
+    _privateLabel.text = @"Followers";
     _privateLabel.textColor = [UIColor colorWithWhite:0.5 alpha:1.0];
     
     _blink[@"private"] = @NO;
 }
 
 - (void)selectPrivateButton {
-    _privateButton.imageEdgeInsets = UIEdgeInsetsMake(12, 0, 12, 56);
+    _privateButton.imageEdgeInsets = UIEdgeInsetsMake(12, 0, 12, 70);
 
     [_privateButton fadeTransitionWithDuration:0.2];
     [_privateLabel fadeTransitionWithDuration:0.2];
@@ -459,10 +464,20 @@
     } else {
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error" message:@"There was an error uploading your entry. Please try again!" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alertView show];
+        
+        [self hideProgressHUD];
     }
 }
 
+- (void)imageUploadManager:(BIImageUploadManager *)imageUploadManager didFailWithError:(NSError*)error {
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error" message:@"There was an error uploading your photo. Please try again." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    [alertView show];
+    
+    [self hideProgressHUD];
+}
+
 - (void)finishSuccessfulBlinkUpdate:(PFObject*)blink {
+    [self hideProgressHUD];
     [[NSNotificationCenter defaultCenter] postNotificationName:kBIUpdateSavedBlinkNotification object:blink];
     [self dismissViewControllerAnimated:YES completion:nil];
 }

@@ -90,7 +90,8 @@
 #pragma mark - requests
 
 - (BOOL)hasAccessToUser {
-    return [[BIDataStore shared] isFollowingUser:_user];
+    PFUser *currentUser = [PFUser currentUser];
+    return [[BIDataStore shared] isFollowingUser:_user] || [currentUser.objectId isEqualToString:_user.objectId];
 }
 
 - (void)fetchCount {

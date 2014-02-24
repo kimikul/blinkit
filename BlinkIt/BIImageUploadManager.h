@@ -13,6 +13,8 @@
 
 @protocol BIImageUploadManagerDelegate <NSObject>
 - (void)imageUploadManager:(BIImageUploadManager*)imageUploadManager didUploadImage:(UIImage*)image forBlink:(PFObject*)blink withError:(NSError*)error;
+- (void)imageUploadManager:(BIImageUploadManager *)imageUploadManager didFailWithError:(NSError*)error;
+
 @end
 
 @interface BIImageUploadManager : NSObject

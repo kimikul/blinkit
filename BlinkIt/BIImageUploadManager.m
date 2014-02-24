@@ -22,10 +22,8 @@
             [blink saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
                 [self.delegate imageUploadManager:self didUploadImage:image forBlink:blink withError:error];
             }];
-        }
-        else {
-            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error" message:@"There was an error uploading your photo. Please try again." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-            [alertView show];
+        } else {
+            [self.delegate imageUploadManager:self didFailWithError:error];
         }
     } progressBlock:^(int percentDone) {
         self.delegate.progressHUD.progress = (float)percentDone/100;

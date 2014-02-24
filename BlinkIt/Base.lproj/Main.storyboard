@@ -1041,7 +1041,7 @@ PRO TIP : Link your Facebook in Settings so friends can find you.</string>
                                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="iAp-yW-6YP">
-                                        <rect key="frame" x="154" y="0.0" width="44" height="44"/>
+                                        <rect key="frame" x="163" y="0.0" width="44" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <inset key="imageEdgeInsets" minX="8" minY="6" maxX="8" maxY="9"/>
                                         <state key="normal" image="trash2">
@@ -1051,8 +1051,8 @@ PRO TIP : Link your Facebook in Settings so friends can find you.</string>
                                             <action selector="deleteTapped:" destination="HpA-au-tTx" eventType="touchUpInside" id="YsG-M2-kCs"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Private" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="W1B-LK-9L8">
-                                        <rect key="frame" x="37" y="12" width="48" height="20"/>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Followers" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="W1B-LK-9L8">
+                                        <rect key="frame" x="37" y="12" width="61" height="20"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -1066,7 +1066,7 @@ PRO TIP : Link your Facebook in Settings so friends can find you.</string>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Y9d-t0-CH9">
-                                        <rect key="frame" x="97" y="0.0" width="44" height="44"/>
+                                        <rect key="frame" x="106" y="0.0" width="44" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" image="camera">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -1076,10 +1076,10 @@ PRO TIP : Link your Facebook in Settings so friends can find you.</string>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="V8m-Js-tnl" userLabel="Button - Privacy">
-                                        <rect key="frame" x="8" y="0.0" width="76" height="44"/>
+                                        <rect key="frame" x="8" y="0.0" width="90" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <inset key="imageEdgeInsets" minX="0.0" minY="10" maxX="51" maxY="11"/>
-                                        <state key="normal" image="Tab-friends">
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="12" maxX="70" maxY="12"/>
+                                        <state key="normal" image="private">
                                             <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
@@ -1351,6 +1351,7 @@ PRO TIP : Link your Facebook in Settings so friends can find you.</string>
         <image name="Tab-me" width="40" height="30"/>
         <image name="camera" width="25" height="25"/>
         <image name="facebookLoginButton" width="470" height="80"/>
+        <image name="private" width="20" height="21"/>
         <image name="trash2" width="128" height="128"/>
     </resources>
     <color key="tintColor" red="0.99607843139999996" green="0.50196078430000002" blue="0.50196078430000002" alpha="1" colorSpace="calibratedRGB"/>
