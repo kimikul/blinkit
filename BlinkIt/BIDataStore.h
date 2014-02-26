@@ -34,9 +34,4 @@
 - (BOOL)hasRequestedUser:(PFUser*)user;
 
 
-// profile pics
-- (void)addProfilePic:(UIImage*)image ForUser:(PFUser*)user;
-- (UIImage*)profilePicForUser:(PFUser*)user;
-- (BOOL)isCachedProfilePicForUser:(PFUser*)user;
-
 @end

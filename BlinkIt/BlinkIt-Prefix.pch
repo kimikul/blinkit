@@ -31,5 +31,5 @@
     #import "BINotificationHelper.h"
     #import "BIDeleteBlinkHelper.h"
     #import "NSArray+BlinkIt.h"
-
+#import "BIFileSystemImageCache.h"
 #endif

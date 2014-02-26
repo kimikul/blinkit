@@ -22,6 +22,7 @@
 		5E42D404189CB7C300F651E0 /* BIFollowingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E42D403189CB7C300F651E0 /* BIFollowingTableViewCell.m */; };
 		5E42D408189CDB7200F651E0 /* BIFollowManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E42D407189CDB7200F651E0 /* BIFollowManager.m */; };
 		5E42D40B189CDF3500F651E0 /* BIConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E42D40A189CDF3500F651E0 /* BIConstants.m */; };
+		5E55D4E618BDBA8A00FE5168 /* BIFileSystemImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E55D4E518BDBA8A00FE5168 /* BIFileSystemImageCache.m */; };
 		5E6392701888EA9800D1AE80 /* BIPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E63926F1888EA9800D1AE80 /* BIPhotoViewController.m */; };
 		5E6392721888F09600D1AE80 /* BIPhotoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E6392711888F09600D1AE80 /* BIPhotoViewController.xib */; };
 		5E63927B1889227F00D1AE80 /* BIHomePhotoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E63927A1889227F00D1AE80 /* BIHomePhotoTableViewCell.m */; };
@@ -141,6 +142,8 @@
 		5E42D407189CDB7200F651E0 /* BIFollowManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BIFollowManager.m; sourceTree = "<group>"; };
 		5E42D409189CDF3500F651E0 /* BIConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BIConstants.h; sourceTree = "<group>"; };
 		5E42D40A189CDF3500F651E0 /* BIConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BIConstants.m; sourceTree = "<group>"; };
+		5E55D4E418BDBA8A00FE5168 /* BIFileSystemImageCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BIFileSystemImageCache.h; sourceTree = "<group>"; };
+		5E55D4E518BDBA8A00FE5168 /* BIFileSystemImageCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BIFileSystemImageCache.m; sourceTree = "<group>"; };
 		5E63926E1888EA9800D1AE80 /* BIPhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BIPhotoViewController.h; sourceTree = "<group>"; };
 		5E63926F1888EA9800D1AE80 /* BIPhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BIPhotoViewController.m; sourceTree = "<group>"; };
 		5E6392711888F09600D1AE80 /* BIPhotoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BIPhotoViewController.xib; sourceTree = "<group>"; };
@@ -626,6 +629,8 @@
 				5E42D40A189CDF3500F651E0 /* BIConstants.m */,
 				5E9DF17C18AA348000FA69E5 /* BITabBarController.h */,
 				5E9DF17D18AA348000FA69E5 /* BITabBarController.m */,
+				5E55D4E418BDBA8A00FE5168 /* BIFileSystemImageCache.h */,
+				5E55D4E518BDBA8A00FE5168 /* BIFileSystemImageCache.m */,
 			);
 			name = Main;
 			sourceTree = "<group>";
@@ -828,6 +833,7 @@
 				5E42D40B189CDF3500F651E0 /* BIConstants.m in Sources */,
 				5E3420D918A4B3CD0088A270 /* BIFeedTableViewCell.m in Sources */,
 				5E6392701888EA9800D1AE80 /* BIPhotoViewController.m in Sources */,
+				5E55D4E618BDBA8A00FE5168 /* BIFileSystemImageCache.m in Sources */,
 				5E42D3F7189CA77200F651E0 /* BIFollowingViewController.m in Sources */,
 				5E42D408189CDB7200F651E0 /* BIFollowManager.m in Sources */,
 				5E7297CA18AA23A0008D356C /* UIColor+MPColor.m in Sources */,
@@ -967,7 +973,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
-				PROVISIONING_PROFILE = "31FDDD26-1D32-4E58-9F17-107E6ABF3A5E";
+				PROVISIONING_PROFILE = "AC5D9A72-B5AB-44B5-9245-909740DAE015";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -978,8 +984,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-2";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Kimberly Hsiao (89PY5FKKW7)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Kimberly Hsiao (89PY5FKKW7)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/kimberlyhsiao/Developer/Portfolio/BlinkIt,
@@ -1017,7 +1023,7 @@
 				INFOPLIST_FILE = "BlinkIt/BlinkIt-Info.plist";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "31FDDD26-1D32-4E58-9F17-107E6ABF3A5E";
+				PROVISIONING_PROFILE = "AC5D9A72-B5AB-44B5-9245-909740DAE015";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

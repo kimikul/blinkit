@@ -49,9 +49,11 @@
     _user = user;
     _nameLabel.text = user[@"name"];
     
-    if ([[BIDataStore shared] isCachedProfilePicForUser:user]) {
-        _profilePic.image = [[BIDataStore shared] profilePicForUser:user];
-    } else if (user[@"photoURL"]){
+    NSString *photoURL = user[@"photoURL"];
+    UIImage *profPic = [[BIFileSystemImageCache shared] objectForKey:photoURL];
+    if (profPic) {
+        _profilePic.image = profPic;
+    } else if (photoURL.hasContent){
         dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0ul);
         
         dispatch_async(queue, ^{
@@ -60,7 +62,7 @@
             dispatch_sync(dispatch_get_main_queue(), ^{
                 _profilePic.image = image;
                 [_profilePic fadeInWithDuration:0.2 completion:nil];
-                [[BIDataStore shared] addProfilePic:image ForUser:_user];
+                [[BIFileSystemImageCache shared] setObject:image forKey:photoURL];
             });
         });
     }
