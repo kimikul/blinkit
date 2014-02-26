@@ -42,6 +42,8 @@
     UIStoryboard *mainStoryboard = [UIStoryboard mainStoryboard];
     
     BIFollowingViewController *followingVC = [mainStoryboard instantiateViewControllerWithIdentifier:@"BIFollowingViewController"];
+    followingVC.showUnfollowingFacebookFriends = YES;
+    
     BIFollowersViewController *followersVC = [mainStoryboard instantiateViewControllerWithIdentifier:@"BIFollowersViewController"];
     
     _segmentedViewControllers = [NSArray arrayWithObjects:followingVC, followersVC, nil];

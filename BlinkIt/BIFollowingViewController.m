@@ -52,10 +52,10 @@
 - (void)fetchFriends {
     self.loading = YES;
     
-    NSArray *facebookFriends = [BIDataStore shared].facebookFriends.allKeys;
-
+    NSArray *arrayToUse = _showUnfollowingFacebookFriends ? [BIDataStore shared].facebookFriends.allKeys : [BIDataStore shared].followedFriends;
+    
     PFQuery *friendsQuery = [PFUser query];
-    [friendsQuery whereKey:@"facebookID" containedIn:facebookFriends];
+    [friendsQuery whereKey:@"facebookID" containedIn:arrayToUse];
     [friendsQuery orderByAscending:@"name"];
     [friendsQuery findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         self.loading = NO;

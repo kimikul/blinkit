@@ -14,7 +14,7 @@
 - (void)reset;
 
 // facebook friends
-- (void)setFacebookFriends:(NSDictionary *)friends;  // dict of facebookID => PFUser
+- (void)setFacebookFriends:(NSDictionary *)friends;  // dict of facebookID => facebook user object
 - (NSDictionary *)facebookFriends;
 
 

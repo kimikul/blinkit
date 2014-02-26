@@ -407,6 +407,8 @@
 - (void)headerView:(BIHomeHeaderView*)headerView didTapFollowingButton:(UIButton*)button {
     UIStoryboard *mainStoryboard = [UIStoryboard mainStoryboard];
     BIFollowingViewController *followingVC = [mainStoryboard instantiateViewControllerWithIdentifier:@"BIFollowingViewController"];
+    followingVC.showUnfollowingFacebookFriends = NO;
+    
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:followingVC];
     [self presentViewController:nav animated:YES completion:nil];
 }

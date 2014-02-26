@@ -9,5 +9,5 @@
 #import "BITableViewController.h"
 
 @interface BIFollowingViewController : BITableViewController
-
+@property (nonatomic, assign) BOOL showUnfollowingFacebookFriends;
 @end
