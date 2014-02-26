@@ -17,6 +17,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *blinksCountLabel;
 @property (weak, nonatomic) IBOutlet UIButton *followersButton;
 @property (weak, nonatomic) IBOutlet UIButton *followingButton;
+@property (weak, nonatomic) IBOutlet UIButton *blinksButton;
 @end
 
 @implementation BIHomeHeaderView
@@ -26,6 +27,11 @@
  
     _profilePicImageView.layer.cornerRadius = 3.0;
     _profilePicImageView.clipsToBounds = YES;
+    
+    _followersButton.layer.cornerRadius = 2.0;
+    _followingButton.layer.cornerRadius = 2.0;
+    _blinksButton.layer.cornerRadius = 2.0;
+    
 }
 
 - (void)setUser:(PFUser *)user {
@@ -53,7 +59,6 @@
     
     [self fetchBlinksCount];
     [self fetchFollowersCount];
-    [self fetchFollowingCount];
 }
 
 - (void)fetchBlinksCount {
@@ -77,12 +82,15 @@
         NSString *followersCount = [NSString stringWithFormat:@"%d",number];
         
         _followersCountLabel.text = followersCount;
+        [_followersCountLabel fadeTransitionWithDuration:0.2];
+        [self fetchFollowingCount];
     }];
 }
 
 - (void)fetchFollowingCount {
     NSInteger followingCount = [[[BIDataStore shared] followedFriends] count];
     _followingCountLabel.text = [NSString stringWithFormat:@"%d",followingCount];
+    [_followingCountLabel fadeTransitionWithDuration:0.2];
 }
 
 - (IBAction)tapFollowing:(id)sender {

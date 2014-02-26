@@ -101,11 +101,15 @@
 }
 
 - (void)setupHeader {
-    BIHomeHeaderView *headerView = [[UINib nibWithNibName:@"BIHomeHeaderView" bundle:nil] instantiateWithOwner:self options:nil][0];
-    headerView.user = [PFUser currentUser];
-    headerView.delegate = self;
-    _homeHeaderView = headerView;
-    self.tableView.tableHeaderView = headerView;
+    PFUser *user = [PFUser currentUser];
+    
+    if ([PFFacebookUtils isLinkedWithUser:user]) {
+        BIHomeHeaderView *headerView = [[UINib nibWithNibName:@"BIHomeHeaderView" bundle:nil] instantiateWithOwner:self options:nil][0];
+        headerView.user = [PFUser currentUser];
+        headerView.delegate = self;
+        _homeHeaderView = headerView;
+        self.tableView.tableHeaderView = headerView;
+    }
 }
 
 - (void)setupNav {

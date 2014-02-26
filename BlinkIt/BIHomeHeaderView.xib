@@ -104,6 +104,7 @@
             <color key="backgroundColor" white="0.95000000000000007" alpha="1" colorSpace="calibratedWhite"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
+                <outlet property="blinksButton" destination="Ux1-Kp-fjG" id="d4L-W0-C4J"/>
                 <outlet property="blinksCountLabel" destination="Jma-sF-nqA" id="hLw-gb-RZJ"/>
                 <outlet property="followersButton" destination="zuY-a3-JRs" id="NX6-Zn-eOU"/>
                 <outlet property="followersCountLabel" destination="Qjb-IU-aDH" id="IFi-fH-3h6"/>
