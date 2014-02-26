@@ -8,6 +8,11 @@
 
 #import "BITableViewController.h"
 
+#define kSEGMENT_FOLLOWING    0
+#define kSEGMENT_FOLLOWERS    1
+
 @interface BIFollowViewController : BITableViewController
+
+@property (nonatomic, assign) NSInteger selectedSegment;
 
 @end

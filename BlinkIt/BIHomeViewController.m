@@ -14,16 +14,20 @@
 #import "BIPaginationTableViewCell.h"
 #import "BINoFollowResultsTableViewCell.h"
 #import "BIComposeBlinkViewController.h"
+#import "BIHomeHeaderView.h"
+#import "BIFollowingViewController.h"
+#import "BIFollowersViewController.h"
 
 #define kDeletePreviousBlinkActionSheet 2
 #define kNumBlinksPerPage 15
 
-@interface BIHomeViewController () <UIActionSheetDelegate, BIHomeTableViewCellDelegate>
+@interface BIHomeViewController () <UIActionSheetDelegate, BIHomeTableViewCellDelegate, BIHomeHeaderViewDelegate>
 
 @property (nonatomic, strong) NSMutableArray *allBlinksArray;
 @property (nonatomic, strong) PFObject *todaysBlink;
 
 @property (nonatomic, strong) BIHomeTableViewCell *togglePrivacyCell;
+@property (nonatomic, strong) BIHomeHeaderView *homeHeaderView;
 
 @property (nonatomic, assign) BOOL canPaginate;
 
@@ -61,6 +65,7 @@
     [self setupButtons];
     [self setupNav];
     [self setupTableView];
+    [self setupHeader];
     [self setupObservers];
     [self fetchBlinksForPagination:NO];
 }
@@ -93,6 +98,14 @@
     UIBarButtonItem *notificationBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:notificationButton];
     notificationBarButtonItem.customView.hidden = YES;
     self.navigationItem.rightBarButtonItem = notificationBarButtonItem;
+}
+
+- (void)setupHeader {
+    BIHomeHeaderView *headerView = [[UINib nibWithNibName:@"BIHomeHeaderView" bundle:nil] instantiateWithOwner:self options:nil][0];
+    headerView.user = [PFUser currentUser];
+    headerView.delegate = self;
+    _homeHeaderView = headerView;
+    self.tableView.tableHeaderView = headerView;
 }
 
 - (void)setupNav {
@@ -182,6 +195,7 @@
 - (void)refreshHome {
     [self.tableView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:YES];
     [self fetchBlinksForPagination:NO];
+    _homeHeaderView.user = [PFUser currentUser];
 }
 
 #pragma mark - refresh and pagination
@@ -375,6 +389,25 @@
     [alertView show];
 }
 
+#pragma mark - BIHomeHeaderViewDelegate
+
+- (void)headerView:(BIHomeHeaderView*)headerView didTapFollowersButton:(UIButton*)button {
+    
+    UIStoryboard *mainStoryboard = [UIStoryboard mainStoryboard];
+    BIFollowersViewController *followersVC = [mainStoryboard instantiateViewControllerWithIdentifier:@"BIFollowersViewController"];
+    
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:followersVC];
+    [self presentViewController:nav animated:YES completion:nil];
+}
+
+- (void)headerView:(BIHomeHeaderView*)headerView didTapFollowingButton:(UIButton*)button {
+    UIStoryboard *mainStoryboard = [UIStoryboard mainStoryboard];
+    BIFollowingViewController *followingVC = [mainStoryboard instantiateViewControllerWithIdentifier:@"BIFollowingViewController"];
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:followingVC];
+    [self presentViewController:nav animated:YES completion:nil];
+}
+
+
 #pragma mark - UIAlertViewDelegate
 
 - (void)alertView:(UIAlertView *)alertView willDismissWithButtonIndex:(NSInteger)buttonIndex {
@@ -428,6 +461,7 @@
     
     [BIMixpanelHelper sendMixpanelEvent:@"TODAY_composeBlink" withProperties:nil];
 }
+
 
 
 @end

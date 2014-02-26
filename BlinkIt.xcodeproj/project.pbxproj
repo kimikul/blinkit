@@ -24,6 +24,8 @@
 		5E42D40B189CDF3500F651E0 /* BIConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E42D40A189CDF3500F651E0 /* BIConstants.m */; };
 		5E55D4E618BDBA8A00FE5168 /* BIFileSystemImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E55D4E518BDBA8A00FE5168 /* BIFileSystemImageCache.m */; };
 		5E55D4E918BDC92000FE5168 /* BIReminderTimeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E55D4E818BDC92000FE5168 /* BIReminderTimeViewController.m */; };
+		5E55D4EC18BDE0A100FE5168 /* BIHomeHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E55D4EB18BDE0A100FE5168 /* BIHomeHeaderView.m */; };
+		5E55D4F018BDE0D300FE5168 /* BIHomeHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E55D4EF18BDE0D300FE5168 /* BIHomeHeaderView.xib */; };
 		5E6392701888EA9800D1AE80 /* BIPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E63926F1888EA9800D1AE80 /* BIPhotoViewController.m */; };
 		5E6392721888F09600D1AE80 /* BIPhotoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E6392711888F09600D1AE80 /* BIPhotoViewController.xib */; };
 		5E63927B1889227F00D1AE80 /* BIHomePhotoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E63927A1889227F00D1AE80 /* BIHomePhotoTableViewCell.m */; };
@@ -147,6 +149,9 @@
 		5E55D4E518BDBA8A00FE5168 /* BIFileSystemImageCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BIFileSystemImageCache.m; sourceTree = "<group>"; };
 		5E55D4E718BDC92000FE5168 /* BIReminderTimeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BIReminderTimeViewController.h; sourceTree = "<group>"; };
 		5E55D4E818BDC92000FE5168 /* BIReminderTimeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BIReminderTimeViewController.m; sourceTree = "<group>"; };
+		5E55D4EA18BDE0A100FE5168 /* BIHomeHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BIHomeHeaderView.h; sourceTree = "<group>"; };
+		5E55D4EB18BDE0A100FE5168 /* BIHomeHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BIHomeHeaderView.m; sourceTree = "<group>"; };
+		5E55D4EF18BDE0D300FE5168 /* BIHomeHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BIHomeHeaderView.xib; sourceTree = "<group>"; };
 		5E63926E1888EA9800D1AE80 /* BIPhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BIPhotoViewController.h; sourceTree = "<group>"; };
 		5E63926F1888EA9800D1AE80 /* BIPhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BIPhotoViewController.m; sourceTree = "<group>"; };
 		5E6392711888F09600D1AE80 /* BIPhotoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BIPhotoViewController.xib; sourceTree = "<group>"; };
@@ -618,6 +623,9 @@
 				5E63927A1889227F00D1AE80 /* BIHomePhotoTableViewCell.m */,
 				5E9D037D18AB3DFA00634EB9 /* BIHomeTableViewCell.xib */,
 				5E9D037F18AB3E0600634EB9 /* BIHomePhotoTableViewCell.xib */,
+				5E55D4EA18BDE0A100FE5168 /* BIHomeHeaderView.h */,
+				5E55D4EB18BDE0A100FE5168 /* BIHomeHeaderView.m */,
+				5E55D4EF18BDE0D300FE5168 /* BIHomeHeaderView.xib */,
 			);
 			name = Home;
 			sourceTree = "<group>";
@@ -760,6 +768,7 @@
 				5E9D038018AB3E0600634EB9 /* BIHomePhotoTableViewCell.xib in Resources */,
 				5E9D037E18AB3DFA00634EB9 /* BIHomeTableViewCell.xib in Resources */,
 				5EAB8ABC187E73DF00B02953 /* Images.xcassets in Resources */,
+				5E55D4F018BDE0D300FE5168 /* BIHomeHeaderView.xib in Resources */,
 				5E6392721888F09600D1AE80 /* BIPhotoViewController.xib in Resources */,
 				5E9D037A18AB3D2000634EB9 /* BIFeedTableViewCell.xib in Resources */,
 				5E7297D518AA23C9008D356C /* MPNotification.storyboard in Resources */,
@@ -819,6 +828,7 @@
 				5E9D038E18AB87E600634EB9 /* BINotificationHelper.m in Sources */,
 				5EB3A5C31887A18F00BCA8DB /* BIViewController.m in Sources */,
 				5E9D038B18AB736C00634EB9 /* BINotificationFollowRequestCell.m in Sources */,
+				5E55D4EC18BDE0A100FE5168 /* BIHomeHeaderView.m in Sources */,
 				5E6F4B5E18A9E9B7006289D0 /* BIMixpanelHelper.m in Sources */,
 				5E639291188BA52F00D1AE80 /* BISettingsViewController.m in Sources */,
 				5E9D037818AB30F800634EB9 /* BICrashlyticsHelper.m in Sources */,

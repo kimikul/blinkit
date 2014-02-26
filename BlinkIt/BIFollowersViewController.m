@@ -34,6 +34,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self setupNav];
     [self fetchFollowers];
 }
 
@@ -41,6 +42,16 @@
     [super viewWillAppear:animated];
     
     [BIMixpanelHelper sendMixpanelEvent:@"FOLLOW_viewedFollowers" withProperties:nil];
+}
+
+- (void)setupNav {
+    if (self.navigationController) {
+        self.title = @"Followers";
+        
+        UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStylePlain target:self action:@selector(doneTapped:)];
+        doneButton.tintColor = [UIColor coral];
+        self.navigationItem.rightBarButtonItem = doneButton;
+    }
 }
 
 - (void)fetchFollowers {
@@ -212,6 +223,12 @@
     }
     
     [BIMixpanelHelper sendMixpanelEvent:@"FOLLOW_acceptedFollower" withProperties:nil];
+}
+
+#pragma mark - ibactions
+
+- (void)doneTapped:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end
