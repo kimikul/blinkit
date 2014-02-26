@@ -40,13 +40,11 @@
 }
 
 - (void)setupNav {
-    if (self.navigationController) {
-        self.title = @"Following";
-        
-        UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStylePlain target:self action:@selector(doneTapped:)];
-        doneButton.tintColor = [UIColor coral];
-        self.navigationItem.rightBarButtonItem = doneButton;
-    }
+    self.title = _showUnfollowingFacebookFriends ? @"Friends" : @"Following";
+    
+    UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStylePlain target:self action:@selector(doneTapped:)];
+    doneButton.tintColor = [UIColor coral];
+    self.navigationItem.rightBarButtonItem = doneButton;
 }
 
 - (void)fetchFriends {
@@ -101,7 +99,8 @@
         return emptyView;
     } else {
         NSInteger numFollowing = [[BIDataStore shared] followedFriends].count;
-        NSString *title = [NSString stringWithFormat:@"Following (%d)", numFollowing];
+        
+        NSString *title = _showUnfollowingFacebookFriends ? @"Friends on BlinkIt" : [NSString stringWithFormat:@"Following (%d)", numFollowing];
         return [self headerWithTitle:title];
     }
 }

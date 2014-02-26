@@ -13,6 +13,7 @@
 #import "BIFeedTableViewCell.h"
 #import "BIFeedPhotoTableViewCell.h"
 #import "BIProfileViewController.h"
+#import "BIFollowingViewController.h"
 
 #define kNumFeedEntriesPerPage 15
 
@@ -338,11 +339,18 @@
 
 - (void)tappedFriends:(id)sender {
     UIStoryboard *mainStoryboard = [UIStoryboard mainStoryboard];
-    UINavigationController *nav = [mainStoryboard instantiateViewControllerWithIdentifier:@"BIFollowNavigationController"];
+    UINavigationController *nav = nil;
     
-    _isPresentingOtherVC = YES;
+    if ([PFFacebookUtils isLinkedWithUser:[PFUser currentUser]]) {
+        BIFollowingViewController *followingVC = [mainStoryboard instantiateViewControllerWithIdentifier:@"BIFollowingViewController"];
+        followingVC.showUnfollowingFacebookFriends = YES;
+        nav = [[UINavigationController alloc] initWithRootViewController:followingVC];
+    } else {
+        nav = [mainStoryboard instantiateViewControllerWithIdentifier:@"BIFollowNavigationController"];
+    }
     
     [self presentViewController:nav animated:YES completion:nil];
+    _isPresentingOtherVC = YES;
     
     [BIMixpanelHelper sendMixpanelEvent:@"FOLLOW_tappedFriendsButton" withProperties:nil];
 }
