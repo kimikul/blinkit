@@ -10,24 +10,27 @@
 #import "BISplashViewController.h"
 #import "BIAppDelegate.h"
 #import "BIFacebookUserManager.h"
+#import "BIReminderTimeViewController.h"
 
 #define kTableSectionAccount 0
-#define kTableSectionLogout 1
+#define kTableSectionNotifications 1
+#define kTableSectionLogout 2
 
 #define kTableRowEmail 0
 #define kTableRowFacebook 1
 #define kTableRowDefaultPrivacy 2
 
-//#define kTableRowReminders 0
+#define kTableRowReminders 0
 
 #define kTableRowLogout 0
 
-@interface BISettingsViewController () <UIActionSheetDelegate>
+@interface BISettingsViewController () <UIActionSheetDelegate, BIReminderTimeViewControllerDelegate>
 
 @property (nonatomic, strong) PFUser *currentUser;
 @property (weak, nonatomic) IBOutlet UILabel *emailLabel;
 @property (weak, nonatomic) IBOutlet UISwitch *privacySwitch;
-//@property (weak, nonatomic) IBOutlet UISwitch *dailyRemindersSwitch;
+@property (weak, nonatomic) IBOutlet UILabel *dailyReminderTimeLabel;
+@property (weak, nonatomic) IBOutlet UISwitch *dailyRemindersSwitch;
 @property (weak, nonatomic) IBOutlet UILabel *facebookLinkLabel;
 
 @end
@@ -57,14 +60,22 @@
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     _privacySwitch.on = [defaults boolForKey:BIPrivacyDefaultSettings];
-//    _dailyRemindersSwitch.on = [defaults boolForKey:BIDailyReminderSettings];
 
     [self updateFacebookLinkLabel];
+    [self updateReminderTimeRow];
 }
 
 - (void)updateFacebookLinkLabel {
     _facebookLinkLabel.text = [PFFacebookUtils isLinkedWithUser:_currentUser] ? _currentUser[@"name"] : @"Click to link account";
     [_facebookLinkLabel fadeTransitionWithDuration:0.2];
+}
+
+- (void)updateReminderTimeRow {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    _dailyRemindersSwitch.on = [defaults boolForKey:BIDailyReminderSettings];
+
+    NSDate *reminderTime = [defaults objectForKey:kBIUserDefaultsReminderTimeKey];
+    _dailyReminderTimeLabel.text = reminderTime ? [NSDate formattedTime:reminderTime] : @"Reminder time not set";
 }
 
 #pragma mark - tableviewdelegate
@@ -82,6 +93,8 @@
         } else {
             [self linkToFacebook];
         }
+    } else if (section == kTableSectionNotifications) {
+        [self showReminderTimePicker];
     } else if (section == kTableSectionLogout) {
         [self promptForLogout];
     }
@@ -191,6 +204,20 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setBool:newValue forKey:BIDailyReminderSettings];
     [defaults synchronize];
+    
+    if (newValue && ![defaults objectForKey:kBIUserDefaultsReminderTimeKey]) {
+        [self showReminderTimePicker];
+    }
+}
+
+- (void)showReminderTimePicker {
+    UIStoryboard *mainStoryboard = [UIStoryboard mainStoryboard];
+    UINavigationController *nav = [mainStoryboard instantiateViewControllerWithIdentifier:@"BIReminderTimeNavigationController"];
+    BIReminderTimeViewController *reminderTimeVC = (BIReminderTimeViewController*)nav.topViewController;
+    reminderTimeVC.originalDate = [[NSUserDefaults standardUserDefaults] objectForKey:kBIUserDefaultsReminderTimeKey];
+    reminderTimeVC.delegate = self;
+    
+    [self presentViewController:nav animated:YES completion:nil];
 }
 
 #pragma mark - UIActionSheetDelegate
@@ -203,6 +230,63 @@
             [self logout];
         }
     }
+}
+
+#pragma mark - BIReminderTimeViewControllerDelegate
+
+- (void)reminderTimeVC:(BIReminderTimeViewController*)reminderTimeVC didTapCancelWithOriginalDate:(NSDate*)date {
+    if (!date) {
+        _dailyRemindersSwitch.on = NO;
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        [defaults setBool:NO forKey:BIDailyReminderSettings];
+        [defaults synchronize];
+    }
+}
+
+- (void)reminderTimeVC:(BIReminderTimeViewController*)reminderTimeVC didSaveDate:(NSDate*)date {
+    _dailyReminderTimeLabel.text = [NSDate formattedTime:date];
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:date forKey:kBIUserDefaultsReminderTimeKey];
+    [defaults synchronize];
+    
+    [self scheduleNotification:date];
+}
+
+- (void)scheduleNotification:(NSDate*)pickerDate {
+    NSCalendar *calendar = [NSCalendar autoupdatingCurrentCalendar];
+    
+    // Break the date up into components
+    NSDateComponents *dateComponents = [calendar components:( NSYearCalendarUnit | NSMonthCalendarUnit |  NSDayCalendarUnit )
+												   fromDate:pickerDate];
+    NSDateComponents *timeComponents = [calendar components:( NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit )
+												   fromDate:pickerDate];
+    // Set up the fire time
+    NSDateComponents *dateComps = [[NSDateComponents alloc] init];
+    [dateComps setDay:[dateComponents day]];
+    [dateComps setMonth:[dateComponents month]];
+    [dateComps setYear:[dateComponents year]];
+    [dateComps setHour:[timeComponents hour]];
+    [dateComps setMinute:[timeComponents minute]];
+	[dateComps setSecond:[timeComponents second]];
+    
+    NSDate *itemDate = [calendar dateFromComponents:dateComps];
+    
+    UILocalNotification *localNotif = [UILocalNotification new];
+    localNotif.fireDate = itemDate;
+    localNotif.timeZone = [NSTimeZone defaultTimeZone];
+    localNotif.repeatInterval = NSDayCalendarUnit;
+    
+	// Notification details
+    localNotif.alertBody = @"Don't forget to blink today! :)";
+    
+	// Set the action button
+    localNotif.alertAction = @"View";
+    localNotif.soundName = UILocalNotificationDefaultSoundName;
+    
+	// Schedule the notification
+    [[UIApplication sharedApplication] cancelAllLocalNotifications];
+    [[UIApplication sharedApplication] scheduleLocalNotification:localNotif];
 }
 
 @end

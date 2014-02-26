@@ -12,6 +12,7 @@
 extern NSString *const kBIUserDefaultsFacebookFriendsKey;
 extern NSString *const kBIUserDefaultsFollowedFriendsKey;
 extern NSString *const kBIUserDefaultsRequestedFriendsKey;
+extern NSString *const kBIUserDefaultsReminderTimeKey;
 
 #pragma mark - Cache
 extern NSString *const kBICachedProfilePicsKey;

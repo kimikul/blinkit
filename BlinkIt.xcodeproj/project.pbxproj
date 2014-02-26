@@ -23,6 +23,7 @@
 		5E42D408189CDB7200F651E0 /* BIFollowManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E42D407189CDB7200F651E0 /* BIFollowManager.m */; };
 		5E42D40B189CDF3500F651E0 /* BIConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E42D40A189CDF3500F651E0 /* BIConstants.m */; };
 		5E55D4E618BDBA8A00FE5168 /* BIFileSystemImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E55D4E518BDBA8A00FE5168 /* BIFileSystemImageCache.m */; };
+		5E55D4E918BDC92000FE5168 /* BIReminderTimeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E55D4E818BDC92000FE5168 /* BIReminderTimeViewController.m */; };
 		5E6392701888EA9800D1AE80 /* BIPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E63926F1888EA9800D1AE80 /* BIPhotoViewController.m */; };
 		5E6392721888F09600D1AE80 /* BIPhotoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E6392711888F09600D1AE80 /* BIPhotoViewController.xib */; };
 		5E63927B1889227F00D1AE80 /* BIHomePhotoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E63927A1889227F00D1AE80 /* BIHomePhotoTableViewCell.m */; };
@@ -144,6 +145,8 @@
 		5E42D40A189CDF3500F651E0 /* BIConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BIConstants.m; sourceTree = "<group>"; };
 		5E55D4E418BDBA8A00FE5168 /* BIFileSystemImageCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BIFileSystemImageCache.h; sourceTree = "<group>"; };
 		5E55D4E518BDBA8A00FE5168 /* BIFileSystemImageCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BIFileSystemImageCache.m; sourceTree = "<group>"; };
+		5E55D4E718BDC92000FE5168 /* BIReminderTimeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BIReminderTimeViewController.h; sourceTree = "<group>"; };
+		5E55D4E818BDC92000FE5168 /* BIReminderTimeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BIReminderTimeViewController.m; sourceTree = "<group>"; };
 		5E63926E1888EA9800D1AE80 /* BIPhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BIPhotoViewController.h; sourceTree = "<group>"; };
 		5E63926F1888EA9800D1AE80 /* BIPhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BIPhotoViewController.m; sourceTree = "<group>"; };
 		5E6392711888F09600D1AE80 /* BIPhotoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BIPhotoViewController.xib; sourceTree = "<group>"; };
@@ -379,6 +382,8 @@
 				5E639290188BA52F00D1AE80 /* BISettingsViewController.m */,
 				5E79D007189A45AE00529EBE /* BIFacebookUserManager.h */,
 				5E79D008189A45AE00529EBE /* BIFacebookUserManager.m */,
+				5E55D4E718BDC92000FE5168 /* BIReminderTimeViewController.h */,
+				5E55D4E818BDC92000FE5168 /* BIReminderTimeViewController.m */,
 			);
 			name = Settings;
 			sourceTree = "<group>";
@@ -819,6 +824,7 @@
 				5E9D037818AB30F800634EB9 /* BICrashlyticsHelper.m in Sources */,
 				5E99D1A218B38D1A00862462 /* BIDeleteBlinkHelper.m in Sources */,
 				5EAB8B2C1881062A00B02953 /* UIStoryboard+BlinkIt.m in Sources */,
+				5E55D4E918BDC92000FE5168 /* BIReminderTimeViewController.m in Sources */,
 				5EAB8AE4187E7D3600B02953 /* BISplashViewController.m in Sources */,
 				5E7297B318A9F472008D356C /* Mixpanel.m in Sources */,
 				5E42D3EF189C9FFD00F651E0 /* BIFeedViewController.m in Sources */,

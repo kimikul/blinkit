@@ -346,6 +346,54 @@ Click 'Todays Blink' to get started :)</string>
             </objects>
             <point key="canvasLocation" x="3499" y="151"/>
         </scene>
+        <!--Reminder Time View Controller - Reminder Time-->
+        <scene sceneID="Wnq-QK-Ho5">
+            <objects>
+                <viewController storyboardIdentifier="BIReminderTimeViewController" id="bei-Kc-OxU" customClass="BIReminderTimeViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="YXl-Y3-mFJ">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" id="xlx-cb-aUY">
+                                <rect key="frame" x="0.0" y="66" width="320" height="162"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <date key="date" timeIntervalSinceReferenceDate="415090443.45943099">
+                                    <!--2014-02-26 06:54:03 +0000-->
+                                </date>
+                                <timeZone key="timeZone" name="America/Los_Angeles">
+                                    <mutableData key="data">
+VFppZgAAAAAAAAAAAAAAAAAAAAAAAAAEAAAABAAAAAAAAAC5AAAABAAAABCepkign7sVkKCGKqChmveQ
+y4kaoNIj9HDSYSYQ1v50INiArZDa/tGg28CQENzes6DdqayQ3r6VoN+JjpDgnneg4WlwkOJ+WaDjSVKQ
+5F47oOUpNJDmR1gg5xJREOgnOiDo8jMQ6gccIOrSFRDr5v4g7LH3EO3G4CDukdkQ76/8oPBxuxDxj96g
+8n/BkPNvwKD0X6OQ9U+ioPY/hZD3L4Sg+CiiEPkPZqD6CIQQ+viDIPvoZhD82GUg/chIEP64RyD/qCoQ
+AJgpIAGIDBACeAsgA3EokARhJ6AFUQqQBkEJoAcw7JAHjUOgCRDOkAmtvyAK8LCQC+CvoAzZzRANwJGg
+DrmvEA+priAQmZEQEYmQIBJ5cxATaXIgFFlVEBVJVCAWOTcQFyk2IBgiU5AZCRggGgI1kBryNKAb4heQ
+HNIWoB3B+ZAesfigH6HbkCB2KyAhgb2QIlYNICNq2hAkNe8gJUq8ECYV0SAnKp4QJ/7toCkKgBAp3s+g
+KupiECu+saAs036QLZ6ToC6zYJAvfnWgMJNCkDFnkiAycySQM0d0IDRTBpA1J1YgNjLokDcHOCA4HAUQ
+OOcaIDn75xA6xvwgO9vJEDywGKA9u6sQPo/6oD+bjRBAb9ygQYSpkEJPvqBDZIuQRC+goEVEbZBF89Mg
+Ry2KEEfTtSBJDWwQSbOXIErtThBLnLOgTNZqkE18laBOtkyQT1x3oFCWLpBRPFmgUnYQkFMcO6BUVfKQ
+VPwdoFY11JBW5TogWB7xEFjFHCBZ/tMQWqT+IFvetRBchOAgXb6XEF5kwiBfnnkQYE3eoGGHlZBiLcCg
+Y2d3kGQNoqBlR1mQZe2EoGcnO5BnzWagaQcdkGmtSKBq5v+Qa5ZlIGzQHBBtdkcgbq/+EG9WKSBwj+AQ
+cTYLIHJvwhBzFe0gdE+kEHT/CaB2OMCQdt7roHgYopB4vs2gefiEkHqer6B72GaQfH6RoH24SJB+XnOg
+f5gqkAABAAECAwEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEA
+AQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEA
+AQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEA
+AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
+</mutableData>
+                                </timeZone>
+                            </datePicker>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Reminder Time" id="5Be-Yb-IrR"/>
+                    <connections>
+                        <outlet property="datePicker" destination="xlx-cb-aUY" id="cto-nK-Wx3"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gdh-qp-TYf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4735" y="412"/>
+        </scene>
         <!--Feed View Controller-->
         <scene sceneID="NWJ-gi-e8U">
             <objects>
@@ -541,10 +589,44 @@ PRO TIP: Click the top right button to follow friends if you haven't yet :)</str
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
+                            <tableViewSection headerTitle="Notifications" id="ONu-xo-cSW">
+                                <cells>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="gray" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="60" id="YZP-ys-ALZ">
+                                        <rect key="frame" x="0.0" y="299" width="320" height="60"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="YZP-ys-ALZ" id="emj-Zd-Bik">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="59"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Daily Reminder" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="vFH-TU-dTS">
+                                                    <rect key="frame" x="10" y="12" width="117" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No time selected" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="kmA-of-nC9">
+                                                    <rect key="frame" x="10" y="34" width="239" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <color key="textColor" red="0.5568627451" green="0.5568627451" blue="0.5568627451" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" id="1XB-9p-KoJ">
+                                                    <rect key="frame" x="262" y="14" width="51" height="31"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <connections>
+                                                        <action selector="toggleDailyReminders:" destination="JhV-QC-qar" eventType="valueChanged" id="dQb-js-rcc"/>
+                                                    </connections>
+                                                </switch>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
                             <tableViewSection headerTitle="Logout" id="xtO-Nm-0xq">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="gray" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="PEr-Tj-FIw">
-                                        <rect key="frame" x="0.0" y="299" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="407" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="PEr-Tj-FIw" id="XdR-h3-lQy">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -569,6 +651,8 @@ PRO TIP: Click the top right button to follow friends if you haven't yet :)</str
                     </tableView>
                     <navigationItem key="navigationItem" title="Settings" id="bTd-Uq-Poj"/>
                     <connections>
+                        <outlet property="dailyReminderTimeLabel" destination="kmA-of-nC9" id="omV-Xd-FQI"/>
+                        <outlet property="dailyRemindersSwitch" destination="1XB-9p-KoJ" id="674-f8-ymZ"/>
                         <outlet property="emailLabel" destination="yeU-TL-SNt" id="nSY-UY-cr8"/>
                         <outlet property="facebookLinkLabel" destination="bCY-Yo-WLf" id="lTC-sY-Uja"/>
                         <outlet property="privacySwitch" destination="i4A-Sc-ayB" id="c6f-tH-7wK"/>
@@ -719,7 +803,7 @@ PRO TIP : Link your Facebook in Settings to find friends if you haven't yet</str
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1Sa-4R-DmN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4869" y="129"/>
+            <point key="canvasLocation" x="5395" y="129"/>
         </scene>
         <!--Notifications View Controller - Notifications-->
         <scene sceneID="uRz-fY-bJt">
@@ -838,7 +922,7 @@ PRO TIP : Link your Facebook in Settings to find friends if you haven't yet</str
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4rw-K3-MRc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6021" y="825"/>
+            <point key="canvasLocation" x="6547" y="825"/>
         </scene>
         <!--Followers View Controller-->
         <scene sceneID="59F-wN-dCH">
@@ -991,7 +1075,7 @@ PRO TIP : Link your Facebook in Settings so friends can find you.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cYo-82-dUJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5233" y="129"/>
+            <point key="canvasLocation" x="5759" y="129"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="Sdq-Gx-Edp">
@@ -1210,7 +1294,7 @@ PRO TIP : Link your Facebook in Settings so friends can find you.</string>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FUz-er-iF3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5495" y="825"/>
+            <point key="canvasLocation" x="6021" y="825"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="0TM-AX-FLs">
@@ -1358,6 +1442,24 @@ PRO TIP : Link your Facebook in Settings so friends can find you.</string>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XnQ-9T-Gd2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2257" y="1821"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Urp-yD-eiR">
+            <objects>
+                <navigationController storyboardIdentifier="BIReminderTimeNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="VSF-JZ-1IR" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="QLu-3g-vIE">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="bei-Kc-OxU" kind="relationship" relationship="rootViewController" id="QbJ-DN-EfA"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="l81-4J-VDv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4209" y="412"/>
         </scene>
     </scenes>
     <resources>
