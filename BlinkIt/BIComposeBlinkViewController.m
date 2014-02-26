@@ -29,7 +29,7 @@
 @property (nonatomic, strong) UIImagePickerController *imagePickerController;
 @property (nonatomic, strong) BIImageUploadManager *imageUploadManager;
 @property (nonatomic, strong) UIImageView *thumbnailPreviewImageView;
-
+@property (nonatomic, strong) NSDate *openDate;
 @end
 
 @implementation BIComposeBlinkViewController
@@ -49,6 +49,8 @@
     [self setupObservers];
     [self initializeView];
     [self setupThumbailPreviewImageView];
+    
+    _openDate = [NSDate date];
 }
 
 - (void)setupButtons {
@@ -240,7 +242,7 @@
     
     PFObject *theBlink;
     
-    if (!_blink) {
+    if (!_blink || [self didCrossMidnightFrom:_openDate to:[NSDate date]]) {
         theBlink = [PFObject objectWithClassName:@"Blink"];
         theBlink[@"date"] = [NSDate date];
         theBlink[@"private"] = [NSNumber numberWithBool:_privateButton.selected];
@@ -274,6 +276,19 @@
     [self sendMixpanelForSubmittingBlink:theBlink hasImage:hasImage];
 }
 
+- (BOOL)didCrossMidnightFrom:(NSDate*)startDate to:(NSDate*)endDate {
+    NSCalendar* calendar = [NSCalendar currentCalendar];
+    
+    unsigned unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit |  NSDayCalendarUnit;
+    NSDateComponents* comp1 = [calendar components:unitFlags fromDate:startDate];
+    NSDateComponents* comp2 = [calendar components:unitFlags fromDate:endDate];
+    
+    BOOL isSameDay = [comp1 day] == [comp2 day] &&
+    [comp1 month] == [comp2 month] &&
+    [comp1 year]  == [comp2 year];
+    
+    return !isSameDay;
+}
 
 - (void)sendMixpanelForSubmittingBlink:(PFObject*)blink hasImage:(BOOL)hasImage {
     NSMutableDictionary *propDict = [@{@"private" : blink[@"private"],

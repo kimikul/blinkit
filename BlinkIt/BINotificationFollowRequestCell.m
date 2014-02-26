@@ -118,8 +118,9 @@
                          completion:^(BOOL finished){
                          }];
         
-        [self.delegate notificationCell:self tappedAcceptRequestForActivity:_activity error:error];
     }];
+    
+    [self.delegate notificationCell:self tappedAcceptRequestForActivity:_activity];
     
     _acceptButton.backgroundColor = [UIColor acceptGreen];
 }

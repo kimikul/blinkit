@@ -830,13 +830,13 @@ PRO TIP : Link your Facebook in Settings to find friends if you haven't yet</str
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 </imageView>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Jaradayniea Marubayashi wants to follow you" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="krc-lo-zq8">
-                                                    <rect key="frame" x="47" y="3" width="172" height="43"/>
+                                                    <rect key="frame" x="47" y="3" width="169" height="43"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="mum-01-8nd">
-                                                    <rect key="frame" x="224" y="7" width="61" height="35"/>
+                                                    <rect key="frame" x="219" y="7" width="60" height="35"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" red="0.12858245330000001" green="0.61981997280000001" blue="0.11280838429999999" alpha="1" colorSpace="calibratedRGB"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
@@ -847,7 +847,7 @@ PRO TIP : Link your Facebook in Settings to find friends if you haven't yet</str
                                                     </state>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="FXk-mb-PXm">
-                                                    <rect key="frame" x="291" y="7" width="23" height="35"/>
+                                                    <rect key="frame" x="284" y="7" width="30" height="35"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" red="0.81457913306451613" green="0.093775003319999994" blue="0.084412109839999999" alpha="1" colorSpace="calibratedRGB"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>

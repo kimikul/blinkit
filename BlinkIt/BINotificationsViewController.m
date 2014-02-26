@@ -26,7 +26,6 @@
     self = [super initWithCoder:aDecoder];
     if (self) {
         self.useEmptyTableFooter = YES;
-        self.useRefreshTableHeaderView = YES;
     }
     
     return self;
@@ -146,12 +145,10 @@
 
 #pragma mark - BINotificationFollowRequestCellDelegate
 
-- (void)notificationCell:(BINotificationFollowRequestCell*)cell tappedAcceptRequestForActivity:(PFObject*)activity error:(NSError*)error {
-    if (!error) {
-        [self reloadTableData];
-        
-        [BINotificationHelper decrementBadgeCount];
-    }
+- (void)notificationCell:(BINotificationFollowRequestCell*)cell tappedAcceptRequestForActivity:(PFObject*)activity {
+    [self reloadTableData];
+    
+    [BINotificationHelper decrementBadgeCount];
 }
 
 - (void)notificationCell:(BINotificationFollowRequestCell*)cell tappedFollowBackForActivity:(PFObject*)activity error:(NSError*)error {
