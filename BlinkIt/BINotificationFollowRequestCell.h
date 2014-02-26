@@ -13,6 +13,8 @@
 @protocol BINotificationFollowRequestCellDelegate <NSObject>
 - (void)notificationCell:(BINotificationFollowRequestCell*)cell tappedAcceptRequestForActivity:(PFObject*)activity error:(NSError*)error;
 - (void)notificationCell:(BINotificationFollowRequestCell*)cell tappedFollowBackForActivity:(PFObject*)activity error:(NSError*)error;
+- (void)notificationCell:(BINotificationFollowRequestCell*)cell tappedIgnoreForActivity:(PFObject*)activity error:(NSError*)error;
+
 @end
 
 @interface BINotificationFollowRequestCell : UITableViewCell

@@ -745,14 +745,14 @@ PRO TIP : Link your Facebook in Settings to find friends if you haven't yet</str
                                                     <rect key="frame" x="10" y="10" width="30" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 </imageView>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ron Alivia has requested to follow you" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="krc-lo-zq8">
-                                                    <rect key="frame" x="47" y="3" width="190" height="43"/>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Jaradayniea Marubayashi wants to follow you" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="krc-lo-zq8">
+                                                    <rect key="frame" x="47" y="3" width="172" height="43"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="mum-01-8nd">
-                                                    <rect key="frame" x="245" y="11" width="70" height="28"/>
+                                                    <rect key="frame" x="224" y="7" width="61" height="35"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <color key="backgroundColor" red="0.12858245330000001" green="0.61981997280000001" blue="0.11280838429999999" alpha="1" colorSpace="calibratedRGB"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
@@ -762,10 +762,25 @@ PRO TIP : Link your Facebook in Settings to find friends if you haven't yet</str
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                 </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="FXk-mb-PXm">
+                                                    <rect key="frame" x="291" y="7" width="23" height="35"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <color key="backgroundColor" red="0.61981997280000001" green="0.093775003319999994" blue="0.084412109839999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
+                                                    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                    <state key="normal" title="X">
+                                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="tappedIgnore:" destination="PNw-X0-ChM" eventType="touchUpInside" id="PG7-Rl-26S"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="acceptButton" destination="mum-01-8nd" id="kh5-dA-FxQ"/>
+                                            <outlet property="ignoreButton" destination="FXk-mb-PXm" id="6Hn-d8-JCG"/>
                                             <outlet property="notificationLabel" destination="krc-lo-zq8" id="vzt-hs-JwG"/>
                                             <outlet property="profilePic" destination="cYS-fk-xhT" id="DR1-rr-Kps"/>
                                         </connections>

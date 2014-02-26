@@ -165,6 +165,13 @@
     [self reloadTableData];
 }
 
+- (void)notificationCell:(BINotificationFollowRequestCell*)cell tappedIgnoreForActivity:(PFObject*)activity error:(NSError*)error {
+    [_notificationsArray removeObject:activity];
+    [self reloadTableData];
+    
+    [BINotificationHelper decrementBadgeCount];
+}
+
 #pragma mark - ibactions
 
 - (void)doneTapped:(id)sender {

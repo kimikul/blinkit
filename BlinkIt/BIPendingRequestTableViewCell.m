@@ -61,6 +61,7 @@
 #pragma mark - actions
 
 - (IBAction)tappedAccept:(id)sender {
+    _actionButton.enabled = NO;
     _activity[@"type"] = @"follow";
     
     [_activity saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {

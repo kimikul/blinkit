@@ -78,6 +78,7 @@
 
 - (IBAction)tappedFollowButton:(id)sender {
     _followButton.backgroundColor = [UIColor greenColor];
+    _followButton.enabled = NO;
     
     PFUser *user = _user;
 
@@ -128,7 +129,6 @@
 #pragma mark - follow button state change
 
 - (void)updateFollowButtonState {
-    
     BIFollowingState currentFollowingStatus = _followingState;
     
     if (currentFollowingStatus == BIFollowingStateNone) {
@@ -138,6 +138,8 @@
     } else if (currentFollowingStatus == BIFollowingStateFollowing) {
         [self setButtonToShowNoFollowStatus];
     }
+    
+    _followButton.enabled = YES;
 }
 
 - (void)setButtonToShowFollowing {

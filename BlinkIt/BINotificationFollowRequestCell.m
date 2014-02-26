@@ -13,6 +13,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *profilePic;
 @property (weak, nonatomic) IBOutlet UILabel *notificationLabel;
 @property (weak, nonatomic) IBOutlet UIButton *acceptButton;
+@property (weak, nonatomic) IBOutlet UIButton *ignoreButton;
 
 @end
 
@@ -36,6 +37,9 @@
     _acceptButton.layer.cornerRadius = 2.0;
     _acceptButton.clipsToBounds = YES;
     
+    _ignoreButton.layer.cornerRadius = 2.0;
+    _ignoreButton.clipsToBounds = YES;
+    
     _profilePic.layer.cornerRadius = 2.0;
     _profilePic.clipsToBounds = YES;
 }
@@ -45,6 +49,8 @@
 - (void)setActivity:(PFObject *)activity {
     
     _activity = activity;
+    _acceptButton.enabled = YES;
+    _ignoreButton.enabled = YES;
     
     PFUser *user = activity[@"fromUser"];
     
@@ -54,8 +60,11 @@
         [self setupAcceptButton];
     } else if ([type isEqualToString:@"follow"]) {
         _notificationLabel.text = [NSString stringWithFormat:@"%@ is now following you",user[@"name"]];
+        
         BOOL isFollowingUser = [[BIDataStore shared] isFollowingUser:user];
-        if (!isFollowingUser) {
+        BOOL hasRequestedUser = [[BIDataStore shared] hasRequestedUser:user];
+        
+        if (!isFollowingUser && !hasRequestedUser) {
             [self setupFollowBackButton];
         } else {
             _acceptButton.hidden = YES;
@@ -95,8 +104,20 @@
 
 - (void)tappedAccept:(id)sender {
     _activity[@"type"] = @"follow";
+    _ignoreButton.enabled = NO;
+    _acceptButton.enabled = NO;
     
     [_activity saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        [_ignoreButton fadeOutWithDuration:0.2 completion:nil];
+        
+        // expand accept button to take up new space
+        [UIView animateWithDuration:0.3f
+                         animations:^{
+                             _acceptButton.frameWidth = 90;
+                         }
+                         completion:^(BOOL finished){
+                         }];
+        
         [self.delegate notificationCell:self tappedAcceptRequestForActivity:_activity error:error];
     }];
     
@@ -104,8 +125,16 @@
 }
 
 - (void)tappedFollowBack:(id)sender {
+    _acceptButton.enabled = NO;
+    
     [BIFollowManager requestToFollowUserEventually:_activity[@"fromUser"] block:^(BOOL succeeded, NSError *error) {
         [self.delegate notificationCell:self tappedFollowBackForActivity:_activity error:error];
+    }];
+}
+
+- (IBAction)tappedIgnore:(id)sender {
+    [_activity deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        [self.delegate notificationCell:self tappedIgnoreForActivity:_activity error:error];
     }];
 }
 
