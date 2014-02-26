@@ -208,6 +208,10 @@
     if (newValue && ![defaults objectForKey:kBIUserDefaultsReminderTimeKey]) {
         [self showReminderTimePicker];
     }
+    
+    if (!newValue) {
+        [[UIApplication sharedApplication] cancelAllLocalNotifications];
+    }
 }
 
 - (void)showReminderTimePicker {
@@ -240,6 +244,8 @@
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         [defaults setBool:NO forKey:BIDailyReminderSettings];
         [defaults synchronize];
+        
+        [[UIApplication sharedApplication] cancelAllLocalNotifications];
     }
 }
 
