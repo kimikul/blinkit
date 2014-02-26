@@ -169,6 +169,7 @@
 }
 
 - (void)logout {
+    [[PFFacebookUtils session] closeAndClearTokenInformation];
     [PFUser logOut];
     
     // clear userdefaults
