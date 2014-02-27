@@ -69,6 +69,15 @@
 }
 
 - (void)initializeView {
+    // if the existing blink is not from today, clear it out!
+    if (_blink) {
+        BOOL isBlinkFromToday = [NSDate isToday:_blink[@"date"]];
+        if (!isBlinkFromToday) {
+            _blink = nil;
+        }
+    }
+
+    // show existing blink if there is one
     [self updateViewForBlink:_blink];
     
     _dateLabel.text = [NSDate spelledOutTodaysDate];
@@ -242,17 +251,16 @@
     
     PFObject *theBlink;
     
-    if (!_blink || [self didCrossMidnightFrom:_openDate to:[NSDate date]]) {
+    if (!_blink) {
         theBlink = [PFObject objectWithClassName:@"Blink"];
-        theBlink[@"date"] = [NSDate date];
         theBlink[@"private"] = [NSNumber numberWithBool:_privateButton.selected];
     } else {
         theBlink = _blink;
-        theBlink[@"date"] = [NSDate date];
     }
     
     theBlink[@"content"] = content;
     theBlink[@"user"] = [PFUser currentUser];
+    theBlink[@"date"] = _openDate;
 
     UIImage *image = _selectedImage;
     BOOL hasImage = NO;
@@ -274,20 +282,6 @@
     }
     
     [self sendMixpanelForSubmittingBlink:theBlink hasImage:hasImage];
-}
-
-- (BOOL)didCrossMidnightFrom:(NSDate*)startDate to:(NSDate*)endDate {
-    NSCalendar* calendar = [NSCalendar currentCalendar];
-    
-    unsigned unitFlags = NSYearCalendarUnit | NSMonthCalendarUnit |  NSDayCalendarUnit;
-    NSDateComponents* comp1 = [calendar components:unitFlags fromDate:startDate];
-    NSDateComponents* comp2 = [calendar components:unitFlags fromDate:endDate];
-    
-    BOOL isSameDay = [comp1 day] == [comp2 day] &&
-    [comp1 month] == [comp2 month] &&
-    [comp1 year]  == [comp2 year];
-    
-    return !isSameDay;
 }
 
 - (void)sendMixpanelForSubmittingBlink:(PFObject*)blink hasImage:(BOOL)hasImage {

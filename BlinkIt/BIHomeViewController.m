@@ -172,19 +172,7 @@
             NSMutableArray *blinks = pagination ? [[self.allBlinksArray arrayByAddingObjectsFromArray:objects] mutableCopy] : [objects mutableCopy];
             self.allBlinksArray = [blinks mutableCopy];
             
-            BOOL isBlinkToday = NO;
-            for (PFObject *blink in blinks) {
-                NSDate *date = blink[@"date"];
-                if ([NSDate isToday:date]) {
-                    _todaysBlink = blink;
-                    isBlinkToday = YES;
-                    break;
-                }
-            }
-            
-            if (!isBlinkToday) {
-                _todaysBlink = nil;
-            }
+            [self sortOutTodaysBlinkFromObjects:blinks];
             
             // append or replace existing data source
             [self reloadTableData];
@@ -194,6 +182,23 @@
     if (pagination) {
         [BIMixpanelHelper sendMixpanelEvent:@"HOME_paginateHome" withProperties:nil];
     }
+}
+
+- (void)sortOutTodaysBlinkFromObjects:(NSArray*)blinks {
+    BOOL isBlinkToday = NO;
+    for (PFObject *blink in blinks) {
+        NSDate *date = blink[@"date"];
+        if ([NSDate isToday:date]) {
+            _todaysBlink = blink;
+            isBlinkToday = YES;
+            break;
+        }
+    }
+    
+    if (!isBlinkToday) {
+        _todaysBlink = nil;
+    }
+
 }
 
 - (void)refreshHome {
@@ -237,12 +242,22 @@
 - (void)updateForTodaysBlink:(NSNotification*)note {
     PFObject *blink = note.object;
     
-    if (!_todaysBlink) {
+    if (![self blinkArray:self.allBlinksArray containsBlink:blink]) {
         [self.allBlinksArray insertObject:blink atIndex:0];
     }
     
-    _todaysBlink = blink;
+    [self sortOutTodaysBlinkFromObjects:self.allBlinksArray];
     [self reloadTableData];
+}
+
+- (BOOL)blinkArray:(NSArray*)blinkArray containsBlink:(PFObject*)targetedBlink {
+    for (PFObject *blink in blinkArray) {
+        if ([blink.objectId isEqualToString:targetedBlink.objectId]) {
+            return YES;
+        }
+    }
+    
+    return NO;
 }
 
 - (void)deletedBlink:(NSNotification*)note {
