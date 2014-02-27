@@ -10,7 +10,8 @@
 #import "BIHomeViewController.h"
 
 #define kTABBAR_ME 0
-#define kTABBAR_FEED 1
+#define kTABBAR_TODAYSBLINK 1
+#define kTABBAR_FEED 2
 
 @interface BITabBarController ()
 @end
@@ -55,9 +56,9 @@
 - (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item  {
     NSInteger selectedIndex = self.selectedIndex;
     if (selectedIndex == kTABBAR_ME) {
-        [BIMixpanelHelper sendMixpanelEvent:@"TABBAR_tappedTab" withProperties:@{@"tappedOn":@"feed"}];
-    } else if (selectedIndex == kTABBAR_FEED) {
         [BIMixpanelHelper sendMixpanelEvent:@"TABBAR_tappedTab" withProperties:@{@"tappedOn":@"me"}];
+    } else if (selectedIndex == kTABBAR_FEED) {
+        [BIMixpanelHelper sendMixpanelEvent:@"TABBAR_tappedTab" withProperties:@{@"tappedOn":@"feed"}];
     }
 }
 

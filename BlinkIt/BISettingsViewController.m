@@ -261,6 +261,8 @@
 }
 
 - (void)scheduleNotification:(NSDate*)pickerDate {
+    [BIMixpanelHelper sendMixpanelEvent:@"REMINDERS_scheduledReminder" withProperties:@{@"reminderTime" : pickerDate}];
+
     NSCalendar *calendar = [NSCalendar autoupdatingCurrentCalendar];
     
     // Break the date up into components
