@@ -23,4 +23,7 @@
 @property (nonatomic, weak) id <BIHomeHeaderViewDelegate> delegate;
 @property (nonatomic, strong) PFUser *user;
 
+- (void)updateBlinkCountWithIncrement:(BOOL)shouldIncrement;
+- (void)refreshNumbers;
+
 @end

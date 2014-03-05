@@ -211,6 +211,7 @@
 
 - (void)refreshTableHeaderDidTriggerRefresh {
     [self fetchBlinksForPagination:NO];
+    [_homeHeaderView refreshNumbers];
 }
 
 - (void)performPaginationRequestIfNecessary {
@@ -244,6 +245,7 @@
     
     if (![self blinkArray:self.allBlinksArray containsBlink:blink]) {
         [self.allBlinksArray insertObject:blink atIndex:0];
+        [_homeHeaderView updateBlinkCountWithIncrement:YES];
     }
     
     [self sortOutTodaysBlinkFromObjects:self.allBlinksArray];
@@ -381,6 +383,7 @@
     
     [self.allBlinksArray removeObject:blinkToDelete];
     [self reloadTableData];
+    [_homeHeaderView updateBlinkCountWithIncrement:NO];
 }
 
 #pragma mark - UIActionSheetDelegate

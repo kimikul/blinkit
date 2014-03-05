@@ -61,6 +61,13 @@
     [self fetchFollowersCount];
 }
 
+#pragma mark - requests
+
+- (void)refreshNumbers {
+    [self fetchBlinksCount];
+    [self fetchFollowersCount];
+}
+
 - (void)fetchBlinksCount {
     PFQuery *query = [PFQuery queryWithClassName:@"Blink"];
     [query whereKey:@"user" equalTo:_user];
@@ -92,6 +99,26 @@
     _followingCountLabel.text = [NSString stringWithFormat:@"%d",followingCount];
     [_followingCountLabel fadeTransitionWithDuration:0.2];
 }
+
+#pragma mark - helpers
+
+- (void)updateBlinkCountWithIncrement:(BOOL)shouldIncrement {
+    NSString *currentLabel = _blinksCountLabel.text;
+    NSArray *components = [currentLabel componentsSeparatedByString:@" / "];
+    NSInteger numBlinks = [[components safeObjectAtIndex:0] integerValue];
+    NSInteger numDays = [[components safeObjectAtIndex:1] integerValue];
+    
+    if (shouldIncrement) {
+        numBlinks += 1;
+    } else {
+        numBlinks -= 1;
+        numBlinks = MAX(0,numBlinks);
+    }
+    
+    _blinksCountLabel.text = [NSString stringWithFormat:@"%d / %d",numBlinks, numDays];
+}
+
+#pragma mark - ibactions
 
 - (IBAction)tapFollowing:(id)sender {
     [self.delegate headerView:self didTapFollowingButton:sender];

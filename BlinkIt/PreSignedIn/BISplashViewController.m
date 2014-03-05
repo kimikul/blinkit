@@ -12,6 +12,7 @@
 #import "BIHomeViewController.h"
 #import "BIAppDelegate.h"
 #import "BIFacebookUserManager.h"
+#import "BIWebViewController.h"
 
 @interface BISplashViewController () <BILoginViewControllerDelegate, BISignUpViewControllerDelegate>
 @property (weak, nonatomic) IBOutlet UIButton *loginButton;
@@ -110,6 +111,22 @@
     
     BIAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     [appDelegate setRootViewController:homeVC];
+}
+
+- (IBAction)tappedPrivacy:(id)sender {
+    BIWebViewController *webViewVC = [BIWebViewController new];
+    webViewVC.URL = [NSURL URLWithString:@"http://blinkit.herokuapp.com/privacy"];
+    
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:webViewVC];
+    [self presentViewController:nav animated:YES completion:nil];
+}
+
+- (IBAction)tappedTOS:(id)sender {
+    BIWebViewController *webViewVC = [BIWebViewController new];
+    webViewVC.URL = [NSURL URLWithString:@"http://blinkit.herokuapp.com/termsofservice"];
+    
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:webViewVC];
+    [self presentViewController:nav animated:YES completion:nil];
 }
 
 @end

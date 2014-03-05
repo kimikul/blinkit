@@ -26,6 +26,8 @@
 		5E55D4E918BDC92000FE5168 /* BIReminderTimeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E55D4E818BDC92000FE5168 /* BIReminderTimeViewController.m */; };
 		5E55D4EC18BDE0A100FE5168 /* BIHomeHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E55D4EB18BDE0A100FE5168 /* BIHomeHeaderView.m */; };
 		5E55D4F018BDE0D300FE5168 /* BIHomeHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E55D4EF18BDE0D300FE5168 /* BIHomeHeaderView.xib */; };
+		5E566F7018C5BB8D00C52D06 /* BIWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E566F6E18C5BB8D00C52D06 /* BIWebViewController.m */; };
+		5E566F7118C5BB8D00C52D06 /* BIWebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E566F6F18C5BB8D00C52D06 /* BIWebViewController.xib */; };
 		5E6392701888EA9800D1AE80 /* BIPhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E63926F1888EA9800D1AE80 /* BIPhotoViewController.m */; };
 		5E6392721888F09600D1AE80 /* BIPhotoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E6392711888F09600D1AE80 /* BIPhotoViewController.xib */; };
 		5E63927B1889227F00D1AE80 /* BIHomePhotoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E63927A1889227F00D1AE80 /* BIHomePhotoTableViewCell.m */; };
@@ -152,6 +154,9 @@
 		5E55D4EA18BDE0A100FE5168 /* BIHomeHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BIHomeHeaderView.h; sourceTree = "<group>"; };
 		5E55D4EB18BDE0A100FE5168 /* BIHomeHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BIHomeHeaderView.m; sourceTree = "<group>"; };
 		5E55D4EF18BDE0D300FE5168 /* BIHomeHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BIHomeHeaderView.xib; sourceTree = "<group>"; };
+		5E566F6D18C5BB8D00C52D06 /* BIWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BIWebViewController.h; sourceTree = "<group>"; };
+		5E566F6E18C5BB8D00C52D06 /* BIWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BIWebViewController.m; sourceTree = "<group>"; };
+		5E566F6F18C5BB8D00C52D06 /* BIWebViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BIWebViewController.xib; sourceTree = "<group>"; };
 		5E63926E1888EA9800D1AE80 /* BIPhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BIPhotoViewController.h; sourceTree = "<group>"; };
 		5E63926F1888EA9800D1AE80 /* BIPhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BIPhotoViewController.m; sourceTree = "<group>"; };
 		5E6392711888F09600D1AE80 /* BIPhotoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BIPhotoViewController.xib; sourceTree = "<group>"; };
@@ -665,6 +670,9 @@
 				5E2F088B188F7B1400C633C7 /* BIPaginationTableViewCell.m */,
 				5E3420EB18A613490088A270 /* BIButton.h */,
 				5E3420EC18A613490088A270 /* BIButton.m */,
+				5E566F6D18C5BB8D00C52D06 /* BIWebViewController.h */,
+				5E566F6E18C5BB8D00C52D06 /* BIWebViewController.m */,
+				5E566F6F18C5BB8D00C52D06 /* BIWebViewController.xib */,
 			);
 			name = Common;
 			sourceTree = "<group>";
@@ -768,6 +776,7 @@
 				5E9D038018AB3E0600634EB9 /* BIHomePhotoTableViewCell.xib in Resources */,
 				5E9D037E18AB3DFA00634EB9 /* BIHomeTableViewCell.xib in Resources */,
 				5EAB8ABC187E73DF00B02953 /* Images.xcassets in Resources */,
+				5E566F7118C5BB8D00C52D06 /* BIWebViewController.xib in Resources */,
 				5E55D4F018BDE0D300FE5168 /* BIHomeHeaderView.xib in Resources */,
 				5E6392721888F09600D1AE80 /* BIPhotoViewController.xib in Resources */,
 				5E9D037A18AB3D2000634EB9 /* BIFeedTableViewCell.xib in Resources */,
@@ -811,6 +820,7 @@
 			files = (
 				5EAB8B491883B5FA00B02953 /* BIPlaceholderTextView.m in Sources */,
 				5E99D19F18B324DB00862462 /* BIComposeBlinkViewController.m in Sources */,
+				5E566F7018C5BB8D00C52D06 /* BIWebViewController.m in Sources */,
 				5EAB8B3B1881300E00B02953 /* UIView+BlinkIt.m in Sources */,
 				5E9D038818AB724000634EB9 /* BINotificationsViewController.m in Sources */,
 				5E2F088C188F7B1400C633C7 /* BIPaginationTableViewCell.m in Sources */,
