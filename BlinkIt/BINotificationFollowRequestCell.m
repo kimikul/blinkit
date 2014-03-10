@@ -14,7 +14,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *notificationLabel;
 @property (weak, nonatomic) IBOutlet UIButton *acceptButton;
 @property (weak, nonatomic) IBOutlet UIButton *ignoreButton;
-
+@property (nonatomic, strong) UIActivityIndicatorView *aiv;
 @end
 
 @implementation BINotificationFollowRequestCell
@@ -68,6 +68,7 @@
             [self setupFollowBackButton];
         } else {
             _acceptButton.hidden = YES;
+            _ignoreButton.hidden = YES;
         }
     }
     
@@ -93,6 +94,9 @@
 }
 
 - (void)setupFollowBackButton {
+    _acceptButton.frameWidth = 90;
+    _ignoreButton.hidden = YES;
+    
     [_acceptButton setTitle:@"Follow" forState:UIControlStateNormal];
     _acceptButton.backgroundColor = [UIColor requestedOrange];
     
@@ -107,28 +111,27 @@
     _ignoreButton.enabled = NO;
     _acceptButton.enabled = NO;
     
-    [_activity saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-        [_ignoreButton fadeOutWithDuration:0.2 completion:nil];
-        
-        // expand accept button to take up new space
-        [UIView animateWithDuration:0.3f
-                         animations:^{
-                             _acceptButton.frameWidth = 90;
-                         }
-                         completion:^(BOOL finished){
-                         }];
-        
-    }];
-    
+    [_activity saveEventually];
+
     [self.delegate notificationCell:self tappedAcceptRequestForActivity:_activity];
-    
-    _acceptButton.backgroundColor = [UIColor acceptGreen];
 }
 
 - (void)tappedFollowBack:(id)sender {
     _acceptButton.enabled = NO;
+    UIActivityIndicatorView *aiv = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+    aiv.center = CGPointMake(_acceptButton.frameWidth/2, _acceptButton.frameHeight/2);
+    [aiv startAnimating];
+    [_acceptButton addSubview:aiv];
+    _aiv = aiv;
+    
+    [_acceptButton setTitle:@"" forState:UIControlStateNormal];
     
     [BIFollowManager requestToFollowUserEventually:_activity[@"fromUser"] block:^(BOOL succeeded, NSError *error) {
+        
+        // remove other views
+        [aiv removeFromSuperview];
+        [_ignoreButton fadeOutWithDuration:0.2 completion:nil];
+        
         [self.delegate notificationCell:self tappedFollowBackForActivity:_activity error:error];
     }];
 }
