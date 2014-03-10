@@ -146,7 +146,6 @@
 #pragma mark - BINotificationFollowRequestCellDelegate
 
 - (void)notificationCell:(BINotificationFollowRequestCell*)cell tappedAcceptRequestForActivity:(PFObject*)activity {
-//    [self reloadTableData];
     NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
     [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     [BINotificationHelper decrementBadgeCount];
@@ -161,9 +160,6 @@
     
     NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
     [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    
-//    [_notificationsArray removeObject:activity];
-//    [self reloadTableData];
 }
 
 - (void)notificationCell:(BINotificationFollowRequestCell*)cell tappedIgnoreForActivity:(PFObject*)activity error:(NSError*)error {
