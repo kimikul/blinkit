@@ -10,6 +10,7 @@
 
 @interface BIPendingRequestTableViewCell ()
 @property (weak, nonatomic) IBOutlet UIButton *actionButton;
+@property (weak, nonatomic) IBOutlet UIButton *ignoreButton;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *profilePic;
 @end
@@ -44,8 +45,11 @@
     _activity = activity;
     
     PFUser *user = activity[@"fromUser"];
-    
     _nameLabel.text = user[@"name"];
+    
+    if (!_actionButton.enabled) {
+        [self setupActionButtonForProcessing];
+    }
     
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0ul);
     
@@ -58,10 +62,23 @@
     });
 }
 
+- (void)setupActionButtonForProcessing {
+    UIActivityIndicatorView *aiv = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+    aiv.center = CGPointMake(_actionButton.frameWidth/2, _actionButton.frameHeight/2);
+    [aiv startAnimating];
+    [_actionButton addSubview:aiv];
+    
+    [_actionButton setTitle:@"" forState:UIControlStateNormal];
+}
+
 #pragma mark - actions
 
 - (IBAction)tappedAccept:(id)sender {
     _actionButton.enabled = NO;
+    _ignoreButton.enabled = NO;
+    
+    [self setupActionButtonForProcessing];
+    
     _activity[@"type"] = @"follow";
     
     [_activity saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
@@ -77,6 +94,14 @@
 
 - (IBAction)dragOutsideAcceptButton:(id)sender {
     _actionButton.backgroundColor = [UIColor acceptGreen];
+}
+
+- (IBAction)tappedIgnore:(id)sender {
+    _actionButton.enabled = NO;
+    _ignoreButton.enabled = NO;
+    
+    [_activity deleteEventually];
+    [self.delegate pendingRequestCell:self tappedIgnoreRequestForUser:_activity[@"fromUser"]];
 }
 
 @end

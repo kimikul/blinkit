@@ -12,6 +12,7 @@
 
 @protocol BIPendingRequestTableViewCellDelegate <NSObject>
 - (void)pendingRequestCell:(BIPendingRequestTableViewCell*)cell tappedAcceptRequestForUser:(PFUser*)user error:(NSError*)error;
+- (void)pendingRequestCell:(BIPendingRequestTableViewCell*)cell tappedIgnoreRequestForUser:(PFUser*)user;
 @end
 
 @interface BIPendingRequestTableViewCell : UITableViewCell

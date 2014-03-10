@@ -214,6 +214,7 @@
     if (!error) {
         [_followersArray addObject:user];
         [_requestToFollowArray removeObject:cell.activity];
+
         [self reloadTableData];
         
         [BINotificationHelper decrementBadgeCount];
@@ -223,6 +224,16 @@
     }
     
     [BIMixpanelHelper sendMixpanelEvent:@"FOLLOW_acceptedFollower" withProperties:nil];
+}
+
+- (void)pendingRequestCell:(BIPendingRequestTableViewCell*)cell tappedIgnoreRequestForUser:(PFUser*)user {
+    [_requestToFollowArray removeObject:cell.activity];
+    
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+    [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    
+//    [self reloadTableData];
+    [BINotificationHelper decrementBadgeCount];
 }
 
 #pragma mark - ibactions

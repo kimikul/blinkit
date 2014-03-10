@@ -14,7 +14,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *notificationLabel;
 @property (weak, nonatomic) IBOutlet UIButton *acceptButton;
 @property (weak, nonatomic) IBOutlet UIButton *ignoreButton;
-@property (nonatomic, strong) UIActivityIndicatorView *aiv;
 @end
 
 @implementation BINotificationFollowRequestCell
@@ -122,7 +121,6 @@
     aiv.center = CGPointMake(_acceptButton.frameWidth/2, _acceptButton.frameHeight/2);
     [aiv startAnimating];
     [_acceptButton addSubview:aiv];
-    _aiv = aiv;
     
     [_acceptButton setTitle:@"" forState:UIControlStateNormal];
     
