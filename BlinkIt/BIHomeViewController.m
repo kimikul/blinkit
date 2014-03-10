@@ -429,6 +429,8 @@
     
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:followersVC];
     [self presentViewController:nav animated:YES completion:nil];
+    
+    _shouldRefreshNumbers = YES;
 }
 
 - (void)headerView:(BIHomeHeaderView*)headerView didTapFollowingButton:(UIButton*)button {

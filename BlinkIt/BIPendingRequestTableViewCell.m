@@ -47,8 +47,10 @@
     PFUser *user = activity[@"fromUser"];
     _nameLabel.text = user[@"name"];
     
-    if (!_actionButton.enabled) {
+    if ([activity[@"type"] isEqualToString:@"follow"]) {
         [self setupActionButtonForProcessing];
+    } else {
+        [self setupActionButtonNormally];
     }
     
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0ul);
@@ -62,7 +64,16 @@
     });
 }
 
+- (void)setupActionButtonNormally {
+    _actionButton.enabled = YES;
+    _ignoreButton.enabled = YES;
+    [_actionButton setTitle:@"Accept" forState:UIControlStateNormal];
+}
+
 - (void)setupActionButtonForProcessing {
+    _actionButton.enabled = NO;
+    _ignoreButton.enabled = NO;
+    
     UIActivityIndicatorView *aiv = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
     aiv.center = CGPointMake(_actionButton.frameWidth/2, _actionButton.frameHeight/2);
     [aiv startAnimating];
