@@ -30,7 +30,7 @@
 @property (nonatomic, strong) BIHomeHeaderView *homeHeaderView;
 
 @property (nonatomic, assign) BOOL canPaginate;
-
+@property (nonatomic, assign) BOOL shouldRefreshNumbers;
 @end
 
 @implementation BIHomeViewController
@@ -135,6 +135,15 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateForTodaysBlink:) name:kBIUpdateSavedBlinkNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deletedBlink:) name:kBIDeleteBlinkNotification object:nil];
 
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    if (_shouldRefreshNumbers) {
+        _shouldRefreshNumbers = NO;
+        [_homeHeaderView refreshNumbers];
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -473,6 +482,8 @@
     
     UINavigationController *notificationsNav = [mainStoryboard instantiateViewControllerWithIdentifier:@"BINotificationsNavigationController"];
     [self presentViewController:notificationsNav animated:YES completion:nil];
+    
+    _shouldRefreshNumbers = YES;
 }
 
 - (void)presentTodaysBlinkVC {

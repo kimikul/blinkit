@@ -85,6 +85,7 @@
 - (void)fetchFollowersCount {
     PFQuery *followersQuery = [PFQuery queryWithClassName:@"Activity"];
     [followersQuery whereKey:@"toUser" equalTo:[PFUser currentUser]];
+    [followersQuery whereKey:@"type" equalTo:@"follow"];
     [followersQuery countObjectsInBackgroundWithBlock:^(int number, NSError *error) {
         NSString *followersCount = [NSString stringWithFormat:@"%d",number];
         
