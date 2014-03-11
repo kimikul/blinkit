@@ -12,12 +12,13 @@
 #import "BINoFollowResultsTableViewCell.h"
 #import "BIPendingRequestTableViewCell.h"
 #import "BIProfileViewController.h"
+#import "BIFollowerTableViewCell.h"
 
 #define kTABLE_SECTION_REQUESTS 0
 #define kTABLE_SECTION_FOLLOWERS 1
 
-@interface BIFollowersViewController () <BIPendingRequestTableViewCellDelegate>
-@property (nonatomic, strong) NSMutableArray *followersArray;          // array of users
+@interface BIFollowersViewController () <BIPendingRequestTableViewCellDelegate, UIAlertViewDelegate>
+@property (nonatomic, strong) NSMutableArray *follows;          // array of users
 @property (nonatomic, strong) NSMutableArray *requestToFollowArray;    // array of Activitys
 @end
 
@@ -65,19 +66,18 @@
         self.loading = NO;
         
         if (!error) {
-            NSMutableArray *followers = [NSMutableArray new];
+            NSMutableArray *follows = [NSMutableArray new];
             NSMutableArray *requestsToFollow = [NSMutableArray new];
             for (PFObject *activity in objects) {
-                PFUser *user = activity[@"fromUser"];
                 NSString *type = activity[@"type"];
                 if ([type isEqualToString:@"follow"]) {
-                    [followers addObject:user];
+                    [follows addObject:activity];
                 } else if ([type isEqualToString:@"request to follow"]) {
                     [requestsToFollow addObject:activity];
                 }
             }
             
-            _followersArray = followers;
+            _follows = follows;
             _requestToFollowArray = requestsToFollow;
             
             [self reloadTableData];
@@ -95,11 +95,11 @@
     if (section == kTABLE_SECTION_REQUESTS) {
         return _requestToFollowArray.count;
     } else {
-        if (_followersArray.count == 0) {
+        if (_follows.count == 0) {
             return 1;
         }
         
-        return _followersArray.count;
+        return _follows.count;
     }
 }
 
@@ -109,7 +109,7 @@
     } else {
         if (self.isLoading) {
             return [BIPaginationTableViewCell cellHeight];
-        } else if (_followersArray.count == 0) {
+        } else if (_follows.count == 0) {
             return [BINoFollowResultsTableViewCell cellHeight];
         } else {
             return [BIFollowingTableViewCell cellHeight];
@@ -136,7 +136,7 @@
         NSString *title = [NSString stringWithFormat:@"Pending Requests (%d)",numRequests];
         return (_requestToFollowArray.count == 0) ? emptyView : [self headerWithTitle:title];
     } else {
-        NSInteger numFollowers = _followersArray.count;
+        NSInteger numFollowers = _follows.count;
         NSString *title = [NSString stringWithFormat:@"Followers (%d)",numFollowers];
         return [self headerWithTitle:title];
     }
@@ -173,20 +173,40 @@
             BIPaginationTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:[BIPaginationTableViewCell reuseIdentifier]];
             [cell.aiv startAnimating];
             return cell;
-        } else if (_followersArray.count == 0) {
+        } else if (_follows.count == 0) {
             tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
             
             BINoFollowResultsTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:[BINoFollowResultsTableViewCell reuseIdentifier]];
             return cell;
         } else {
-            PFUser *user = [_followersArray objectAtIndex:indexPath.row];
-            BIFollowingTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:[BIFollowingTableViewCell reuseIdentifier]];
+            PFObject *activity = [_follows objectAtIndex:indexPath.row];
+            BIFollowerTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:[BIFollowerTableViewCell reuseIdentifier]];
             
-            cell.user = user;
-            cell.followButton.hidden = YES;
-            
+            cell.activity = activity;
+
             return cell;
         }
+    }
+}
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+    if ([cell isKindOfClass:[BIFollowerTableViewCell class]]) {
+        return YES;
+    }
+    
+    return NO;
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        PFObject *activity = [_follows safeObjectAtIndex:indexPath.row];
+        PFUser *user = activity[@"fromUser"];
+        
+        NSString *msg = [NSString stringWithFormat:@"%@ will no longer be able to see your public blinks. Are you sure?",user[@"name"]];
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Remove Follower" message:msg delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"OK", nil];
+        alertView.tag = indexPath.row;
+        [alertView show];
     }
 }
 
@@ -198,7 +218,7 @@
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     if (![cell isKindOfClass:[BIFollowingTableViewCell class]]) return;
     
-    PFUser *user = [_followersArray objectAtIndex:indexPath.row];
+    PFUser *user = [_follows objectAtIndex:indexPath.row];
     
     UIStoryboard *mainStoryboard = [UIStoryboard mainStoryboard];
     
@@ -212,7 +232,7 @@
 
 - (void)pendingRequestCell:(BIPendingRequestTableViewCell*)cell tappedAcceptRequestForUser:(PFUser*)user error:(NSError*)error {
     if (!error) {
-        [_followersArray addObject:user];
+        [_follows addObject:user];
         [_requestToFollowArray removeObject:cell.activity];
 
         [self reloadTableData];
@@ -232,8 +252,25 @@
     NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
     [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     
-//    [self reloadTableData];
     [BINotificationHelper decrementBadgeCount];
+}
+
+#pragma mark - UIAlertViewDelegate
+
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
+    if (buttonIndex == alertView.cancelButtonIndex) return;
+    
+    [self showProgressHUD];
+    
+    PFObject *activity = [_follows safeObjectAtIndex:alertView.tag];
+    
+    [activity deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        [self hideProgressHUD];
+        
+        [_follows removeObject:activity];
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:alertView.tag inSection:kTABLE_SECTION_FOLLOWERS];
+        [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+    }];
 }
 
 #pragma mark - ibactions

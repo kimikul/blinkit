@@ -993,7 +993,7 @@ PRO TIP : Link your Facebook in Settings to find friends if you haven't yet</str
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <inset key="separatorInset" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="gray" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="BIFollowingTableViewCell" rowHeight="44" id="fZU-jn-Aev" customClass="BIFollowingTableViewCell">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="gray" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="BIFollowerTableViewCell" rowHeight="44" id="fZU-jn-Aev" customClass="BIFollowerTableViewCell">
                                         <rect key="frame" x="0.0" y="22" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fZU-jn-Aev" id="z8U-mp-EVm">
@@ -1005,31 +1005,16 @@ PRO TIP : Link your Facebook in Settings to find friends if you haven't yet</str
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 </imageView>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ron Alivia" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="dR1-VC-Tb8">
-                                                    <rect key="frame" x="48" y="11" width="195" height="21"/>
+                                                    <rect key="frame" x="48" y="11" width="263" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Zxv-rl-XTF">
-                                                    <rect key="frame" x="240" y="8" width="75" height="28"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <color key="backgroundColor" red="0.26960112580000001" green="0.21246824219999999" blue="0.94999998809999997" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
-                                                    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                    <state key="normal">
-                                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                    </state>
-                                                    <connections>
-                                                        <action selector="tappedFollowButton:" destination="fZU-jn-Aev" eventType="touchUpInside" id="3DB-CY-4fj"/>
-                                                    </connections>
-                                                </button>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="followButton" destination="Zxv-rl-XTF" id="Xjb-m1-avY"/>
-                                            <outlet property="nameLabel" destination="dR1-VC-Tb8" id="FJr-XC-v8M"/>
-                                            <outlet property="profilePic" destination="80A-ZN-vz5" id="rWY-1M-tby"/>
+                                            <outlet property="nameLabel" destination="dR1-VC-Tb8" id="J3g-DS-7Ge"/>
+                                            <outlet property="profilePic" destination="80A-ZN-vz5" id="96C-rC-QtG"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="BIPaginationTableViewCell" rowHeight="30" id="VOh-9t-tZW" customClass="BIPaginationTableViewCell">
