@@ -14,10 +14,11 @@
 #import "BIFeedPhotoTableViewCell.h"
 #import "BIProfileViewController.h"
 #import "BIFollowingViewController.h"
+#import <MessageUI/MessageUI.h>
 
 #define kNumFeedEntriesPerPage 15
 
-@interface BIFeedViewController () <BIFeedTableViewCellDelegate>
+@interface BIFeedViewController () <BIFeedTableViewCellDelegate, MFMailComposeViewControllerDelegate>
 @property (nonatomic, strong) NSMutableArray *allBlinksArray; // total list of blinks displayed
 
 @property (nonatomic, strong) NSMutableArray *dateArray;       // array of dates with 1+ associated blinks
@@ -333,6 +334,41 @@
     cell.delegate = self;
     
     return cell;
+}
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
+    return YES;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return @"Report";
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        if ([MFMailComposeViewController canSendMail]) {
+            NSArray *blinksOnDate = [_blinksArray objectAtIndex:indexPath.section];
+            PFObject *inappropBlink = [blinksOnDate objectAtIndex:indexPath.row];
+            PFUser *me = [PFUser currentUser];
+            
+            NSString *msg = [NSString stringWithFormat:@"I am reporting this post as inappropriate because:\n\n\n\nFor Internal Use\nPost ID: %@\nSender ID: %@", inappropBlink.objectId, me.objectId];
+            MFMailComposeViewController *contactUsMailComposeViewController = [[MFMailComposeViewController alloc] init];
+            [contactUsMailComposeViewController setMailComposeDelegate:self];
+            [contactUsMailComposeViewController setSubject:@"Reporting inappropriate content"];
+            [contactUsMailComposeViewController setToRecipients:[NSArray arrayWithObject:@"blinkit.contact@gmail.com"]];
+            [contactUsMailComposeViewController setMessageBody:msg isHTML:NO];
+            [self.navigationController presentViewController:contactUsMailComposeViewController animated:YES completion:nil];
+        } else {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Mail App Not Configured" message:@"Contact us at blinkit.contact@gmail.com. To send email from this app, you must configure your account in the Mail app." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [alert show];
+        }
+    }
+}
+
+#pragma mark - MFMailComposeViewControllerDelegate
+
+- (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error {
+    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark - button actions
