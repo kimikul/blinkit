@@ -9,9 +9,11 @@
 #import "BITabBarController.h"
 #import "BIHomeViewController.h"
 
-#define kTABBAR_ME 0
-#define kTABBAR_TODAYSBLINK 1
-#define kTABBAR_FEED 2
+#define kTABBAR_FEED 0
+#define kTABBAR_FLASHBACK 1
+#define kTABBAR_TODAYSBLINK 2
+#define kTABBAR_NOTIFICATIONS 3
+#define kTABBAR_ME 4
 
 @interface BITabBarController ()
 @end
@@ -51,21 +53,10 @@
     [self.view addSubview:button];
 }
 
-#pragma mark - tabbardelegate
-
-- (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item  {
-    NSInteger selectedIndex = self.selectedIndex;
-    if (selectedIndex == kTABBAR_ME) {
-        [BIMixpanelHelper sendMixpanelEvent:@"TABBAR_tappedTab" withProperties:@{@"tappedOn":@"me"}];
-    } else if (selectedIndex == kTABBAR_FEED) {
-        [BIMixpanelHelper sendMixpanelEvent:@"TABBAR_tappedTab" withProperties:@{@"tappedOn":@"feed"}];
-    }
-}
-
 #pragma mark - ibaction
 
 - (void)presentTodaysBlinkVC:(UIButton*)sender {
-    UINavigationController *nav = [self.viewControllers objectAtIndex:0];
+    UINavigationController *nav = [self.viewControllers objectAtIndex:kTABBAR_ME];
     BIHomeViewController *homeVC = (BIHomeViewController*)nav.topViewController;
     [homeVC presentTodaysBlinkVC];
 }

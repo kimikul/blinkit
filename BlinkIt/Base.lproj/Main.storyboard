@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="vXZ-lx-hvc">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <scenes>
         <!--Splash View Controller-->
@@ -96,7 +96,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="676" y="-20"/>
+            <point key="canvasLocation" x="-20" y="-1124"/>
         </scene>
         <!--Login View Controller - Log In-->
         <scene sceneID="3QE-OR-Cks">
@@ -164,7 +164,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ivp-N0-Z3H" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1662" y="-216"/>
+            <point key="canvasLocation" x="966" y="-1320"/>
         </scene>
         <!--Sign Up View Controller - Sign Up-->
         <scene sceneID="Ime-A2-fXF">
@@ -231,7 +231,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JjW-pt-ZNt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1662" y="536"/>
+            <point key="canvasLocation" x="966" y="-568"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="edJ-lC-aRp">
@@ -249,7 +249,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xtu-ed-utg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1136" y="-216"/>
+            <point key="canvasLocation" x="440" y="-1320"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Uc5-j2-frg">
@@ -267,7 +267,22 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZcJ-cI-H60" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1136" y="536"/>
+            <point key="canvasLocation" x="440" y="-568"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="u5J-tb-0Bm">
+            <objects>
+                <viewController id="awF-IL-m2b" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Lh0-hO-zFo">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="431"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="F8t-n3-5ve"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="AqJ-Zh-sqM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5127" y="1100"/>
         </scene>
         <!--Home View Controller - Home-->
         <scene sceneID="jO2-Nf-1ST">
@@ -398,7 +413,7 @@ Share with friends</string>
                     <color key="backgroundColor" white="0.94999999999999996" alpha="1" colorSpace="calibratedWhite"/>
                 </view>
             </objects>
-            <point key="canvasLocation" x="3499" y="151"/>
+            <point key="canvasLocation" x="4675" y="1999"/>
         </scene>
         <!--Reminder Time View Controller - Reminder Time-->
         <scene sceneID="Wnq-QK-Ho5">
@@ -446,7 +461,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gdh-qp-TYf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4735" y="412"/>
+            <point key="canvasLocation" x="7417" y="1004"/>
         </scene>
         <!--Feed View Controller-->
         <scene sceneID="NWJ-gi-e8U">
@@ -518,7 +533,22 @@ PRO TIP: Click the top right button to follow friends if you haven't yet :)</str
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7fR-SL-b0H" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4127" y="925"/>
+            <point key="canvasLocation" x="4279" y="-1579"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="0m4-SN-kpv">
+            <objects>
+                <viewController id="nEk-HD-qNk" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="OfZ-9f-mny">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="431"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="XKB-s1-LHB"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JDx-tE-IaV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5023" y="-724"/>
         </scene>
         <!--Navigation Controller - Me-->
         <scene sceneID="E9k-zS-qcU">
@@ -540,7 +570,7 @@ PRO TIP: Click the top right button to follow friends if you haven't yet :)</str
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TQ9-tq-onF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3107" y="151"/>
+            <point key="canvasLocation" x="4139" y="1999"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="dRe-7c-Eid">
@@ -558,7 +588,7 @@ PRO TIP: Click the top right button to follow friends if you haven't yet :)</str
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="o99-hE-zff" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2985" y="-529"/>
+            <point key="canvasLocation" x="6417" y="-1512"/>
         </scene>
         <!--Settings View Controller - Settings-->
         <scene sceneID="Iow-oh-4wi">
@@ -714,7 +744,7 @@ PRO TIP: Click the top right button to follow friends if you haven't yet :)</str
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vPF-ve-9ie" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3409" y="-543"/>
+            <point key="canvasLocation" x="6841" y="-1526"/>
         </scene>
         <!--Follow View Controller-->
         <scene sceneID="3Xb-ym-Nwu">
@@ -745,7 +775,7 @@ PRO TIP: Click the top right button to follow friends if you haven't yet :)</str
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Ix-kd-oUr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4341" y="-548"/>
+            <point key="canvasLocation" x="7347" y="-867"/>
         </scene>
         <!--Following View Controller-->
         <scene sceneID="hWS-2Z-WR1">
@@ -857,7 +887,7 @@ PRO TIP : Link your Facebook in Settings to find friends if you haven't yet</str
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1Sa-4R-DmN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5395" y="129"/>
+            <point key="canvasLocation" x="6983" y="-239"/>
         </scene>
         <!--Notifications View Controller - Notifications-->
         <scene sceneID="uRz-fY-bJt">
@@ -977,7 +1007,7 @@ PRO TIP : Link your Facebook in Settings to find friends if you haven't yet</str
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4rw-K3-MRc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6547" y="825"/>
+            <point key="canvasLocation" x="6891" y="377"/>
         </scene>
         <!--Followers View Controller-->
         <scene sceneID="59F-wN-dCH">
@@ -1102,7 +1132,6 @@ PRO TIP : Link your Facebook in Settings so friends can find you.</string>
                                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                     <connections>
-                                                        <action selector="tappedIgnore:" destination="PNw-X0-ChM" eventType="touchUpInside" id="W1b-ip-83k"/>
                                                         <action selector="tappedIgnore:" destination="kVD-qX-VzR" eventType="touchUpInside" id="hSt-4P-w6z"/>
                                                     </connections>
                                                 </button>
@@ -1131,7 +1160,7 @@ PRO TIP : Link your Facebook in Settings so friends can find you.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cYo-82-dUJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5759" y="129"/>
+            <point key="canvasLocation" x="7347" y="-239"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="Sdq-Gx-Edp">
@@ -1144,14 +1173,16 @@ PRO TIP : Link your Facebook in Settings so friends can find you.</string>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <segue destination="JTq-4J-Uut" kind="relationship" relationship="viewControllers" id="Cln-47-DQX"/>
-                        <segue destination="cjd-kh-sht" kind="relationship" relationship="viewControllers" id="h6X-iR-ChT"/>
-                        <segue destination="Jdg-E3-URZ" kind="relationship" relationship="viewControllers" id="vGI-nt-izZ"/>
+                        <segue destination="Jdg-E3-URZ" kind="relationship" relationship="viewControllers" id="9gc-M0-gyF"/>
+                        <segue destination="qFg-aD-fFQ" kind="relationship" relationship="viewControllers" id="Zsa-hB-9U1"/>
+                        <segue destination="cjd-kh-sht" kind="relationship" relationship="viewControllers" id="7fN-GC-fnH"/>
+                        <segue destination="Wdc-Tu-jgP" kind="relationship" relationship="viewControllers" id="OSU-n3-LeY"/>
+                        <segue destination="JTq-4J-Uut" kind="relationship" relationship="viewControllers" id="Cfu-XD-Glw"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xGB-Lt-COY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2127" y="151"/>
+            <point key="canvasLocation" x="2455" y="-561"/>
         </scene>
         <!--Compose Blink View Controller - Today's Blink-->
         <scene sceneID="BsT-Fr-klw">
@@ -1262,9 +1293,9 @@ PRO TIP : Link your Facebook in Settings so friends can find you.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fkX-T9-lg6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2576" y="1093"/>
+            <point key="canvasLocation" x="1640" y="669"/>
         </scene>
-        <!--Table View Controller - Today's Blink-->
+        <!--Table View Controller - Today-->
         <scene sceneID="Wcw-Ek-48V">
             <objects>
                 <tableViewController id="cjd-kh-sht" sceneMemberID="viewController">
@@ -1287,13 +1318,13 @@ PRO TIP : Link your Facebook in Settings so friends can find you.</string>
                             <outlet property="delegate" destination="cjd-kh-sht" id="IRb-7s-Iqp"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Today's Blink" id="Xc4-xV-Nbc">
+                    <tabBarItem key="tabBarItem" title="Today" id="Xc4-xV-Nbc">
                         <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="-3"/>
                     </tabBarItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eeO-N8-Wg0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3023" y="879"/>
+            <point key="canvasLocation" x="4343" y="183"/>
         </scene>
         <!--Navigation Controller - Feed-->
         <scene sceneID="MAc-BV-JNV">
@@ -1314,7 +1345,7 @@ PRO TIP : Link your Facebook in Settings so friends can find you.</string>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vjX-iy-WlQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3601" y="925"/>
+            <point key="canvasLocation" x="3753" y="-1579"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="sDw-dT-jyB">
@@ -1332,7 +1363,7 @@ PRO TIP : Link your Facebook in Settings so friends can find you.</string>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0le-1Q-d9a" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3815" y="-548"/>
+            <point key="canvasLocation" x="6933" y="-867"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="NT0-SI-Usc">
@@ -1350,7 +1381,7 @@ PRO TIP : Link your Facebook in Settings so friends can find you.</string>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FUz-er-iF3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6021" y="825"/>
+            <point key="canvasLocation" x="6469" y="377"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="0TM-AX-FLs">
@@ -1368,7 +1399,7 @@ PRO TIP : Link your Facebook in Settings so friends can find you.</string>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mpn-Js-iLn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2050" y="1093"/>
+            <point key="canvasLocation" x="1114" y="669"/>
         </scene>
         <!--Profile View Controller-->
         <scene sceneID="8dC-wj-Ow8">
@@ -1479,7 +1510,7 @@ PRO TIP : Link your Facebook in Settings so friends can find you.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1bg-zt-8CA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2783" y="1821"/>
+            <point key="canvasLocation" x="1847" y="1397"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="0bE-rJ-QNK">
@@ -1497,7 +1528,7 @@ PRO TIP : Link your Facebook in Settings so friends can find you.</string>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XnQ-9T-Gd2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2257" y="1821"/>
+            <point key="canvasLocation" x="1321" y="1397"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Urp-yD-eiR">
@@ -1515,14 +1546,58 @@ PRO TIP : Link your Facebook in Settings so friends can find you.</string>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="l81-4J-VDv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4209" y="412"/>
+            <point key="canvasLocation" x="7035" y="1012"/>
+        </scene>
+        <!--Navigation Controller - Notifications-->
+        <scene sceneID="VPP-hj-2iv">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Wdc-Tu-jgP" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Notifications" image="Notification-icon-smart" id="RHP-a8-HkJ">
+                        <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="-3"/>
+                    </tabBarItem>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ki2-Cw-HX8">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="awF-IL-m2b" kind="relationship" relationship="rootViewController" id="OTs-r3-lci"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8bv-IL-WNY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4601" y="1100"/>
+        </scene>
+        <!--Navigation Controller - Flashback-->
+        <scene sceneID="p7T-wV-xNR">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="qFg-aD-fFQ" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Flashback" image="clock-512-smart5" id="QqV-cH-Geo">
+                        <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="-3"/>
+                    </tabBarItem>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="7Dg-YD-1Pv">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="nEk-HD-qNk" kind="relationship" relationship="rootViewController" id="gJl-me-ZvK"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Aqa-YP-eol" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4497" y="-724"/>
         </scene>
     </scenes>
     <resources>
         <image name="Default" width="320" height="568"/>
+        <image name="Notification-icon-smart" width="30" height="25"/>
         <image name="Tab-friends" width="40" height="30"/>
         <image name="Tab-me" width="40" height="30"/>
         <image name="camera" width="25" height="25"/>
+        <image name="clock-512-smart5" width="27" height="27"/>
         <image name="facebookLoginButton" width="470" height="80"/>
         <image name="private" width="20" height="21"/>
         <image name="trash2" width="128" height="128"/>
