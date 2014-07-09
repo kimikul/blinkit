@@ -35,9 +35,9 @@
     UIImage *highlightImage = [buttonImage imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     
     UIButton* button = [UIButton buttonWithType:UIButtonTypeCustom];
-    button.frame = CGRectMake(0.0, 0.0,100,49);
+    button.frame = CGRectMake(0.0, 0.0,64,49);
     button.tintColor = [UIColor coral];
-    button.imageEdgeInsets = UIEdgeInsetsMake(0, 32, 16, 32);
+    button.imageEdgeInsets = UIEdgeInsetsMake(0, 12, 16, 12);
     
     [button setImage:highlightImage forState:UIControlStateHighlighted];
     [button setImage:buttonImage forState:UIControlStateNormal];

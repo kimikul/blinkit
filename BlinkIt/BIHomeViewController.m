@@ -73,8 +73,8 @@
 - (void)setupButtons {
     //settings
     BIButton *settingsButton = [BIButton buttonWithType:UIButtonTypeCustom];
-    settingsButton.barButtonSide = BIBarButtonTypeLeft;
-    settingsButton.frame = CGRectMake(0,0,30,30);
+    settingsButton.barButtonSide = BIBarButtonTypeRight;
+    settingsButton.frame = CGRectMake(0,0,25,25);
     
     UIImage *settingsImage = [[UIImage imageNamed:@"settings"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     [settingsButton setBackgroundImage:settingsImage forState:UIControlStateNormal];
@@ -82,22 +82,7 @@
     
     UIBarButtonItem *settingsBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:settingsButton];
     settingsBarButtonItem.customView.hidden = YES;
-    self.navigationItem.leftBarButtonItem = settingsBarButtonItem;
-    
-    // notifications
-    BIButton *notificationButton = [BIButton buttonWithType:UIButtonTypeCustom];
-    notificationButton.barButtonSide = BIBarButtonTypeRight;
-    notificationButton.frame = CGRectMake(0,0,35,30);
-    notificationButton.titleLabel.font = [UIFont boldSystemFontOfSize:15.0];
-    notificationButton.titleEdgeInsets = UIEdgeInsetsMake(0, 9, 2, 0);
-    
-    UIImage *notificationImage = [[UIImage imageNamed:@"Notification-icon"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-    [notificationButton setBackgroundImage:notificationImage forState:UIControlStateNormal];
-    [notificationButton addTarget:self action:@selector(tappedNotifications:) forControlEvents:UIControlEventTouchUpInside];
-    
-    UIBarButtonItem *notificationBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:notificationButton];
-    notificationBarButtonItem.customView.hidden = YES;
-    self.navigationItem.rightBarButtonItem = notificationBarButtonItem;
+    self.navigationItem.rightBarButtonItem = settingsBarButtonItem;
 }
 
 - (void)setupHeader {
@@ -131,7 +116,7 @@
 
 - (void)setupObservers {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshHome) name:kBIRefreshHomeAndFeedNotification object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateHomeBadgeCount:) name:kBIUpdateHomeNotificationBadgeNotification object:nil];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateHomeBadgeCount:) name:kBIUpdateHomeNotificationBadgeNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateForTodaysBlink:) name:kBIUpdateSavedBlinkNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deletedBlink:) name:kBIDeleteBlinkNotification object:nil];
 
@@ -227,26 +212,6 @@
     if([self hasReachedTableEnd:self.tableView] && self.canPaginate) {
         [self fetchBlinksForPagination:YES];
     }
-}
-
-#pragma mark - notifications
-
-- (void)updateHomeBadgeCount:(NSNotification*)note {
-    NSNumber *count = note.object;
-    
-    UIImage *notificationImage;
-    NSString *buttonText = @"";
-    
-    if ([count integerValue] > 0) {
-        notificationImage = [[UIImage imageNamed:@"Notification-icon"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-        buttonText = [NSString stringWithFormat:@"%@",count];
-    } else {
-        notificationImage = [[UIImage imageNamed:@"Notification-icon"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-    }
-    
-    UIButton *notieButton = (UIButton*)self.navigationItem.rightBarButtonItem.customView;
-    [notieButton setTitle:buttonText forState:UIControlStateNormal];
-    [notieButton setBackgroundImage:notificationImage forState:UIControlStateNormal];
 }
 
 - (void)updateForTodaysBlink:(NSNotification*)note {
@@ -477,15 +442,6 @@
     
     UINavigationController *settingsNav = [mainStoryboard instantiateViewControllerWithIdentifier:@"BISettingsNavigationController"];
     [self presentViewController:settingsNav animated:YES completion:nil];
-}
-
-- (void)tappedNotifications:(id)sender {
-    UIStoryboard *mainStoryboard = [UIStoryboard mainStoryboard];
-    
-    UINavigationController *notificationsNav = [mainStoryboard instantiateViewControllerWithIdentifier:@"BINotificationsNavigationController"];
-    [self presentViewController:notificationsNav animated:YES completion:nil];
-    
-    _shouldRefreshNumbers = YES;
 }
 
 - (void)presentTodaysBlinkVC {

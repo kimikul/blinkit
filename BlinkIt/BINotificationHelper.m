@@ -49,6 +49,7 @@
     [currentInstallation setBadge:count];
     [currentInstallation saveInBackground];
     
+    // TODO : HANDLE THIS NOTIFICATION FOR NOTIFICATIONS TAB
     [[NSNotificationCenter defaultCenter] postNotificationName:kBIUpdateHomeNotificationBadgeNotification object:@(count)];
 }
 

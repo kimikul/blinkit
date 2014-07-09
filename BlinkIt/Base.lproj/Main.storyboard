@@ -269,21 +269,6 @@
             </objects>
             <point key="canvasLocation" x="440" y="-568"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="u5J-tb-0Bm">
-            <objects>
-                <viewController id="awF-IL-m2b" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Lh0-hO-zFo">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="431"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="F8t-n3-5ve"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="AqJ-Zh-sqM" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="5127" y="1100"/>
-        </scene>
         <!--Home View Controller - Home-->
         <scene sceneID="jO2-Nf-1ST">
             <objects>
@@ -894,11 +879,11 @@ PRO TIP : Link your Facebook in Settings to find friends if you haven't yet</str
             <objects>
                 <viewController storyboardIdentifier="BINotificationsViewController" id="eKF-AC-OtH" customClass="BINotificationsViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="qWK-75-zKa">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="431"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="lW1-ZJ-Xcu">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="431"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <inset key="separatorInset" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -1007,7 +992,7 @@ PRO TIP : Link your Facebook in Settings to find friends if you haven't yet</str
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4rw-K3-MRc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6891" y="377"/>
+            <point key="canvasLocation" x="4999" y="1100"/>
         </scene>
         <!--Followers View Controller-->
         <scene sceneID="59F-wN-dCH">
@@ -1366,24 +1351,6 @@ PRO TIP : Link your Facebook in Settings so friends can find you.</string>
             <point key="canvasLocation" x="6933" y="-867"/>
         </scene>
         <!--Navigation Controller-->
-        <scene sceneID="NT0-SI-Usc">
-            <objects>
-                <navigationController storyboardIdentifier="BINotificationsNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="L5u-uL-6vf" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="PFz-hY-EWR">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="eKF-AC-OtH" kind="relationship" relationship="rootViewController" id="yGq-Kr-DWe"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="FUz-er-iF3" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="6469" y="377"/>
-        </scene>
-        <!--Navigation Controller-->
         <scene sceneID="0TM-AX-FLs">
             <objects>
                 <navigationController storyboardIdentifier="BIComposeBlinkNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="3p4-OW-4PI" sceneMemberID="viewController">
@@ -1551,7 +1518,7 @@ PRO TIP : Link your Facebook in Settings so friends can find you.</string>
         <!--Navigation Controller - Notifications-->
         <scene sceneID="VPP-hj-2iv">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Wdc-Tu-jgP" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="BINotificationsNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="Wdc-Tu-jgP" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Notifications" image="Notification-icon-smart" id="RHP-a8-HkJ">
                         <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="-3"/>
                     </tabBarItem>
@@ -1562,7 +1529,7 @@ PRO TIP : Link your Facebook in Settings so friends can find you.</string>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="awF-IL-m2b" kind="relationship" relationship="rootViewController" id="OTs-r3-lci"/>
+                        <segue destination="eKF-AC-OtH" kind="relationship" relationship="rootViewController" id="bno-y6-h4e"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8bv-IL-WNY" userLabel="First Responder" sceneMemberID="firstResponder"/>

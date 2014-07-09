@@ -35,14 +35,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self setupButtons];
     
     [self fetchNotifications];
-}
-
-- (void)setupButtons {
-    UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStylePlain target:self action:@selector(doneTapped:)];
-    self.navigationItem.rightBarButtonItem = doneButton;
 }
 
 #pragma mark - requests
@@ -167,12 +161,6 @@
     [self reloadTableData];
     
     [BINotificationHelper decrementBadgeCount];
-}
-
-#pragma mark - ibactions
-
-- (void)doneTapped:(id)sender {
-    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end
