@@ -32,7 +32,7 @@
     [super awakeFromNib];
     
     UITapGestureRecognizer *tapImageGR = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapImage:)];
-    [self.attachedImageView addGestureRecognizer:tapImageGR];
+    [self addGestureRecognizer:tapImageGR];
 }
 
 - (void)prepareForReuse {

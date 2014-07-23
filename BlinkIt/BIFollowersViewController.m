@@ -260,12 +260,12 @@
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
     if (buttonIndex == alertView.cancelButtonIndex) return;
     
-    [self showProgressHUD];
+//    [self showProgressHUD];
     
     PFObject *activity = [_follows safeObjectAtIndex:alertView.tag];
     
     [activity deleteInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-        [self hideProgressHUD];
+//        [self hideProgressHUD];
         
         [_follows removeObject:activity];
         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:alertView.tag inSection:kTABLE_SECTION_FOLLOWERS];

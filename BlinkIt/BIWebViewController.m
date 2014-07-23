@@ -34,11 +34,11 @@
 #pragma mark - webviewdelegate
 
 - (void)webViewDidStartLoad:(UIWebView *)webView {
-    [self showProgressHUD];
+//    [self showProgressHUD];
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
-    [self hideProgressHUD];
+//    [self hideProgressHUD];
     self.title = [webView stringByEvaluatingJavaScriptFromString:@"document.title"];
 }
 

@@ -26,7 +26,7 @@
             [self.delegate imageUploadManager:self didFailWithError:error];
         }
     } progressBlock:^(int percentDone) {
-        self.delegate.progressHUD.progress = (float)percentDone/100;
+//        self.delegate.progressHUD.progress = (float)percentDone/100;
     }];
 
 }

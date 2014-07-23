@@ -23,7 +23,7 @@ import UIKit
     
     var delegate: BIExpandImageHelperDelegate?
     
-    func animatedImageView(imageView: UIImageView) {
+    func animateImageView(imageView: UIImageView) {
         if let containerView = delegate?.view {
             let fullScreenFrame = CGRectMake(0, 0, containerView.frame.width, containerView.frame.height)
             let originalZoomFrame = containerView.convertRect(imageView.frame, fromView:imageView.superview)
@@ -34,7 +34,8 @@ import UIKit
             self.zoomImageView.alpha = 1.0
             
             let animationDuration = 0.2
-            let imageViewController = BIImageViewController(image: imageView.image)
+            let imageViewController:BIImageViewController = BIImageViewController()
+            imageViewController.image = imageView.image
             imageViewController.shouldDismissAnimated = false
             imageViewController.willDismissBlock = { (fromFrame: CGRect) in
                 self.zoomImageView.contentMode = UIViewContentMode.ScaleAspectFit

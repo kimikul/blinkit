@@ -244,7 +244,7 @@
 }
 
 - (void)tappedSave:(id)sender {
-    [self showProgressHUD];
+//    [self showProgressHUD];
     self.navigationItem.rightBarButtonItem.enabled = NO;
     
     NSString *content = [_contentTextView.text stringByTrimmingWhiteSpace];
@@ -276,7 +276,7 @@
                 UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error" message:@"There was an error saving your entry. Please try again." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
                 [alertView show];
                 
-                [self hideProgressHUD];
+//                [self hideProgressHUD];
             }
         }];
     }
@@ -479,7 +479,7 @@
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error" message:@"There was an error uploading your entry. Please try again!" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alertView show];
         
-        [self hideProgressHUD];
+//        [self hideProgressHUD];
     }
 }
 
@@ -487,11 +487,11 @@
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error" message:@"There was an error uploading your photo. Please try again." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
     [alertView show];
     
-    [self hideProgressHUD];
+//    [self hideProgressHUD];
 }
 
 - (void)finishSuccessfulBlinkUpdate:(PFObject*)blink {
-    [self hideProgressHUD];
+//    [self hideProgressHUD];
     [[NSNotificationCenter defaultCenter] postNotificationName:kBIUpdateSavedBlinkNotification object:blink];
     [self dismissViewControllerAnimated:YES completion:nil];
 }

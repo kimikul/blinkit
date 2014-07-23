@@ -15,7 +15,7 @@
 #import "BIProfileViewController.h"
 #import "BIFollowingViewController.h"
 #import <MessageUI/MessageUI.h>
-#import "BlinkIt-Swift.h"
+#import "BlinkItModule-Swift.h"
 
 #define kNumFeedEntriesPerPage 15
 
@@ -453,7 +453,7 @@
 - (void)feedCell:(BIFeedTableViewCell *)feedCell didTapImageView:(UIImageView*)imageView {
     BIExpandImageHelper *expandImageHelper = [BIExpandImageHelper new];
     expandImageHelper.delegate = self;
-    
+    [expandImageHelper animateImageView:imageView];
 }
 
 @end

@@ -10,11 +10,11 @@
 
 @interface BIViewController : UIViewController
 
-@property (nonatomic, strong) MBProgressHUD *progressHUD;
-
-- (void)configureProgressHUD;
-- (void)showProgressHUD;
-- (void)hideProgressHUD;
-- (void)showProgressHUDForDuration:(NSTimeInterval)duration;
+//@property (nonatomic, strong) MBProgressHUD *progressHUD;
+//
+//- (void)configureProgressHUD;
+//- (void)showProgressHUD;
+//- (void)hideProgressHUD;
+//- (void)showProgressHUDForDuration:(NSTimeInterval)duration;
 
 @end
