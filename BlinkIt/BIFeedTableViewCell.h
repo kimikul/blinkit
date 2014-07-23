@@ -12,6 +12,7 @@
 
 @protocol BIFeedTableViewCellDelegate <NSObject>
 - (void)feedCell:(BIFeedTableViewCell*)feedCell didTapUserProfile:(PFUser*)user;
+- (void)feedCell:(BIFeedTableViewCell *)feedCell didTapImageView:(UIImageView*)imageView;
 @end
 
 @interface BIFeedTableViewCell : UITableViewCell

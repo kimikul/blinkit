@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5E03C740197F651B00726522 /* UIImageViewModeScaleAspect.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E03C73F197F651B00726522 /* UIImageViewModeScaleAspect.m */; };
+		5E03C743197F655000726522 /* BIExpandImageHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E03C742197F655000726522 /* BIExpandImageHelper.swift */; };
+		5E03C746197F6C7600726522 /* BIImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E03C744197F6C7600726522 /* BIImageViewController.swift */; };
+		5E03C747197F6C7600726522 /* BIImageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E03C745197F6C7600726522 /* BIImageViewController.xib */; };
 		5E08086E18CEC8780073EE49 /* BIFollowerTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E08086D18CEC8780073EE49 /* BIFollowerTableViewCell.m */; };
 		5E16ED2118BB2D7400621CAE /* NSArray+BlinkIt.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E16ED2018BB2D7400621CAE /* NSArray+BlinkIt.m */; };
 		5E2F088C188F7B1400C633C7 /* BIPaginationTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E2F088B188F7B1400C633C7 /* BIPaginationTableViewCell.m */; };
@@ -118,6 +122,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5E03C73E197F651B00726522 /* UIImageViewModeScaleAspect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIImageViewModeScaleAspect.h; sourceTree = "<group>"; };
+		5E03C73F197F651B00726522 /* UIImageViewModeScaleAspect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIImageViewModeScaleAspect.m; sourceTree = "<group>"; };
+		5E03C741197F654F00726522 /* BlinkIt-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BlinkIt-Bridging-Header.h"; sourceTree = "<group>"; };
+		5E03C742197F655000726522 /* BIExpandImageHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BIExpandImageHelper.swift; sourceTree = "<group>"; };
+		5E03C744197F6C7600726522 /* BIImageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BIImageViewController.swift; sourceTree = "<group>"; };
+		5E03C745197F6C7600726522 /* BIImageViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BIImageViewController.xib; sourceTree = "<group>"; };
 		5E08086C18CEC8780073EE49 /* BIFollowerTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BIFollowerTableViewCell.h; sourceTree = "<group>"; };
 		5E08086D18CEC8780073EE49 /* BIFollowerTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BIFollowerTableViewCell.m; sourceTree = "<group>"; };
 		5E16ED1F18BB2D7400621CAE /* NSArray+BlinkIt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+BlinkIt.h"; sourceTree = "<group>"; };
@@ -322,6 +332,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5E03C73D197F64FF00726522 /* UIImageModeScaleAspect */ = {
+			isa = PBXGroup;
+			children = (
+				5E03C73E197F651B00726522 /* UIImageViewModeScaleAspect.h */,
+				5E03C73F197F651B00726522 /* UIImageViewModeScaleAspect.m */,
+			);
+			name = UIImageModeScaleAspect;
+			sourceTree = "<group>";
+		};
 		5E42D3F0189CA00500F651E0 /* Feed */ = {
 			isa = PBXGroup;
 			children = (
@@ -406,6 +425,7 @@
 		5E6F4B5818A9E8C4006289D0 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				5E03C73D197F64FF00726522 /* UIImageModeScaleAspect */,
 			);
 			name = Vendor;
 			sourceTree = "<group>";
@@ -540,6 +560,7 @@
 		5EAB8AA9187E73DF00B02953 /* BlinkIt */ = {
 			isa = PBXGroup;
 			children = (
+				5E03C741197F654F00726522 /* BlinkIt-Bridging-Header.h */,
 				5E99D1A718B4527D00862462 /* Profiles */,
 				5E99D1A318B38D2000862462 /* Delete */,
 				5E99D19C18B324C900862462 /* Compose */,
@@ -678,6 +699,9 @@
 				5E566F6D18C5BB8D00C52D06 /* BIWebViewController.h */,
 				5E566F6E18C5BB8D00C52D06 /* BIWebViewController.m */,
 				5E566F6F18C5BB8D00C52D06 /* BIWebViewController.xib */,
+				5E03C742197F655000726522 /* BIExpandImageHelper.swift */,
+				5E03C744197F6C7600726522 /* BIImageViewController.swift */,
+				5E03C745197F6C7600726522 /* BIImageViewController.xib */,
 			);
 			name = Common;
 			sourceTree = "<group>";
@@ -778,6 +802,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5E9D037C18AB3D2B00634EB9 /* BIFeedPhotoTableViewCell.xib in Resources */,
+				5E03C747197F6C7600726522 /* BIImageViewController.xib in Resources */,
 				5E9D038018AB3E0600634EB9 /* BIHomePhotoTableViewCell.xib in Resources */,
 				5E9D037E18AB3DFA00634EB9 /* BIHomeTableViewCell.xib in Resources */,
 				5EAB8ABC187E73DF00B02953 /* Images.xcassets in Resources */,
@@ -826,6 +851,7 @@
 				5EAB8B491883B5FA00B02953 /* BIPlaceholderTextView.m in Sources */,
 				5E99D19F18B324DB00862462 /* BIComposeBlinkViewController.m in Sources */,
 				5E566F7018C5BB8D00C52D06 /* BIWebViewController.m in Sources */,
+				5E03C746197F6C7600726522 /* BIImageViewController.swift in Sources */,
 				5EAB8B3B1881300E00B02953 /* UIView+BlinkIt.m in Sources */,
 				5E9D038818AB724000634EB9 /* BINotificationsViewController.m in Sources */,
 				5E2F088C188F7B1400C633C7 /* BIPaginationTableViewCell.m in Sources */,
@@ -855,6 +881,7 @@
 				5E7297B318A9F472008D356C /* Mixpanel.m in Sources */,
 				5E42D3EF189C9FFD00F651E0 /* BIFeedViewController.m in Sources */,
 				5E3420F018A8B47C0088A270 /* BIPendingRequestTableViewCell.m in Sources */,
+				5E03C740197F651B00726522 /* UIImageViewModeScaleAspect.m in Sources */,
 				5EAB8AB0187E73DF00B02953 /* main.m in Sources */,
 				5E7297CB18AA23A0008D356C /* UIImage+MPAverageColor.m in Sources */,
 				5E7297C818AA23A0008D356C /* MPSurveyQuestionViewController.m in Sources */,
@@ -865,6 +892,7 @@
 				5E42D40B189CDF3500F651E0 /* BIConstants.m in Sources */,
 				5E3420D918A4B3CD0088A270 /* BIFeedTableViewCell.m in Sources */,
 				5E6392701888EA9800D1AE80 /* BIPhotoViewController.m in Sources */,
+				5E03C743197F655000726522 /* BIExpandImageHelper.swift in Sources */,
 				5E55D4E618BDBA8A00FE5168 /* BIFileSystemImageCache.m in Sources */,
 				5E42D3F7189CA77200F651E0 /* BIFollowingViewController.m in Sources */,
 				5E42D408189CDB7200F651E0 /* BIFollowManager.m in Sources */,
@@ -1016,8 +1044,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-2";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Kimberly Hsiao (89PY5FKKW7)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Kimberly Hsiao (89PY5FKKW7)";
+				DEFINES_MODULE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/kimberlyhsiao/Developer/Portfolio/BlinkIt,
@@ -1031,9 +1061,13 @@
 					"MIXPANEL_LOG=1",
 				);
 				INFOPLIST_FILE = "BlinkIt/BlinkIt-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_MODULE_NAME = BlinkIt;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "B5056CED-7FF8-462D-8CD1-72C79796D06F";
+				SWIFT_OBJC_BRIDGING_HEADER = "BlinkIt/BlinkIt-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1043,8 +1077,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-2";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				DEFINES_MODULE = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					/Users/kimberlyhsiao/Developer/Portfolio/BlinkIt,
@@ -1053,9 +1089,12 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BlinkIt/BlinkIt-Prefix.pch";
 				INFOPLIST_FILE = "BlinkIt/BlinkIt-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_MODULE_NAME = BlinkIt;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "CFDE3B7B-311A-4A42-9FF0-7C91738EFE63";
+				SWIFT_OBJC_BRIDGING_HEADER = "BlinkIt/BlinkIt-Bridging-Header.h";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

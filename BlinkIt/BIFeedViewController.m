@@ -15,10 +15,11 @@
 #import "BIProfileViewController.h"
 #import "BIFollowingViewController.h"
 #import <MessageUI/MessageUI.h>
+#import "BlinkIt-Swift.h"
 
 #define kNumFeedEntriesPerPage 15
 
-@interface BIFeedViewController () <BIFeedTableViewCellDelegate, MFMailComposeViewControllerDelegate>
+@interface BIFeedViewController () <BIFeedTableViewCellDelegate, MFMailComposeViewControllerDelegate, BIExpandImageHelperDelegate>
 @property (nonatomic, strong) NSMutableArray *allBlinksArray; // total list of blinks displayed
 
 @property (nonatomic, strong) NSMutableArray *dateArray;       // array of dates with 1+ associated blinks
@@ -447,6 +448,12 @@
     BIProfileViewController *profileVC = (BIProfileViewController*)profileNav.topViewController;
     profileVC.user = user;
     [self presentViewController:profileNav animated:YES completion:nil];
+}
+
+- (void)feedCell:(BIFeedTableViewCell *)feedCell didTapImageView:(UIImageView*)imageView {
+    BIExpandImageHelper *expandImageHelper = [BIExpandImageHelper new];
+    expandImageHelper.delegate = self;
+    
 }
 
 @end

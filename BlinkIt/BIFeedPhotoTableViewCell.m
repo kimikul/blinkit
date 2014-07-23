@@ -28,6 +28,13 @@
 
 #pragma mark - lifecycle
 
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    
+    UITapGestureRecognizer *tapImageGR = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapImage:)];
+    [self.attachedImageView addGestureRecognizer:tapImageGR];
+}
+
 - (void)prepareForReuse {
     [super prepareForReuse];
     
@@ -47,4 +54,11 @@
         }];
     }
 }
+
+#pragma mark - ibactions
+
+- (void)didTapImage:(id)sender {
+    [self.delegate feedCell:self didTapImageView:_attachedImageView];
+}
+
 @end
