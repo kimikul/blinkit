@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6185.7" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
+        <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6181.2"/>
     </dependencies>
     <objects>
@@ -13,15 +14,16 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="199"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="300" translatesAutoresizingMaskIntoConstraints="NO" id="3Jy-We-fb0">
-                        <rect key="frame" x="10" y="50" width="300" height="51"/>
-                        <string key="text">Today, I learned how to edit client-side code through a web browser and was able to hack into Coachella's waiting page for Weekend 1 tickets.</string>
+                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" scrollEnabled="NO" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hSq-77-1kx">
+                        <rect key="frame" x="5" y="42" width="305" height="51"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                        <nil key="highlightedColor"/>
-                    </label>
+                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                        <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES"/>
+                    </textView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fEg-YJ-gL3" userLabel="Attached Image View" customClass="PFImageView">
-                        <rect key="frame" x="10" y="108" width="300" height="300"/>
+                        <rect key="frame" x="10" y="96" width="300" height="300"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="300" id="Bd2-84-Aah"/>
@@ -35,7 +37,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mzZ-95-o5c" userLabel="Tap Image View View">
-                        <rect key="frame" x="10" y="108" width="300" height="300"/>
+                        <rect key="frame" x="10" y="96" width="300" height="300"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </view>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1ZI-j0-tbO">
@@ -62,19 +64,19 @@
                 <constraints>
                     <constraint firstItem="mzZ-95-o5c" firstAttribute="leading" secondItem="fEg-YJ-gL3" secondAttribute="leading" id="3dT-MY-zuL"/>
                     <constraint firstItem="cIA-Zb-Gq1" firstAttribute="top" secondItem="96l-gS-HSV" secondAttribute="top" constant="7" id="8vb-4w-aFY"/>
+                    <constraint firstAttribute="trailing" secondItem="hSq-77-1kx" secondAttribute="trailing" constant="10" id="FIX-sS-aIU"/>
                     <constraint firstItem="1ZI-j0-tbO" firstAttribute="leading" secondItem="96l-gS-HSV" secondAttribute="leading" constant="10" id="HfA-lt-TYe"/>
                     <constraint firstItem="JJU-3o-Fg6" firstAttribute="width" secondItem="cIA-Zb-Gq1" secondAttribute="width" id="IAQ-pC-Sr5"/>
                     <constraint firstAttribute="trailing" secondItem="cIA-Zb-Gq1" secondAttribute="trailing" constant="10" id="MJp-mi-pjH"/>
-                    <constraint firstItem="fEg-YJ-gL3" firstAttribute="top" secondItem="3Jy-We-fb0" secondAttribute="bottom" constant="7" id="QOV-zD-YRA"/>
                     <constraint firstItem="1ZI-j0-tbO" firstAttribute="top" secondItem="96l-gS-HSV" secondAttribute="top" constant="9" id="ad8-mG-b3A"/>
                     <constraint firstItem="cIA-Zb-Gq1" firstAttribute="leading" secondItem="1ZI-j0-tbO" secondAttribute="trailing" constant="10" id="atL-iG-vdX"/>
                     <constraint firstItem="mzZ-95-o5c" firstAttribute="top" secondItem="fEg-YJ-gL3" secondAttribute="top" id="bcP-Hj-6hS"/>
                     <constraint firstItem="mzZ-95-o5c" firstAttribute="width" secondItem="fEg-YJ-gL3" secondAttribute="width" id="gIo-m0-Do5"/>
                     <constraint firstItem="JJU-3o-Fg6" firstAttribute="top" secondItem="cIA-Zb-Gq1" secondAttribute="bottom" constant="-2" id="hYZ-u2-BG9"/>
-                    <constraint firstAttribute="trailing" secondItem="3Jy-We-fb0" secondAttribute="trailing" constant="10" id="jgT-aZ-l2I"/>
+                    <constraint firstItem="hSq-77-1kx" firstAttribute="leading" secondItem="96l-gS-HSV" secondAttribute="leading" constant="5" id="i4U-Gr-kLV"/>
+                    <constraint firstItem="mzZ-95-o5c" firstAttribute="top" secondItem="hSq-77-1kx" secondAttribute="bottom" constant="3" id="pcS-zm-Bdp"/>
+                    <constraint firstItem="hSq-77-1kx" firstAttribute="top" secondItem="cIA-Zb-Gq1" secondAttribute="bottom" constant="17" id="pdK-Tc-2XC"/>
                     <constraint firstItem="fEg-YJ-gL3" firstAttribute="leading" secondItem="96l-gS-HSV" secondAttribute="leading" constant="10" id="qU9-wg-yWt"/>
-                    <constraint firstItem="3Jy-We-fb0" firstAttribute="leading" secondItem="96l-gS-HSV" secondAttribute="leading" constant="10" id="vTW-eK-auW"/>
-                    <constraint firstItem="3Jy-We-fb0" firstAttribute="top" secondItem="JJU-3o-Fg6" secondAttribute="bottom" constant="6" id="w7Y-9e-Szl"/>
                     <constraint firstItem="mzZ-95-o5c" firstAttribute="height" secondItem="fEg-YJ-gL3" secondAttribute="height" id="xhP-J8-GVQ"/>
                     <constraint firstItem="JJU-3o-Fg6" firstAttribute="leading" secondItem="cIA-Zb-Gq1" secondAttribute="leading" id="ybg-kt-Lvs"/>
                     <constraint firstAttribute="trailing" secondItem="fEg-YJ-gL3" secondAttribute="trailing" constant="10" id="zla-N4-ogN"/>
@@ -82,7 +84,7 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="attachedImageView" destination="fEg-YJ-gL3" id="300-wp-dvp"/>
-                <outlet property="contentLabel" destination="3Jy-We-fb0" id="kmf-1l-L6a"/>
+                <outlet property="contentTextView" destination="hSq-77-1kx" id="6Ou-ba-3Yg"/>
                 <outlet property="imageViewTapView" destination="mzZ-95-o5c" id="Ojw-LY-2EC"/>
                 <outlet property="timeLabel" destination="JJU-3o-Fg6" id="yG3-TF-a0k"/>
                 <outlet property="userNameLabel" destination="cIA-Zb-Gq1" id="Fkj-gM-2oH"/>

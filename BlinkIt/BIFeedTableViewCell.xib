@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6185.7" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
+        <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6181.2"/>
     </dependencies>
     <objects>
@@ -13,13 +14,14 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="99"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="300" translatesAutoresizingMaskIntoConstraints="NO" id="YwB-km-6jo">
-                        <rect key="frame" x="10" y="50" width="300" height="51"/>
-                        <string key="text">Today, I learned how to edit client-side code through a web browser and was able to hack into Coachella's waiting page for Weekend 1 tickets.</string>
+                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" scrollEnabled="NO" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9KC-oG-AvP">
+                        <rect key="frame" x="5" y="42" width="305" height="51"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                        <nil key="highlightedColor"/>
-                    </label>
+                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                        <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES"/>
+                    </textView>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Moosh Lin" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zvp-lF-o2I">
                         <rect key="frame" x="50" y="7" width="260" height="18"/>
                         <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="15"/>
@@ -50,19 +52,19 @@
                 <constraints>
                     <constraint firstItem="TbM-HT-uyi" firstAttribute="leading" secondItem="LpV-Ac-0g6" secondAttribute="leading" constant="10" id="P0L-Ze-c4Z"/>
                     <constraint firstItem="TbM-HT-uyi" firstAttribute="top" secondItem="LpV-Ac-0g6" secondAttribute="top" constant="9" id="P6k-eO-IOb"/>
-                    <constraint firstItem="YwB-km-6jo" firstAttribute="top" secondItem="zvp-lF-o2I" secondAttribute="bottom" constant="25" id="Pnc-DL-q9u"/>
                     <constraint firstItem="0R3-LY-bmp" firstAttribute="leading" secondItem="zvp-lF-o2I" secondAttribute="leading" id="cjw-Ao-l4J"/>
-                    <constraint firstAttribute="trailing" secondItem="YwB-km-6jo" secondAttribute="trailing" constant="10" id="eRf-Cb-xYd"/>
-                    <constraint firstItem="YwB-km-6jo" firstAttribute="leading" secondItem="LpV-Ac-0g6" secondAttribute="leading" constant="10" id="evP-nC-Hvq"/>
+                    <constraint firstItem="9KC-oG-AvP" firstAttribute="leading" secondItem="LpV-Ac-0g6" secondAttribute="leading" constant="5" id="dSx-Yw-40P"/>
+                    <constraint firstItem="9KC-oG-AvP" firstAttribute="top" secondItem="zvp-lF-o2I" secondAttribute="bottom" constant="17" id="eNC-CM-Nhj"/>
                     <constraint firstItem="0R3-LY-bmp" firstAttribute="width" secondItem="zvp-lF-o2I" secondAttribute="width" id="fch-hZ-U0w"/>
                     <constraint firstItem="zvp-lF-o2I" firstAttribute="top" secondItem="LpV-Ac-0g6" secondAttribute="top" constant="7" id="hwp-E3-qP2"/>
                     <constraint firstAttribute="trailing" secondItem="zvp-lF-o2I" secondAttribute="trailing" constant="10" id="pj8-12-12e"/>
                     <constraint firstItem="0R3-LY-bmp" firstAttribute="top" secondItem="zvp-lF-o2I" secondAttribute="bottom" constant="-2" id="tEK-BD-THP"/>
+                    <constraint firstAttribute="trailing" secondItem="9KC-oG-AvP" secondAttribute="trailing" constant="10" id="uNL-bh-3pH"/>
                     <constraint firstItem="zvp-lF-o2I" firstAttribute="leading" secondItem="TbM-HT-uyi" secondAttribute="trailing" constant="10" id="vH3-KY-4FF"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
-                <outlet property="contentLabel" destination="YwB-km-6jo" id="LU4-vv-JiT"/>
+                <outlet property="contentTextView" destination="9KC-oG-AvP" id="v38-Ao-MOY"/>
                 <outlet property="timeLabel" destination="0R3-LY-bmp" id="EnQ-dY-Sky"/>
                 <outlet property="userNameLabel" destination="zvp-lF-o2I" id="X6x-IQ-4xT"/>
                 <outlet property="userPicImageView" destination="TbM-HT-uyi" id="WSy-Eg-juy"/>
