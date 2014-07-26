@@ -10,6 +10,7 @@ import UIKit
 
 @objc protocol BIExpandImageHelperDelegate {
     var view:UIView { get }
+    var storyboard:UIStoryboard { get }
     func presentViewController(viewController:UIViewController, animated:Bool, completion:() -> ())
 }
 
@@ -24,7 +25,7 @@ import UIKit
     var delegate: BIExpandImageHelperDelegate?
     
     func animateImageView(imageView: UIImageView) {
-        if let containerView = delegate?.view {
+        if let containerView = delegate?.view.window {
             let fullScreenFrame = CGRectMake(0, 0, containerView.frame.width, containerView.frame.height)
             let originalZoomFrame = containerView.convertRect(imageView.frame, fromView:imageView.superview)
             
@@ -34,7 +35,7 @@ import UIKit
             self.zoomImageView.alpha = 1.0
             
             let animationDuration = 0.2
-            let imageViewController:BIImageViewController = BIImageViewController()
+            let imageViewController:BIImageViewController = self.delegate!.storyboard.instantiateViewControllerWithIdentifier("BIImageViewController") as BIImageViewController
             imageViewController.image = imageView.image
             imageViewController.shouldDismissAnimated = false
             imageViewController.willDismissBlock = { (fromFrame: CGRect) in
@@ -67,7 +68,7 @@ import UIKit
                 }, completion: {(finished: Bool) in
                     self.zoomImageView.animateFinishToScaleAspectFit()
                     self.delegate?.presentViewController(imageViewController, animated: false, completion: {
-                        self.zoomImageView.removeFromSuperview()
+                            self.zoomImageView.removeFromSuperview()
                         })
                 })
         }

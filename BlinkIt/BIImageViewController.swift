@@ -14,22 +14,18 @@ class BIImageViewController: BIViewController, UIScrollViewDelegate {
 
     var image : UIImage
     var shouldDismissAnimated : Bool
-    var willDismissBlock : (fromFrame: CGRect) -> Void
-    var didDismissBlock : dispatch_block_t
+    var willDismissBlock : ((fromFrame: CGRect) -> Void)?
+    var didDismissBlock : dispatch_block_t?
     
     @IBOutlet weak var scrollView : UIScrollView
     @IBOutlet weak var imageView : UIImageView
     
 // MARK: init
     
-    init() {
+    init(coder aDecoder: NSCoder!) {
         self.image = UIImage()
-        self.shouldDismissAnimated = true
-        self.willDismissBlock = { (fromFrame:CGRect) in
-        }
-        self.didDismissBlock = {}
-        
-        super.init(nibName: nil, bundle: nil)
+        self.shouldDismissAnimated = false
+        super.init(coder: aDecoder)
     }
     
     override func viewDidLoad() {
@@ -43,7 +39,7 @@ class BIImageViewController: BIViewController, UIScrollViewDelegate {
         scrollView.bouncesZoom = true
         scrollView.delegate = self
         
-        let tapGR:UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "onImageTapped")
+        let tapGR:UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "onImageTapped:")
         scrollView.addGestureRecognizer(tapGR)
     }
     
@@ -54,11 +50,13 @@ class BIImageViewController: BIViewController, UIScrollViewDelegate {
 // MARK: IBActions
     
     func onImageTapped(image: UIImage) {
-//        if willDismissBlock != nil {
+        if let defWillDismissBlock = willDismissBlock? {
             let contentOffset = scrollView.contentOffset
             let imageViewFrame = CGRectMake(-contentOffset.x, -contentOffset.y, imageView.frame.width, imageView.frame.height)
-            willDismissBlock(fromFrame: imageViewFrame)
-//        }
+            defWillDismissBlock(fromFrame: imageViewFrame)
+        }
+        
+        self.presentingViewController.dismissViewControllerAnimated(self.shouldDismissAnimated, completion: didDismissBlock)
     }
     
 // MARK: ScrollViewDelegate
