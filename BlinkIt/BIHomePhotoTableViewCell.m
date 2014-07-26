@@ -10,6 +10,7 @@
 
 @interface BIHomePhotoTableViewCell ()
 @property (weak, nonatomic) IBOutlet PFImageView *attachedImageView;
+@property (weak, nonatomic) IBOutlet UIView *imageViewTapView;
 @end
 
 
@@ -27,6 +28,13 @@
 }
 
 #pragma mark - lifeyccle
+
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    
+    UITapGestureRecognizer *tapImageGR = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapImage:)];
+    [self.imageViewTapView addGestureRecognizer:tapImageGR];
+}
 
 - (void)prepareForReuse {
     [super prepareForReuse];
@@ -46,6 +54,12 @@
             NSLog(@"downloaded image");
         }];
     }
+}
+
+#pragma mark - ibactions
+
+- (void)didTapImage:(id)sender {
+    [self.delegate homeCell:self didTapImageView:_attachedImageView];
 }
 
 @end

@@ -15,7 +15,6 @@
 #import "BIProfileViewController.h"
 #import "BIFollowingViewController.h"
 #import <MessageUI/MessageUI.h>
-#import "BlinkItModule-Swift.h"
 
 #define kNumFeedEntriesPerPage 15
 

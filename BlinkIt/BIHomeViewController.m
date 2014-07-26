@@ -385,6 +385,12 @@
     [alertView show];
 }
 
+- (void)homeCell:(BIHomeTableViewCell *)homeCell didTapImageView:(UIImageView*)imageView {
+    BIExpandImageHelper *expandImageHelper = [BIExpandImageHelper new];
+    expandImageHelper.delegate = self;
+    [expandImageHelper animateImageView:imageView];
+}
+
 #pragma mark - BIHomeHeaderViewDelegate
 
 - (void)headerView:(BIHomeHeaderView*)headerView didTapFollowersButton:(UIButton*)button {
