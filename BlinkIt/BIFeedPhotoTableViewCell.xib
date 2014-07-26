@@ -23,7 +23,7 @@
                         <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES"/>
                     </textView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fEg-YJ-gL3" userLabel="Attached Image View" customClass="PFImageView">
-                        <rect key="frame" x="10" y="96" width="300" height="300"/>
+                        <rect key="frame" x="10" y="93" width="300" height="300"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="300" id="Bd2-84-Aah"/>
@@ -70,7 +70,7 @@
                     <constraint firstAttribute="trailing" secondItem="cIA-Zb-Gq1" secondAttribute="trailing" constant="10" id="MJp-mi-pjH"/>
                     <constraint firstItem="1ZI-j0-tbO" firstAttribute="top" secondItem="96l-gS-HSV" secondAttribute="top" constant="9" id="ad8-mG-b3A"/>
                     <constraint firstItem="cIA-Zb-Gq1" firstAttribute="leading" secondItem="1ZI-j0-tbO" secondAttribute="trailing" constant="10" id="atL-iG-vdX"/>
-                    <constraint firstItem="mzZ-95-o5c" firstAttribute="top" secondItem="fEg-YJ-gL3" secondAttribute="top" id="bcP-Hj-6hS"/>
+                    <constraint firstItem="mzZ-95-o5c" firstAttribute="top" secondItem="fEg-YJ-gL3" secondAttribute="top" constant="3" id="bcP-Hj-6hS"/>
                     <constraint firstItem="mzZ-95-o5c" firstAttribute="width" secondItem="fEg-YJ-gL3" secondAttribute="width" id="gIo-m0-Do5"/>
                     <constraint firstItem="JJU-3o-Fg6" firstAttribute="top" secondItem="cIA-Zb-Gq1" secondAttribute="bottom" constant="-2" id="hYZ-u2-BG9"/>
                     <constraint firstItem="hSq-77-1kx" firstAttribute="leading" secondItem="96l-gS-HSV" secondAttribute="leading" constant="5" id="i4U-Gr-kLV"/>
