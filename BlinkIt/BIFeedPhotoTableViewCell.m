@@ -10,6 +10,7 @@
 
 @interface BIFeedPhotoTableViewCell ()
 @property (weak, nonatomic) IBOutlet PFImageView *attachedImageView;
+@property (weak, nonatomic) IBOutlet UIView *imageViewTapView;
 @end
 
 
@@ -32,7 +33,7 @@
     [super awakeFromNib];
     
     UITapGestureRecognizer *tapImageGR = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapImage:)];
-    [self addGestureRecognizer:tapImageGR];
+    [self.imageViewTapView addGestureRecognizer:tapImageGR];
 }
 
 - (void)prepareForReuse {
