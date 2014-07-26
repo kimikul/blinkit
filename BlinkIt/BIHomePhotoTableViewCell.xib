@@ -24,16 +24,16 @@
                         <color key="textColor" red="0.99607843139999996" green="0.50196078430000002" blue="0.50196078430000002" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="300" translatesAutoresizingMaskIntoConstraints="NO" id="May-zF-iCb">
-                        <rect key="frame" x="10" y="50" width="300" height="51"/>
+                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" scrollEnabled="NO" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xxr-Wf-xas">
+                        <rect key="frame" x="5" y="42" width="305" height="51"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="300" id="HJ4-J9-vIt"/>
+                            <constraint firstAttribute="width" constant="305" id="7mc-kx-9Ls"/>
                         </constraints>
                         <string key="text">Today, I learned how to edit client-side code through a web browser and was able to hack into Coachella's waiting page for Weekend 1 tickets.</string>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                        <nil key="highlightedColor"/>
-                    </label>
+                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                        <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES"/>
+                    </textView>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dCt-KL-Qpq">
                         <rect key="frame" x="270" y="0.0" width="50" height="35"/>
                         <constraints>
@@ -59,7 +59,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8Ci-fo-tyd" customClass="PFImageView">
-                        <rect key="frame" x="10" y="114" width="300" height="300"/>
+                        <rect key="frame" x="10" y="93" width="300" height="300"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="300" id="9R3-fR-Zb3"/>
@@ -67,7 +67,7 @@
                         </constraints>
                     </imageView>
                     <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NO2-uC-wF8" userLabel="Tap Image View">
-                        <rect key="frame" x="10" y="114" width="300" height="300"/>
+                        <rect key="frame" x="10" y="93" width="300" height="300"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </view>
                 </subviews>
@@ -79,19 +79,19 @@
                     <constraint firstItem="7jk-lQ-KwY" firstAttribute="top" secondItem="E0J-Hm-pMt" secondAttribute="bottom" constant="1" id="Mbm-Fl-lPE"/>
                     <constraint firstItem="7jk-lQ-KwY" firstAttribute="leading" secondItem="E0J-Hm-pMt" secondAttribute="leading" id="N3Q-aD-Ztd"/>
                     <constraint firstItem="7jk-lQ-KwY" firstAttribute="width" secondItem="E0J-Hm-pMt" secondAttribute="width" id="OaV-F5-Ciy"/>
-                    <constraint firstItem="May-zF-iCb" firstAttribute="top" secondItem="7jk-lQ-KwY" secondAttribute="bottom" constant="2" id="Se5-FB-90F"/>
+                    <constraint firstItem="7jk-lQ-KwY" firstAttribute="leading" secondItem="xxr-Wf-xas" secondAttribute="leading" constant="5" id="ahp-CW-8me"/>
+                    <constraint firstItem="8Ci-fo-tyd" firstAttribute="top" secondItem="xxr-Wf-xas" secondAttribute="bottom" id="arW-uH-NbB"/>
                     <constraint firstAttribute="trailing" secondItem="dCt-KL-Qpq" secondAttribute="trailing" id="cVE-DP-YGi"/>
+                    <constraint firstItem="xxr-Wf-xas" firstAttribute="top" secondItem="7jk-lQ-KwY" secondAttribute="bottom" constant="-6" id="dI3-Rr-uFb"/>
                     <constraint firstItem="8Ci-fo-tyd" firstAttribute="width" secondItem="NO2-uC-wF8" secondAttribute="width" id="eBT-BS-POe"/>
-                    <constraint firstItem="8Ci-fo-tyd" firstAttribute="top" secondItem="May-zF-iCb" secondAttribute="bottom" constant="13" id="mOj-ZW-HFb"/>
                     <constraint firstItem="8Ci-fo-tyd" firstAttribute="height" secondItem="NO2-uC-wF8" secondAttribute="height" id="roS-J7-Uxk"/>
-                    <constraint firstItem="May-zF-iCb" firstAttribute="leading" secondItem="8Ci-fo-tyd" secondAttribute="leading" id="sNG-6q-qx6"/>
-                    <constraint firstItem="7jk-lQ-KwY" firstAttribute="leading" secondItem="May-zF-iCb" secondAttribute="leading" id="xkA-g4-moE"/>
+                    <constraint firstItem="8Ci-fo-tyd" firstAttribute="leading" secondItem="xxr-Wf-xas" secondAttribute="leading" constant="5" id="stY-wL-k3P"/>
                     <constraint firstItem="E0J-Hm-pMt" firstAttribute="top" secondItem="bGP-72-Ha8" secondAttribute="top" constant="8" id="xki-oa-BnX"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="attachedImageView" destination="8Ci-fo-tyd" id="fIK-Kt-59P"/>
-                <outlet property="contentLabel" destination="May-zF-iCb" id="ttV-gs-x4j"/>
+                <outlet property="contentTextView" destination="xxr-Wf-xas" id="SYW-pB-4mm"/>
                 <outlet property="dateLabel" destination="E0J-Hm-pMt" id="1b6-N7-AzB"/>
                 <outlet property="imageViewTapView" destination="NO2-uC-wF8" id="PDF-qH-UNL"/>
                 <outlet property="privacyButton" destination="dCt-KL-Qpq" id="WAF-XH-A3H"/>

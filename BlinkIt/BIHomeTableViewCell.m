@@ -10,8 +10,9 @@
 
 @interface BIHomeTableViewCell ()
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
-@property (weak, nonatomic) IBOutlet UILabel *contentLabel;
+//@property (weak, nonatomic) IBOutlet UILabel *contentLabel;
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
+@property (weak, nonatomic) IBOutlet UITextView *contentTextView;
 @end
 
 @implementation BIHomeTableViewCell
@@ -25,7 +26,7 @@
 }
 
 + (CGFloat)heightForContent:(NSString*)content {
-    CGFloat staticHeight = 62;
+    CGFloat staticHeight = 58;
     UIFont *font = [BIHomeTableViewCell fontForContent];
     CGSize maxSize = CGSizeMake(300,1000);
     
@@ -43,7 +44,8 @@
 - (void)setBlink:(PFObject *)blink {
     _blink = blink;
     
-    _contentLabel.text = blink[@"content"];
+//    _contentLabel.text = blink[@"content"];
+    _contentTextView.text = blink[@"content"];
     
     NSDate *date = _blink[@"date"];
     _timeLabel.text = [NSDate formattedTime:date];
@@ -52,6 +54,15 @@
     BOOL isPrivate = [_blink[@"private"] boolValue];
     [self updatePrivacyButtonTo:isPrivate];
 }
+
+#pragma mark - lifecycle
+
+//- (void)awakeFromNib {
+//    [super awakeFromNib];
+//    
+//    self.contentTextView.textContainer.lineFragmentPadding = 0;
+//    self.contentTextView.textContainerInset = UIEdgeInsetsZero;
+//}
 
 #pragma mark - privacy button
 
