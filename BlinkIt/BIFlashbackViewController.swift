@@ -15,6 +15,9 @@ class BIFlashbackViewController: BITableViewController, BIFeedTableViewCellDeleg
     var flashbackBlinks:Dictionary<NSDate,PFObject>
     var currentBlink:PFObject?
     
+    @IBOutlet weak var noPostsView: UIView!
+    @IBOutlet weak var noPostsLabel: UILabel!
+    
 // pragma mark : lifecycle
     
     init(coder aDecoder: NSCoder!) {
@@ -45,6 +48,23 @@ class BIFlashbackViewController: BITableViewController, BIFeedTableViewCellDeleg
         let index = segmentedControl.selectedSegmentIndex
         let date = flashbackDates[index]
         currentBlink = flashbackBlinks[date]
+        
+        var timePeriod = ""
+        switch index {
+        case 0:
+            timePeriod = "1 month ago"
+        case 1:
+            timePeriod = "3 months ago"
+        case 2:
+            timePeriod = "6 months ago"
+        case 3:
+            timePeriod = "1 year ago"
+        default:
+            timePeriod = ""
+        }
+        
+        noPostsLabel.text = String(format: "You didn't post anything %@\n\nTry to blink every day so you have more to look back on! :)", timePeriod)
+        noPostsView.hidden = currentBlink == nil ? false : true
         reloadTableData()
     }
    
@@ -109,18 +129,39 @@ class BIFlashbackViewController: BITableViewController, BIFeedTableViewCellDeleg
             
             self.flashbackBlinks = blinksDict
             self.segmentedControl.selectedSegmentIndex = 0
-            self.reloadTableData()
+            self.segmentedControlChanged(self.segmentedControl)
         }
     }
     
 // pragma mark : tableviewdelegate
     override func numberOfSectionsInTableView(tableView: UITableView!) -> Int {
-        return 1;
+        var isBlink = currentBlink != nil;
+        return isBlink ? 1 : 0
     }
     
     override func tableView(tableView: UITableView!, numberOfRowsInSection section: Int) -> Int {
-        var isBlink = currentBlink != nil;
-        return isBlink ? 1 : 0
+        return 1
+    }
+    
+    override func tableView(tableView: UITableView!, heightForHeaderInSection section: Int) -> CGFloat {
+        return 34
+    }
+    
+    override func tableView(tableView: UITableView!, viewForHeaderInSection section: Int) -> UIView! {
+        let dateString:String = NSDate.spelledOutDate(currentBlink!["date"] as NSDate)
+        
+        let headerView = UIView(frame: CGRectMake(0, 0, 320, 34))
+        headerView.backgroundColor = UIColor(white: 0.9, alpha: 1.0)
+        headerView.layer.borderColor = UIColor.whiteColor().CGColor
+        headerView.layer.borderWidth = 3.0
+        
+        let dateLabel = UILabel(frame: CGRectMake(10, 0, 300, 34))
+        dateLabel.text = dateString
+        dateLabel.font = UIFont(name: "Thonburi", size: 17)
+        dateLabel.textColor = UIColor(white: 0.5, alpha: 1)
+        headerView.addSubview(dateLabel)
+        
+        return headerView
     }
     
     override func tableView(tableView: UITableView!, heightForRowAtIndexPath indexPath: NSIndexPath!) -> CGFloat {

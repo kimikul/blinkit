@@ -17,8 +17,8 @@ class BIImageViewController: BIViewController, UIScrollViewDelegate {
     var willDismissBlock : ((fromFrame: CGRect) -> Void)?
     var didDismissBlock : dispatch_block_t?
     
-    @IBOutlet weak var scrollView : UIScrollView?
-    @IBOutlet weak var imageView : UIImageView?
+    @IBOutlet weak var scrollView : UIScrollView!
+    @IBOutlet weak var imageView : UIImageView!
     
 // MARK: init
     
@@ -35,24 +35,24 @@ class BIImageViewController: BIViewController, UIScrollViewDelegate {
     }
     
     func initializeScrollView() {
-        scrollView!.maximumZoomScale = 4.0
-        scrollView!.bouncesZoom = true
-        scrollView!.delegate = self
+        scrollView.maximumZoomScale = 4.0
+        scrollView.bouncesZoom = true
+        scrollView.delegate = self
         
         let tapGR:UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "onImageTapped:")
-        scrollView!.addGestureRecognizer(tapGR)
+        scrollView.addGestureRecognizer(tapGR)
     }
     
     func initializeImageView() {
-        imageView!.image = image
+        imageView.image = image
     }
     
 // MARK: IBActions
     
     func onImageTapped(image: UIImage) {
         if let defWillDismissBlock = willDismissBlock? {
-            let contentOffset = scrollView!.contentOffset
-            let imageViewFrame = CGRectMake(-contentOffset.x, -contentOffset.y, imageView!.frame.width, imageView!.frame.height)
+            let contentOffset = scrollView.contentOffset
+            let imageViewFrame = CGRectMake(-contentOffset.x, -contentOffset.y, imageView.frame.width, imageView.frame.height)
             defWillDismissBlock(fromFrame: imageViewFrame)
         }
         
@@ -69,7 +69,7 @@ class BIImageViewController: BIViewController, UIScrollViewDelegate {
         let offsetX = max((scrollView.bounds.size.width - scrollView.contentSize.width) * 0.5, 0.0)
         let offsetY = max((scrollView.bounds.size.height - scrollView.contentSize.height) * 0.5, 0.0)
         
-        imageView!.center = CGPointMake(scrollView.contentSize.width * 0.5 + offsetX,
+        imageView.center = CGPointMake(scrollView.contentSize.width * 0.5 + offsetX,
             scrollView.contentSize.height * 0.5 + offsetY)
     }
 }
