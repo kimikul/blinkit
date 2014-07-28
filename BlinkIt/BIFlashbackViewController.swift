@@ -158,7 +158,8 @@ class BIFlashbackViewController: BITableViewController, BIHomeTableViewCellDeleg
     }
     
     override func tableView(tableView: UITableView!, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        var isBlink = currentBlink != nil;
+        return isBlink ? 1 : 0
     }
     
     override func tableView(tableView: UITableView!, heightForHeaderInSection section: Int) -> CGFloat {
