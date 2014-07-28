@@ -70,9 +70,6 @@
 
 + (NSDate*)beginningOfDay:(NSDate*)date {
     NSDateComponents* comps = [[NSCalendar currentCalendar] components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit fromDate:date];
-//    comps.hour = 0;
-//    comps.minute = 0;
-//    comps.second = 0;
     return [[NSCalendar currentCalendar] dateFromComponents:comps];
 }
 

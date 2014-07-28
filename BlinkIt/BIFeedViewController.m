@@ -264,8 +264,6 @@
     }
     
     return height;
-    
-    return [BIFeedTableViewCell heightForContent:blink[@"content"]];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {

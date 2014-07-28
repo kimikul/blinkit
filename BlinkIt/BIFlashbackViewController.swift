@@ -8,88 +8,150 @@
 
 import UIKit
 
-class BIFlashbackViewController: BITableViewController {
+class BIFlashbackViewController: BITableViewController, BIFeedTableViewCellDelegate {
 
     var segmentedControl:UISegmentedControl
+    var flashbackDates:Array<NSDate>
     var flashbackBlinks:Dictionary<NSDate,PFObject>
+    var currentBlink:PFObject?
     
 // pragma mark : lifecycle
     
     init(coder aDecoder: NSCoder!) {
         self.segmentedControl = UISegmentedControl(items: ["1 mo","3 mo","6 mo","1 yr"])
         self.flashbackBlinks = Dictionary()
+        self.flashbackDates = []
+        
         super.init(coder: aDecoder)
+        
+        self.useEmptyTableFooter = true
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.setupSegmentedControl()
-        self.fetchFlashbacks()
+        setupSegmentedControl()
+        fetchFlashbacks()
     }
-    
+
 // pragma mark : segmented control
     
     func setupSegmentedControl() {
-        self.navigationItem.titleView = segmentedControl
-        self.segmentedControl.selectedSegmentIndex = 0
-        self.segmentedControl.addTarget(self, action: "segmentedControlChanged:", forControlEvents: UIControlEvents.ValueChanged)
+        navigationItem.titleView = segmentedControl
+        segmentedControl.addTarget(self, action: "segmentedControlChanged:", forControlEvents: UIControlEvents.ValueChanged)
+        segmentedControl.selectedSegmentIndex = 0
     }
     
     func segmentedControlChanged(segmentedControl: UISegmentedControl) {
-        
+        let index = segmentedControl.selectedSegmentIndex
+        let date = flashbackDates[index]
+        currentBlink = flashbackBlinks[date]
+        println("flashbackblinks : \(flashbackBlinks)")
+        println("currentblink : \(currentBlink)")
+        reloadTableData()
     }
     
-// requests
+// pragma mark : requests
+    
     func calculateFlashbackDates() -> Array<NSDate> {
         let today = NSDate.date()
         let dateComponents = NSDateComponents()
         
         dateComponents.month = -1
-        let oneMonthAgo = NSCalendar.currentCalendar().dateByAddingComponents(dateComponents, toDate: today, options: nil)
-        println("one month ago = \(oneMonthAgo)")
+        var oneMonthAgo = NSCalendar.currentCalendar().dateByAddingComponents(dateComponents, toDate: today, options: nil)
+        oneMonthAgo = NSDate.beginningOfDay(oneMonthAgo)
         
         dateComponents.month = -3
-        let threeMonthsAgo = NSCalendar.currentCalendar().dateByAddingComponents(dateComponents, toDate: today, options: nil)
-        
+        var threeMonthsAgo = NSCalendar.currentCalendar().dateByAddingComponents(dateComponents, toDate: today, options: nil)
+        threeMonthsAgo = NSDate.beginningOfDay(threeMonthsAgo)
+
         dateComponents.month = -6
-        let sixMonthsAgo = NSCalendar.currentCalendar().dateByAddingComponents(dateComponents, toDate: today, options: nil)
-        
+        var sixMonthsAgo = NSCalendar.currentCalendar().dateByAddingComponents(dateComponents, toDate: today, options: nil)
+        sixMonthsAgo = NSDate.beginningOfDay(sixMonthsAgo)
+
         dateComponents.month = 0
         dateComponents.year = -1
-        let oneYearAgo = NSCalendar.currentCalendar().dateByAddingComponents(dateComponents, toDate: today, options: nil)
-        
+        var oneYearAgo = NSCalendar.currentCalendar().dateByAddingComponents(dateComponents, toDate: today, options: nil)
+        oneYearAgo = NSDate.beginningOfDay(oneYearAgo)
+
         return [oneMonthAgo,threeMonthsAgo,sixMonthsAgo,oneYearAgo]
     }
     
     func fetchFlashbacks() {
-        let flashbackDates:Array<NSDate> = self.calculateFlashbackDates()
+        flashbackDates = self.calculateFlashbackDates()
 
-        let begOneMonthDate = NSDate.beginningOfDay(flashbackDates[0])
+        let begOneMonthDate = flashbackDates[0]
         let endOneMonthDate = NSDate.endOfDay(flashbackDates[0])
-        let begThreeMonthsDate = NSDate.beginningOfDay(flashbackDates[1])
+        let begThreeMonthsDate = flashbackDates[1]
         let endThreeMonthsDate = NSDate.endOfDay(flashbackDates[1])
-        let begSixMonthsDate = NSDate.beginningOfDay(flashbackDates[2])
+        let begSixMonthsDate = flashbackDates[2]
         let endSixMonthsDate = NSDate.endOfDay(flashbackDates[2])
-        let begOneYearDate = NSDate.beginningOfDay(flashbackDates[3])
+        let begOneYearDate = flashbackDates[3]
         let endOneYearDate = NSDate.endOfDay(flashbackDates[3])
-        
-        println("flashback dates : \(flashbackDates)")
-        println("beg: \(begOneMonthDate) \nend: \(endOneMonthDate)")
         
         let predicate = NSPredicate(format: "((date >= %@) AND (date < %@)) OR ((date >= %@) AND (date < %@)) OR ((date >= %@) AND (date < %@)) OR ((date >= %@) AND (date < %@))", begOneMonthDate, endOneMonthDate, begThreeMonthsDate, endThreeMonthsDate, begSixMonthsDate, endSixMonthsDate, begOneYearDate, endOneYearDate)
         
         let query = PFQuery(className: "Blink", predicate: predicate)
         query.whereKey("user", equalTo: PFUser.currentUser())
-        query.orderByDescending("date")
 
         query.findObjectsInBackgroundWithBlock {
             (objects: [AnyObject]!, error: NSError!) -> Void in
             var blinksDict = Dictionary<NSDate, PFObject>()
             for blink in objects {
-                blinksDict[blink["date"] as NSDate] = blink as? PFObject
+                let truncatedDate = NSDate.beginningOfDay(blink["date"] as NSDate)
+                blinksDict[truncatedDate] = blink as? PFObject
             }
             
-            println("blink dict is \(blinksDict)")
+            self.flashbackBlinks = blinksDict
+            self.reloadTableData()
         }
+    }
+    
+// pragma mark : tableviewdelegate
+    override func numberOfSectionsInTableView(tableView: UITableView!) -> Int {
+        return 1;
+    }
+    
+    override func tableView(tableView: UITableView!, numberOfRowsInSection section: Int) -> Int {
+        var isBlink = currentBlink != nil;
+        return isBlink ? 1 : 0
+    }
+    
+    override func tableView(tableView: UITableView!, heightForRowAtIndexPath indexPath: NSIndexPath!) -> CGFloat {
+        var height:Float = 0
+        let content:String = currentBlink!["content"] as String
+        
+        if let imageFile:PFFile = currentBlink!["imageFile"] as? PFFile {
+            height = BIFeedPhotoTableViewCell.heightForContent(content)
+        } else {
+            height = BIFeedTableViewCell.heightForContent(content)
+        }
+        
+        return height;
+    }
+    
+    override func tableView(tableView: UITableView!, cellForRowAtIndexPath indexPath: NSIndexPath!) -> UITableViewCell! {
+        
+        var cell:BIFeedTableViewCell?
+
+        if let imageFile:PFFile = currentBlink!["imageFile"] as? PFFile {
+            cell = tableView.dequeueReusableCellWithIdentifier(BIFeedPhotoTableViewCell.reuseIdentifier()) as BIFeedPhotoTableViewCell
+        } else {
+            cell = tableView.dequeueReusableCellWithIdentifier(BIFeedTableViewCell.reuseIdentifier()) as? BIFeedTableViewCell
+        }
+        
+        cell!.blink = currentBlink
+        cell!.delegate = self
+
+        return cell
+    }
+    
+// pragma mark : BIFeedTableViewCellDelegate
+    
+    func feedCell(feedCell: BIFeedTableViewCell!, didTapImageView imageView: UIImageView!) {
+        
+    }
+    
+    func feedCell(feedCell: BIFeedTableViewCell!, didTapUserProfile user: PFUser!) {
+        
     }
 }
