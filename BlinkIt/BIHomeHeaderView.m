@@ -32,6 +32,7 @@
     _followingButton.layer.cornerRadius = 2.0;
     _blinksButton.layer.cornerRadius = 2.0;
     
+    [self updateBlinkCountLabelTo:[[BIDataStore shared] totalBlinkCount].integerValue];
 }
 
 - (void)setUser:(PFUser *)user {
@@ -57,6 +58,7 @@
         });
     }
     
+    [[BIDataStore shared] setDateJoined:user.createdAt];
     [self fetchBlinksCount];
     [self fetchFollowersCount];
 }
@@ -73,13 +75,18 @@
     [query whereKey:@"user" equalTo:_user];
     [query countObjectsInBackgroundWithBlock:^(int number, NSError *error) {
         
-        NSInteger numDaysSinceJoined = [NSDate numDaysSinceDate:_user.createdAt];
-        
-        NSString *label = [NSString stringWithFormat:@"%d / %d",number, numDaysSinceJoined];
-        
-        _blinksCountLabel.text = label;
-        [_blinksCountLabel fadeTransitionWithDuration:0.2];
+        [self updateBlinkCountLabelTo:number];
+        [[BIDataStore shared] setTotalBlinkCount:@(number)];
     }];
+}
+
+- (void)updateBlinkCountLabelTo:(NSInteger)blinkCount {
+    NSInteger numDaysSinceJoined = [NSDate numDaysSinceDate:[[BIDataStore shared] dateJoined]];
+    
+    NSString *label = [NSString stringWithFormat:@"%d / %d",blinkCount, numDaysSinceJoined];
+    
+    _blinksCountLabel.text = label;
+    [_blinksCountLabel fadeTransitionWithDuration:0.2];
 }
 
 - (void)fetchFollowersCount {

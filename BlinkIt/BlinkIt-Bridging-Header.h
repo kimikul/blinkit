@@ -8,3 +8,4 @@
 #import <Parse/Parse.h>
 #import "BIFeedPhotoTableViewCell.h"
 #import "BIFeedTableViewCell.h"
+#import "BIProfileViewController.h"

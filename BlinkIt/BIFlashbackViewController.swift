@@ -63,7 +63,9 @@ class BIFlashbackViewController: BITableViewController, BIFeedTableViewCellDeleg
             timePeriod = ""
         }
         
-        noPostsLabel.text = String(format: "You didn't post anything %@\n\nTry to blink every day so you have more to look back on! :)", timePeriod)
+        var secondaryText = "Try to blink every day so you have more to look back on! :)"
+        
+        noPostsLabel.text = String(format: "You didn't post anything %@\n\n%@", timePeriod, secondaryText)
         noPostsView.hidden = currentBlink == nil ? false : true
         reloadTableData()
     }
@@ -197,10 +199,18 @@ class BIFlashbackViewController: BITableViewController, BIFeedTableViewCellDeleg
 // pragma mark : BIFeedTableViewCellDelegate
     
     func feedCell(feedCell: BIFeedTableViewCell!, didTapImageView imageView: UIImageView!) {
-        
+//        let expandImageHelper = BIExpandImageHelper()
+//        expandImageHelper.delegate = self
+//        expandImageHelper.animateImageView(imageView)
     }
     
     func feedCell(feedCell: BIFeedTableViewCell!, didTapUserProfile user: PFUser!) {
+        let mainStoryboard = self.storyboard
         
+        let profileNav:UINavigationController = mainStoryboard.instantiateViewControllerWithIdentifier("BIProfileNavigationController") as UINavigationController
+        let profileVC:BIProfileViewController = profileNav.topViewController as BIProfileViewController
+        profileVC.user = user
+        
+        presentViewController(profileNav, animated: true, completion: nil)
     }
 }

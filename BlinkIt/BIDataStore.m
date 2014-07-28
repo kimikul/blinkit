@@ -154,4 +154,48 @@ static BIDataStore *shared = nil;
     return [requestedFriends containsObject:user[@"facebookID"]];
 }
 
+// user
+
+- (void)setDateJoined:(NSDate*)date {
+    NSString *key = kBIUserDefaultsDateJoinedKey;
+    [self.cache setObject:date forKey:key];
+    [[NSUserDefaults standardUserDefaults] setObject:date forKey:key];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+- (NSDate*)dateJoined {
+    NSString *key = kBIUserDefaultsDateJoinedKey;
+    if ([self.cache objectForKey:key]) {
+        return [self.cache objectForKey:key];
+    }
+    
+    NSDate *dateJoined = [[NSUserDefaults standardUserDefaults] objectForKey:key];
+    if (dateJoined) {
+        [self.cache setObject:dateJoined forKey:key];
+    }
+    
+    return dateJoined;
+}
+
+- (void)setTotalBlinkCount:(NSNumber*)count {
+    NSString *key = kBIUserDefaultsTotalBlinksKey;
+    [self.cache setObject:count forKey:key];
+    [[NSUserDefaults standardUserDefaults] setObject:count forKey:key];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+- (NSNumber*)totalBlinkCount {
+    NSString *key = kBIUserDefaultsTotalBlinksKey;
+    if ([self.cache objectForKey:key]) {
+        return [self.cache objectForKey:key];
+    }
+    
+    NSNumber *totalBlinkCount = [[NSUserDefaults standardUserDefaults] objectForKey:key];
+    if (totalBlinkCount) {
+        [self.cache setObject:totalBlinkCount forKey:key];
+    }
+    
+    return totalBlinkCount;
+}
+
 @end

@@ -34,4 +34,10 @@
 - (BOOL)hasRequestedUser:(PFUser*)user;
 
 
+// user
+- (void)setDateJoined:(NSDate*)date;
+- (NSDate*)dateJoined;
+- (void)setTotalBlinkCount:(NSNumber*)count;
+- (NSNumber*)totalBlinkCount;
+
 @end

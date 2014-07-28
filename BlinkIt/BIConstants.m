@@ -13,6 +13,8 @@ NSString *const kBIUserDefaultsFacebookFriendsKey = @"kBIUserDefaultsFacebookFri
 NSString *const kBIUserDefaultsFollowedFriendsKey = @"kBIUserDefaultsFollowedFriendsKey";
 NSString *const kBIUserDefaultsRequestedFriendsKey = @"kBIUserDefaultsRequestedFriendsKey";
 NSString *const kBIUserDefaultsReminderTimeKey = @"kBIUserDefaultsReminderTimeKey";
+NSString *const kBIUserDefaultsDateJoinedKey = @"kBIUserDefaultsDateJoinedKey";
+NSString *const kBIUserDefaultsTotalBlinksKey = @"kBIUserDefaultsTotalBlinksKey";
 
 #pragma mark - cache
 NSString *const kBICachedProfilePicsKey = @"kBICachedProfilePicsKey";

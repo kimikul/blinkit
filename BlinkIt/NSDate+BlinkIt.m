@@ -51,6 +51,8 @@
 }
 
 + (NSInteger)numDaysSinceDate:(NSDate*)startDate {
+    if (!startDate) { return 0; }
+    
     NSDate *endDate = [NSDate dateWithOutTime:[NSDate date]];
     startDate = [NSDate dateWithOutTime:startDate];
     
