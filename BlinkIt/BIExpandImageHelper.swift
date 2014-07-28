@@ -16,7 +16,7 @@ import UIKit
 
 @objc class BIExpandImageHelper: NSObject {
     // properties
-    @lazy var zoomImageView : UIImageViewModeScaleAspect = {
+    lazy var zoomImageView : UIImageViewModeScaleAspect = {
         var tempZoomImageView : UIImageViewModeScaleAspect = UIImageViewModeScaleAspect(frame:CGRectZero)
         tempZoomImageView.backgroundColor = UIColor.blackColor()
         return tempZoomImageView

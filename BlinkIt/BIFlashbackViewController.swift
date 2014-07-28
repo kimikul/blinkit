@@ -30,6 +30,7 @@ class BIFlashbackViewController: BITableViewController, BIFeedTableViewCellDeleg
     override func viewDidLoad() {
         super.viewDidLoad()
         setupSegmentedControl()
+        setupTableView()
         fetchFlashbacks()
     }
 
@@ -38,16 +39,20 @@ class BIFlashbackViewController: BITableViewController, BIFeedTableViewCellDeleg
     func setupSegmentedControl() {
         navigationItem.titleView = segmentedControl
         segmentedControl.addTarget(self, action: "segmentedControlChanged:", forControlEvents: UIControlEvents.ValueChanged)
-        segmentedControl.selectedSegmentIndex = 0
     }
     
     func segmentedControlChanged(segmentedControl: UISegmentedControl) {
         let index = segmentedControl.selectedSegmentIndex
         let date = flashbackDates[index]
         currentBlink = flashbackBlinks[date]
-        println("flashbackblinks : \(flashbackBlinks)")
-        println("currentblink : \(currentBlink)")
         reloadTableData()
+    }
+   
+// pragma mark : tableview
+    
+    func setupTableView() {
+        tableView.registerNib(UINib(nibName: BIFeedPhotoTableViewCell.reuseIdentifier(), bundle: NSBundle.mainBundle()), forCellReuseIdentifier: BIFeedPhotoTableViewCell.reuseIdentifier())
+        tableView.registerNib(UINib(nibName: BIFeedTableViewCell.reuseIdentifier(), bundle: NSBundle.mainBundle()), forCellReuseIdentifier: BIFeedTableViewCell.reuseIdentifier())
     }
     
 // pragma mark : requests
@@ -92,7 +97,8 @@ class BIFlashbackViewController: BITableViewController, BIFeedTableViewCellDeleg
         
         let query = PFQuery(className: "Blink", predicate: predicate)
         query.whereKey("user", equalTo: PFUser.currentUser())
-
+        query.includeKey("user")
+        
         query.findObjectsInBackgroundWithBlock {
             (objects: [AnyObject]!, error: NSError!) -> Void in
             var blinksDict = Dictionary<NSDate, PFObject>()
@@ -102,6 +108,7 @@ class BIFlashbackViewController: BITableViewController, BIFeedTableViewCellDeleg
             }
             
             self.flashbackBlinks = blinksDict
+            self.segmentedControl.selectedSegmentIndex = 0
             self.reloadTableData()
         }
     }
@@ -117,7 +124,7 @@ class BIFlashbackViewController: BITableViewController, BIFeedTableViewCellDeleg
     }
     
     override func tableView(tableView: UITableView!, heightForRowAtIndexPath indexPath: NSIndexPath!) -> CGFloat {
-        var height:Float = 0
+        var height:CGFloat = 0
         let content:String = currentBlink!["content"] as String
         
         if let imageFile:PFFile = currentBlink!["imageFile"] as? PFFile {
@@ -132,11 +139,12 @@ class BIFlashbackViewController: BITableViewController, BIFeedTableViewCellDeleg
     override func tableView(tableView: UITableView!, cellForRowAtIndexPath indexPath: NSIndexPath!) -> UITableViewCell! {
         
         var cell:BIFeedTableViewCell?
-
+        println("tableview is : \(tableView)")
+        println("currentblink : \(currentBlink)")
         if let imageFile:PFFile = currentBlink!["imageFile"] as? PFFile {
-            cell = tableView.dequeueReusableCellWithIdentifier(BIFeedPhotoTableViewCell.reuseIdentifier()) as BIFeedPhotoTableViewCell
+            cell = tableView!.dequeueReusableCellWithIdentifier(BIFeedPhotoTableViewCell.reuseIdentifier()) as BIFeedPhotoTableViewCell
         } else {
-            cell = tableView.dequeueReusableCellWithIdentifier(BIFeedTableViewCell.reuseIdentifier()) as? BIFeedTableViewCell
+            cell = tableView!.dequeueReusableCellWithIdentifier(BIFeedTableViewCell.reuseIdentifier()) as? BIFeedTableViewCell
         }
         
         cell!.blink = currentBlink
