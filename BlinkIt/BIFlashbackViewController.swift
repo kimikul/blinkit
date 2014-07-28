@@ -62,10 +62,18 @@ class BIFlashbackViewController: BITableViewController, BIFeedTableViewCellDeleg
         default:
             timePeriod = ""
         }
+
+        var secondaryText = "Try to blink every day so you have more to look back on :)"
+
+        if let joinedDate = BIDataStore.shared().dateJoined() {
+            let comparison = joinedDate.compare(date)
         
-        var secondaryText = "Try to blink every day so you have more to look back on! :)"
+            if comparison == NSComparisonResult.OrderedDescending {
+                secondaryText = String(format:"But it's okay because you actually haven't been on BlinkIt for that long yet :)",timePeriod)
+            }
+        }
         
-        noPostsLabel.text = String(format: "You didn't post anything %@\n\n%@", timePeriod, secondaryText)
+        noPostsLabel.text = String(format: "You didn't post anything %@!\n\n%@", timePeriod, secondaryText)
         noPostsView.hidden = currentBlink == nil ? false : true
         reloadTableData()
     }

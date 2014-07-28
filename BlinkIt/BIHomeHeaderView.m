@@ -58,7 +58,6 @@
         });
     }
     
-    [[BIDataStore shared] setDateJoined:user.createdAt];
     [self fetchBlinksCount];
     [self fetchFollowersCount];
 }
@@ -124,6 +123,7 @@
     }
     
     _blinksCountLabel.text = [NSString stringWithFormat:@"%d / %d",numBlinks, numDays];
+    [[BIDataStore shared] setTotalBlinkCount:@(numBlinks)];
 }
 
 #pragma mark - ibactions

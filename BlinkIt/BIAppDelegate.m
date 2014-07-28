@@ -71,6 +71,7 @@
         [[BIFacebookUserManager shared] refreshCurrentUserFacebookFriends];
         [BIFollowManager refreshFollowingList];
         [BIFollowManager refreshRequestToFollowList];
+        [[BIDataStore shared] setDateJoined:[PFUser currentUser].createdAt];
     }
 }
 

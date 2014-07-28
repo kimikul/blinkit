@@ -9,3 +9,4 @@
 #import "BIFeedPhotoTableViewCell.h"
 #import "BIFeedTableViewCell.h"
 #import "BIProfileViewController.h"
+#import "BIDataStore.h"
