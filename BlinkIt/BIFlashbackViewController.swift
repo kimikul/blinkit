@@ -8,7 +8,7 @@
 
 import UIKit
 
-class BIFlashbackViewController: BITableViewController, BIFeedTableViewCellDelegate {
+class BIFlashbackViewController: BITableViewController, BIHomeTableViewCellDelegate {
 
     var segmentedControl:UISegmentedControl
     var flashbackDates:Array<NSDate>
@@ -49,6 +49,26 @@ class BIFlashbackViewController: BITableViewController, BIFeedTableViewCellDeleg
         let date = flashbackDates[index]
         currentBlink = flashbackBlinks[date]
         
+        let timePeriod = timeElapsedString()
+
+        var secondaryText = "Try to blink every day so you have more to look back on :)"
+
+        if let joinedDate = BIDataStore.shared().dateJoined() {
+            let comparison = joinedDate.compare(date)
+        
+            if comparison == NSComparisonResult.OrderedDescending {
+                secondaryText = String(format:"But it's okay because you actually haven't been on BlinkIt for that long yet :)",timePeriod)
+            }
+        }
+        
+        noPostsLabel.text = String(format: "You didn't post anything %@\n\n%@", timePeriod, secondaryText)
+        noPostsView.hidden = currentBlink == nil ? false : true
+        reloadTableData()
+    }
+   
+    func timeElapsedString() -> String {
+        let index = segmentedControl.selectedSegmentIndex
+
         var timePeriod = ""
         switch index {
         case 0:
@@ -62,27 +82,15 @@ class BIFlashbackViewController: BITableViewController, BIFeedTableViewCellDeleg
         default:
             timePeriod = ""
         }
-
-        var secondaryText = "Try to blink every day so you have more to look back on :)"
-
-        if let joinedDate = BIDataStore.shared().dateJoined() {
-            let comparison = joinedDate.compare(date)
         
-            if comparison == NSComparisonResult.OrderedDescending {
-                secondaryText = String(format:"But it's okay because you actually haven't been on BlinkIt for that long yet :)",timePeriod)
-            }
-        }
-        
-        noPostsLabel.text = String(format: "You didn't post anything %@!\n\n%@", timePeriod, secondaryText)
-        noPostsView.hidden = currentBlink == nil ? false : true
-        reloadTableData()
+        return timePeriod
     }
-   
+    
 // pragma mark : tableview
     
     func setupTableView() {
-        tableView.registerNib(UINib(nibName: BIFeedPhotoTableViewCell.reuseIdentifier(), bundle: NSBundle.mainBundle()), forCellReuseIdentifier: BIFeedPhotoTableViewCell.reuseIdentifier())
-        tableView.registerNib(UINib(nibName: BIFeedTableViewCell.reuseIdentifier(), bundle: NSBundle.mainBundle()), forCellReuseIdentifier: BIFeedTableViewCell.reuseIdentifier())
+        tableView.registerNib(UINib(nibName: BIHomePhotoTableViewCell.reuseIdentifier(), bundle: NSBundle.mainBundle()), forCellReuseIdentifier: BIHomePhotoTableViewCell.reuseIdentifier())
+        tableView.registerNib(UINib(nibName: BIHomeTableViewCell.reuseIdentifier(), bundle: NSBundle.mainBundle()), forCellReuseIdentifier: BIHomeTableViewCell.reuseIdentifier())
     }
     
 // pragma mark : requests
@@ -158,7 +166,7 @@ class BIFlashbackViewController: BITableViewController, BIFeedTableViewCellDeleg
     }
     
     override func tableView(tableView: UITableView!, viewForHeaderInSection section: Int) -> UIView! {
-        let dateString:String = NSDate.spelledOutDate(currentBlink!["date"] as NSDate)
+        let dateString:String = String(format:"%@, you said...",timeElapsedString())
         
         let headerView = UIView(frame: CGRectMake(0, 0, 320, 34))
         headerView.backgroundColor = UIColor(white: 0.9, alpha: 1.0)
@@ -189,13 +197,13 @@ class BIFlashbackViewController: BITableViewController, BIFeedTableViewCellDeleg
     
     override func tableView(tableView: UITableView!, cellForRowAtIndexPath indexPath: NSIndexPath!) -> UITableViewCell! {
         
-        var cell:BIFeedTableViewCell?
+        var cell:BIHomeTableViewCell?
         println("tableview is : \(tableView)")
         println("currentblink : \(currentBlink)")
         if let imageFile:PFFile = currentBlink!["imageFile"] as? PFFile {
-            cell = tableView!.dequeueReusableCellWithIdentifier(BIFeedPhotoTableViewCell.reuseIdentifier()) as BIFeedPhotoTableViewCell
+            cell = tableView!.dequeueReusableCellWithIdentifier(BIHomePhotoTableViewCell.reuseIdentifier()) as BIHomePhotoTableViewCell
         } else {
-            cell = tableView!.dequeueReusableCellWithIdentifier(BIFeedTableViewCell.reuseIdentifier()) as? BIFeedTableViewCell
+            cell = tableView!.dequeueReusableCellWithIdentifier(BIHomeTableViewCell.reuseIdentifier()) as? BIHomeTableViewCell
         }
         
         cell!.blink = currentBlink
@@ -204,21 +212,25 @@ class BIFlashbackViewController: BITableViewController, BIFeedTableViewCellDeleg
         return cell
     }
     
-// pragma mark : BIFeedTableViewCellDelegate
+// pragma mark : BIHomeTableViewCellDelegate
     
-    func feedCell(feedCell: BIFeedTableViewCell!, didTapImageView imageView: UIImageView!) {
+    func homeCell(feedCell: BIHomeTableViewCell!, didTapImageView imageView: UIImageView!) {
 //        let expandImageHelper = BIExpandImageHelper()
 //        expandImageHelper.delegate = self
 //        expandImageHelper.animateImageView(imageView)
     }
     
-    func feedCell(feedCell: BIFeedTableViewCell!, didTapUserProfile user: PFUser!) {
-        let mainStoryboard = self.storyboard
-        
-        let profileNav:UINavigationController = mainStoryboard.instantiateViewControllerWithIdentifier("BIProfileNavigationController") as UINavigationController
-        let profileVC:BIProfileViewController = profileNav.topViewController as BIProfileViewController
-        profileVC.user = user
-        
-        presentViewController(profileNav, animated: true, completion: nil)
+    func homeCell(homeCell: BIHomeTableViewCell!, togglePrivacyTo `private`: Bool) {
+        // do nothing
     }
+    
+//    func homeCellCell(feedCell: BIFeedTableViewCell!, didTapUserProfile user: PFUser!) {
+//        let mainStoryboard = self.storyboard
+//        
+//        let profileNav:UINavigationController = mainStoryboard.instantiateViewControllerWithIdentifier("BIProfileNavigationController") as UINavigationController
+//        let profileVC:BIProfileViewController = profileNav.topViewController as BIProfileViewController
+//        profileVC.user = user
+//        
+//        presentViewController(profileNav, animated: true, completion: nil)
+//    }
 }

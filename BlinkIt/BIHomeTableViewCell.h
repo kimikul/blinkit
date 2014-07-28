@@ -11,8 +11,8 @@
 @class BIHomeTableViewCell;
 
 @protocol BIHomeTableViewCellDelegate <NSObject>
-- (void)homeCell:(BIHomeTableViewCell*)homeCell togglePrivacyTo:(BOOL)private;
 - (void)homeCell:(BIHomeTableViewCell *)homeCell didTapImageView:(UIImageView*)imageView;
+- (void)homeCell:(BIHomeTableViewCell*)homeCell togglePrivacyTo:(BOOL)private;
 @end
 
 @interface BIHomeTableViewCell : UITableViewCell

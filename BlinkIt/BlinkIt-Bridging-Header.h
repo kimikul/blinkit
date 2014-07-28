@@ -10,3 +10,5 @@
 #import "BIFeedTableViewCell.h"
 #import "BIProfileViewController.h"
 #import "BIDataStore.h"
+#import "BIHomePhotoTableViewCell.h"
+#import "BIHomeTableViewCell.h"
