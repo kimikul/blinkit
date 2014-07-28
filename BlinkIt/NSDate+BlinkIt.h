@@ -16,5 +16,7 @@
 + (BOOL)isToday:(NSDate*)date;
 + (NSInteger)numDaysSinceDate:(NSDate*)startDate;
 + (NSString*)spelledOutDateNoDay:(NSDate*)date; // September 09, 2014
++ (NSDate*)beginningOfDay:(NSDate*)date;
++ (NSDate*)endOfDay:(NSDate*)date;
 
 @end

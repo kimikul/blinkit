@@ -109,6 +109,7 @@
 		5EB3A5C01887A14100BCA8DB /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EB3A5BF1887A14100BCA8DB /* MBProgressHUD.m */; };
 		5EB3A5C31887A18F00BCA8DB /* BIViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EB3A5C21887A18F00BCA8DB /* BIViewController.m */; };
 		5EB3A5C61887A2F300BCA8DB /* BIImageUploadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EB3A5C51887A2F300BCA8DB /* BIImageUploadManager.m */; };
+		5EC8DAB81985B628000ED81C /* BIFlashbackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC8DAB61985B628000ED81C /* BIFlashbackViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -291,6 +292,7 @@
 		5EB3A5C21887A18F00BCA8DB /* BIViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BIViewController.m; sourceTree = "<group>"; };
 		5EB3A5C41887A2F300BCA8DB /* BIImageUploadManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BIImageUploadManager.h; sourceTree = "<group>"; };
 		5EB3A5C51887A2F300BCA8DB /* BIImageUploadManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BIImageUploadManager.m; sourceTree = "<group>"; };
+		5EC8DAB61985B628000ED81C /* BIFlashbackViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BIFlashbackViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -561,6 +563,7 @@
 			isa = PBXGroup;
 			children = (
 				5E03C741197F654F00726522 /* BlinkIt-Bridging-Header.h */,
+				5EC8DAB51985B60F000ED81C /* Flashback */,
 				5E99D1A718B4527D00862462 /* Profiles */,
 				5E99D1A318B38D2000862462 /* Delete */,
 				5E99D19C18B324C900862462 /* Compose */,
@@ -713,6 +716,14 @@
 				5E7297AF18A9F458008D356C /* MBProgressHUD */,
 			);
 			name = Vendor;
+			sourceTree = "<group>";
+		};
+		5EC8DAB51985B60F000ED81C /* Flashback */ = {
+			isa = PBXGroup;
+			children = (
+				5EC8DAB61985B628000ED81C /* BIFlashbackViewController.swift */,
+			);
+			name = Flashback;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -886,6 +897,7 @@
 				5E7297CB18AA23A0008D356C /* UIImage+MPAverageColor.m in Sources */,
 				5E7297C818AA23A0008D356C /* MPSurveyQuestionViewController.m in Sources */,
 				5EAB8ADB187E7CFF00B02953 /* BILoginViewController.m in Sources */,
+				5EC8DAB81985B628000ED81C /* BIFlashbackViewController.swift in Sources */,
 				5EB3A5C01887A14100BCA8DB /* MBProgressHUD.m in Sources */,
 				5E3420ED18A613490088A270 /* BIButton.m in Sources */,
 				5EAB8B30188118E600B02953 /* BIHomeTableViewCell.m in Sources */,

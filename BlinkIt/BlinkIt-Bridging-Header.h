@@ -3,4 +3,6 @@
 //
 
 #import "UIImageViewModeScaleAspect.h"
-#import "BIViewController.h"
+#import "BITableViewController.h"
+#import "NSDate+BlinkIt.h"
+#import <Parse/Parse.h>

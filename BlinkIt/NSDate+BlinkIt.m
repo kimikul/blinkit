@@ -68,4 +68,20 @@
     return [[NSCalendar currentCalendar] dateFromComponents:comps];
 }
 
++ (NSDate*)beginningOfDay:(NSDate*)date {
+    NSDateComponents* comps = [[NSCalendar currentCalendar] components:NSYearCalendarUnit|NSMonthCalendarUnit|NSDayCalendarUnit fromDate:date];
+//    comps.hour = 0;
+//    comps.minute = 0;
+//    comps.second = 0;
+    return [[NSCalendar currentCalendar] dateFromComponents:comps];
+}
+
++ (NSDate*)endOfDay:(NSDate*)date {
+    NSDateComponents* comps = [[NSCalendar currentCalendar] components:NSCalendarUnitYear|NSCalendarUnitMonth|NSCalendarUnitDay|NSCalendarUnitHour|NSCalendarUnitMinute|NSCalendarUnitSecond fromDate:date];
+    comps.hour = 23;
+    comps.minute = 59;
+    comps.second = 59;
+    return [[NSCalendar currentCalendar] dateFromComponents:comps];
+}
+
 @end
