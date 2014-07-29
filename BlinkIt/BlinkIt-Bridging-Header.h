@@ -12,3 +12,4 @@
 #import "BIDataStore.h"
 #import "BIHomePhotoTableViewCell.h"
 #import "BIHomeTableViewCell.h"
+#import "BIMyBlinksBaseViewController.h"

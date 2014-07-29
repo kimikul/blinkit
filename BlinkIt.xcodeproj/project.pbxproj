@@ -109,6 +109,7 @@
 		5EB3A5C01887A14100BCA8DB /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EB3A5BF1887A14100BCA8DB /* MBProgressHUD.m */; };
 		5EB3A5C31887A18F00BCA8DB /* BIViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EB3A5C21887A18F00BCA8DB /* BIViewController.m */; };
 		5EB3A5C61887A2F300BCA8DB /* BIImageUploadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EB3A5C51887A2F300BCA8DB /* BIImageUploadManager.m */; };
+		5EB8148719876FE5007B7502 /* BIMyBlinksBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EB8148619876FE5007B7502 /* BIMyBlinksBaseViewController.m */; };
 		5EC8DAB81985B628000ED81C /* BIFlashbackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC8DAB61985B628000ED81C /* BIFlashbackViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -292,6 +293,8 @@
 		5EB3A5C21887A18F00BCA8DB /* BIViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BIViewController.m; sourceTree = "<group>"; };
 		5EB3A5C41887A2F300BCA8DB /* BIImageUploadManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BIImageUploadManager.h; sourceTree = "<group>"; };
 		5EB3A5C51887A2F300BCA8DB /* BIImageUploadManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BIImageUploadManager.m; sourceTree = "<group>"; };
+		5EB8148519876FE5007B7502 /* BIMyBlinksBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BIMyBlinksBaseViewController.h; sourceTree = "<group>"; };
+		5EB8148619876FE5007B7502 /* BIMyBlinksBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BIMyBlinksBaseViewController.m; sourceTree = "<group>"; };
 		5EC8DAB61985B628000ED81C /* BIFlashbackViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BIFlashbackViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -705,6 +708,8 @@
 				5E03C742197F655000726522 /* BIExpandImageHelper.swift */,
 				5E03C744197F6C7600726522 /* BIImageViewController.swift */,
 				5E03C745197F6C7600726522 /* BIImageViewController.xib */,
+				5EB8148519876FE5007B7502 /* BIMyBlinksBaseViewController.h */,
+				5EB8148619876FE5007B7502 /* BIMyBlinksBaseViewController.m */,
 			);
 			name = Common;
 			sourceTree = "<group>";
@@ -866,6 +871,7 @@
 				5EAB8B3B1881300E00B02953 /* UIView+BlinkIt.m in Sources */,
 				5E9D038818AB724000634EB9 /* BINotificationsViewController.m in Sources */,
 				5E2F088C188F7B1400C633C7 /* BIPaginationTableViewCell.m in Sources */,
+				5EB8148719876FE5007B7502 /* BIMyBlinksBaseViewController.m in Sources */,
 				5E99D1AA18B452BD00862462 /* BIProfileViewController.m in Sources */,
 				5E3420D618A488240088A270 /* BINoFollowResultsTableViewCell.m in Sources */,
 				5E63927B1889227F00D1AE80 /* BIHomePhotoTableViewCell.m in Sources */,

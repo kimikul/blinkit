@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "BITableViewController.h"
+#import "BIMyBlinksBaseViewController.h"
 
-@interface BIHomeViewController : BITableViewController
+@interface BIHomeViewController : BIMyBlinksBaseViewController
 
 - (void)presentTodaysBlinkVC;
 

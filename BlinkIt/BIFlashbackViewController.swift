@@ -8,12 +8,11 @@
 
 import UIKit
 
-class BIFlashbackViewController: BITableViewController, BIHomeTableViewCellDelegate {
+class BIFlashbackViewController: BIMyBlinksBaseViewController {
 
     var segmentedControl:UISegmentedControl
     var flashbackDates:Array<NSDate>
     var flashbackBlinks:Dictionary<NSDate,PFObject>
-    var currentBlink:PFObject?
     
     @IBOutlet weak var noPostsView: UIView!
     @IBOutlet weak var noPostsLabel: UILabel!
@@ -33,7 +32,6 @@ class BIFlashbackViewController: BITableViewController, BIHomeTableViewCellDeleg
     override func viewDidLoad() {
         super.viewDidLoad()
         setupSegmentedControl()
-        setupTableView()
         fetchFlashbacks()
     }
 
@@ -47,7 +45,11 @@ class BIFlashbackViewController: BITableViewController, BIHomeTableViewCellDeleg
     func segmentedControlChanged(segmentedControl: UISegmentedControl) {
         let index = segmentedControl.selectedSegmentIndex
         let date = flashbackDates[index]
-        currentBlink = flashbackBlinks[date]
+        if let currentBlink = flashbackBlinks[date] {
+            self.allBlinksArray = NSMutableArray(object: currentBlink)
+        } else {
+            self.allBlinksArray = nil
+        }
         
         let timePeriod = timeElapsedString()
 
@@ -62,7 +64,6 @@ class BIFlashbackViewController: BITableViewController, BIHomeTableViewCellDeleg
         }
         
         noPostsLabel.text = String(format: "You didn't post anything %@\n\n%@", timePeriod, secondaryText)
-        noPostsView.hidden = currentBlink == nil ? false : true
         reloadTableData()
     }
    
@@ -84,13 +85,6 @@ class BIFlashbackViewController: BITableViewController, BIHomeTableViewCellDeleg
         }
         
         return timePeriod
-    }
-    
-// pragma mark : tableview
-    
-    func setupTableView() {
-        tableView.registerNib(UINib(nibName: BIHomePhotoTableViewCell.reuseIdentifier(), bundle: NSBundle.mainBundle()), forCellReuseIdentifier: BIHomePhotoTableViewCell.reuseIdentifier())
-        tableView.registerNib(UINib(nibName: BIHomeTableViewCell.reuseIdentifier(), bundle: NSBundle.mainBundle()), forCellReuseIdentifier: BIHomeTableViewCell.reuseIdentifier())
     }
     
 // pragma mark : requests
@@ -150,18 +144,7 @@ class BIFlashbackViewController: BITableViewController, BIHomeTableViewCellDeleg
             self.segmentedControlChanged(self.segmentedControl)
         }
     }
-    
-// pragma mark : tableviewdelegate
-    override func numberOfSectionsInTableView(tableView: UITableView!) -> Int {
-        var isBlink = currentBlink != nil;
-        return isBlink ? 1 : 0
-    }
-    
-    override func tableView(tableView: UITableView!, numberOfRowsInSection section: Int) -> Int {
-        var isBlink = currentBlink != nil;
-        return isBlink ? 1 : 0
-    }
-    
+
     override func tableView(tableView: UITableView!, heightForHeaderInSection section: Int) -> CGFloat {
         return 34
     }
@@ -182,56 +165,5 @@ class BIFlashbackViewController: BITableViewController, BIHomeTableViewCellDeleg
         
         return headerView
     }
-    
-    override func tableView(tableView: UITableView!, heightForRowAtIndexPath indexPath: NSIndexPath!) -> CGFloat {
-        var height:CGFloat = 0
-        let content:String = currentBlink!["content"] as String
-        
-        if let imageFile:PFFile = currentBlink!["imageFile"] as? PFFile {
-            height = BIFeedPhotoTableViewCell.heightForContent(content)
-        } else {
-            height = BIFeedTableViewCell.heightForContent(content)
-        }
-        
-        return height;
-    }
-    
-    override func tableView(tableView: UITableView!, cellForRowAtIndexPath indexPath: NSIndexPath!) -> UITableViewCell! {
-        
-        var cell:BIHomeTableViewCell?
-        println("tableview is : \(tableView)")
-        println("currentblink : \(currentBlink)")
-        if let imageFile:PFFile = currentBlink!["imageFile"] as? PFFile {
-            cell = tableView!.dequeueReusableCellWithIdentifier(BIHomePhotoTableViewCell.reuseIdentifier()) as BIHomePhotoTableViewCell
-        } else {
-            cell = tableView!.dequeueReusableCellWithIdentifier(BIHomeTableViewCell.reuseIdentifier()) as? BIHomeTableViewCell
-        }
-        
-        cell!.blink = currentBlink
-        cell!.delegate = self
 
-        return cell
-    }
-    
-// pragma mark : BIHomeTableViewCellDelegate
-    
-    func homeCell(feedCell: BIHomeTableViewCell!, didTapImageView imageView: UIImageView!) {
-//        let expandImageHelper = BIExpandImageHelper()
-//        expandImageHelper.delegate = self
-//        expandImageHelper.animateImageView(imageView)
-    }
-    
-    func homeCell(homeCell: BIHomeTableViewCell!, togglePrivacyTo `private`: Bool) {
-        // do nothing
-    }
-    
-//    func homeCellCell(feedCell: BIFeedTableViewCell!, didTapUserProfile user: PFUser!) {
-//        let mainStoryboard = self.storyboard
-//        
-//        let profileNav:UINavigationController = mainStoryboard.instantiateViewControllerWithIdentifier("BIProfileNavigationController") as UINavigationController
-//        let profileVC:BIProfileViewController = profileNav.topViewController as BIProfileViewController
-//        profileVC.user = user
-//        
-//        presentViewController(profileNav, animated: true, completion: nil)
-//    }
 }

@@ -21,15 +21,11 @@
 #define kDeletePreviousBlinkActionSheet 2
 #define kNumBlinksPerPage 15
 
-@interface BIHomeViewController () <UIActionSheetDelegate, BIHomeTableViewCellDelegate, BIHomeHeaderViewDelegate>
+@interface BIHomeViewController () <UIActionSheetDelegate, BIHomeHeaderViewDelegate>
 
-@property (nonatomic, strong) NSMutableArray *allBlinksArray;
 @property (nonatomic, strong) PFObject *todaysBlink;
-
 @property (nonatomic, strong) BIHomeTableViewCell *togglePrivacyCell;
 @property (nonatomic, strong) BIHomeHeaderView *homeHeaderView;
-
-@property (nonatomic, assign) BOOL canPaginate;
 @property (nonatomic, assign) BOOL shouldRefreshNumbers;
 @end
 
@@ -40,21 +36,10 @@
 - (id)initWithCoder:(NSCoder *)aDecoder {
     self = [super initWithCoder:aDecoder];
     if (self) {
-        self.useEmptyTableFooter = YES;
         self.useRefreshTableHeaderView = YES;
     }
     
     return self;
-}
-
-#pragma mark - setter/getter
-
-- (NSMutableArray*)allBlinksArray {
-    if (!_allBlinksArray) {
-        _allBlinksArray = [NSMutableArray new];
-    }
-    
-    return _allBlinksArray;
 }
 
 #pragma mark - lifecycle
@@ -64,7 +49,6 @@
     
     [self setupButtons];
     [self setupNav];
-    [self setupTableView];
     [self setupHeader];
     [self setupObservers];
     [self fetchBlinksForPagination:NO];
@@ -107,16 +91,8 @@
     self.navigationItem.titleView = logoImageView;
 }
 
-- (void)setupTableView {
-    self.tableView.scrollsToTop = YES;
-    
-    [self.tableView registerNib:[UINib nibWithNibName:[BIHomePhotoTableViewCell reuseIdentifier] bundle:[NSBundle mainBundle]] forCellReuseIdentifier:[BIHomePhotoTableViewCell reuseIdentifier]];
-    [self.tableView registerNib:[UINib nibWithNibName:[BIHomeTableViewCell reuseIdentifier] bundle:[NSBundle mainBundle]] forCellReuseIdentifier:[BIHomeTableViewCell reuseIdentifier]];
-}
-
 - (void)setupObservers {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshHome) name:kBIRefreshHomeAndFeedNotification object:nil];
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateHomeBadgeCount:) name:kBIUpdateHomeNotificationBadgeNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateForTodaysBlink:) name:kBIUpdateSavedBlinkNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deletedBlink:) name:kBIDeleteBlinkNotification object:nil];
 
@@ -243,79 +219,6 @@
 
 #pragma mark - UITableViewDelegate / UITableViewDataSource
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    // no results row
-    if (self.allBlinksArray.count == 0 && !self.isLoading) {
-        return 1;
-    }
-    
-    return self.allBlinksArray.count + self.canPaginate;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    // no results row
-    if (self.allBlinksArray.count == 0 && !self.isLoading) {
-        return [BINoFollowResultsTableViewCell cellHeight];
-    }
-    
-    // pagination row
-    if (indexPath.row == self.allBlinksArray.count) {
-        return [BIPaginationTableViewCell cellHeight];
-    }
-    
-    // regular row
-    CGFloat height = 0;
-    PFObject *blink = [self.allBlinksArray objectAtIndex:indexPath.row];
-    NSString *content = blink[@"content"];
-    PFFile *imageFile = blink[@"imageFile"];
-    
-    if (imageFile) {
-        height = [BIHomePhotoTableViewCell heightForContent:content];
-    } else {
-        height = [BIHomeTableViewCell heightForContent:content];
-    }
-    
-    return height;
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
-
-    // no results row
-    if (self.allBlinksArray.count == 0 && !self.isLoading) {
-        tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-
-        BINoFollowResultsTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:[BINoFollowResultsTableViewCell reuseIdentifier]];
-        return cell;
-    }
-    
-    // pagination row
-    if (indexPath.row == self.allBlinksArray.count) {
-        BIPaginationTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:[BIPaginationTableViewCell reuseIdentifier]];
-        [cell.aiv startAnimating];
-        return cell;
-    }
-    
-    // regular row
-    PFObject *blink = [self.allBlinksArray objectAtIndex:indexPath.row];
-    BIHomeTableViewCell *cell;
-    
-    if (blink[@"imageFile"]) {
-        cell = [self.tableView dequeueReusableCellWithIdentifier:[BIHomePhotoTableViewCell reuseIdentifier]];
-    } else {
-        cell = [self.tableView dequeueReusableCellWithIdentifier:[BIHomeTableViewCell reuseIdentifier]];
-    }
-    
-    cell.blink = blink;
-    cell.delegate = self;
-    
-    return cell;
-}
-
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
@@ -383,12 +286,6 @@
     UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Toggle Privacy Setting" message:msg delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Continue",nil];
     alertView.tag = private;
     [alertView show];
-}
-
-- (void)homeCell:(BIHomeTableViewCell *)homeCell didTapImageView:(UIImageView*)imageView {
-    BIExpandImageHelper *expandImageHelper = [BIExpandImageHelper new];
-    expandImageHelper.delegate = self;
-    [expandImageHelper animateImageView:imageView];
 }
 
 #pragma mark - BIHomeHeaderViewDelegate
