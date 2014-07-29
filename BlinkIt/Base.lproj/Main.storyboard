@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6185.11" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="vXZ-lx-hvc">
     <dependencies>
+        <deployment defaultVersion="1792" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6190.4"/>
     </dependencies>
     <scenes>
@@ -447,7 +448,7 @@ Remember the highlights</string>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" id="Udc-2N-TaW">
-                                                    <rect key="frame" x="150" y="6" width="20" height="20"/>
+                                                    <rect key="frame" x="150" y="4" width="20" height="20"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                 </activityIndicatorView>
                                             </subviews>
@@ -502,11 +503,11 @@ PRO TIP: Click the top right button to follow friends if you haven't yet :)</str
             <objects>
                 <viewController id="nEk-HD-qNk" customClass="BIFlashbackViewController" customModule="BlinkItModule" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="OfZ-9f-mny">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="431"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="x75-LB-9t9">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="431"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
@@ -515,7 +516,7 @@ PRO TIP: Click the top right button to follow friends if you haven't yet :)</str
                                 </connections>
                             </tableView>
                             <view hidden="YES" contentMode="scaleToFill" id="2Op-lH-kEs" userLabel="No Posts View">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="431"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You didn't post anything." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="upr-SO-V0B">
@@ -541,7 +542,7 @@ PRO TIP: Click the top right button to follow friends if you haven't yet :)</str
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JDx-tE-IaV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5023" y="-724"/>
+            <point key="canvasLocation" x="5391" y="-940"/>
         </scene>
         <!--Me-->
         <scene sceneID="E9k-zS-qcU">
@@ -751,7 +752,7 @@ PRO TIP: Click the top right button to follow friends if you haven't yet :)</str
                     <navigationItem key="navigationItem" id="gkF-Ku-lHd">
                         <nil key="title"/>
                         <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="hry-Mg-XFH">
-                            <rect key="frame" x="88" y="7" width="145" height="31"/>
+                            <rect key="frame" x="87.5" y="6.5" width="145" height="31"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <segments>
                                 <segment title="Following"/>
@@ -792,7 +793,7 @@ PRO TIP: Click the top right button to follow friends if you haven't yet :)</str
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="CZS-KF-SQo">
-                                                    <rect key="frame" x="10" y="7" width="30" height="30.5"/>
+                                                    <rect key="frame" x="10" y="4" width="28" height="32"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 </imageView>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ron Alivia" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="V0H-gk-zhu">
@@ -880,7 +881,7 @@ PRO TIP : Link your Facebook in Settings to find friends if you haven't yet</str
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1Sa-4R-DmN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6983" y="-239"/>
+            <point key="canvasLocation" x="7515" y="-239"/>
         </scene>
         <!--Notifications-->
         <scene sceneID="uRz-fY-bJt">
@@ -1048,7 +1049,7 @@ PRO TIP : Link your Facebook in Settings to find friends if you haven't yet</str
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="80A-ZN-vz5">
-                                                    <rect key="frame" x="10" y="7" width="30" height="30.5"/>
+                                                    <rect key="frame" x="10" y="4" width="28" height="32"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 </imageView>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ron Alivia" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="dR1-VC-Tb8">
@@ -1113,7 +1114,7 @@ PRO TIP : Link your Facebook in Settings so friends can find you.</string>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="FTn-qu-fEt">
-                                                    <rect key="frame" x="10" y="7" width="30" height="30.5"/>
+                                                    <rect key="frame" x="10" y="6" width="28" height="32"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 </imageView>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Jeffrey Marubayashi" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="s4B-Bp-RqJ">
@@ -1177,7 +1178,7 @@ PRO TIP : Link your Facebook in Settings so friends can find you.</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cYo-82-dUJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7347" y="-239"/>
+            <point key="canvasLocation" x="7879" y="-239"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="Sdq-Gx-Edp">
@@ -1343,6 +1344,21 @@ PRO TIP : Link your Facebook in Settings so friends can find you.</string>
             </objects>
             <point key="canvasLocation" x="4343" y="183"/>
         </scene>
+        <!--Flashback Main View Controller-->
+        <scene sceneID="cgZ-9r-Tw9">
+            <objects>
+                <viewController id="tLh-cn-gD8" customClass="BIFlashbackMainViewController" customModule="BlinkItModule" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ac4-LE-luc">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="431"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="TY3-Om-aW9"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qqh-iK-BYp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4923" y="-724"/>
+        </scene>
         <!--Feed-->
         <scene sceneID="MAc-BV-JNV">
             <objects>
@@ -1477,7 +1493,7 @@ PRO TIP : Link your Facebook in Settings so friends can find you.</string>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This user has no public posts" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="OPL-s9-WnT">
-                                                    <rect key="frame" x="12" y="0.0" width="300" height="50"/>
+                                                    <rect key="frame" x="10" y="0.0" width="300" height="50"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                                     <color key="textColor" white="0.57009198589999999" alpha="1" colorSpace="calibratedWhite"/>
@@ -1582,7 +1598,7 @@ PRO TIP : Link your Facebook in Settings so friends can find you.</string>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="nEk-HD-qNk" kind="relationship" relationship="rootViewController" id="gJl-me-ZvK"/>
+                        <segue destination="tLh-cn-gD8" kind="relationship" relationship="rootViewController" id="oMw-wn-qqe"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Aqa-YP-eol" userLabel="First Responder" sceneMemberID="firstResponder"/>

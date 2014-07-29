@@ -110,6 +110,7 @@
 		5EB3A5C31887A18F00BCA8DB /* BIViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EB3A5C21887A18F00BCA8DB /* BIViewController.m */; };
 		5EB3A5C61887A2F300BCA8DB /* BIImageUploadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EB3A5C51887A2F300BCA8DB /* BIImageUploadManager.m */; };
 		5EB8148719876FE5007B7502 /* BIMyBlinksBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EB8148619876FE5007B7502 /* BIMyBlinksBaseViewController.m */; };
+		5EB8148919877AB3007B7502 /* BIFlashbackMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EB8148819877AB3007B7502 /* BIFlashbackMainViewController.swift */; };
 		5EC8DAB81985B628000ED81C /* BIFlashbackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC8DAB61985B628000ED81C /* BIFlashbackViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -295,6 +296,7 @@
 		5EB3A5C51887A2F300BCA8DB /* BIImageUploadManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BIImageUploadManager.m; sourceTree = "<group>"; };
 		5EB8148519876FE5007B7502 /* BIMyBlinksBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BIMyBlinksBaseViewController.h; sourceTree = "<group>"; };
 		5EB8148619876FE5007B7502 /* BIMyBlinksBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BIMyBlinksBaseViewController.m; sourceTree = "<group>"; };
+		5EB8148819877AB3007B7502 /* BIFlashbackMainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BIFlashbackMainViewController.swift; sourceTree = "<group>"; };
 		5EC8DAB61985B628000ED81C /* BIFlashbackViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BIFlashbackViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -727,6 +729,7 @@
 			isa = PBXGroup;
 			children = (
 				5EC8DAB61985B628000ED81C /* BIFlashbackViewController.swift */,
+				5EB8148819877AB3007B7502 /* BIFlashbackMainViewController.swift */,
 			);
 			name = Flashback;
 			sourceTree = "<group>";
@@ -907,6 +910,7 @@
 				5EB3A5C01887A14100BCA8DB /* MBProgressHUD.m in Sources */,
 				5E3420ED18A613490088A270 /* BIButton.m in Sources */,
 				5EAB8B30188118E600B02953 /* BIHomeTableViewCell.m in Sources */,
+				5EB8148919877AB3007B7502 /* BIFlashbackMainViewController.swift in Sources */,
 				5E42D40B189CDF3500F651E0 /* BIConstants.m in Sources */,
 				5E3420D918A4B3CD0088A270 /* BIFeedTableViewCell.m in Sources */,
 				5E6392701888EA9800D1AE80 /* BIPhotoViewController.m in Sources */,
