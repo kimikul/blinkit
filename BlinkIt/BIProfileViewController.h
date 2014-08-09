@@ -6,9 +6,9 @@
 //  Copyright (c) 2014 hsiao. All rights reserved.
 //
 
-#import "BITableViewController.h"
+#import "BIMyBlinksBaseViewController.h"
 
-@interface BIProfileViewController : BITableViewController
+@interface BIProfileViewController : BIMyBlinksBaseViewController
 
 @property (nonatomic, strong) PFUser *user;
 

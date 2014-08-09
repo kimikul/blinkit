@@ -8,61 +8,25 @@
 
 #import "BIFeedViewController.h"
 #import "BIFollowViewController.h"
-#import "BIPaginationTableViewCell.h"
-#import "BINoFollowResultsTableViewCell.h"
-#import "BIFeedTableViewCell.h"
-#import "BIFeedPhotoTableViewCell.h"
 #import "BIProfileViewController.h"
 #import "BIFollowingViewController.h"
 #import <MessageUI/MessageUI.h>
 
 #define kNumFeedEntriesPerPage 15
 
-@interface BIFeedViewController () <BIFeedTableViewCellDelegate, MFMailComposeViewControllerDelegate, BIExpandImageHelperDelegate>
-@property (nonatomic, strong) NSMutableArray *allBlinksArray; // total list of blinks displayed
+@interface BIFeedViewController () < MFMailComposeViewControllerDelegate>
 
-@property (nonatomic, strong) NSMutableArray *dateArray;       // array of dates with 1+ associated blinks
-@property (nonatomic, strong) NSMutableArray *blinksArray;     // array of array of blinks associated with the date
-
-@property (nonatomic, assign) BOOL canPaginate;
 @property (nonatomic, assign) BOOL isPresentingOtherVC;
 
 @end
 
 @implementation BIFeedViewController
 
-#pragma mark - getter/setter
-
-- (NSMutableArray*)allBlinksArray {
-    if (!_allBlinksArray) {
-        _allBlinksArray = [NSMutableArray new];
-    }
-    
-    return _allBlinksArray;
-}
-
-- (NSMutableArray*)blinksArray {
-    if (!_blinksArray) {
-        _blinksArray = [NSMutableArray new];
-    }
-    
-    return _blinksArray;
-}
-
-- (NSMutableArray*)dateArray {
-    if (!_dateArray) {
-        _dateArray = [NSMutableArray new];
-    }
-    
-    return _dateArray;
-}
-
 #pragma mark - lifecycle
 
 - (id)initWithCoder:(NSCoder *)aDecoder {
     self = [super initWithCoder:aDecoder];
     if (self) {
-        self.useEmptyTableFooter = YES;
         self.useRefreshTableHeaderView = YES;
     }
     
@@ -73,7 +37,6 @@
     [super viewDidLoad];
     
     [self setupButtons];
-    [self setupTableView];
     [self setupNav];
     [self setupObservers];
     [self fetchFeedForPagination:NO];
@@ -91,11 +54,6 @@
     UIBarButtonItem *rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:friendsButton];
     
     self.navigationItem.rightBarButtonItem = rightBarButtonItem;
-}
-
-- (void)setupTableView {
-    [self.tableView registerNib:[UINib nibWithNibName:[BIFeedPhotoTableViewCell reuseIdentifier] bundle:[NSBundle mainBundle]] forCellReuseIdentifier:[BIFeedPhotoTableViewCell reuseIdentifier]];
-    [self.tableView registerNib:[UINib nibWithNibName:[BIFeedTableViewCell reuseIdentifier] bundle:[NSBundle mainBundle]] forCellReuseIdentifier:[BIFeedTableViewCell reuseIdentifier]];
 }
 
 - (void)setupNav {
@@ -172,34 +130,6 @@
     }
 }
 
-- (void)sectionalizeBlinks:(NSArray*)blinks pagination:(BOOL)pagination {
-    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-    [dateFormat setDateFormat:@"MMMM dd, YYYY"];
-    
-    NSMutableArray *dateArray = pagination ? [_dateArray mutableCopy] :[NSMutableArray new];
-    NSMutableArray *blinkArray = pagination ? [_blinksArray mutableCopy] : [NSMutableArray new];
-    NSMutableArray *innerBlinkArray = pagination ? [[_blinksArray lastObject] mutableCopy] : [NSMutableArray new];
-    
-    for (PFObject *blink in blinks) {
-        NSDate *date = blink[@"date"];
-        NSString *spelledOutDate = [NSDate spelledOutDate:date];
-        if (![dateArray containsObject:spelledOutDate]) {
-            [dateArray addObject:spelledOutDate];
-            innerBlinkArray = [NSMutableArray arrayWithObject:blink];
-        } else {
-            [innerBlinkArray addObject:blink];
-        }
-        
-        NSInteger index = [dateArray indexOfObject:spelledOutDate];
-        [blinkArray setObject:innerBlinkArray atIndexedSubscript:index];
-    }
-    
-    _dateArray = [dateArray mutableCopy];
-    _blinksArray = blinkArray;
-    
-    [self reloadTableData];
-}
-
 - (void)refreshFeed {
     [self.tableView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:YES];
     [self fetchFeedForPagination:NO];
@@ -219,121 +149,6 @@
 
 #pragma mark - UITableViewDelegate / UITableViewDataSource
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    if (_dateArray.count == 0) {
-        return 1;
-    }
-    
-    return _dateArray.count + self.canPaginate;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if (_dateArray.count == 0) {
-        return 1;
-    }
-    
-    if (self.canPaginate && (section == _dateArray.count)) {
-        return 1;
-    }
-    
-    NSArray *blinksOnDate = [_blinksArray objectAtIndex:section];
-    return blinksOnDate.count;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-
-    if (self.isLoading && _dateArray.count == 0) {
-        return [BIPaginationTableViewCell cellHeight];
-    } else if (_dateArray.count == 0) {
-        return [BINoFollowResultsTableViewCell cellHeight];
-    } else if (self.canPaginate && (indexPath.section == _dateArray.count)) {
-        return [BIPaginationTableViewCell cellHeight];
-    }
-
-    NSArray *blinksOnDate = [_blinksArray objectAtIndex:indexPath.section];
-    PFObject *blink = [blinksOnDate objectAtIndex:indexPath.row];
-    
-    CGFloat height = 0;
-    NSString *content = blink[@"content"];
-    PFFile *imageFile = blink[@"imageFile"];
-    
-    if (imageFile) {
-        height = [BIFeedPhotoTableViewCell heightForContent:content];
-    } else {
-        height = [BIFeedTableViewCell heightForContent:content];
-    }
-    
-    return height;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    if (_dateArray.count == 0) {
-        return 0;
-    } else if (self.canPaginate && (section == _dateArray.count)) {
-        return 0;
-    }
-    
-    return 34;
-}
-
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    if (_dateArray.count == 0) {
-        return [[UIView alloc] initWithFrame:CGRectZero];
-    } else if (self.canPaginate && (section == _dateArray.count)) {
-        return [[UIView alloc] initWithFrame:CGRectZero];
-    }
-    
-    NSString *date = [_dateArray objectAtIndex:section];
-
-    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0,0,320,34)];
-    headerView.backgroundColor = [UIColor colorWithWhite:0.9 alpha:1.0];
-    headerView.layer.borderColor = [UIColor whiteColor].CGColor;
-    headerView.layer.borderWidth = 3.0;
-    
-    UILabel *dateLabel = [[UILabel alloc] initWithFrame:CGRectMake(10,0,300,34)];
-    dateLabel.text = date;
-    dateLabel.font = [UIFont fontWithName:@"Thonburi" size:17.0];
-    
-    dateLabel.textColor = [UIColor colorWithWhite:0.5 alpha:1.0];
-    [headerView addSubview:dateLabel];
-    
-    return headerView;
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
-
-    if (self.isLoading && _dateArray.count == 0) {
-        BIPaginationTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:[BIPaginationTableViewCell reuseIdentifier]];
-        [cell.aiv startAnimating];
-        return cell;
-    } else if (_dateArray.count == 0) {
-        tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-        
-        BINoFollowResultsTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:[BINoFollowResultsTableViewCell reuseIdentifier]];
-        return cell;
-    } else if (self.canPaginate && (indexPath.section == _dateArray.count)) {
-        BIPaginationTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:[BIPaginationTableViewCell reuseIdentifier]];
-        [cell.aiv startAnimating];
-        return cell;
-    }
-    
-    NSArray *blinksOnDate = [_blinksArray objectAtIndex:indexPath.section];
-    PFObject *blink = [blinksOnDate objectAtIndex:indexPath.row];
-    
-    BIFeedTableViewCell *cell;
-    if (blink[@"imageFile"]) {
-        cell = [self.tableView dequeueReusableCellWithIdentifier:[BIFeedPhotoTableViewCell reuseIdentifier]];
-    } else {
-        cell = [self.tableView dequeueReusableCellWithIdentifier:[BIFeedTableViewCell reuseIdentifier]];
-    }
-    
-    cell.blink = blink;
-    cell.delegate = self;
-    
-    return cell;
-}
-
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
     return YES;
 }
@@ -345,7 +160,7 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         if ([MFMailComposeViewController canSendMail]) {
-            NSArray *blinksOnDate = [_blinksArray objectAtIndex:indexPath.section];
+            NSArray *blinksOnDate = [self.blinksArray objectAtIndex:indexPath.section];
             PFObject *inappropBlink = [blinksOnDate objectAtIndex:indexPath.row];
             PFUser *me = [PFUser currentUser];
             
@@ -393,17 +208,17 @@
     PFObject *updatedBlink = note.object;
     
     if (![updatedBlink[@"private"] boolValue]) {
-        PFObject *existingBlink = [self blinkWithID:updatedBlink.objectId fromBlinks:_allBlinksArray];
+        PFObject *existingBlink = [self blinkWithID:updatedBlink.objectId fromBlinks:self.allBlinksArray];
         if (existingBlink) {
             [self.allBlinksArray removeObject:existingBlink];
         }
         
         [self.allBlinksArray insertObject:updatedBlink atIndex:0];
-        [self sectionalizeBlinks:_allBlinksArray pagination:NO];
+        [self sectionalizeBlinks:self.allBlinksArray pagination:NO];
     } else {
-        PFObject *privatedBlink = [self blinkWithID:updatedBlink.objectId fromBlinks:_allBlinksArray];
+        PFObject *privatedBlink = [self blinkWithID:updatedBlink.objectId fromBlinks:self.allBlinksArray];
         [self.allBlinksArray removeObject:privatedBlink];
-        [self sectionalizeBlinks:_allBlinksArray pagination:NO];
+        [self sectionalizeBlinks:self.allBlinksArray pagination:NO];
     }
 }
 
@@ -419,38 +234,21 @@
 
 - (void)deletedBlink:(NSNotification*)note {
     PFObject *deletedBlink = note.object;
-    PFObject *deletedBlinkInArray = [self blinkWithID:deletedBlink.objectId fromBlinks:_allBlinksArray];
-    [_allBlinksArray removeObject:deletedBlinkInArray];
-    [self sectionalizeBlinks:_allBlinksArray pagination:NO];
+    PFObject *deletedBlinkInArray = [self blinkWithID:deletedBlink.objectId fromBlinks:self.allBlinksArray];
+    [self.allBlinksArray removeObject:deletedBlinkInArray];
+    [self sectionalizeBlinks:self.allBlinksArray pagination:NO];
 }
 
 - (void)toggledBlinkPrivacy:(NSNotification*)note {
     PFObject *updatedBlink = note.object;
     
     if ([updatedBlink[@"private"] boolValue]) {
-        PFObject *updatedBlinkInArray = [self blinkWithID:updatedBlink.objectId fromBlinks:_allBlinksArray];
-        [_allBlinksArray removeObject:updatedBlinkInArray];
-        [self sectionalizeBlinks:_allBlinksArray pagination:NO];
+        PFObject *updatedBlinkInArray = [self blinkWithID:updatedBlink.objectId fromBlinks:self.allBlinksArray];
+        [self.allBlinksArray removeObject:updatedBlinkInArray];
+        [self sectionalizeBlinks:self.allBlinksArray pagination:NO];
     } else {
         [self refreshFeed];
     }
-}
-
-#pragma mark - BIFeedTableViewCellDelegate
-
-- (void)feedCell:(BIFeedTableViewCell*)feedCell didTapUserProfile:(PFUser*)user {
-    UIStoryboard *mainStoryboard = [UIStoryboard mainStoryboard];
-    
-    UINavigationController *profileNav = [mainStoryboard instantiateViewControllerWithIdentifier:@"BIProfileNavigationController"];
-    BIProfileViewController *profileVC = (BIProfileViewController*)profileNav.topViewController;
-    profileVC.user = user;
-    [self presentViewController:profileNav animated:YES completion:nil];
-}
-
-- (void)feedCell:(BIFeedTableViewCell *)feedCell didTapImageView:(UIImageView*)imageView {
-    BIExpandImageHelper *expandImageHelper = [BIExpandImageHelper new];
-    expandImageHelper.delegate = self;
-    [expandImageHelper animateImageView:imageView];
 }
 
 @end

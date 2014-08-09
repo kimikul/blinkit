@@ -18,32 +18,21 @@
 @property (weak, nonatomic) IBOutlet UILabel *numBlinksLabel;
 @property (weak, nonatomic) IBOutlet UILabel *dateJoinedLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *profilePicImageView;
-@property (nonatomic, strong) NSMutableArray *allBlinksArray;
-@property (nonatomic, assign) BOOL canPaginate;
+@property (weak, nonatomic) IBOutlet UILabel *noBlinksLabel;
+
 @end
 
 @implementation BIProfileViewController
 
-#pragma mark - init
-
+//#pragma mark - init
+//
 - (id)initWithCoder:(NSCoder *)aDecoder {
     self = [super initWithCoder:aDecoder];
     if (self) {
-        self.useEmptyTableFooter = YES;
         self.useRefreshTableHeaderView = YES;
     }
     
     return self;
-}
-
-#pragma mark - setter/getter
-
-- (NSMutableArray*)allBlinksArray {
-    if (!_allBlinksArray) {
-        _allBlinksArray = [NSMutableArray new];
-    }
-    
-    return _allBlinksArray;
 }
 
 #pragma mark - lifecycle
@@ -52,7 +41,6 @@
     [super viewDidLoad];
     
     [self setupHeader];
-    [self setupTableView];
     [self setupButtons];
     [self fetchCount];
     [self fetchUsersBlinksForPagination:NO];
@@ -85,11 +73,6 @@
     }
 }
 
-- (void)setupTableView {
-    [self.tableView registerNib:[UINib nibWithNibName:[BIHomePhotoTableViewCell reuseIdentifier] bundle:[NSBundle mainBundle]] forCellReuseIdentifier:[BIHomePhotoTableViewCell reuseIdentifier]];
-    [self.tableView registerNib:[UINib nibWithNibName:[BIHomeTableViewCell reuseIdentifier] bundle:[NSBundle mainBundle]] forCellReuseIdentifier:[BIHomeTableViewCell reuseIdentifier]];
-}
-
 - (void)setupButtons {
     UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStylePlain target:self action:@selector(doneTapped:)];
     self.navigationItem.rightBarButtonItem = doneButton;
@@ -99,7 +82,12 @@
 
 - (BOOL)hasAccessToUser {
     PFUser *currentUser = [PFUser currentUser];
-    return [[BIDataStore shared] isFollowingUser:_user] || [currentUser.objectId isEqualToString:_user.objectId];
+    BOOL hasAccess = [[BIDataStore shared] isFollowingUser:_user] || [currentUser.objectId isEqualToString:_user.objectId];
+    
+    self.noBlinksLabel.text = hasAccess ? @"This user has no public posts" : @"You can only view blinks of friends you are following";
+    self.noBlinksView.hidden = hasAccess;
+
+    return hasAccess;
 }
 
 - (void)fetchCount {
@@ -165,77 +153,13 @@
 
 #pragma mark - UITableViewDelegate / UITableViewDataSource
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    // no results row
-    if (self.allBlinksArray.count == 0 && !self.isLoading) {
-        return 1;
-    }
-    
-    return self.allBlinksArray.count + self.canPaginate;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    // no results row
-    if (self.allBlinksArray.count == 0 && !self.isLoading) {
-        return [BINoFollowResultsTableViewCell cellHeight];
-    }
-    
-    // pagination row
-    if (indexPath.row == self.allBlinksArray.count) {
-        return [BIPaginationTableViewCell cellHeight];
-    }
-    
-    // regular row
-    CGFloat height = 0;
-    PFObject *blink = [self.allBlinksArray objectAtIndex:indexPath.row];
-    NSString *content = blink[@"content"];
-    PFFile *imageFile = blink[@"imageFile"];
-    
-    if (imageFile) {
-        height = [BIHomePhotoTableViewCell heightForContent:content];
-    } else {
-        height = [BIHomeTableViewCell heightForContent:content];
-    }
-    
-    return height;
-}
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
-
-    // no results row
-    if (self.allBlinksArray.count == 0 && !self.isLoading) {
-        tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-        
-        BINoFollowResultsTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:[BINoFollowResultsTableViewCell reuseIdentifier]];
-        cell.noResultsLabel.text = [self hasAccessToUser] ? @"This user has no public posts" : @"You can only view blinks of friends you are following";
-
-        return cell;
+    UITableViewCell *cell = [super tableView:tableView cellForRowAtIndexPath:indexPath];
+    if ([cell isKindOfClass:[BIHomeTableViewCell class]]) {
+        BIHomeTableViewCell *homeCell = (BIHomeTableViewCell*)cell;
+        homeCell.privacyButton.hidden = YES;
+        return homeCell;
     }
-    
-    // pagination row
-    if (indexPath.row == self.allBlinksArray.count) {
-        BIPaginationTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:[BIPaginationTableViewCell reuseIdentifier]];
-        [cell.aiv startAnimating];
-        return cell;
-    }
-    
-    // regular row
-    PFObject *blink = [self.allBlinksArray objectAtIndex:indexPath.row];
-    BIHomeTableViewCell *cell;
-    
-    if (blink[@"imageFile"]) {
-        cell = [self.tableView dequeueReusableCellWithIdentifier:[BIHomePhotoTableViewCell reuseIdentifier]];
-    } else {
-        cell = [self.tableView dequeueReusableCellWithIdentifier:[BIHomeTableViewCell reuseIdentifier]];
-    }
-    
-    cell.blink = blink;
-    cell.privacyButton.hidden = YES;
     
     return cell;
 }

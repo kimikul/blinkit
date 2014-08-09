@@ -112,6 +112,7 @@
 		5EB8148719876FE5007B7502 /* BIMyBlinksBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EB8148619876FE5007B7502 /* BIMyBlinksBaseViewController.m */; };
 		5EB8148919877AB3007B7502 /* BIFlashbackMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EB8148819877AB3007B7502 /* BIFlashbackMainViewController.swift */; };
 		5EC8DAB81985B628000ED81C /* BIFlashbackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC8DAB61985B628000ED81C /* BIFlashbackViewController.swift */; };
+		5EDCB5C01995FE3B00ACE1DF /* BIFeedBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EDCB5BF1995FE3B00ACE1DF /* BIFeedBaseViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -298,6 +299,8 @@
 		5EB8148619876FE5007B7502 /* BIMyBlinksBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BIMyBlinksBaseViewController.m; sourceTree = "<group>"; };
 		5EB8148819877AB3007B7502 /* BIFlashbackMainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BIFlashbackMainViewController.swift; sourceTree = "<group>"; };
 		5EC8DAB61985B628000ED81C /* BIFlashbackViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BIFlashbackViewController.swift; sourceTree = "<group>"; };
+		5EDCB5BE1995FE3B00ACE1DF /* BIFeedBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BIFeedBaseViewController.h; sourceTree = "<group>"; };
+		5EDCB5BF1995FE3B00ACE1DF /* BIFeedBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BIFeedBaseViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -359,6 +362,8 @@
 				5E3420E918A5E5950088A270 /* BIFeedPhotoTableViewCell.m */,
 				5E9D037918AB3D2000634EB9 /* BIFeedTableViewCell.xib */,
 				5E9D037B18AB3D2B00634EB9 /* BIFeedPhotoTableViewCell.xib */,
+				5EDCB5BE1995FE3B00ACE1DF /* BIFeedBaseViewController.h */,
+				5EDCB5BF1995FE3B00ACE1DF /* BIFeedBaseViewController.m */,
 			);
 			name = Feed;
 			sourceTree = "<group>";
@@ -869,6 +874,7 @@
 			files = (
 				5EAB8B491883B5FA00B02953 /* BIPlaceholderTextView.m in Sources */,
 				5E99D19F18B324DB00862462 /* BIComposeBlinkViewController.m in Sources */,
+				5EDCB5C01995FE3B00ACE1DF /* BIFeedBaseViewController.m in Sources */,
 				5E566F7018C5BB8D00C52D06 /* BIWebViewController.m in Sources */,
 				5E03C746197F6C7600726522 /* BIImageViewController.swift in Sources */,
 				5EAB8B3B1881300E00B02953 /* UIView+BlinkIt.m in Sources */,
