@@ -8,9 +8,9 @@
 
 import UIKit
 
-class BIFlashbackViewController: BIMyBlinksBaseViewController {
+class BIFlashbackViewController: BIMyBlinksBaseViewController, FlashbackSegmentedControlDelegate {
 
-    var segmentedControl:UISegmentedControl
+    var segmentedControl:UISegmentedControl!
     var flashbackDates:Array<NSDate>
     var flashbackBlinks:Dictionary<NSDate,PFObject>
     
@@ -20,7 +20,6 @@ class BIFlashbackViewController: BIMyBlinksBaseViewController {
 // pragma mark : lifecycle
     
     init(coder aDecoder: NSCoder!) {
-        self.segmentedControl = UISegmentedControl(items: ["1 mo","3 mo","6 mo","1 yr"])
         self.flashbackBlinks = Dictionary()
         self.flashbackDates = []
         
@@ -31,16 +30,10 @@ class BIFlashbackViewController: BIMyBlinksBaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupSegmentedControl()
         fetchFlashbacks()
     }
 
 // pragma mark : segmented control
-    
-    func setupSegmentedControl() {
-        navigationItem.titleView = segmentedControl
-        segmentedControl.addTarget(self, action: "segmentedControlChanged:", forControlEvents: UIControlEvents.ValueChanged)
-    }
     
     func segmentedControlChanged(segmentedControl: UISegmentedControl) {
         let index = segmentedControl.selectedSegmentIndex
@@ -52,12 +45,12 @@ class BIFlashbackViewController: BIMyBlinksBaseViewController {
         }
         
         let timePeriod = timeElapsedString()
-
+        
         var secondaryText = "Try to blink every day so you have more to look back on :)"
-
+        
         if let joinedDate = BIDataStore.shared().dateJoined() {
             let comparison = joinedDate.compare(date)
-        
+            
             if comparison == NSComparisonResult.OrderedDescending {
                 secondaryText = String(format:"But it's okay because you actually haven't been on BlinkIt for that long yet :)",timePeriod)
             }
