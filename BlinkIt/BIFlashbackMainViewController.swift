@@ -20,6 +20,7 @@ class BIFlashbackMainViewController: BIViewController, UIPageViewControllerDataS
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController.navigationBar.translucent = false
         setupPageVC()
     }
     
