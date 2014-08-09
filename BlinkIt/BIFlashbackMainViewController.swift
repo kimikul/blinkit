@@ -8,10 +8,11 @@
 
 import UIKit
 
-class BIFlashbackMainViewController: BIViewController {
+class BIFlashbackMainViewController: BIViewController, UIPageViewControllerDataSource, UIPageViewControllerDelegate {
 
-    var pageViewController:UIPageViewController?
+    var pageViewController:UIPageViewController!
     var testVC:UIViewController?
+    var myFlashbackVC:UIViewController!
     
     init(coder aDecoder: NSCoder!) {
         super.init(coder: aDecoder)
@@ -19,17 +20,40 @@ class BIFlashbackMainViewController: BIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        testVC = UIViewController(nibName: nil, bundle: nil)
-        testVC!.view.backgroundColor = UIColor.redColor()
-        addChildViewController(testVC)
-        view.addSubview(testVC!.view)
-        
-//        pageViewController = self.storyboard.instantiateViewControllerWithIdentifier("FlashbackPageViewController") as UIPageViewController
-//        let myFlashbackVC:BIFlashbackViewController = self.storyboard.instantiateViewControllerWithIdentifier("BIFlashbackViewController") as BIFlashbackViewController
-//        let otherVC:UIViewController = UIViewController(nibName: nil, bundle: nil)
-//        otherVC.view.backgroundColor = UIColor.blueColor()
-//        pageViewController!.setViewControllers([myFlashbackVC,otherVC], direction: UIPageViewControllerNavigationDirection.Forward, animated: true, completion: nil)
+        setupPageVC()
     }
     
+    func setupPageVC() {
+        testVC = UIViewController(nibName: nil, bundle: nil)
+        testVC!.view.backgroundColor = UIColor.redColor()
+        
+        myFlashbackVC = self.storyboard.instantiateViewControllerWithIdentifier("BIFlashbackViewController") as BIFlashbackViewController
+        
+        pageViewController = UIPageViewController(transitionStyle: .Scroll, navigationOrientation: .Horizontal, options: nil)
+        pageViewController.dataSource = self;
+        pageViewController.delegate = self;
+        
+        let viewControllers:NSArray = [myFlashbackVC]
+        pageViewController.setViewControllers(viewControllers, direction: UIPageViewControllerNavigationDirection.Forward, animated: true, completion:nil)
+        
+        addChildViewController(pageViewController)
+        view.addSubview(pageViewController.view)
+        pageViewController.didMoveToParentViewController(self)
+    }
+    
+    func pageViewController(pageViewController: UIPageViewController!, viewControllerBeforeViewController viewController: UIViewController!) -> UIViewController! {
+        if viewController.isEqual(testVC) {
+            return myFlashbackVC
+        }
+        
+        return nil
+    }
+    
+    func pageViewController(pageViewController: UIPageViewController!, viewControllerAfterViewController viewController: UIViewController!) -> UIViewController! {
+        if viewController.isEqual(myFlashbackVC) {
+            return testVC
+        }
+        
+        return nil
+    }
 }
