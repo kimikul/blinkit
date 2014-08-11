@@ -8,10 +8,6 @@
 
 import UIKit
 
-@objc protocol FlashbackSegmentedControlDelegate {
-    func segmentedControlChanged(segmentedControl:UISegmentedControl)
-}
-
 class BIFlashbackMainViewController: BIViewController, UIPageViewControllerDataSource, UIPageViewControllerDelegate {
 
     var segmentedControl:UISegmentedControl

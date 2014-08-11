@@ -8,7 +8,7 @@
 
 import UIKit
 
-class BIFlashbackViewController: BIMyBlinksBaseViewController, FlashbackSegmentedControlDelegate {
+class BIFlashbackViewController: BIMyBlinksBaseViewController {
 
     var segmentedControl:UISegmentedControl!
     var flashbackBlinks:Dictionary<NSDate,PFObject>
@@ -29,16 +29,8 @@ class BIFlashbackViewController: BIMyBlinksBaseViewController, FlashbackSegmente
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        fetchFlashbacks()
     }
 
-//// pragma mark : getter/setter
-//
-//    override func setFlashbackDates(newFlashbackDates:Array<NSDate>) -> (void) {
-//        self.flashbackDates = newFlashbackDates
-//        fetchFlashbacks()
-//    }
-    
 // pragma mark : segmented control
 
     func segmentedControlChanged(segmentedControl: UISegmentedControl) {
