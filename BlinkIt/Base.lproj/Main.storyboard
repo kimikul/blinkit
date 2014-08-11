@@ -520,7 +520,7 @@ PRO TIP: Click the top right button to follow friends if you haven't yet :)</str
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You didn't post anything." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="upr-SO-V0B">
-                                        <rect key="frame" x="10" y="77" width="300" height="90"/>
+                                        <rect key="frame" x="10" y="12" width="300" height="90"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                         <color key="textColor" white="0.57009198589999999" alpha="1" colorSpace="calibratedWhite"/>

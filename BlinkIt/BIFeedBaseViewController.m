@@ -98,7 +98,7 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     if (_dateArray.count == 0) {
-        return 1;
+        return 0;
     }
     
     return _dateArray.count + self.canPaginate;
@@ -106,7 +106,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (_dateArray.count == 0) {
-        return 1;
+        return 0;
     }
     
     if (self.canPaginate && (section == _dateArray.count)) {

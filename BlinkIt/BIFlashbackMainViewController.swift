@@ -78,8 +78,8 @@ class BIFlashbackMainViewController: BIViewController, UIPageViewControllerDataS
     }
     
     func segmentedControlChanged(segmentedControl: UISegmentedControl) {
-        let visibleVC:FlashbackSegmentedControlDelegate = pageViewController.viewControllers[0] as FlashbackSegmentedControlDelegate
-        visibleVC.segmentedControlChanged(segmentedControl)
+        myFlashbackVC.segmentedControlChanged(segmentedControl)
+        feedFlashbackVC.segmentedControlChanged(segmentedControl)
     }
     
     func timeElapsedString() -> String {
