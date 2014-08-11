@@ -73,7 +73,6 @@
 		5E9D038B18AB736C00634EB9 /* BINotificationFollowRequestCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E9D038A18AB736C00634EB9 /* BINotificationFollowRequestCell.m */; };
 		5E9D038E18AB87E600634EB9 /* BINotificationHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E9D038D18AB87E600634EB9 /* BINotificationHelper.m */; };
 		5E9DF17E18AA348000FA69E5 /* BITabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E9DF17D18AA348000FA69E5 /* BITabBarController.m */; };
-		5EAB8AA4187E73DF00B02953 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EAB8AA3187E73DF00B02953 /* Foundation.framework */; };
 		5EAB8AA6187E73DF00B02953 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EAB8AA5187E73DF00B02953 /* CoreGraphics.framework */; };
 		5EAB8AA8187E73DF00B02953 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EAB8AA7187E73DF00B02953 /* UIKit.framework */; };
 		5EAB8AAE187E73DF00B02953 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5EAB8AAC187E73DF00B02953 /* InfoPlist.strings */; };
@@ -114,6 +113,7 @@
 		5EB8148919877AB3007B7502 /* BIFlashbackMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EB8148819877AB3007B7502 /* BIFlashbackMainViewController.swift */; };
 		5EC8DAB81985B628000ED81C /* BIFlashbackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC8DAB61985B628000ED81C /* BIFlashbackViewController.swift */; };
 		5EDCB5C01995FE3B00ACE1DF /* BIFeedBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EDCB5BF1995FE3B00ACE1DF /* BIFeedBaseViewController.m */; };
+		5EFAA845199887CF00AEF2B1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EAB8AA3187E73DF00B02953 /* Foundation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -311,6 +311,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5EFAA845199887CF00AEF2B1 /* Foundation.framework in Frameworks */,
 				5E72976D18A9F32A008D356C /* CoreTelephony.framework in Frameworks */,
 				5E72976B18A9F31C008D356C /* Accelerate.framework in Frameworks */,
 				5E72976918A9F312008D356C /* AdSupport.framework in Frameworks */,
@@ -328,7 +329,6 @@
 				5EAB8AA6187E73DF00B02953 /* CoreGraphics.framework in Frameworks */,
 				5EAB8AA8187E73DF00B02953 /* UIKit.framework in Frameworks */,
 				5EAB8AFF187FC8A100B02953 /* Parse.framework in Frameworks */,
-				5EAB8AA4187E73DF00B02953 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

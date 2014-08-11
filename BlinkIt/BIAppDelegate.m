@@ -32,6 +32,8 @@
 
     [[UIApplication sharedApplication] setMinimumBackgroundFetchInterval:UIApplicationBackgroundFetchIntervalMinimum];
 
+    [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithWhite:0.94 alpha:1.0]];
+    
     // continue
     [PFImageView class];
     [self presentCorrectRootController];

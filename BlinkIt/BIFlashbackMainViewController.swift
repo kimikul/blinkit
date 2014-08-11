@@ -15,7 +15,8 @@ class BIFlashbackMainViewController: BIViewController, UIPageViewControllerDataS
     var feedFlashbackVC:BIFlashbackFeedViewController!
     var myFlashbackVC:BIFlashbackViewController!
     var flashbackDates:Array<NSDate>
-
+    var pageControl:UIPageControl!
+    
 // pragma mark : lifecycle
 
     required init(coder aDecoder: NSCoder!) {
@@ -69,33 +70,26 @@ class BIFlashbackMainViewController: BIViewController, UIPageViewControllerDataS
 // pragma mark : segmented control
     
     func setupSegmentedControl() {
-        navigationItem.titleView = segmentedControl
+        let titleView = UIView(frame: CGRectMake(0, 0, 300, 44))
+        segmentedControl.frame = CGRectMake(0, 2, 220, 26)
+        segmentedControl.center.x = titleView.center.x
         segmentedControl.addTarget(self, action: "segmentedControlChanged:", forControlEvents: UIControlEvents.ValueChanged)
+        titleView.addSubview(segmentedControl)
+        
+        let pageControl = UIPageControl(frame: CGRectMake(0, 26, 300, 20))
+        pageControl.numberOfPages = 2
+        pageControl.currentPage = 0
+        pageControl.currentPageIndicatorTintColor = UIColor.coral()
+        pageControl.pageIndicatorTintColor = UIColor.lightGrayColor()
+        self.pageControl = pageControl
+        titleView.addSubview(pageControl)
+        
+        navigationItem.titleView = titleView
     }
     
     func segmentedControlChanged(segmentedControl: UISegmentedControl) {
         myFlashbackVC.segmentedControlChanged(segmentedControl)
         feedFlashbackVC.segmentedControlChanged(segmentedControl)
-    }
-    
-    func timeElapsedString() -> String {
-        let index = segmentedControl.selectedSegmentIndex
-        
-        var timePeriod = ""
-        switch index {
-        case 0:
-            timePeriod = "1 month ago"
-        case 1:
-            timePeriod = "3 months ago"
-        case 2:
-            timePeriod = "6 months ago"
-        case 3:
-            timePeriod = "1 year ago"
-        default:
-            timePeriod = ""
-        }
-        
-        return timePeriod
     }
     
 // pragma mark : pageVC
@@ -133,5 +127,15 @@ class BIFlashbackMainViewController: BIViewController, UIPageViewControllerDataS
         }
         
         return nil
+    }
+    
+    func pageViewController(pageViewController: UIPageViewController!, didFinishAnimating finished: Bool, previousViewControllers: [AnyObject]!, transitionCompleted completed: Bool) {
+        if completed {
+            if previousViewControllers[0].isEqual(myFlashbackVC) {
+                pageControl.currentPage = 1
+            } else {
+                pageControl.currentPage = 0
+            }
+        }
     }
 }

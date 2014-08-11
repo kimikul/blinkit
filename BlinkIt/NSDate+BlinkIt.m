@@ -83,4 +83,27 @@
     return [[NSCalendar currentCalendar] dateFromComponents:comps];
 }
 
++ (NSString*)elapsedTimeFromFlashbackIndex:(NSInteger)index {
+    NSString *timePeriod = @"";
+    
+    switch (index) {
+        case 0:
+            timePeriod = @"1 month ago";
+            break;
+        case 1:
+            timePeriod = @"3 months ago";
+            break;
+        case 2:
+            timePeriod = @"6 months ago";
+            break;
+        case 3:
+            timePeriod = @"1 year ago";
+            break;
+        default:
+            break;
+    }
+    
+    return timePeriod;
+}
+
 @end

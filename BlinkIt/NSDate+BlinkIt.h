@@ -18,5 +18,5 @@
 + (NSString*)spelledOutDateNoDay:(NSDate*)date; // September 09, 2014
 + (NSDate*)beginningOfDay:(NSDate*)date;
 + (NSDate*)endOfDay:(NSDate*)date;
-
++ (NSString*)elapsedTimeFromFlashbackIndex:(NSInteger)index;
 @end

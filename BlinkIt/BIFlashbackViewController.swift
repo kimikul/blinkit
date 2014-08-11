@@ -42,7 +42,7 @@ class BIFlashbackViewController: BIMyBlinksBaseViewController {
             self.allBlinksArray = nil
         }
         
-        let timePeriod = timeElapsedString()
+        let timePeriod = NSDate.elapsedTimeFromFlashbackIndex(index)
         
         var secondaryText = "Try to blink every day so you have more to look back on :)"
         
@@ -56,26 +56,6 @@ class BIFlashbackViewController: BIMyBlinksBaseViewController {
         
         noPostsLabel.text = String(format: "You didn't post anything %@\n\n%@", timePeriod, secondaryText)
         reloadTableData()
-    }
-   
-    func timeElapsedString() -> String {
-        let index = segmentedControl.selectedSegmentIndex
-
-        var timePeriod = ""
-        switch index {
-        case 0:
-            timePeriod = "1 month ago"
-        case 1:
-            timePeriod = "3 months ago"
-        case 2:
-            timePeriod = "6 months ago"
-        case 3:
-            timePeriod = "1 year ago"
-        default:
-            timePeriod = ""
-        }
-        
-        return timePeriod
     }
     
 // pragma mark : requests
@@ -115,7 +95,7 @@ class BIFlashbackViewController: BIMyBlinksBaseViewController {
     }
     
     override func tableView(tableView: UITableView!, viewForHeaderInSection section: Int) -> UIView! {
-        let dateString:String = String(format:"%@, you said...",timeElapsedString())
+        let dateString:String = String(format:"%@, you said...",NSDate.elapsedTimeFromFlashbackIndex(segmentedControl.selectedSegmentIndex))
         
         let headerView = UIView(frame: CGRectMake(0, 0, 320, 34))
         headerView.backgroundColor = UIColor(white: 0.9, alpha: 1.0)

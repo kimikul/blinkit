@@ -21,7 +21,7 @@
 #pragma mark - segmented control
 
 - (void)segmentedControlChanged:(UISegmentedControl*)segmentedControl {
-    NSInteger index = segmentedControl.selectedSegmentIndex;
+    NSInteger index = segmentedControl.selectedSegmentIndex >= 0 ? segmentedControl.selectedSegmentIndex : 0;
     NSDate *date = self.flashbackDates[index];
     
     NSArray *currentBlinks = [self.blinksDict objectForKey:date];
@@ -33,7 +33,12 @@
         self.dateArray = nil;
     }
     
+    CGPoint offset = self.tableView.contentOffset;
+    [self.tableView setContentOffset:offset animated:NO];
+    
     [self reloadTableData];
+    
+    self.tableView.contentOffset = CGPointMake(0, 0 - self.tableView.contentInset.top);
 }
 
 - (void)fetchFlashbackFeed {
