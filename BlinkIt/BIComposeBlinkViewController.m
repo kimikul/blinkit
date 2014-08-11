@@ -507,11 +507,7 @@
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text {
     _placeholderLabel.hidden = (text.length < 1 && textView.text.length < 2) ? NO : YES;
 
-    if (textView.text.length < 200 || text.length == 0) {
-        return YES;
-    }
-    
-    return NO;
+    return YES;
 }
 
 - (void)textViewDidChange:(UITextView *)textView {
@@ -519,7 +515,7 @@
     [self updateRemainingCharLabel];
     
     // enable / disable submit button
-    self.navigationItem.rightBarButtonItem.enabled = ([self contentTextFieldHasContent] || _selectedImage) ? YES : NO;
+    self.navigationItem.rightBarButtonItem.enabled = (textView.text.length <= 200 && ([self contentTextFieldHasContent] || _selectedImage)) ? YES : NO;
     
     [textView scrollRangeToVisible:NSMakeRange(textView.text.length + 10, 0)];
 }
