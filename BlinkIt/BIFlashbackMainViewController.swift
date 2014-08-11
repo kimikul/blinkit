@@ -79,6 +79,7 @@ class BIFlashbackMainViewController: BIViewController, UIPageViewControllerDataS
         let pageControl = UIPageControl(frame: CGRectMake(0, 26, 300, 20))
         pageControl.numberOfPages = 2
         pageControl.currentPage = 0
+        pageControl.userInteractionEnabled = false
         pageControl.currentPageIndicatorTintColor = UIColor.coral()
         pageControl.pageIndicatorTintColor = UIColor.lightGrayColor()
         self.pageControl = pageControl
