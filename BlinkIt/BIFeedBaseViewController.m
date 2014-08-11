@@ -10,7 +10,11 @@
 #import "BIPaginationTableViewCell.h"
 #import "BINoFollowResultsTableViewCell.h"
 #import "BIFeedPhotoTableViewCell.h"
+#import "BIProfileViewController.h"
 #import "BIFeedTableViewCell.h"
+
+@interface BIFeedBaseViewController () <BIExpandImageHelperDelegate, BIFeedTableViewCellDelegate>
+@end
 
 @implementation BIFeedBaseViewController
 
@@ -58,6 +62,8 @@
 }
 
 - (void)setupTableViewDefaults {
+    self.tableView.scrollsToTop = YES;
+
     [self.tableView registerNib:[UINib nibWithNibName:[BIFeedPhotoTableViewCell reuseIdentifier] bundle:[NSBundle mainBundle]] forCellReuseIdentifier:[BIFeedPhotoTableViewCell reuseIdentifier]];
     [self.tableView registerNib:[UINib nibWithNibName:[BIFeedTableViewCell reuseIdentifier] bundle:[NSBundle mainBundle]] forCellReuseIdentifier:[BIFeedTableViewCell reuseIdentifier]];
 }

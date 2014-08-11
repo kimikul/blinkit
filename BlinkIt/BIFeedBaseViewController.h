@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "BITableViewController.h"
 
-@interface BIFeedBaseViewController : BITableViewController <BIExpandImageHelperDelegate, BIFeedTableViewCellDelegate>
+@interface BIFeedBaseViewController : BITableViewController
 
 @property (nonatomic, assign) BOOL canPaginate;
 @property (nonatomic, strong) NSMutableArray *allBlinksArray; // total list of blinks displayed

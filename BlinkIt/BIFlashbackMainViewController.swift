@@ -1,5 +1,5 @@
 //
-//  BIFlashbackPageViewController.swift
+//  BIFlashbackMainViewController.swift
 //  BlinkIt
 //
 //  Created by Kimberly Hsiao on 7/28/14.
@@ -16,13 +16,16 @@ class BIFlashbackMainViewController: BIViewController, UIPageViewControllerDataS
 
     var segmentedControl:UISegmentedControl
     var pageViewController:UIPageViewController!
-    var testVC:UIViewController?
+    var feedFlashbackVC:BIFlashbackFeedViewController!
     var myFlashbackVC:BIFlashbackViewController!
+    var flashbackDates:Array<NSDate>
 
 // pragma mark : lifecycle
 
-    init(coder aDecoder: NSCoder!) {
+    required init(coder aDecoder: NSCoder!) {
         self.segmentedControl = UISegmentedControl(items: ["1 mo","3 mo","6 mo","1 yr"])
+        self.flashbackDates = []
+        
         super.init(coder: aDecoder)
     }
     
@@ -31,6 +34,40 @@ class BIFlashbackMainViewController: BIViewController, UIPageViewControllerDataS
         navigationController.navigationBar.translucent = false
         setupSegmentedControl()
         setupPageVC()
+        calculateFlashbackDates()
+    }
+    
+// pragma mark : flashback dates
+    
+    func calculateFlashbackDates() {
+        let today = NSDate.date()
+        let dateComponents = NSDateComponents()
+        
+        dateComponents.month = -1
+        var oneMonthAgo = NSCalendar.currentCalendar().dateByAddingComponents(dateComponents, toDate: today, options: nil)
+        oneMonthAgo = NSDate.beginningOfDay(oneMonthAgo)
+        
+        dateComponents.month = -3
+        var threeMonthsAgo = NSCalendar.currentCalendar().dateByAddingComponents(dateComponents, toDate: today, options: nil)
+        threeMonthsAgo = NSDate.beginningOfDay(threeMonthsAgo)
+        
+        dateComponents.month = -6
+        var sixMonthsAgo = NSCalendar.currentCalendar().dateByAddingComponents(dateComponents, toDate: today, options: nil)
+        sixMonthsAgo = NSDate.beginningOfDay(sixMonthsAgo)
+        
+        dateComponents.month = 0
+        dateComponents.year = -1
+        var oneYearAgo = NSCalendar.currentCalendar().dateByAddingComponents(dateComponents, toDate: today, options: nil)
+        oneYearAgo = NSDate.beginningOfDay(oneYearAgo)
+        
+        let flashbackDatesArray:Array<NSDate> = [oneMonthAgo,threeMonthsAgo,sixMonthsAgo,oneYearAgo]
+        flashbackDates = flashbackDatesArray
+        
+        myFlashbackVC.flashbackDates = flashbackDatesArray
+        myFlashbackVC.fetchFlashbacks()
+        
+        feedFlashbackVC.flashbackDates = flashbackDatesArray
+        feedFlashbackVC.fetchFlashbackFeed()
     }
     
 // pragma mark : segmented control
@@ -68,11 +105,11 @@ class BIFlashbackMainViewController: BIViewController, UIPageViewControllerDataS
 // pragma mark : pageVC
 
     func setupPageVC() {
-        testVC = UIViewController(nibName: nil, bundle: nil)
-        testVC!.view.backgroundColor = UIColor.redColor()
-        
         myFlashbackVC = self.storyboard.instantiateViewControllerWithIdentifier("BIFlashbackViewController") as BIFlashbackViewController
         myFlashbackVC.segmentedControl = segmentedControl
+        
+        feedFlashbackVC = self.storyboard.instantiateViewControllerWithIdentifier("BIFlashbackFeedViewController") as BIFlashbackFeedViewController
+        feedFlashbackVC.segmentedControl = segmentedControl
         
         pageViewController = UIPageViewController(transitionStyle: .Scroll, navigationOrientation: .Horizontal, options: nil)
         pageViewController.dataSource = self;
@@ -87,7 +124,7 @@ class BIFlashbackMainViewController: BIViewController, UIPageViewControllerDataS
     }
     
     func pageViewController(pageViewController: UIPageViewController!, viewControllerBeforeViewController viewController: UIViewController!) -> UIViewController! {
-        if viewController.isEqual(testVC) {
+        if viewController.isEqual(feedFlashbackVC) {
             return myFlashbackVC
         }
         
@@ -96,7 +133,7 @@ class BIFlashbackMainViewController: BIViewController, UIPageViewControllerDataS
     
     func pageViewController(pageViewController: UIPageViewController!, viewControllerAfterViewController viewController: UIViewController!) -> UIViewController! {
         if viewController.isEqual(myFlashbackVC) {
-            return testVC
+            return feedFlashbackVC
         }
         
         return nil

@@ -27,6 +27,7 @@
 		5E42D404189CB7C300F651E0 /* BIFollowingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E42D403189CB7C300F651E0 /* BIFollowingTableViewCell.m */; };
 		5E42D408189CDB7200F651E0 /* BIFollowManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E42D407189CDB7200F651E0 /* BIFollowManager.m */; };
 		5E42D40B189CDF3500F651E0 /* BIConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E42D40A189CDF3500F651E0 /* BIConstants.m */; };
+		5E4EAEA919984743003E31B7 /* BIFlashbackFeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E4EAEA819984743003E31B7 /* BIFlashbackFeedViewController.m */; };
 		5E55D4E618BDBA8A00FE5168 /* BIFileSystemImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E55D4E518BDBA8A00FE5168 /* BIFileSystemImageCache.m */; };
 		5E55D4E918BDC92000FE5168 /* BIReminderTimeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E55D4E818BDC92000FE5168 /* BIReminderTimeViewController.m */; };
 		5E55D4EC18BDE0A100FE5168 /* BIHomeHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E55D4EB18BDE0A100FE5168 /* BIHomeHeaderView.m */; };
@@ -164,6 +165,8 @@
 		5E42D407189CDB7200F651E0 /* BIFollowManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BIFollowManager.m; sourceTree = "<group>"; };
 		5E42D409189CDF3500F651E0 /* BIConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BIConstants.h; sourceTree = "<group>"; };
 		5E42D40A189CDF3500F651E0 /* BIConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BIConstants.m; sourceTree = "<group>"; };
+		5E4EAEA719984743003E31B7 /* BIFlashbackFeedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BIFlashbackFeedViewController.h; sourceTree = "<group>"; };
+		5E4EAEA819984743003E31B7 /* BIFlashbackFeedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BIFlashbackFeedViewController.m; sourceTree = "<group>"; };
 		5E55D4E418BDBA8A00FE5168 /* BIFileSystemImageCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BIFileSystemImageCache.h; sourceTree = "<group>"; };
 		5E55D4E518BDBA8A00FE5168 /* BIFileSystemImageCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BIFileSystemImageCache.m; sourceTree = "<group>"; };
 		5E55D4E718BDC92000FE5168 /* BIReminderTimeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BIReminderTimeViewController.h; sourceTree = "<group>"; };
@@ -735,6 +738,8 @@
 			children = (
 				5EC8DAB61985B628000ED81C /* BIFlashbackViewController.swift */,
 				5EB8148819877AB3007B7502 /* BIFlashbackMainViewController.swift */,
+				5E4EAEA719984743003E31B7 /* BIFlashbackFeedViewController.h */,
+				5E4EAEA819984743003E31B7 /* BIFlashbackFeedViewController.m */,
 			);
 			name = Flashback;
 			sourceTree = "<group>";
@@ -887,6 +892,7 @@
 				5E639297188BB5CE00D1AE80 /* BIUserDefaultsKeys.m in Sources */,
 				5E7297BC18AA237C008D356C /* MPSurvey.m in Sources */,
 				5E7297CD18AA23A0008D356C /* UIView+MPSnapshotImage.m in Sources */,
+				5E4EAEA919984743003E31B7 /* BIFlashbackFeedViewController.m in Sources */,
 				5E9DF17E18AA348000FA69E5 /* BITabBarController.m in Sources */,
 				5E7297D718AA23C9008D356C /* MPSurveyNavigationController.m in Sources */,
 				5E42D3FA189CA77C00F651E0 /* BIFollowersViewController.m in Sources */,

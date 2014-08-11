@@ -13,3 +13,5 @@
 #import "BIHomePhotoTableViewCell.h"
 #import "BIHomeTableViewCell.h"
 #import "BIMyBlinksBaseViewController.h"
+#import "BIFeedBaseViewController.h"
+#import "BIFlashbackFeedViewController.h"

@@ -8,6 +8,7 @@
 
 #import "BIMyBlinksBaseViewController.h"
 #import "BIPaginationTableViewCell.h"
+#import "BIHomeTableViewCell.h"
 
 @interface BIMyBlinksBaseViewController () <BIHomeTableViewCellDelegate, BIExpandImageHelperDelegate>
 

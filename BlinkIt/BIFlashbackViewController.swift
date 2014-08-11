@@ -11,18 +11,17 @@ import UIKit
 class BIFlashbackViewController: BIMyBlinksBaseViewController, FlashbackSegmentedControlDelegate {
 
     var segmentedControl:UISegmentedControl!
-    var flashbackDates:Array<NSDate>
     var flashbackBlinks:Dictionary<NSDate,PFObject>
-    
+    var flashbackDates:Array<NSDate>
+
     @IBOutlet weak var noPostsView: UIView!
     @IBOutlet weak var noPostsLabel: UILabel!
     
 // pragma mark : lifecycle
     
-    init(coder aDecoder: NSCoder!) {
+    required init(coder aDecoder: NSCoder!) {
         self.flashbackBlinks = Dictionary()
         self.flashbackDates = []
-        
         super.init(coder: aDecoder)
         
         self.useEmptyTableFooter = true
@@ -30,11 +29,18 @@ class BIFlashbackViewController: BIMyBlinksBaseViewController, FlashbackSegmente
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        fetchFlashbacks()
+//        fetchFlashbacks()
     }
 
-// pragma mark : segmented control
+//// pragma mark : getter/setter
+//
+//    override func setFlashbackDates(newFlashbackDates:Array<NSDate>) -> (void) {
+//        self.flashbackDates = newFlashbackDates
+//        fetchFlashbacks()
+//    }
     
+// pragma mark : segmented control
+
     func segmentedControlChanged(segmentedControl: UISegmentedControl) {
         let index = segmentedControl.selectedSegmentIndex
         let date = flashbackDates[index]
@@ -82,33 +88,7 @@ class BIFlashbackViewController: BIMyBlinksBaseViewController, FlashbackSegmente
     
 // pragma mark : requests
     
-    func calculateFlashbackDates() -> Array<NSDate> {
-        let today = NSDate.date()
-        let dateComponents = NSDateComponents()
-        
-        dateComponents.month = -1
-        var oneMonthAgo = NSCalendar.currentCalendar().dateByAddingComponents(dateComponents, toDate: today, options: nil)
-        oneMonthAgo = NSDate.beginningOfDay(oneMonthAgo)
-        
-        dateComponents.month = -3
-        var threeMonthsAgo = NSCalendar.currentCalendar().dateByAddingComponents(dateComponents, toDate: today, options: nil)
-        threeMonthsAgo = NSDate.beginningOfDay(threeMonthsAgo)
-
-        dateComponents.month = -6
-        var sixMonthsAgo = NSCalendar.currentCalendar().dateByAddingComponents(dateComponents, toDate: today, options: nil)
-        sixMonthsAgo = NSDate.beginningOfDay(sixMonthsAgo)
-
-        dateComponents.month = 0
-        dateComponents.year = -1
-        var oneYearAgo = NSCalendar.currentCalendar().dateByAddingComponents(dateComponents, toDate: today, options: nil)
-        oneYearAgo = NSDate.beginningOfDay(oneYearAgo)
-
-        return [oneMonthAgo,threeMonthsAgo,sixMonthsAgo,oneYearAgo]
-    }
-    
     func fetchFlashbacks() {
-        flashbackDates = self.calculateFlashbackDates()
-
         let begOneMonthDate = flashbackDates[0]
         let endOneMonthDate = NSDate.endOfDay(flashbackDates[0])
         let begThreeMonthsDate = flashbackDates[1]

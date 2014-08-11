@@ -22,7 +22,7 @@ class BIImageViewController: BIViewController, UIScrollViewDelegate {
     
 // MARK: init
     
-    init(coder aDecoder: NSCoder!) {
+    required init(coder aDecoder: NSCoder!) {
         self.image = UIImage()
         self.shouldDismissAnimated = false
         super.init(coder: aDecoder)
