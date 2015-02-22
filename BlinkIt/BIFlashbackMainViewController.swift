@@ -10,14 +10,18 @@ import UIKit
 
 class BIFlashbackMainViewController: BIViewController, UIPageViewControllerDataSource, UIPageViewControllerDelegate {
 
-    var pageViewController:UIPageViewController!
+    var flashbackPageViewController:UIPageViewController!
     var pageControl:UIPageControl!
+    
     var navTitleLabel:UILabel!
+    
+    var currentDate:NSDate!
     var possibleFlashbackDates:Array<NSDate>    // all 4 possible flashback dates
-    var flashbackBlinks:Array<PFObject>         // blinks for flashback dates
     var existingFlashbackDates:Array<NSDate>    // dates with actual blinks associated
-    var flashbackVCs:Array<BIFlashbackViewController>
+    var flashbackBlinks:Array<PFObject>         // blinks for flashback dates
+    var flashbackVCs:Array<BIFlashbackViewController>   // vcs for flashback blinks
 
+    @IBOutlet weak var noFlashbacksView: UIView!
     
 // pragma mark : lifecycle
 
@@ -33,6 +37,23 @@ class BIFlashbackMainViewController: BIViewController, UIPageViewControllerDataS
         super.viewDidLoad()
 
         navigationController!.navigationBar.translucent = false
+        
+        self.refreshData()
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if possibleFlashbackDates.count > 0 {
+            let todaysDate = NSDate.beginningOfDay(NSDate())
+            let prevDate = NSDate.beginningOfDay(currentDate)
+            if !todaysDate.isEqualToDate(prevDate) {
+                self.refreshData()
+            }
+        }
+    }
+    
+    func refreshData() {
         calculateFlashbackDates()
         fetchFlashbacks()
     }
@@ -41,6 +62,8 @@ class BIFlashbackMainViewController: BIViewController, UIPageViewControllerDataS
     
     func calculateFlashbackDates() {
         let today = NSDate()
+        currentDate = today
+        
         let dateComponents = NSDateComponents()
         
         dateComponents.month = -1
@@ -98,7 +121,6 @@ class BIFlashbackMainViewController: BIViewController, UIPageViewControllerDataS
             self.existingFlashbackDates = datesArray
             
             self.setupPageVC()
-            self.setupPageIndicator()
         }
     }
     
@@ -107,16 +129,16 @@ class BIFlashbackMainViewController: BIViewController, UIPageViewControllerDataS
     func setupPageIndicator() {
         let titleView = UIView(frame: CGRectMake(0, 0, 300, 44))
         
-        let navTitle = UILabel(frame: CGRectMake(0, 2, 300, 24))
+        let navTitle = UILabel(frame: CGRectMake(0, 5, 300, 24))
         navTitle.text = NSDate.elapsedTimeFromFlashbackIndex(self.flashbackVCs[0].dateIndex)
         navTitle.textColor = UIColor.darkGrayColor()
         navTitle.textAlignment = NSTextAlignment.Center
-        navTitle.font = UIFont.boldSystemFontOfSize(17)
+        navTitle.font = UIFont.boldSystemFontOfSize(13)
         navTitleLabel = navTitle
         titleView.addSubview(navTitle)
         
         let pageControl = UIPageControl(frame: CGRectMake(0, 24, 300, 20))
-        pageControl.numberOfPages = 4
+        pageControl.numberOfPages = existingFlashbackDates.count
         pageControl.currentPage = 0
         pageControl.userInteractionEnabled = false
         pageControl.currentPageIndicatorTintColor = UIColor.coral()
@@ -145,15 +167,30 @@ class BIFlashbackMainViewController: BIViewController, UIPageViewControllerDataS
         
         flashbackVCs = viewControllers
         
-        pageViewController = UIPageViewController(transitionStyle: .Scroll, navigationOrientation: .Horizontal, options: nil)
-        pageViewController.dataSource = self;
-        pageViewController.delegate = self;
+        let flashbackPageVC = UIPageViewController(transitionStyle: .Scroll, navigationOrientation: .Horizontal, options: nil)
+        flashbackPageVC.dataSource = self;
+        flashbackPageVC.delegate = self;
+        
+        
+        if (flashbackVCs.count > 0) {
+            var shouldAnimate = false
 
-        pageViewController.setViewControllers([flashbackVCs[0]], direction: UIPageViewControllerNavigationDirection.Forward, animated: true, completion:nil)
-
-        addChildViewController(pageViewController)
-        view.addSubview(pageViewController.view)
-        pageViewController.didMoveToParentViewController(self)
+            if flashbackPageViewController == nil {
+                flashbackPageViewController = flashbackPageVC
+                addChildViewController(flashbackPageViewController)
+                view.addSubview(flashbackPageViewController.view)
+                flashbackPageViewController.didMoveToParentViewController(self)
+                
+                shouldAnimate = true
+            }
+            
+            flashbackPageViewController.setViewControllers([flashbackVCs[0]], direction: UIPageViewControllerNavigationDirection.Forward, animated: false, completion:nil)
+            
+            self.setupPageIndicator()
+        } else {
+            self.noFlashbacksView.hidden = false
+            self.title = "Flashback"
+        }
     }
 
     
