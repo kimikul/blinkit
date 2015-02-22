@@ -11,7 +11,8 @@ import UIKit
 class BIFlashbackViewController: BIMyBlinksBaseViewController {
     var flashbackDate:NSDate!
     var flashbackBlink:PFObject!
-
+    var dateIndex:Int!
+    
     @IBOutlet weak var noPostsView: UIView!
     @IBOutlet weak var noPostsLabel: UILabel!
     
@@ -34,7 +35,7 @@ class BIFlashbackViewController: BIMyBlinksBaseViewController {
     func loadBlink() {
         self.allBlinksArray = NSMutableArray(object: flashbackBlink)
         
-        let timePeriod = NSDate.elapsedTimeFromFlashbackIndex(0)
+        let timePeriod = NSDate.elapsedTimeFromFlashbackIndex(dateIndex)
         
         var secondaryText = "Try to blink every day so you have more to look back on :)"
         
@@ -55,7 +56,7 @@ class BIFlashbackViewController: BIMyBlinksBaseViewController {
     }
     
     override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView {
-        let dateString:String = String(format:"%@, you said...",NSDate.elapsedTimeFromFlashbackIndex(0))
+        let dateString:String = String(format:"%@, you said...",NSDate.elapsedTimeFromFlashbackIndex(dateIndex))
         
         let headerView = UIView(frame: CGRectMake(0, 0, 320, 34))
         headerView.backgroundColor = UIColor(white: 0.9, alpha: 1.0)

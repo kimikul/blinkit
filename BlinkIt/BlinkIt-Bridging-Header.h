@@ -5,6 +5,7 @@
 #import "UIImageViewModeScaleAspect.h"
 #import "BITableViewController.h"
 #import "NSDate+BlinkIt.h"
+#import "UIView+BlinkIt.h"
 #import <Parse/Parse.h>
 #import "BIFeedPhotoTableViewCell.h"
 #import "BIFeedTableViewCell.h"

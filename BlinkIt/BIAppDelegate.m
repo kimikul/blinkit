@@ -30,10 +30,8 @@
     [self refreshFriendsAndFollows];
     [self refreshNotificationStuff];
 
-    [[UIApplication sharedApplication] setMinimumBackgroundFetchInterval:UIApplicationBackgroundFetchIntervalMinimum];
+    [self customizeAppearance];
 
-    [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithWhite:0.94 alpha:1.0]];
-    
     // continue
     [PFImageView class];
     [self presentCorrectRootController];
@@ -41,6 +39,22 @@
     [BIMixpanelHelper sendMixpanelEvent:@"APP_Open" withProperties:nil];
     
     return YES;
+}
+
+- (void)customizeAppearance {
+    [[UIApplication sharedApplication] setMinimumBackgroundFetchInterval:UIApplicationBackgroundFetchIntervalMinimum];
+    
+    NSShadow *shadow = [[NSShadow alloc] init];
+    shadow.shadowColor = [UIColor whiteColor];
+    shadow.shadowOffset = CGSizeMake(0, 0);
+    
+    NSDictionary *textTitleOptions = @{
+                                       NSForegroundColorAttributeName : [UIColor darkGrayColor],
+                                       NSShadowAttributeName: shadow,
+                                       };
+    
+    [[UINavigationBar appearance] setTitleTextAttributes:textTitleOptions];
+    [[UINavigationBar appearance] setBarTintColor:[UIColor mintGreen]];
 }
 
 #pragma mark - parse init

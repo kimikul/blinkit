@@ -40,6 +40,7 @@
     button.imageEdgeInsets = UIEdgeInsetsMake(0, 12, 16, 12);
     
     [button setImage:highlightImage forState:UIControlStateHighlighted];
+    
     [button setImage:buttonImage forState:UIControlStateNormal];
     [button addTarget:self action:@selector(presentTodaysBlinkVC:) forControlEvents:UIControlEventTouchUpInside];
     [button addTarget:self action:@selector(highlightButton:) forControlEvents:UIControlEventTouchDown];

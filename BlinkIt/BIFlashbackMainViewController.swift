@@ -12,22 +12,26 @@ class BIFlashbackMainViewController: BIViewController, UIPageViewControllerDataS
 
     var pageViewController:UIPageViewController!
     var pageControl:UIPageControl!
-    var flashbackDates:Array<NSDate>
-    var flashbackBlinks:Dictionary<NSDate,PFObject>
+    var navTitleLabel:UILabel!
+    var possibleFlashbackDates:Array<NSDate>    // all 4 possible flashback dates
+    var flashbackBlinks:Array<PFObject>         // blinks for flashback dates
+    var existingFlashbackDates:Array<NSDate>    // dates with actual blinks associated
     var flashbackVCs:Array<BIFlashbackViewController>
 
     
 // pragma mark : lifecycle
 
     required init(coder aDecoder: NSCoder) {
-        self.flashbackDates = []
-        self.flashbackBlinks = Dictionary()
+        self.possibleFlashbackDates = []
+        self.flashbackBlinks = []
         self.flashbackVCs = []
+        self.existingFlashbackDates = []
         super.init(coder: aDecoder)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
         navigationController!.navigationBar.translucent = false
         calculateFlashbackDates()
         fetchFlashbacks()
@@ -57,36 +61,42 @@ class BIFlashbackMainViewController: BIViewController, UIPageViewControllerDataS
         oneYearAgo = NSDate.beginningOfDay(oneYearAgo)
         
         var flashbackDatesArray:Array<NSDate> = [oneMonthAgo!,threeMonthsAgo!,sixMonthsAgo!,oneYearAgo!]
-        flashbackDates = flashbackDatesArray
+        possibleFlashbackDates = flashbackDatesArray
     }
     
 // pragma mark : fetch flashbacks for given dates
     
     func fetchFlashbacks() {
-        let begOneMonthDate = flashbackDates[0]
-        let endOneMonthDate = NSDate.endOfDay(flashbackDates[0])
-        let begThreeMonthsDate = flashbackDates[1]
-        let endThreeMonthsDate = NSDate.endOfDay(flashbackDates[1])
-        let begSixMonthsDate = flashbackDates[2]
-        let endSixMonthsDate = NSDate.endOfDay(flashbackDates[2])
-        let begOneYearDate = flashbackDates[3]
-        let endOneYearDate = NSDate.endOfDay(flashbackDates[3])
+        let begOneMonthDate = possibleFlashbackDates[0]
+        let endOneMonthDate = NSDate.endOfDay(possibleFlashbackDates[0])
+        let begThreeMonthsDate = possibleFlashbackDates[1]
+        let endThreeMonthsDate = NSDate.endOfDay(possibleFlashbackDates[1])
+        let begSixMonthsDate = possibleFlashbackDates[2]
+        let endSixMonthsDate = NSDate.endOfDay(possibleFlashbackDates[2])
+        let begOneYearDate = possibleFlashbackDates[3]
+        let endOneYearDate = NSDate.endOfDay(possibleFlashbackDates[3])
         
         let predicate = NSPredicate(format: "((date >= %@) AND (date < %@)) OR ((date >= %@) AND (date < %@)) OR ((date >= %@) AND (date < %@)) OR ((date >= %@) AND (date < %@))", begOneMonthDate, endOneMonthDate, begThreeMonthsDate, endThreeMonthsDate, begSixMonthsDate, endSixMonthsDate, begOneYearDate, endOneYearDate)
         
         let query = PFQuery(className: "Blink", predicate: predicate)
         query.whereKey("user", equalTo: PFUser.currentUser())
         query.includeKey("user")
+        query.orderByDescending("date")
         
         query.findObjectsInBackgroundWithBlock {
             (objects: [AnyObject]!, error: NSError!) -> Void in
-            var blinksDict = Dictionary<NSDate, PFObject>()
+            var blinksArray:Array<PFObject> = []
+            var datesArray:Array<NSDate> = []
+            
             for blink in objects {
                 let truncatedDate = NSDate.beginningOfDay(blink["date"] as NSDate)
-                blinksDict[truncatedDate] = blink as? PFObject
+                datesArray.append(truncatedDate)
+                blinksArray.append(blink as PFObject)
             }
             
-            self.flashbackBlinks = blinksDict
+            self.flashbackBlinks = blinksArray
+            self.existingFlashbackDates = datesArray
+            
             self.setupPageVC()
             self.setupPageIndicator()
         }
@@ -95,25 +105,41 @@ class BIFlashbackMainViewController: BIViewController, UIPageViewControllerDataS
 // pragma mark : page control
     
     func setupPageIndicator() {
-        let pageControl = UIPageControl(frame: CGRectMake(0, 26, 300, 20))
+        let titleView = UIView(frame: CGRectMake(0, 0, 300, 44))
+        
+        let navTitle = UILabel(frame: CGRectMake(0, 2, 300, 24))
+        navTitle.text = NSDate.elapsedTimeFromFlashbackIndex(self.flashbackVCs[0].dateIndex)
+        navTitle.textColor = UIColor.darkGrayColor()
+        navTitle.textAlignment = NSTextAlignment.Center
+        navTitle.font = UIFont.boldSystemFontOfSize(17)
+        navTitleLabel = navTitle
+        titleView.addSubview(navTitle)
+        
+        let pageControl = UIPageControl(frame: CGRectMake(0, 24, 300, 20))
         pageControl.numberOfPages = 4
         pageControl.currentPage = 0
         pageControl.userInteractionEnabled = false
         pageControl.currentPageIndicatorTintColor = UIColor.coral()
-        pageControl.pageIndicatorTintColor = UIColor.lightGrayColor()
+        pageControl.pageIndicatorTintColor = UIColor.whiteColor()
+        titleView.addSubview(pageControl)
+        
         self.pageControl = pageControl
         
-        navigationItem.titleView = pageControl
+        navigationItem.titleView = titleView
     }
     
 // pragma mark : pageVC
 
     func setupPageVC() {
         var viewControllers:Array<BIFlashbackViewController> = []
-        for (date, blink) in flashbackBlinks {
+        for var i = 0; i < existingFlashbackDates.count; i++ {
+            let date = existingFlashbackDates[i]
+            let blink = flashbackBlinks[i]
+            
             let flashbackVC = self.storyboard!.instantiateViewControllerWithIdentifier("BIFlashbackViewController") as BIFlashbackViewController
             flashbackVC.flashbackDate = date
             flashbackVC.flashbackBlink = blink
+            flashbackVC.dateIndex = self.indexOfObject(date, inArray: possibleFlashbackDates)
             viewControllers.append(flashbackVC)
         }
         
@@ -132,7 +158,8 @@ class BIFlashbackMainViewController: BIViewController, UIPageViewControllerDataS
 
     
     func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
-        var index = self.indexOfViewController(viewController, inPageController: pageViewController)
+
+        var index = self.indexOfObject(viewController, inArray:flashbackVCs)
         
         if index < 1 {
             return nil;
@@ -142,8 +169,8 @@ class BIFlashbackMainViewController: BIViewController, UIPageViewControllerDataS
     }
     
     func pageViewController(pageViewController: UIPageViewController, viewControllerAfterViewController viewController: UIViewController) -> UIViewController? {
-        var index = self.indexOfViewController(viewController, inPageController: pageViewController)
-        
+
+        var index = self.indexOfObject(viewController, inArray:flashbackVCs)
         if index < -1 || index >= (flashbackVCs.count-1) {
             return nil;
         } else {
@@ -152,19 +179,25 @@ class BIFlashbackMainViewController: BIViewController, UIPageViewControllerDataS
     }
     
     func pageViewController(pageViewController: UIPageViewController!, didFinishAnimating finished: Bool, previousViewControllers: [AnyObject]!, transitionCompleted completed: Bool) {
-        var indexOfCurrentPage = self.indexOfViewController(pageViewController.viewControllers[0] as UIViewController, inPageController: pageViewController)
+        let currentPage:BIFlashbackViewController = pageViewController.viewControllers[0] as BIFlashbackViewController
+        
+        let indexOfCurrentPage = self.indexOfObject(currentPage, inArray: flashbackVCs)
         
         if completed {
             pageControl.currentPage = indexOfCurrentPage
+            navTitleLabel.text = NSDate.elapsedTimeFromFlashbackIndex(currentPage.dateIndex)
+            navTitleLabel.fadeTransitionWithDuration(0.4)
         }
     }
     
-    func indexOfViewController(viewController: UIViewController, inPageController pageController: UIPageViewController) -> Int {
+// pragma mark - helpers
+    
+    func indexOfObject(obj: AnyObject, inArray array:Array<AnyObject>) -> Int {
         var index = -1
         
-        for var i = 0; i < flashbackVCs.count; i++ {
-            let page:UIViewController = flashbackVCs[i] as UIViewController
-            if page.isEqual(viewController) {
+        for var i = 0; i < array.count; i++ {
+            let page:AnyObject = array[i]
+            if page.isEqual(obj) {
                 index = i;
             }
         }
