@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6185.11" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <deployment defaultVersion="1792" identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6190.4"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -26,9 +28,6 @@
                     </label>
                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" scrollEnabled="NO" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xxr-Wf-xas">
                         <rect key="frame" x="5" y="42" width="310" height="51"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="310" id="7mc-kx-9Ls"/>
-                        </constraints>
                         <string key="text">Today, I learned how to edit client-side code through a web browser and was able to hack into Coachella's waiting page for Weekend 1 tickets.</string>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -62,8 +61,7 @@
                         <rect key="frame" x="10" y="93" width="300" height="300"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="300" id="9R3-fR-Zb3"/>
-                            <constraint firstAttribute="width" constant="300" id="hHb-CU-bm5"/>
+                            <constraint firstAttribute="width" secondItem="8Ci-fo-tyd" secondAttribute="height" multiplier="1:1" id="tmc-9k-DKX"/>
                         </constraints>
                     </imageView>
                     <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NO2-uC-wF8" userLabel="Tap Image View">
@@ -76,6 +74,7 @@
                     <constraint firstItem="dCt-KL-Qpq" firstAttribute="top" secondItem="bGP-72-Ha8" secondAttribute="top" id="ACa-Gd-qE9"/>
                     <constraint firstItem="8Ci-fo-tyd" firstAttribute="top" secondItem="NO2-uC-wF8" secondAttribute="top" id="Dd3-iT-brV"/>
                     <constraint firstItem="E0J-Hm-pMt" firstAttribute="leading" secondItem="bGP-72-Ha8" secondAttribute="leading" constant="10" id="GMP-kR-EbT"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="xxr-Wf-xas" secondAttribute="trailing" constant="-3" id="LLk-RJ-l6L"/>
                     <constraint firstItem="7jk-lQ-KwY" firstAttribute="top" secondItem="E0J-Hm-pMt" secondAttribute="bottom" constant="1" id="Mbm-Fl-lPE"/>
                     <constraint firstItem="7jk-lQ-KwY" firstAttribute="leading" secondItem="E0J-Hm-pMt" secondAttribute="leading" id="N3Q-aD-Ztd"/>
                     <constraint firstItem="7jk-lQ-KwY" firstAttribute="width" secondItem="E0J-Hm-pMt" secondAttribute="width" id="OaV-F5-Ciy"/>
@@ -84,6 +83,7 @@
                     <constraint firstAttribute="trailing" secondItem="dCt-KL-Qpq" secondAttribute="trailing" id="cVE-DP-YGi"/>
                     <constraint firstItem="xxr-Wf-xas" firstAttribute="top" secondItem="7jk-lQ-KwY" secondAttribute="bottom" constant="-6" id="dI3-Rr-uFb"/>
                     <constraint firstItem="8Ci-fo-tyd" firstAttribute="width" secondItem="NO2-uC-wF8" secondAttribute="width" id="eBT-BS-POe"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="8Ci-fo-tyd" secondAttribute="trailing" constant="2" id="rdN-4N-7Pw"/>
                     <constraint firstItem="8Ci-fo-tyd" firstAttribute="height" secondItem="NO2-uC-wF8" secondAttribute="height" id="roS-J7-Uxk"/>
                     <constraint firstItem="8Ci-fo-tyd" firstAttribute="leading" secondItem="xxr-Wf-xas" secondAttribute="leading" constant="5" id="stY-wL-k3P"/>
                     <constraint firstItem="E0J-Hm-pMt" firstAttribute="top" secondItem="bGP-72-Ha8" secondAttribute="top" constant="8" id="xki-oa-BnX"/>
@@ -105,9 +105,6 @@
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
-        <simulatedScreenMetrics key="destination" type="retina4">
-            <size key="portraitSize" width="320" height="568"/>
-            <size key="landscapeSize" width="568" height="320"/>
-        </simulatedScreenMetrics>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
 </document>

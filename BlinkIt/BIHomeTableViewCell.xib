@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6185.11" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6190.4"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -26,9 +28,6 @@
                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" scrollEnabled="NO" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Les-jj-6Gw">
                         <rect key="frame" x="5" y="42" width="310" height="51"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="310" id="HjX-Qf-hWd"/>
-                        </constraints>
                         <string key="text">Today, I learned how to edit client-side code through a web browser and was able to hack into Coachella's waiting page for Weekend 1 tickets.</string>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -67,6 +66,7 @@
                     <constraint firstItem="BRR-vA-tMX" firstAttribute="top" secondItem="MbJ-iY-qLl" secondAttribute="bottom" constant="1" id="GIs-71-0Rr"/>
                     <constraint firstItem="Ns2-tw-Bgd" firstAttribute="top" secondItem="89P-bU-hvn" secondAttribute="top" id="LbV-pk-vgc"/>
                     <constraint firstItem="MbJ-iY-qLl" firstAttribute="top" secondItem="89P-bU-hvn" secondAttribute="top" constant="8" id="W3I-m3-8NR"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="Les-jj-6Gw" secondAttribute="trailing" constant="-3" id="id0-yw-gQy"/>
                     <constraint firstItem="MbJ-iY-qLl" firstAttribute="leading" secondItem="89P-bU-hvn" secondAttribute="leading" constant="10" id="kho-QY-25j"/>
                     <constraint firstItem="Les-jj-6Gw" firstAttribute="leading" secondItem="BRR-vA-tMX" secondAttribute="leading" constant="-5" id="m6Q-gm-JBZ"/>
                 </constraints>
@@ -85,9 +85,6 @@
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
-        <simulatedScreenMetrics key="destination" type="retina4">
-            <size key="portraitSize" width="320" height="568"/>
-            <size key="landscapeSize" width="568" height="320"/>
-        </simulatedScreenMetrics>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
 </document>

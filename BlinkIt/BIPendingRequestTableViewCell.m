@@ -20,7 +20,7 @@
 #pragma mark - class methods
 
 + (CGFloat)cellHeight {
-    return 44;
+    return 50;
 }
 
 + (NSString*)reuseIdentifier {
