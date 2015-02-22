@@ -15,14 +15,14 @@ class BIImageViewController: BIViewController, UIScrollViewDelegate {
     var image : UIImage
     var shouldDismissAnimated : Bool
     var willDismissBlock : ((fromFrame: CGRect) -> Void)?
-    var didDismissBlock : dispatch_block_t?
+    var didDismissBlock : (() -> Void)?
     
     @IBOutlet weak var scrollView : UIScrollView!
     @IBOutlet weak var imageView : UIImageView!
     
 // MARK: init
     
-    required init(coder aDecoder: NSCoder!) {
+    required init(coder aDecoder: NSCoder) {
         self.image = UIImage()
         self.shouldDismissAnimated = false
         super.init(coder: aDecoder)
@@ -56,7 +56,7 @@ class BIImageViewController: BIViewController, UIScrollViewDelegate {
             defWillDismissBlock(fromFrame: imageViewFrame)
         }
         
-        self.presentingViewController.dismissViewControllerAnimated(self.shouldDismissAnimated, completion: didDismissBlock)
+        self.presentingViewController!.dismissViewControllerAnimated(self.shouldDismissAnimated, completion: didDismissBlock)
     }
     
 // MARK: ScrollViewDelegate

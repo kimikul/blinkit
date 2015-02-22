@@ -14,6 +14,5 @@
 #import "BIHomeTableViewCell.h"
 #import "BIMyBlinksBaseViewController.h"
 #import "BIFeedBaseViewController.h"
-#import "BIFlashbackFeedViewController.h"
 #import "UIColor+BlinkIt.h"
 #import "NSDate+BlinkIt.h"

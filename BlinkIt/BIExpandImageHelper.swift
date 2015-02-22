@@ -36,7 +36,7 @@ import UIKit
             
             let animationDuration = 0.2
             let imageViewController:BIImageViewController = self.delegate!.storyboard.instantiateViewControllerWithIdentifier("BIImageViewController") as BIImageViewController
-            imageViewController.image = imageView.image
+            imageViewController.image = imageView.image!
             imageViewController.shouldDismissAnimated = false
             imageViewController.willDismissBlock = { (fromFrame: CGRect) in
                 self.zoomImageView.contentMode = UIViewContentMode.ScaleAspectFit
