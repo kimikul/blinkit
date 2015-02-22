@@ -44,7 +44,7 @@
 - (void)setBlink:(PFObject *)blink {
     _blink = blink;
     
-//    _contentLabel.text = blink[@"content"];
+    _contentTextView.text = nil;    // workaround for repeating links
     _contentTextView.text = blink[@"content"];
     
     NSDate *date = _blink[@"date"];

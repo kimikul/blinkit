@@ -905,7 +905,7 @@ PRO TIP : Link your Facebook in Settings to find friends if you haven't yet</str
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="cYS-fk-xhT">
-                                                    <rect key="frame" x="7.5" y="8.5" width="31" height="33"/>
+                                                    <rect key="frame" x="7.5" y="8.5" width="31" height="33.5"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 </imageView>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Jaradayniea Marubayashi wants to follow you" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="krc-lo-zq8">

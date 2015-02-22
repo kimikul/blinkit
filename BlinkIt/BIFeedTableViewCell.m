@@ -67,6 +67,7 @@
     _blink = blink;
     
     _user = blink[@"user"];
+    _contentTextView.text = nil;    // workaround for repeating links
     _contentTextView.text = blink[@"content"];
     _userNameLabel.text = _user[@"name"];
     _timeLabel.text = [NSDate formattedTime:blink[@"date"]];

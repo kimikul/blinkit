@@ -38,12 +38,27 @@ class BIFlashbackMainViewController: BIViewController, UIPageViewControllerDataS
 
         navigationController!.navigationBar.translucent = false
         
+        self.setupNotifications()
         self.refreshData()
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
+        self.checkIfRefreshIsNecessary()
+    }
+    
+    func setupNotifications() {
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "checkIfRefreshIsNecessary", name: UIApplicationDidBecomeActiveNotification, object: nil)
+    }
+    
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
+    
+// pragma mark : refresh on new day
+    
+    func checkIfRefreshIsNecessary() {
         if possibleFlashbackDates.count > 0 {
             let todaysDate = NSDate.beginningOfDay(NSDate())
             let prevDate = NSDate.beginningOfDay(currentDate)
