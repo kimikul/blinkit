@@ -967,11 +967,11 @@ PRO TIP: Click the top right button to follow friends if you haven't yet :)</str
                         <viewControllerLayoutGuide type="bottom" id="eQ9-Aj-rGZ"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="hLj-Hc-FZz">
-                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="iNU-qq-f7G">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="416"/>
+                                <rect key="frame" x="0.0" y="20" width="320" height="460"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <inset key="separatorInset" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
@@ -1087,14 +1087,16 @@ PRO TIP : Link your Facebook in Settings to find friends if you haven't yet</str
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="iNU-qq-f7G" secondAttribute="trailing" constant="-16" id="EUI-pq-qkM"/>
-                            <constraint firstItem="iNU-qq-f7G" firstAttribute="leading" secondItem="hLj-Hc-FZz" secondAttribute="leadingMargin" constant="-16" id="RC1-MO-y2g"/>
-                            <constraint firstItem="iNU-qq-f7G" firstAttribute="top" secondItem="gKX-l1-ooN" secondAttribute="bottom" id="UsG-ff-Lkz"/>
-                            <constraint firstItem="eQ9-Aj-rGZ" firstAttribute="top" secondItem="iNU-qq-f7G" secondAttribute="bottom" id="cLx-Sf-1fp"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="iNU-qq-f7G" secondAttribute="trailing" constant="-16" id="7B2-T0-hJV"/>
+                            <constraint firstItem="eQ9-Aj-rGZ" firstAttribute="top" secondItem="iNU-qq-f7G" secondAttribute="bottom" id="Frm-9m-bro"/>
+                            <constraint firstItem="iNU-qq-f7G" firstAttribute="leading" secondItem="hLj-Hc-FZz" secondAttribute="leadingMargin" constant="-16" id="KZz-VC-ab3"/>
+                            <constraint firstItem="iNU-qq-f7G" firstAttribute="top" secondItem="gKX-l1-ooN" secondAttribute="bottom" id="dam-R5-gQd"/>
                         </constraints>
                     </view>
+                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <navigationItem key="navigationItem" id="PKN-OR-gR0"/>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="tableView" destination="iNU-qq-f7G" id="E2m-mq-zRl"/>
                     </connections>
@@ -1299,11 +1301,11 @@ PRO TIP : Link your Facebook in Settings to find friends if you haven't yet</str
                         <viewControllerLayoutGuide type="bottom" id="aoo-Pi-5ko"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="CPh-CY-1gY">
-                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="FlI-f7-UeK">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="416"/>
+                                <rect key="frame" x="0.0" y="20" width="320" height="460"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <inset key="separatorInset" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
@@ -1477,13 +1479,14 @@ PRO TIP : Link your Facebook in Settings so friends can find you.</string>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="FlI-f7-UeK" firstAttribute="top" secondItem="ft9-nX-Erc" secondAttribute="bottom" id="LML-FJ-75P"/>
-                            <constraint firstItem="FlI-f7-UeK" firstAttribute="leading" secondItem="CPh-CY-1gY" secondAttribute="leadingMargin" constant="-16" id="jhl-mb-SqH"/>
-                            <constraint firstItem="aoo-Pi-5ko" firstAttribute="top" secondItem="FlI-f7-UeK" secondAttribute="bottom" id="m0L-bM-YAO"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="FlI-f7-UeK" secondAttribute="trailing" constant="-16" id="zTw-GP-VBj"/>
+                            <constraint firstItem="aoo-Pi-5ko" firstAttribute="top" secondItem="FlI-f7-UeK" secondAttribute="bottom" id="0Mi-7g-n19"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="FlI-f7-UeK" secondAttribute="trailing" constant="-16" id="KQw-Cb-hzs"/>
+                            <constraint firstItem="FlI-f7-UeK" firstAttribute="top" secondItem="ft9-nX-Erc" secondAttribute="bottom" id="kCw-lB-E3w"/>
+                            <constraint firstItem="FlI-f7-UeK" firstAttribute="leading" secondItem="CPh-CY-1gY" secondAttribute="leadingMargin" constant="-16" id="znc-SB-Ba0"/>
                         </constraints>
                     </view>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="tableView" destination="FlI-f7-UeK" id="tsd-83-JlB"/>
                     </connections>
