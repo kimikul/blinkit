@@ -412,10 +412,10 @@
                                     <outlet property="delegate" destination="kPo-93-x5j" id="l8o-Jh-WJw"/>
                                 </connections>
                             </tableView>
-                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Le5-of-z2b" userLabel="No Blinks View">
+                            <view hidden="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Le5-of-z2b" userLabel="No Blinks View">
                                 <rect key="frame" x="0.0" y="152" width="320" height="431"/>
                                 <subviews>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4YG-AU-n9s">
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4YG-AU-n9s">
                                         <rect key="frame" x="10" y="67" width="300" height="91"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="300" id="HwL-iW-HxH"/>
@@ -428,7 +428,7 @@
                                         <color key="textColor" white="0.29999999999999999" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Udd-GV-TXu">
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Udd-GV-TXu">
                                         <rect key="frame" x="10" y="156" width="300" height="61"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="300" id="Pi6-IO-GKY"/>
@@ -440,7 +440,7 @@ Share with friends</string>
                                         <color key="textColor" white="0.65000000000000002" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Tap 'Todays Blink' to get started!" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CMl-7j-DJF">
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Tap 'Todays Blink' to get started!" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CMl-7j-DJF">
                                         <rect key="frame" x="10" y="213" width="300" height="41"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="41" id="IhB-Yl-Hfn"/>
@@ -450,11 +450,10 @@ Share with friends</string>
                                         <color key="textColor" white="0.76786164314516125" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aYV-c9-iVx">
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aYV-c9-iVx">
                                         <rect key="frame" x="10" y="5" width="300" height="60"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="60" id="Jlf-er-ucb"/>
-                                            <constraint firstAttribute="width" constant="300" id="Xae-HX-iYb"/>
                                         </constraints>
                                         <string key="text">Life happens fast
 Remember the highlights</string>
@@ -468,11 +467,11 @@ Remember the highlights</string>
                                     <constraint firstItem="4YG-AU-n9s" firstAttribute="top" secondItem="aYV-c9-iVx" secondAttribute="bottom" constant="2" id="2xU-JZ-7vQ"/>
                                     <constraint firstItem="aYV-c9-iVx" firstAttribute="leading" secondItem="Le5-of-z2b" secondAttribute="leading" constant="10" id="B0g-Xy-0Ez"/>
                                     <constraint firstItem="CMl-7j-DJF" firstAttribute="top" secondItem="Udd-GV-TXu" secondAttribute="bottom" constant="-4" id="NVA-ra-YMS"/>
-                                    <constraint firstItem="4YG-AU-n9s" firstAttribute="leading" secondItem="aYV-c9-iVx" secondAttribute="leading" id="da8-Q4-Cx2"/>
                                     <constraint firstItem="Udd-GV-TXu" firstAttribute="top" secondItem="4YG-AU-n9s" secondAttribute="bottom" constant="-2" id="iAH-fh-RWp"/>
                                     <constraint firstItem="Udd-GV-TXu" firstAttribute="leading" secondItem="4YG-AU-n9s" secondAttribute="leading" id="itp-kQ-nc3"/>
                                     <constraint firstItem="Udd-GV-TXu" firstAttribute="leading" secondItem="CMl-7j-DJF" secondAttribute="leading" id="oje-ad-HKZ"/>
                                     <constraint firstItem="aYV-c9-iVx" firstAttribute="top" secondItem="Le5-of-z2b" secondAttribute="top" constant="5" id="qOw-S1-uVq"/>
+                                    <constraint firstAttribute="trailing" secondItem="aYV-c9-iVx" secondAttribute="trailing" constant="10" id="tRB-Bc-dyd"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -697,7 +696,7 @@ PRO TIP: Click the top right button to follow friends if you haven't yet :)</str
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="x75-LB-9t9">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="366"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="376"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="dataSource" destination="nEk-HD-qNk" id="6nT-tp-1vz"/>
@@ -724,10 +723,10 @@ PRO TIP: Click the top right button to follow friends if you haven't yet :)</str
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="x75-LB-9t9" firstAttribute="leading" secondItem="OfZ-9f-mny" secondAttribute="leadingMargin" constant="-16" id="7Kg-VL-BPV"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="x75-LB-9t9" secondAttribute="trailing" constant="-16" id="8cZ-jN-CuF"/>
-                            <constraint firstItem="x75-LB-9t9" firstAttribute="top" secondItem="tvO-LC-wPP" secondAttribute="bottom" constant="-20" id="bHM-GD-JOX"/>
-                            <constraint firstItem="hbm-B7-pP8" firstAttribute="top" secondItem="x75-LB-9t9" secondAttribute="bottom" constant="114" id="itb-Qz-ErR"/>
+                            <constraint firstAttribute="trailing" secondItem="x75-LB-9t9" secondAttribute="trailing" id="CHx-TC-05x"/>
+                            <constraint firstAttribute="bottom" secondItem="x75-LB-9t9" secondAttribute="bottom" constant="104" id="MEo-LV-YIs"/>
+                            <constraint firstItem="x75-LB-9t9" firstAttribute="top" secondItem="OfZ-9f-mny" secondAttribute="top" id="Zmi-vU-ejn"/>
+                            <constraint firstItem="x75-LB-9t9" firstAttribute="leading" secondItem="OfZ-9f-mny" secondAttribute="leading" id="cbO-zh-I0k"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="XKB-s1-LHB"/>
