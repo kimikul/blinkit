@@ -21,7 +21,7 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Default" translatesAutoresizingMaskIntoConstraints="NO" id="dXY-vd-DdY">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fpa-SB-BVm">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fpa-SB-BVm">
                                 <rect key="frame" x="164" y="241" width="115" height="44"/>
                                 <color key="backgroundColor" red="0.67764945652173914" green="0.67764945652173914" blue="0.67764945652173914" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -36,7 +36,7 @@
                                     <segue destination="7nl-4v-pu6" kind="modal" identifier="SignupSegue" id="slh-wW-6yL"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tLt-aQ-4HJ">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tLt-aQ-4HJ">
                                 <rect key="frame" x="42" y="241" width="115" height="44"/>
                                 <color key="backgroundColor" red="0.67764945652173914" green="0.67764945652173914" blue="0.67764945652173914" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -53,9 +53,11 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L7J-pZ-u7u">
                                 <rect key="frame" x="42" y="292" width="237" height="44"/>
+                                <color key="backgroundColor" red="0.16862745098039217" green="0.26666666666666666" blue="0.53333333333333333" alpha="0.87" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="Awz-MD-NHp"/>
                                 </constraints>
+                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <state key="normal" image="facebookLoginButton">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -110,7 +112,9 @@
                             <constraint firstItem="fpa-SB-BVm" firstAttribute="leading" secondItem="tLt-aQ-4HJ" secondAttribute="trailing" constant="7" id="1DN-Sk-bhh"/>
                             <constraint firstItem="ahv-LK-bGt" firstAttribute="top" secondItem="tLt-aQ-4HJ" secondAttribute="bottom" constant="195" id="2GF-76-bRf"/>
                             <constraint firstItem="fpa-SB-BVm" firstAttribute="trailing" secondItem="L7J-pZ-u7u" secondAttribute="trailing" id="4U9-5l-NMy"/>
+                            <constraint firstItem="fpa-SB-BVm" firstAttribute="width" secondItem="tLt-aQ-4HJ" secondAttribute="width" id="6Vi-vC-9Ai"/>
                             <constraint firstItem="mZK-0Z-bA8" firstAttribute="top" secondItem="3Qx-sr-2RV" secondAttribute="bottom" constant="-22" id="8jC-uG-qv6"/>
+                            <constraint firstItem="fpa-SB-BVm" firstAttribute="height" secondItem="tLt-aQ-4HJ" secondAttribute="height" id="CJ6-yb-SQn"/>
                             <constraint firstItem="mZK-0Z-bA8" firstAttribute="leading" secondItem="3Qx-sr-2RV" secondAttribute="trailing" constant="-129" id="EPj-SC-1PN"/>
                             <constraint firstItem="3Qx-sr-2RV" firstAttribute="leading" secondItem="STc-yT-MLf" secondAttribute="trailing" constant="-173" id="I6L-mz-YTb"/>
                             <constraint firstAttribute="centerX" secondItem="3Qx-sr-2RV" secondAttribute="centerX" constant="-0.5" id="J2E-zE-OU6"/>
@@ -124,6 +128,7 @@
                             <constraint firstItem="ahv-LK-bGt" firstAttribute="top" secondItem="fpa-SB-BVm" secondAttribute="bottom" constant="195" id="ct3-XT-K86"/>
                             <constraint firstItem="ahv-LK-bGt" firstAttribute="top" secondItem="dXY-vd-DdY" secondAttribute="bottom" id="e7B-Ss-a8N"/>
                             <constraint firstItem="STc-yT-MLf" firstAttribute="top" secondItem="3Qx-sr-2RV" secondAttribute="bottom" constant="-11" id="fvz-MG-0Uv"/>
+                            <constraint firstItem="fpa-SB-BVm" firstAttribute="centerY" secondItem="tLt-aQ-4HJ" secondAttribute="centerY" id="ghF-OM-ANc"/>
                             <constraint firstItem="dXY-vd-DdY" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="-16" id="qcG-yO-QwM"/>
                         </constraints>
                     </view>

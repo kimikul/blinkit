@@ -36,7 +36,8 @@
     
     _facebookButton.layer.cornerRadius = 3.0;
     _facebookButton.clipsToBounds = YES;
-    
+    _facebookButton.imageView.contentMode = UIViewContentModeScaleAspectFit;
+
     UIImage *defaultImage = [self correctIphoneLaunchImage];
     self.launchImage.image = defaultImage;
 }
