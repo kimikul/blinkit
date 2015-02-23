@@ -20,7 +20,6 @@
 		5E3420ED18A613490088A270 /* BIButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E3420EC18A613490088A270 /* BIButton.m */; };
 		5E3420F018A8B47C0088A270 /* BIPendingRequestTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E3420EF18A8B47C0088A270 /* BIPendingRequestTableViewCell.m */; };
 		5E42D3EF189C9FFD00F651E0 /* BIFeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E42D3EE189C9FFD00F651E0 /* BIFeedViewController.m */; };
-		5E42D3F4189CA40800F651E0 /* BIFollowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E42D3F3189CA40800F651E0 /* BIFollowViewController.m */; };
 		5E42D3F7189CA77200F651E0 /* BIFollowingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E42D3F6189CA77200F651E0 /* BIFollowingViewController.m */; };
 		5E42D3FA189CA77C00F651E0 /* BIFollowersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E42D3F9189CA77C00F651E0 /* BIFollowersViewController.m */; };
 		5E42D400189CAE3700F651E0 /* BIDataStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E42D3FF189CAE3700F651E0 /* BIDataStore.m */; };
@@ -151,8 +150,6 @@
 		5E3420EF18A8B47C0088A270 /* BIPendingRequestTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BIPendingRequestTableViewCell.m; sourceTree = "<group>"; };
 		5E42D3ED189C9FFD00F651E0 /* BIFeedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BIFeedViewController.h; sourceTree = "<group>"; };
 		5E42D3EE189C9FFD00F651E0 /* BIFeedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BIFeedViewController.m; sourceTree = "<group>"; };
-		5E42D3F2189CA40800F651E0 /* BIFollowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BIFollowViewController.h; sourceTree = "<group>"; };
-		5E42D3F3189CA40800F651E0 /* BIFollowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BIFollowViewController.m; sourceTree = "<group>"; };
 		5E42D3F5189CA77200F651E0 /* BIFollowingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BIFollowingViewController.h; sourceTree = "<group>"; };
 		5E42D3F6189CA77200F651E0 /* BIFollowingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BIFollowingViewController.m; sourceTree = "<group>"; };
 		5E42D3F8189CA77C00F651E0 /* BIFollowersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BIFollowersViewController.h; sourceTree = "<group>"; };
@@ -376,8 +373,6 @@
 			children = (
 				5E42D405189CDB6100F651E0 /* Helper */,
 				5E42D401189CB7B100F651E0 /* Cells */,
-				5E42D3F2189CA40800F651E0 /* BIFollowViewController.h */,
-				5E42D3F3189CA40800F651E0 /* BIFollowViewController.m */,
 				5E42D3F5189CA77200F651E0 /* BIFollowingViewController.h */,
 				5E42D3F6189CA77200F651E0 /* BIFollowingViewController.m */,
 				5E42D3F8189CA77C00F651E0 /* BIFollowersViewController.h */,
@@ -937,7 +932,6 @@
 				5EB3A5C61887A2F300BCA8DB /* BIImageUploadManager.m in Sources */,
 				5E7297B918AA2364008D356C /* MPNotificationViewController.m in Sources */,
 				5E7297C918AA23A0008D356C /* NSData+MPBase64.m in Sources */,
-				5E42D3F4189CA40800F651E0 /* BIFollowViewController.m in Sources */,
 				5E3420EA18A5E5950088A270 /* BIFeedPhotoTableViewCell.m in Sources */,
 				5E79D009189A45AE00529EBE /* BIFacebookUserManager.m in Sources */,
 				5EAB8B461883211700B02953 /* NSDate+BlinkIt.m in Sources */,

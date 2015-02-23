@@ -7,7 +7,6 @@
 //
 
 #import "BIFeedViewController.h"
-#import "BIFollowViewController.h"
 #import "BIProfileViewController.h"
 #import "BIFollowingViewController.h"
 #import <MessageUI/MessageUI.h>

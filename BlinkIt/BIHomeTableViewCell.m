@@ -28,7 +28,10 @@
 + (CGFloat)heightForContent:(NSString*)content {
     CGFloat staticHeight = 58;
     UIFont *font = [BIHomeTableViewCell fontForContent];
-    CGSize maxSize = CGSizeMake(300,1000);
+    
+    CGRect screenRect = [[UIScreen mainScreen] bounds];
+    CGFloat screenWidth = screenRect.size.width;
+    CGSize maxSize = CGSizeMake(screenWidth-20,1000);
     
     NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:
                                 font, NSFontAttributeName,

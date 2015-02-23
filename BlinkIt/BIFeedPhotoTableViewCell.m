@@ -24,7 +24,7 @@
     CGFloat baseHeight = [super heightForContent:content];
     CGRect screenRect = [[UIScreen mainScreen] bounds];
     CGFloat screenWidth = screenRect.size.width;
-    CGFloat photoHeight = screenWidth - 5;
+    CGFloat photoHeight = screenWidth - 10;
     
     return baseHeight + photoHeight;
 }

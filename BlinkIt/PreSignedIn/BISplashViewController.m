@@ -18,6 +18,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *loginButton;
 @property (weak, nonatomic) IBOutlet UIButton *signupButton;
 @property (weak, nonatomic) IBOutlet UIButton *facebookButton;
+@property (weak, nonatomic) IBOutlet UIImageView *launchImage;
 @end
 
 @implementation BISplashViewController
@@ -35,6 +36,9 @@
     
     _facebookButton.layer.cornerRadius = 3.0;
     _facebookButton.clipsToBounds = YES;
+    
+    UIImage *defaultImage = [self correctIphoneLaunchImage];
+    self.launchImage.image = defaultImage;
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
@@ -127,6 +131,28 @@
     
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:webViewVC];
     [self presentViewController:nav animated:YES completion:nil];
+}
+
+#pragma mark - launch background
+
+- (UIImage*)correctIphoneLaunchImage {
+    UIScreen *screen = [UIScreen mainScreen];
+    CGFloat screenHeight = screen.bounds.size.height;
+    CGFloat screenWidth = screen.bounds.size.width;
+    
+    NSString *imageName = @"LaunchImage-700@2x";    // iphone4
+    
+    if (screenHeight >= 736) {  // iphone6+ portrait
+        imageName = @"LaunchImage-800-Portrait-736h@3x.png";
+    } else if (screenWidth >= 736) {    // iphone6+ landscape
+        imageName = @"LaunchImage-800-Landscape-736h@3x.png";
+    } else if (screenHeight >= 667) { // iphone6
+        imageName = @"LaunchImage-800-667h@2x.png";
+    } else if (screenHeight >= 568) {   // iphone5
+        imageName = @"LaunchImage-700-568h@2x.png";
+    }
+    
+    return [UIImage imageNamed:imageName];
 }
 
 @end
