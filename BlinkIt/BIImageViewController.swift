@@ -12,8 +12,8 @@ class BIImageViewController: BIViewController, UIScrollViewDelegate {
 
 // MARK: properties
 
-    var image : UIImage
-    var shouldDismissAnimated : Bool
+    var image : UIImage!
+    var shouldDismissAnimated : Bool!
     var willDismissBlock : ((fromFrame: CGRect) -> Void)?
     var didDismissBlock : (() -> Void)?
     
@@ -26,6 +26,10 @@ class BIImageViewController: BIViewController, UIScrollViewDelegate {
         self.image = UIImage()
         self.shouldDismissAnimated = false
         super.init(coder: aDecoder)
+    }
+    
+    override init(nibName nibNameOrNil: String!, bundle nibBundleOrNil: NSBundle!) {
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     }
     
     override func viewDidLoad() {

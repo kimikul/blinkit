@@ -35,7 +35,7 @@ import UIKit
             self.zoomImageView.alpha = 1.0
             
             let animationDuration = 0.2
-            let imageViewController:BIImageViewController = self.delegate!.storyboard.instantiateViewControllerWithIdentifier("BIImageViewController") as BIImageViewController
+            let imageViewController:BIImageViewController = BIImageViewController(nibName: "BIImageViewController", bundle: nil)
             imageViewController.image = imageView.image!
             imageViewController.shouldDismissAnimated = false
             imageViewController.willDismissBlock = { (fromFrame: CGRect) in
