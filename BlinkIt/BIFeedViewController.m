@@ -69,6 +69,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateForTodaysBlink:) name:kBIUpdateSavedBlinkNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(deletedBlink:) name:kBIDeleteBlinkNotification object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(toggledBlinkPrivacy:) name:kBIBlinkPrivacyUpdatedNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshFeed) name:kBIDidUpdateFollowedFriends object:nil];
 }
 
 - (void)dealloc {

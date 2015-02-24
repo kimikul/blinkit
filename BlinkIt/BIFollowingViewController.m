@@ -29,6 +29,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self setupNotifications];
     [self setupNav];
     [self fetchFriends];
 }
@@ -37,6 +38,11 @@
     [super viewWillAppear:animated];
     
     [BIMixpanelHelper sendMixpanelEvent:@"FOLLOW_viewedFollowing" withProperties:nil];
+}
+
+- (void)setupNotifications {
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(fetchFriends) name:kBIDidUpdateFollowedFriends object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(fetchFriends) name:kBIDidUpdateFacebookFriends object:nil];
 }
 
 - (void)setupNav {

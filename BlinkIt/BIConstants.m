@@ -21,6 +21,9 @@ NSString *const kBICachedProfilePicsKey = @"kBICachedProfilePicsKey";
 
 #pragma mark - Notifications
 NSString *const kBIRefreshHomeAndFeedNotification = @"kBIRefreshHomeAndFeedNotification";
+NSString *const kBIDidUpdateFollowedFriends = @"kBIDidUpdateFollowedFriends";
+NSString *const kBIDidUpdateFacebookFriends = @"kBIDidUpdateFacebookFriends";
+
 NSString *const kBITappedFollowButtonNotification = @"kBITappedFollowButtonNotification";
 NSString *const kBIUpdateHomeNotificationBadgeNotification = @"kBIUpdateHomeNotificationBadgeNotification";
 NSString *const kBIUpdateSavedBlinkNotification = @"kBIUpdateSavedBlinkNotification";

@@ -47,6 +47,8 @@ static BIDataStore *shared = nil;
     [self.cache setObject:friends forKey:key];
     [[NSUserDefaults standardUserDefaults] setObject:friends forKey:key];
     [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:kBIDidUpdateFacebookFriends object:nil];
 }
 
 - (NSDictionary *)facebookFriends {
@@ -88,7 +90,7 @@ static BIDataStore *shared = nil;
     [[NSUserDefaults standardUserDefaults] setObject:followedFriends forKey:key];
     [[NSUserDefaults standardUserDefaults] synchronize];
     
-    [[NSNotificationCenter defaultCenter] postNotificationName:kBIRefreshHomeAndFeedNotification object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kBIDidUpdateFollowedFriends object:nil];
 }
 
 - (void)addFollowedFriend:(PFUser*)user {

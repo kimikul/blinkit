@@ -37,10 +37,7 @@
     self = [super initWithCoder:aDecoder];
     if (self) {
         self.useRefreshTableHeaderView = YES;
-        
-        if ([PFUser currentUser]) {
-            [self fetchBlinksForPagination:NO];
-        }
+        [self fetchBlinksForPagination:NO];
     }
     
     return self;
@@ -129,6 +126,7 @@
 
 - (void)fetchBlinksForPagination:(BOOL)pagination {
     if (self.isLoading) return;
+    if (![PFUser currentUser]) return;
     self.loading = YES;
     
     PFQuery *query = [PFQuery queryWithClassName:@"Blink"];

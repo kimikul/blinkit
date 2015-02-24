@@ -21,6 +21,8 @@ extern NSString *const kBICachedProfilePicsKey;
 
 #pragma mark - Notifications
 extern NSString *const kBIRefreshHomeAndFeedNotification;
+extern NSString *const kBIDidUpdateFollowedFriends;
+extern NSString *const kBIDidUpdateFacebookFriends;
 extern NSString *const kBITappedFollowButtonNotification;
 extern NSString *const kBIUpdateHomeNotificationBadgeNotification;
 extern NSString *const kBIUpdateSavedBlinkNotification;
