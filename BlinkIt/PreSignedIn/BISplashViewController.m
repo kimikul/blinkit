@@ -136,12 +136,17 @@
 
 #pragma mark - launch background
 
+- (BOOL)isLandscape {
+    UIInterfaceOrientation interfaceOrientation = [[UIApplication sharedApplication] statusBarOrientation];
+    return (interfaceOrientation == UIInterfaceOrientationLandscapeLeft || interfaceOrientation == UIInterfaceOrientationLandscapeRight);
+}
+
 - (UIImage*)correctIphoneLaunchImage {
     UIScreen *screen = [UIScreen mainScreen];
     CGFloat screenHeight = screen.bounds.size.height;
     CGFloat screenWidth = screen.bounds.size.width;
     
-    NSString *imageName = @"LaunchImage-700@2x";    // iphone4
+    NSString *imageName = @"LaunchImage-800-Portrait-736h@3x.png";    // iphone4
     
     if (screenHeight >= 736) {  // iphone6+ portrait
         imageName = @"LaunchImage-800-Portrait-736h@3x.png";
