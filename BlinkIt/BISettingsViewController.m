@@ -101,7 +101,7 @@
 }
 
 - (void)linkToFacebook {
-    NSArray *permissions = @[@"basic_info", @"email"];
+    NSArray *permissions = @[@"public_profile", @"email", @"user_friends"];
 
     if (![PFFacebookUtils isLinkedWithUser:_currentUser]) {
         [PFFacebookUtils linkUser:_currentUser permissions:permissions block:^(BOOL succeeded, NSError *error) {

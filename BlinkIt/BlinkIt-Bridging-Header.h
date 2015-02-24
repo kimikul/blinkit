@@ -7,6 +7,8 @@
 #import "NSDate+BlinkIt.h"
 #import "UIView+BlinkIt.h"
 #import <Parse/Parse.h>
+#import <ParseUI/ParseUI.h>
+#import <ParseFacebookUtils/PFFacebookUtils.h>
 #import "BIFeedPhotoTableViewCell.h"
 #import "BIFeedTableViewCell.h"
 #import "BIProfileViewController.h"

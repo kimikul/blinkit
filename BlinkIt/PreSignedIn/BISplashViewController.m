@@ -74,7 +74,7 @@
 #pragma mark - facebook / BIFacebookUserManagerDelegate
 
 - (IBAction)tappedLoginThroughFacebook:(id)sender {
-    NSArray *permissions = @[@"basic_info", @"email"];
+    NSArray *permissions = @[@"public_profile", @"email", @"user_friends"];
 
     [PFFacebookUtils logInWithPermissions:permissions block:^(PFUser *user, NSError *error) {
         if (!user) {
