@@ -37,6 +37,8 @@
     self = [super initWithCoder:aDecoder];
     if (self) {
         self.useRefreshTableHeaderView = YES;
+        
+        [self fetchBlinksForPagination:NO];
     }
     
     return self;
@@ -51,7 +53,6 @@
     [self setupNav];
     [self setupHeader];
     [self setupObservers];
-    [self fetchBlinksForPagination:NO];
 }
 
 - (void)setupButtons {
