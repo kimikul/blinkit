@@ -104,18 +104,18 @@
 #pragma mark - transition
 
 - (void)transitionToHomeViewController {
+    UIStoryboard *mainStoryboard = [UIStoryboard mainStoryboard];
+    UINavigationController *homeVC = [mainStoryboard instantiateViewControllerWithIdentifier:@"BITabBarController"];
+    
+    BIAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+    [appDelegate setRootViewController:homeVC];
+    
     [[BIFacebookUserManager shared] refreshCurrentUserFacebookFriends];
     [BIFollowManager refreshFollowingList];
     [BIFollowManager refreshRequestToFollowList];
     [BINotificationHelper registerUserToInstallation];
     [BIMixpanelHelper setupSuperPropertiesForUser:[PFUser currentUser]];
     [BICrashlyticsHelper setupCrashlyticsProperties];
-    
-    UIStoryboard *mainStoryboard = [UIStoryboard mainStoryboard];
-    UINavigationController *homeVC = [mainStoryboard instantiateViewControllerWithIdentifier:@"BITabBarController"];
-    
-    BIAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-    [appDelegate setRootViewController:homeVC];
 }
 
 - (IBAction)tappedPrivacy:(id)sender {

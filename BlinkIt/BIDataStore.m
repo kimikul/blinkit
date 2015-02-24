@@ -87,6 +87,8 @@ static BIDataStore *shared = nil;
     [self.cache setObject:followedFriends forKey:key];
     [[NSUserDefaults standardUserDefaults] setObject:followedFriends forKey:key];
     [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:kBIRefreshHomeAndFeedNotification object:nil];
 }
 
 - (void)addFollowedFriend:(PFUser*)user {
