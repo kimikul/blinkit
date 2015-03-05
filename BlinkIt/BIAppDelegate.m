@@ -55,6 +55,8 @@
     
     [[UINavigationBar appearance] setTitleTextAttributes:textTitleOptions];
     [[UINavigationBar appearance] setBarTintColor:[UIColor mintGreen]];
+    [UINavigationBar appearance].tintColor = [UIColor coral];
+
 }
 
 #pragma mark - parse init

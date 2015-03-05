@@ -350,9 +350,8 @@
 }
 
 - (void)presentTodaysBlinkVC {
-    UIStoryboard *mainStoryboard = [UIStoryboard mainStoryboard];
-    UINavigationController *nav = [mainStoryboard instantiateViewControllerWithIdentifier:@"BIComposeBlinkNavigationController"];
-    BIComposeBlinkViewController *todaysBlinkVC = (BIComposeBlinkViewController*)nav.topViewController;
+    BIComposeBlinkViewController *todaysBlinkVC = [BIComposeBlinkViewController new];
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:todaysBlinkVC];
     todaysBlinkVC.blink = _todaysBlink;
     
     [self presentViewController:nav animated:YES completion:nil];

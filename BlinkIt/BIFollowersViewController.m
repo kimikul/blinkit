@@ -50,7 +50,6 @@
         self.title = @"Followers";
         
         UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStylePlain target:self action:@selector(doneTapped:)];
-        doneButton.tintColor = [UIColor coral];
         self.navigationItem.rightBarButtonItem = doneButton;
     }
 }

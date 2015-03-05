@@ -45,6 +45,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.title = @"Today's Blink";
+    
     [self setupButtons];
     [self setupObservers];
     [self initializeView];
@@ -142,6 +144,7 @@
         [_thumbnailPreviewImageView fadeOutWithDuration:0.3 completion:^{
             _thumbnailPreviewImageView.image = nil;
             [_thumbnailPreviewImageView removeFromSuperview];
+            self.navigationItem.rightBarButtonItem.enabled = ([self contentTextFieldHasContent] || _selectedImage) ? YES : NO;
         }];
         
         _contentTextView.frameHeight = _contentTextView.frameHeight + _thumbnailPreviewImageView.frameHeight + 10;
@@ -204,10 +207,51 @@
 
 - (void)keyboardWillShow:(NSNotification*)note {
     CGPoint keyboardOrigin = [[note.userInfo objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue].origin;
-    _buttonContainerView.frameY = keyboardOrigin.y - 44;
+    _buttonContainerView.frameY = keyboardOrigin.y - 45;
     _contentTextView.frameHeight = _buttonContainerView.frameY - _contentTextView.frameY - 5;
     
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
+    
+    
+    
+    
+//    // get keyboard size and loctaion
+//    CGRect keyboardBounds;
+//    [[noti.userInfo valueForKey:UIKeyboardFrameEndUserInfoKey] getValue: &keyboardBounds];
+//    NSNumber *duration = [noti.userInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey];
+//    NSNumber *curve = [noti.userInfo objectForKey:UIKeyboardAnimationCurveUserInfoKey];
+//    
+//    // Need to translate the bounds to account for rotation.
+//    keyboardBounds = [self.view convertRect:keyboardBounds toView:nil];
+//    
+//    // get a rect for the textView frame
+//    CGRect containerFrame = self.messageContainerView.frame;
+//    containerFrame.origin.y = self.view.bounds.size.height - (keyboardBounds.size.height + containerFrame.size.height);
+//    
+//    // tableview
+//    CGRect tableViewFrame = self.tableView.frame;
+//    tableViewFrame.size.height = containerFrame.origin.y - tableViewFrame.origin.y;
+//    
+//    BOOL shouldAdjustContentOffset = [self hasTableViewContentOverflowed];
+//    CGPoint contentOffset = self.tableView.contentOffset;
+//    contentOffset.y += self.tableView.frameHeight - tableViewFrame.size.height;
+//    
+//    // Note: Can't sync up the animation between the keyboard and the container view when using UIView animation block,
+//    //       so leave it for now
+//    
+//    [UIView beginAnimations:nil context:NULL];
+//    [UIView setAnimationBeginsFromCurrentState:YES];
+//    [UIView setAnimationDuration:[duration doubleValue]];
+//    [UIView setAnimationCurve:[curve intValue]];
+//    
+//    self.messageContainerView.frame = containerFrame;
+//    self.tableView.frame = tableViewFrame;
+//    
+//    if(shouldAdjustContentOffset) {
+//        [self.tableView setContentOffset:contentOffset];
+//    }
+//    
+//    [UIView commitAnimations];
 }
 
 #pragma mark - helper
@@ -380,7 +424,7 @@
 
 #pragma mark - UIActionSheetDelegate
 
-- (void)actionSheet:(UIActionSheet *)actionSheet willDismissWithButtonIndex:(NSInteger)buttonIndex {
+- (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex {
     if (actionSheet.tag == kDeleteBlinkActionSheet) {
         if (buttonIndex == actionSheet.destructiveButtonIndex) {
             if (_blink) {
