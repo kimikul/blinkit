@@ -110,9 +110,8 @@
     BIAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     [appDelegate setRootViewController:homeVC];
     
-    [[BIFacebookUserManager shared] refreshCurrentUserFacebookFriends];
-    [BIFollowManager refreshFollowingList];
-    [BIFollowManager refreshRequestToFollowList];
+    [appDelegate refreshFriendsAndFollows];
+
     [BINotificationHelper registerUserToInstallation];
     [BIMixpanelHelper setupSuperPropertiesForUser:[PFUser currentUser]];
     [BICrashlyticsHelper setupCrashlyticsProperties];
