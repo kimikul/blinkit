@@ -1,0 +1,14 @@
+{
+    "applications": {
+        "BlinkIt": {
+            "applicationId": "QXBNXOh5TYU1oUc6rYMPqG5XNct5zZdjhlbQLrhQ", 
+            "masterKey": "j6TPEC6Zw3MjMHkBv7obitrRXcUs5xmu4Bb31jE9"
+        }, 
+        "_default": {
+            "link": "BlinkIt"
+        }
+    }, 
+    "global": {
+        "parseVersion": "1.3.5"
+    }
+}

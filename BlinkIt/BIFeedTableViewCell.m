@@ -31,6 +31,7 @@
 
 + (CGFloat)heightForContent:(NSString*)content {
     CGFloat staticHeight = 58;
+    
     UIFont *font = [BIFeedTableViewCell fontForContent];
     
     CGRect screenRect = [[UIScreen mainScreen] bounds];
