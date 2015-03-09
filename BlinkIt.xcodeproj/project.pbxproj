@@ -118,6 +118,8 @@
 		5EB8148919877AB3007B7502 /* BIFlashbackMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EB8148819877AB3007B7502 /* BIFlashbackMainViewController.swift */; };
 		5EC8DAB81985B628000ED81C /* BIFlashbackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC8DAB61985B628000ED81C /* BIFlashbackViewController.swift */; };
 		5EDCB5C01995FE3B00ACE1DF /* BIFeedBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EDCB5BF1995FE3B00ACE1DF /* BIFeedBaseViewController.m */; };
+		5EF4791F1AAD7915009C0FCF /* BIRecentSearchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5EF4791E1AAD7915009C0FCF /* BIRecentSearchCell.xib */; };
+		5EF479211AAD7987009C0FCF /* BIRecentSearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EF479201AAD7987009C0FCF /* BIRecentSearchCell.swift */; };
 		5EFAA845199887CF00AEF2B1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EAB8AA3187E73DF00B02953 /* Foundation.framework */; };
 /* End PBXBuildFile section */
 
@@ -313,6 +315,8 @@
 		5EC8DAB61985B628000ED81C /* BIFlashbackViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BIFlashbackViewController.swift; sourceTree = "<group>"; };
 		5EDCB5BE1995FE3B00ACE1DF /* BIFeedBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BIFeedBaseViewController.h; sourceTree = "<group>"; };
 		5EDCB5BF1995FE3B00ACE1DF /* BIFeedBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BIFeedBaseViewController.m; sourceTree = "<group>"; };
+		5EF4791E1AAD7915009C0FCF /* BIRecentSearchCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BIRecentSearchCell.xib; sourceTree = "<group>"; };
+		5EF479201AAD7987009C0FCF /* BIRecentSearchCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BIRecentSearchCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -758,6 +762,8 @@
 				5EB8148819877AB3007B7502 /* BIFlashbackMainViewController.swift */,
 				5E4EAEA719984743003E31B7 /* BIFlashbackFeedViewController.h */,
 				5E4EAEA819984743003E31B7 /* BIFlashbackFeedViewController.m */,
+				5EF4791E1AAD7915009C0FCF /* BIRecentSearchCell.xib */,
+				5EF479201AAD7987009C0FCF /* BIRecentSearchCell.swift */,
 			);
 			name = Flashback;
 			sourceTree = "<group>";
@@ -859,6 +865,7 @@
 				5E9D037A18AB3D2000634EB9 /* BIFeedTableViewCell.xib in Resources */,
 				5E7297D518AA23C9008D356C /* MPNotification.storyboard in Resources */,
 				5E4C312B1AA7F2DD0023765E /* BIComposeBlinkViewController.xib in Resources */,
+				5EF4791F1AAD7915009C0FCF /* BIRecentSearchCell.xib in Resources */,
 				5EAB8AAE187E73DF00B02953 /* InfoPlist.strings in Resources */,
 				5E7297D618AA23C9008D356C /* MPSurvey.storyboard in Resources */,
 				5EAB8AB7187E73DF00B02953 /* Main.storyboard in Resources */,
@@ -952,6 +959,7 @@
 				5E7297CA18AA23A0008D356C /* UIColor+MPColor.m in Sources */,
 				5EAB8B251880F3C600B02953 /* NSString+BlinkIt.m in Sources */,
 				5E16ED2118BB2D7400621CAE /* NSArray+BlinkIt.m in Sources */,
+				5EF479211AAD7987009C0FCF /* BIRecentSearchCell.swift in Sources */,
 				5E42D400189CAE3700F651E0 /* BIDataStore.m in Sources */,
 				5EB3A5C61887A2F300BCA8DB /* BIImageUploadManager.m in Sources */,
 				5E7297B918AA2364008D356C /* MPNotificationViewController.m in Sources */,

@@ -1595,9 +1595,28 @@ Try posting more often so you have more to look back on!</string>
                     <navigationItem key="navigationItem" id="TY3-Om-aW9"/>
                     <connections>
                         <outlet property="noFlashbacksView" destination="wOW-HM-1nH" id="Bso-KW-qHv"/>
+                        <outlet property="searchBar" destination="7hD-NY-hGY" id="HIw-fb-IUV"/>
+                        <outlet property="searchDisplayController" destination="kBf-9w-vIT" id="5HS-Mo-RsU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qqh-iK-BYp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <searchBar contentMode="redraw" id="7hD-NY-hGY">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                    <textInputTraits key="textInputTraits"/>
+                    <connections>
+                        <outlet property="delegate" destination="tLh-cn-gD8" id="oIj-CY-Mlv"/>
+                    </connections>
+                </searchBar>
+                <searchDisplayController id="kBf-9w-vIT">
+                    <connections>
+                        <outlet property="delegate" destination="tLh-cn-gD8" id="eaG-FD-EBz"/>
+                        <outlet property="searchBar" destination="7hD-NY-hGY" id="6Yl-D6-0Af"/>
+                        <outlet property="searchContentsController" destination="tLh-cn-gD8" id="bvp-Pa-y04"/>
+                        <outlet property="searchResultsDataSource" destination="tLh-cn-gD8" id="czZ-ZI-ZFw"/>
+                        <outlet property="searchResultsDelegate" destination="tLh-cn-gD8" id="AhA-aK-ffb"/>
+                    </connections>
+                </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="4923" y="-724"/>
         </scene>

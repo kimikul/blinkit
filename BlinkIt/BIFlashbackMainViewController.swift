@@ -8,7 +8,7 @@
 
 import UIKit
 
-class BIFlashbackMainViewController: BIViewController, UIPageViewControllerDataSource, UIPageViewControllerDelegate {
+class BIFlashbackMainViewController: BIViewController, UIPageViewControllerDataSource, UIPageViewControllerDelegate, UISearchControllerDelegate, UISearchBarDelegate {
 
     var flashbackPageViewController:UIPageViewController!
     var pageControl:UIPageControl!
@@ -20,7 +20,11 @@ class BIFlashbackMainViewController: BIViewController, UIPageViewControllerDataS
     var existingFlashbackDates:Array<NSDate>    // dates with actual blinks associated
     var flashbackBlinks:Array<PFObject>         // blinks for flashback dates
     var flashbackVCs:Array<BIFlashbackViewController>   // vcs for flashback blinks
-
+    
+    @IBOutlet var searchBar: UISearchBar!
+    var searchButton:UIBarButtonItem!
+    var isSearching:Bool!
+    
     @IBOutlet weak var noFlashbacksView: UIView!
     
 // pragma mark : lifecycle
@@ -30,6 +34,7 @@ class BIFlashbackMainViewController: BIViewController, UIPageViewControllerDataS
         self.flashbackBlinks = []
         self.flashbackVCs = []
         self.existingFlashbackDates = []
+        self.isSearching = false
         super.init(coder: aDecoder)
     }
     
@@ -38,6 +43,7 @@ class BIFlashbackMainViewController: BIViewController, UIPageViewControllerDataS
 
         navigationController!.navigationBar.translucent = false
         
+        self.setupSearch()
         self.setupNotifications()
         self.refreshData()
     }
@@ -46,6 +52,17 @@ class BIFlashbackMainViewController: BIViewController, UIPageViewControllerDataS
         super.viewWillAppear(animated)
         
         self.checkIfRefreshIsNecessary()
+    }
+    
+    func setupSearch() {
+        self.searchButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Search, target: self, action: "searchTapped:")
+        self.navigationItem.rightBarButtonItem = self.searchButton
+        self.searchBar.frame = CGRectMake(10.0, 0, 0, 44.0)
+        self.searchBar.showsCancelButton = true
+        self.navigationController?.navigationBar.addSubview(self.searchBar)
+        
+        let nib:UINib = UINib(nibName: BIRecentSearchCell.reuseIdentifier(), bundle: NSBundle.mainBundle())
+        self.searchDisplayController?.searchResultsTableView.registerNib(nib, forCellReuseIdentifier: BIRecentSearchCell.reuseIdentifier())
     }
     
     func setupNotifications() {
@@ -240,6 +257,54 @@ class BIFlashbackMainViewController: BIViewController, UIPageViewControllerDataS
             navTitleLabel.text = NSDate.elapsedTimeFromFlashbackIndex(currentPage.dateIndex)
             navTitleLabel.fadeTransitionWithDuration(0.4)
         }
+    }
+    
+// search
+    
+    func searchTapped(button: UIBarButtonItem) {
+        self.navigationItem.titleView!.hidden = true
+        
+        UIView.animateWithDuration(0.2, delay:0, options:nil, animations: {
+            self.searchBar.frame = CGRectMake(10, 0, self.view.frameWidth - 20, 44)
+        }, completion: { (completed: Bool) in
+            self.searchBar.becomeFirstResponder()
+            self.searchDisplayController?.setActive(true, animated: true)
+            self.isSearching = true
+            self.navigationItem.rightBarButtonItem = nil
+            return
+        })
+    }
+    
+    func tableView(tableView:UITableView!, numberOfRowsInSection section:Int)->Int {
+        return 1
+    }
+    
+    func numberOfSectionsInTableView(tableView:UITableView!)->Int {
+        return 1
+    }
+    
+    func tableView(tableView: UITableView!, heightForRowAtIndexPath indexPath: NSIndexPath!) -> CGFloat {
+        return 30
+    }
+    
+    func tableView(tableView: UITableView!, cellForRowAtIndexPath indexPath: NSIndexPath!) -> UITableViewCell! {
+        var cell = tableView.dequeueReusableCellWithIdentifier("BIRecentSearchCell", forIndexPath: indexPath) as BIRecentSearchCell
+        cell.titleLabel.text = "laterblink"
+        return cell
+    }
+    
+    func searchBarCancelButtonClicked(searchBar: UISearchBar) {
+        self.navigationItem.titleView!.hidden = false
+        
+        UIView.animateWithDuration(0.2, delay:0, options:nil, animations: {
+            self.searchBar.frame = CGRectMake(10, 0, 0, 44)
+            }, completion: { (completed: Bool) in
+                self.searchBar.resignFirstResponder()
+                self.searchDisplayController?.setActive(false, animated: true)
+                self.isSearching = false
+                self.navigationItem.rightBarButtonItem = self.searchButton
+                return
+        })
     }
     
 // pragma mark - helpers
