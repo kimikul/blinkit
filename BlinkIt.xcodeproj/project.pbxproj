@@ -39,6 +39,7 @@
 		5E63927B1889227F00D1AE80 /* BIHomePhotoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E63927A1889227F00D1AE80 /* BIHomePhotoTableViewCell.m */; };
 		5E639291188BA52F00D1AE80 /* BISettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E639290188BA52F00D1AE80 /* BISettingsViewController.m */; };
 		5E639297188BB5CE00D1AE80 /* BIUserDefaultsKeys.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E639296188BB5CE00D1AE80 /* BIUserDefaultsKeys.m */; };
+		5E6A4ACD1AC7C8B30085F049 /* BIFlashbackSearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6A4ACC1AC7C8B30085F049 /* BIFlashbackSearchBar.swift */; };
 		5E6F4B5E18A9E9B7006289D0 /* BIMixpanelHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E6F4B5D18A9E9B7006289D0 /* BIMixpanelHelper.m */; };
 		5E72976918A9F312008D356C /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E72976818A9F312008D356C /* AdSupport.framework */; };
 		5E72976B18A9F31C008D356C /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E72976A18A9F31C008D356C /* Accelerate.framework */; };
@@ -192,6 +193,7 @@
 		5E639290188BA52F00D1AE80 /* BISettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BISettingsViewController.m; sourceTree = "<group>"; };
 		5E639295188BB5CE00D1AE80 /* BIUserDefaultsKeys.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BIUserDefaultsKeys.h; sourceTree = "<group>"; };
 		5E639296188BB5CE00D1AE80 /* BIUserDefaultsKeys.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BIUserDefaultsKeys.m; sourceTree = "<group>"; };
+		5E6A4ACC1AC7C8B30085F049 /* BIFlashbackSearchBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BIFlashbackSearchBar.swift; sourceTree = "<group>"; };
 		5E6F4B5C18A9E9B7006289D0 /* BIMixpanelHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BIMixpanelHelper.h; sourceTree = "<group>"; };
 		5E6F4B5D18A9E9B7006289D0 /* BIMixpanelHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BIMixpanelHelper.m; sourceTree = "<group>"; };
 		5E72976818A9F312008D356C /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
@@ -764,6 +766,7 @@
 				5E4EAEA819984743003E31B7 /* BIFlashbackFeedViewController.m */,
 				5EF4791E1AAD7915009C0FCF /* BIRecentSearchCell.xib */,
 				5EF479201AAD7987009C0FCF /* BIRecentSearchCell.swift */,
+				5E6A4ACC1AC7C8B30085F049 /* BIFlashbackSearchBar.swift */,
 			);
 			name = Flashback;
 			sourceTree = "<group>";
@@ -929,6 +932,7 @@
 				5E9D038B18AB736C00634EB9 /* BINotificationFollowRequestCell.m in Sources */,
 				5E55D4EC18BDE0A100FE5168 /* BIHomeHeaderView.m in Sources */,
 				5E6F4B5E18A9E9B7006289D0 /* BIMixpanelHelper.m in Sources */,
+				5E6A4ACD1AC7C8B30085F049 /* BIFlashbackSearchBar.swift in Sources */,
 				5E639291188BA52F00D1AE80 /* BISettingsViewController.m in Sources */,
 				5E08086E18CEC8780073EE49 /* BIFollowerTableViewCell.m in Sources */,
 				5E9D037818AB30F800634EB9 /* BICrashlyticsHelper.m in Sources */,

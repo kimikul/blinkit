@@ -8,7 +8,7 @@
 
 import UIKit
 
-class BIFlashbackMainViewController: BIViewController, UIPageViewControllerDataSource, UIPageViewControllerDelegate, UISearchControllerDelegate, UISearchBarDelegate {
+class BIFlashbackMainViewController: BIViewController, UIPageViewControllerDataSource, UIPageViewControllerDelegate, UISearchControllerDelegate, UISearchBarDelegate, UISearchResultsUpdating {
 
     var flashbackPageViewController:UIPageViewController!
     var pageControl:UIPageControl!
@@ -21,7 +21,9 @@ class BIFlashbackMainViewController: BIViewController, UIPageViewControllerDataS
     var flashbackBlinks:Array<PFObject>         // blinks for flashback dates
     var flashbackVCs:Array<BIFlashbackViewController>   // vcs for flashback blinks
     
-    @IBOutlet var searchBar: UISearchBar!
+    var searchBar: UISearchBar!
+    var searchController: UISearchController!
+    var searchResultsVC: UIViewController!
     var searchButton:UIBarButtonItem!
     var isSearching:Bool!
     
@@ -57,12 +59,27 @@ class BIFlashbackMainViewController: BIViewController, UIPageViewControllerDataS
     func setupSearch() {
         self.searchButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Search, target: self, action: "searchTapped:")
         self.navigationItem.rightBarButtonItem = self.searchButton
-        self.searchBar.frame = CGRectMake(10.0, 0, 0, 44.0)
-        self.searchBar.showsCancelButton = true
-        self.navigationController?.navigationBar.addSubview(self.searchBar)
+//        self.searchBar.frame = CGRectMake(10.0, 0, 0, 44.0)
+//        self.searchBar.showsCancelButton = false
         
-        let nib:UINib = UINib(nibName: BIRecentSearchCell.reuseIdentifier(), bundle: NSBundle.mainBundle())
-        self.searchDisplayController?.searchResultsTableView.registerNib(nib, forCellReuseIdentifier: BIRecentSearchCell.reuseIdentifier())
+//        let nib:UINib = UINib(nibName: BIRecentSearchCell.reuseIdentifier(), bundle: NSBundle.mainBundle())
+//        self.searchDisplayController?.searchResultsTableView.registerNib(nib, forCellReuseIdentifier: BIRecentSearchCell.reuseIdentifier())
+        
+        var searchResultsVC = UIViewController()
+        searchResultsVC.view.backgroundColor = UIColor.redColor()
+        
+        var searchController = UISearchController(searchResultsController: searchResultsVC)
+        searchController.delegate = self
+        searchController.dimsBackgroundDuringPresentation = true
+        searchController.hidesNavigationBarDuringPresentation = false
+        searchController.searchResultsUpdater = self
+        searchController.searchBar.delegate = self
+        searchController.searchBar.frame = CGRectMake(10.0, 0, 0, 44.0)
+        self.navigationController?.navigationBar.addSubview(searchController.searchBar)
+        
+        self.searchBar = searchController.searchBar
+        self.searchController = searchController
+        self.searchResultsVC = searchResultsVC
     }
     
     func setupNotifications() {
@@ -159,9 +176,9 @@ class BIFlashbackMainViewController: BIViewController, UIPageViewControllerDataS
 // pragma mark : page control
     
     func setupPageIndicator() {
-        let titleView = UIView(frame: CGRectMake(0, 0, 300, 44))
+        let titleView = UIView(frame: CGRectMake(0, 0, 220, 44))
         
-        let navTitle = UILabel(frame: CGRectMake(0, 5, 300, 24))
+        let navTitle = UILabel(frame: CGRectMake(0, 5, 220, 24))
         navTitle.text = NSDate.elapsedTimeFromFlashbackIndex(self.flashbackVCs[0].dateIndex)
         navTitle.textColor = UIColor.darkGrayColor()
         navTitle.textAlignment = NSTextAlignment.Center
@@ -169,7 +186,7 @@ class BIFlashbackMainViewController: BIViewController, UIPageViewControllerDataS
         navTitleLabel = navTitle
         titleView.addSubview(navTitle)
         
-        let pageControl = UIPageControl(frame: CGRectMake(0, 24, 300, 20))
+        let pageControl = UIPageControl(frame: CGRectMake(0, 24, 220, 20))
         pageControl.numberOfPages = existingFlashbackDates.count
         pageControl.currentPage = 0
         pageControl.userInteractionEnabled = false
@@ -265,10 +282,9 @@ class BIFlashbackMainViewController: BIViewController, UIPageViewControllerDataS
         self.navigationItem.titleView!.hidden = true
         
         UIView.animateWithDuration(0.2, delay:0, options:nil, animations: {
-            self.searchBar.frame = CGRectMake(10, 0, self.view.frameWidth - 20, 44)
+            self.searchBar.frame = CGRectMake(10, 0, self.view.frameWidth - 40, 44)
         }, completion: { (completed: Bool) in
             self.searchBar.becomeFirstResponder()
-            self.searchDisplayController?.setActive(true, animated: true)
             self.isSearching = true
             self.navigationItem.rightBarButtonItem = nil
             return
@@ -280,7 +296,7 @@ class BIFlashbackMainViewController: BIViewController, UIPageViewControllerDataS
     }
     
     func numberOfSectionsInTableView(tableView:UITableView!)->Int {
-        return 1
+        return 0
     }
     
     func tableView(tableView: UITableView!, heightForRowAtIndexPath indexPath: NSIndexPath!) -> CGFloat {
@@ -297,14 +313,33 @@ class BIFlashbackMainViewController: BIViewController, UIPageViewControllerDataS
         self.navigationItem.titleView!.hidden = false
         
         UIView.animateWithDuration(0.2, delay:0, options:nil, animations: {
-            self.searchBar.frame = CGRectMake(10, 0, 0, 44)
+                self.searchBar.frame = CGRectMake(10, 0, 0, 44)
             }, completion: { (completed: Bool) in
                 self.searchBar.resignFirstResponder()
-                self.searchDisplayController?.setActive(false, animated: true)
                 self.isSearching = false
                 self.navigationItem.rightBarButtonItem = self.searchButton
                 return
         })
+    }
+    
+// pragma mark - UISearchResultsUpdating
+    
+    func updateSearchResultsForSearchController(searchController: UISearchController) {
+        
+    }
+    
+// pragma mark - UISearchControllerDelegate
+    
+    func willPresentSearchController(searchController: UISearchController) {
+
+    }
+    
+    func didPresentSearchController(searchController: UISearchController) {
+
+    }
+    
+    func willDismissSearchController(searchController: UISearchController) {
+        self.searchBarCancelButtonClicked(self.searchBar)
     }
     
 // pragma mark - helpers
@@ -321,4 +356,5 @@ class BIFlashbackMainViewController: BIViewController, UIPageViewControllerDataS
         
         return index
     }
+    
 }

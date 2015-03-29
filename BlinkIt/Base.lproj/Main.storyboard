@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -793,7 +793,7 @@ PRO TIP: Click the top right button to follow friends if you haven't yet :)</str
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="Rtg-Fq-bpx">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
                         <inset key="separatorInset" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
                         <sections>
                             <tableViewSection headerTitle="Account" id="lZf-e7-Gjm">
@@ -1596,7 +1596,6 @@ Try posting more often so you have more to look back on!</string>
                     <connections>
                         <outlet property="noFlashbacksView" destination="wOW-HM-1nH" id="Bso-KW-qHv"/>
                         <outlet property="searchBar" destination="7hD-NY-hGY" id="HIw-fb-IUV"/>
-                        <outlet property="searchDisplayController" destination="kBf-9w-vIT" id="5HS-Mo-RsU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qqh-iK-BYp" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1608,15 +1607,6 @@ Try posting more often so you have more to look back on!</string>
                         <outlet property="delegate" destination="tLh-cn-gD8" id="oIj-CY-Mlv"/>
                     </connections>
                 </searchBar>
-                <searchDisplayController id="kBf-9w-vIT">
-                    <connections>
-                        <outlet property="delegate" destination="tLh-cn-gD8" id="eaG-FD-EBz"/>
-                        <outlet property="searchBar" destination="7hD-NY-hGY" id="6Yl-D6-0Af"/>
-                        <outlet property="searchContentsController" destination="tLh-cn-gD8" id="bvp-Pa-y04"/>
-                        <outlet property="searchResultsDataSource" destination="tLh-cn-gD8" id="czZ-ZI-ZFw"/>
-                        <outlet property="searchResultsDelegate" destination="tLh-cn-gD8" id="AhA-aK-ffb"/>
-                    </connections>
-                </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="4923" y="-724"/>
         </scene>
