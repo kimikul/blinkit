@@ -22,8 +22,8 @@ class BIFlashbackMainViewController: BIViewController, UIPageViewControllerDataS
     var flashbackVCs:Array<BIFlashbackViewController>   // vcs for flashback blinks
     
     var searchBar: UISearchBar!
-    var searchController: UISearchController!
-    var searchResultsVC: UIViewController!
+    var searchController: BISearchController!
+    var searchResultsVC: BIFlashbackSearchResultsViewController!
     var searchButton:UIBarButtonItem!
     var isSearching:Bool!
     
@@ -59,16 +59,11 @@ class BIFlashbackMainViewController: BIViewController, UIPageViewControllerDataS
     func setupSearch() {
         self.searchButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Search, target: self, action: "searchTapped:")
         self.navigationItem.rightBarButtonItem = self.searchButton
-//        self.searchBar.frame = CGRectMake(10.0, 0, 0, 44.0)
-//        self.searchBar.showsCancelButton = false
         
-//        let nib:UINib = UINib(nibName: BIRecentSearchCell.reuseIdentifier(), bundle: NSBundle.mainBundle())
-//        self.searchDisplayController?.searchResultsTableView.registerNib(nib, forCellReuseIdentifier: BIRecentSearchCell.reuseIdentifier())
-        
-        var searchResultsVC = UIViewController()
+        var searchResultsVC = self.storyboard?.instantiateViewControllerWithIdentifier("BIFlashbackSearchResultsViewController") as BIFlashbackSearchResultsViewController
         searchResultsVC.view.backgroundColor = UIColor.redColor()
         
-        var searchController = UISearchController(searchResultsController: searchResultsVC)
+        var searchController = BISearchController(searchResultsController: searchResultsVC)
         searchController.delegate = self
         searchController.dimsBackgroundDuringPresentation = true
         searchController.hidesNavigationBarDuringPresentation = false
@@ -80,6 +75,8 @@ class BIFlashbackMainViewController: BIViewController, UIPageViewControllerDataS
         self.searchBar = searchController.searchBar
         self.searchController = searchController
         self.searchResultsVC = searchResultsVC
+        
+        self.definesPresentationContext = true
     }
     
     func setupNotifications() {
@@ -280,44 +277,29 @@ class BIFlashbackMainViewController: BIViewController, UIPageViewControllerDataS
     
     func searchTapped(button: UIBarButtonItem) {
         self.navigationItem.titleView!.hidden = true
-        
+        self.navigationItem.rightBarButtonItem = nil
+
         UIView.animateWithDuration(0.2, delay:0, options:nil, animations: {
-            self.searchBar.frame = CGRectMake(10, 0, self.view.frameWidth - 40, 44)
+            self.searchBar.frame = CGRectMake(10, 0, self.view.frameWidth - 20, 44)
         }, completion: { (completed: Bool) in
             self.searchBar.becomeFirstResponder()
             self.isSearching = true
-            self.navigationItem.rightBarButtonItem = nil
+//            self.navigationItem.rightBarButtonItem = nil
             return
         })
     }
     
-    func tableView(tableView:UITableView!, numberOfRowsInSection section:Int)->Int {
-        return 1
-    }
-    
-    func numberOfSectionsInTableView(tableView:UITableView!)->Int {
-        return 0
-    }
-    
-    func tableView(tableView: UITableView!, heightForRowAtIndexPath indexPath: NSIndexPath!) -> CGFloat {
-        return 30
-    }
-    
-    func tableView(tableView: UITableView!, cellForRowAtIndexPath indexPath: NSIndexPath!) -> UITableViewCell! {
-        var cell = tableView.dequeueReusableCellWithIdentifier("BIRecentSearchCell", forIndexPath: indexPath) as BIRecentSearchCell
-        cell.titleLabel.text = "laterblink"
-        return cell
-    }
+// pragma mark - UISearchBarDelegate
     
     func searchBarCancelButtonClicked(searchBar: UISearchBar) {
         self.navigationItem.titleView!.hidden = false
+        self.navigationItem.rightBarButtonItem = self.searchButton
         
         UIView.animateWithDuration(0.2, delay:0, options:nil, animations: {
                 self.searchBar.frame = CGRectMake(10, 0, 0, 44)
             }, completion: { (completed: Bool) in
                 self.searchBar.resignFirstResponder()
                 self.isSearching = false
-                self.navigationItem.rightBarButtonItem = self.searchButton
                 return
         })
     }
@@ -331,7 +313,7 @@ class BIFlashbackMainViewController: BIViewController, UIPageViewControllerDataS
 // pragma mark - UISearchControllerDelegate
     
     func willPresentSearchController(searchController: UISearchController) {
-
+        searchController.view.setNeedsLayout()
     }
     
     func didPresentSearchController(searchController: UISearchController) {

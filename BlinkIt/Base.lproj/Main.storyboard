@@ -1610,6 +1610,43 @@ Try posting more often so you have more to look back on!</string>
             </objects>
             <point key="canvasLocation" x="4923" y="-724"/>
         </scene>
+        <!--Flashback Search Results View Controller-->
+        <scene sceneID="Zqv-tT-Dv2">
+            <objects>
+                <viewController storyboardIdentifier="BIFlashbackSearchResultsViewController" id="i8O-nm-TiP" customClass="BIFlashbackSearchResultsViewController" customModule="BlinkItModule" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="ngd-WJ-Tyo"/>
+                        <viewControllerLayoutGuide type="bottom" id="91x-5m-iQI"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="rJZ-58-L47">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="mTz-RO-KK2">
+                                <rect key="frame" x="0.0" y="20" width="320" height="460"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="i8O-nm-TiP" id="WjB-TU-Dt3"/>
+                                    <outlet property="delegate" destination="i8O-nm-TiP" id="XVi-8s-P8c"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="mTz-RO-KK2" firstAttribute="leading" secondItem="rJZ-58-L47" secondAttribute="leadingMargin" constant="-16" id="9MN-nf-dMI"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="mTz-RO-KK2" secondAttribute="trailing" constant="-16" id="T2g-LB-yyv"/>
+                            <constraint firstItem="91x-5m-iQI" firstAttribute="top" secondItem="mTz-RO-KK2" secondAttribute="bottom" id="uOQ-zH-cde"/>
+                            <constraint firstItem="mTz-RO-KK2" firstAttribute="top" secondItem="ngd-WJ-Tyo" secondAttribute="bottom" id="yPX-JH-uFn"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="mTz-RO-KK2" id="eRn-fA-9TE"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cWC-3q-YRq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5306" y="-376"/>
+        </scene>
         <!--Feed-->
         <scene sceneID="MAc-BV-JNV">
             <objects>

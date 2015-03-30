@@ -9,8 +9,7 @@
 import UIKit
 
 class BIRecentSearchCell: UITableViewCell {
-
-    @IBOutlet weak var titleLabel: UILabel!
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()
