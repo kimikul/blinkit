@@ -41,6 +41,7 @@
 		5E639297188BB5CE00D1AE80 /* BIUserDefaultsKeys.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E639296188BB5CE00D1AE80 /* BIUserDefaultsKeys.m */; };
 		5E6A4AD11AC912640085F049 /* BISearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6A4AD01AC912640085F049 /* BISearchController.swift */; };
 		5E6A4AD31AC91D410085F049 /* BIFlashbackSearchResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E6A4AD21AC91D410085F049 /* BIFlashbackSearchResultsViewController.swift */; };
+		5E6A4AF71ACA8A920085F049 /* BIPaginationTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5E6A4AF61ACA8A920085F049 /* BIPaginationTableViewCell.xib */; };
 		5E6F4B5E18A9E9B7006289D0 /* BIMixpanelHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E6F4B5D18A9E9B7006289D0 /* BIMixpanelHelper.m */; };
 		5E72976918A9F312008D356C /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E72976818A9F312008D356C /* AdSupport.framework */; };
 		5E72976B18A9F31C008D356C /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E72976A18A9F31C008D356C /* Accelerate.framework */; };
@@ -196,6 +197,7 @@
 		5E639296188BB5CE00D1AE80 /* BIUserDefaultsKeys.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BIUserDefaultsKeys.m; sourceTree = "<group>"; };
 		5E6A4AD01AC912640085F049 /* BISearchController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BISearchController.swift; sourceTree = "<group>"; };
 		5E6A4AD21AC91D410085F049 /* BIFlashbackSearchResultsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BIFlashbackSearchResultsViewController.swift; sourceTree = "<group>"; };
+		5E6A4AF61ACA8A920085F049 /* BIPaginationTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BIPaginationTableViewCell.xib; sourceTree = "<group>"; };
 		5E6F4B5C18A9E9B7006289D0 /* BIMixpanelHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BIMixpanelHelper.h; sourceTree = "<group>"; };
 		5E6F4B5D18A9E9B7006289D0 /* BIMixpanelHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BIMixpanelHelper.m; sourceTree = "<group>"; };
 		5E72976818A9F312008D356C /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
@@ -746,6 +748,7 @@
 				5E03C745197F6C7600726522 /* BIImageViewController.xib */,
 				5EB8148519876FE5007B7502 /* BIMyBlinksBaseViewController.h */,
 				5EB8148619876FE5007B7502 /* BIMyBlinksBaseViewController.m */,
+				5E6A4AF61ACA8A920085F049 /* BIPaginationTableViewCell.xib */,
 			);
 			name = Common;
 			sourceTree = "<group>";
@@ -866,6 +869,7 @@
 				5E9D037E18AB3DFA00634EB9 /* BIHomeTableViewCell.xib in Resources */,
 				5EAB8ABC187E73DF00B02953 /* Images.xcassets in Resources */,
 				5E566F7118C5BB8D00C52D06 /* BIWebViewController.xib in Resources */,
+				5E6A4AF71ACA8A920085F049 /* BIPaginationTableViewCell.xib in Resources */,
 				5E55D4F018BDE0D300FE5168 /* BIHomeHeaderView.xib in Resources */,
 				5E6392721888F09600D1AE80 /* BIPhotoViewController.xib in Resources */,
 				5E9D037A18AB3D2000634EB9 /* BIFeedTableViewCell.xib in Resources */,

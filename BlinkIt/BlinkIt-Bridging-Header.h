@@ -20,3 +20,4 @@
 #import "UIColor+BlinkIt.h"
 #import "NSDate+BlinkIt.h"
 #import "BIConstants.h"
+#import "BIPaginationTableViewCell.h"

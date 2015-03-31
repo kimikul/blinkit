@@ -9,7 +9,15 @@
 import UIKit
 
 class BIFlashbackSearchResultsViewController: BIMyBlinksBaseViewController {
-    var searchResults:Array<PFObject>?
+    var searchText:String?
+    var searchBar:UISearchBar?
+    var isSearching:Bool
+    
+    required init(coder aDecoder: NSCoder) {
+        isSearching = false
+        
+        super.init(coder: aDecoder)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,15 +31,21 @@ class BIFlashbackSearchResultsViewController: BIMyBlinksBaseViewController {
     }
     
     func setupTableView() {
-        let nib:UINib = UINib(nibName: BIRecentSearchCell.reuseIdentifier(), bundle: NSBundle.mainBundle())
-        self.tableView.registerNib(nib, forCellReuseIdentifier: BIRecentSearchCell.reuseIdentifier())
-        
+        self.tableView.registerNib(UINib(nibName: BIRecentSearchCell.reuseIdentifier(), bundle: NSBundle.mainBundle()), forCellReuseIdentifier: BIRecentSearchCell.reuseIdentifier())
+        self.tableView.registerNib(UINib(nibName: BIPaginationTableViewCell.reuseIdentifier(), bundle: NSBundle.mainBundle()), forCellReuseIdentifier: BIPaginationTableViewCell.reuseIdentifier())
+
         self.tableView.tableFooterView = UIView(frame: CGRectZero)
     }
     
 // pragma mark - requests
     
     func searchForText(searchText: NSString) {
+        self.isSearching = true
+        self.tableView.reloadData()
+        
+        self.searchText = searchText
+        self.searchBar?.resignFirstResponder()
+        
         var searchTerms = searchText.componentsSeparatedByCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
         
         var query = PFQuery(className: "Blink")
@@ -39,44 +53,64 @@ class BIFlashbackSearchResultsViewController: BIMyBlinksBaseViewController {
         query.whereKey("user", equalTo:PFUser.currentUser())
         query.findObjectsInBackgroundWithBlock({ (objects: [AnyObject]!, error) -> Void in
             self.allBlinksArray = NSMutableArray(array: objects)
+            self.isSearching = false
             self.reloadTableData()
         })
     }
     
+    func clearResults() {
+        self.searchText = nil
+        self.allBlinksArray.removeAllObjects()
+        self.reloadTableData()
+    }
+    
 //// pragma mark - UITableViewDelegate
-//    
-//    override func tableView(tableView:UITableView, numberOfRowsInSection section:Int)->Int {
-//        return 1
-//    }
-//    
-//    override func numberOfSectionsInTableView(tableView:UITableView)->Int {
-//        if searchResults != nil {
-//            return searchResults!.count
-//        }
-//        
-//        return 1
-//    }
-//    
-//    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-//        return 44
-//    }
-//    
-//    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-//        
-//        if searchResults != nil {
-//            let blink = self.searchResults![indexPath.row]
-//            
-//            var cell:BIRecentSearchCell = tableView.dequeueReusableCellWithIdentifier(BIRecentSearchCell.reuseIdentifier()) as BIRecentSearchCell
-//            cell.titleLabel.text = blink["content"] as? String
-//            return cell
-//        }
-//        
-//        var cell:BIRecentSearchCell = tableView.dequeueReusableCellWithIdentifier(BIRecentSearchCell.reuseIdentifier()) as BIRecentSearchCell
-//        cell.titleLabel.text = "no results"
-//        return cell
-//    }
-//
-//    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-//        tableView.deselectRowAtIndexPath(indexPath, animated: true)
-//    }
+    
+    override func tableView(tableView:UITableView, numberOfRowsInSection section:Int)->Int {
+        if self.allBlinksArray.count > 0 {
+            return allBlinksArray.count
+        }
+        
+        return 1
+    }
+    
+    override func numberOfSectionsInTableView(tableView:UITableView)->Int {
+        return 1
+    }
+
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        if self.allBlinksArray.count > 0 {
+            return super.tableView(tableView, heightForRowAtIndexPath: indexPath)
+        }
+        
+        return 40
+    }
+    
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        if self.allBlinksArray.count > 0 {
+            return super.tableView(tableView, cellForRowAtIndexPath: indexPath)
+        }
+        
+        if self.isSearching == true {
+            let cell: BIPaginationTableViewCell! = tableView.dequeueReusableCellWithIdentifier(BIPaginationTableViewCell.reuseIdentifier()) as BIPaginationTableViewCell
+            return cell
+        }
+        
+        let cell: BIRecentSearchCell! = tableView.dequeueReusableCellWithIdentifier(BIRecentSearchCell.reuseIdentifier()) as BIRecentSearchCell
+        
+        if let text = self.searchText {
+            cell?.titleLabel.text = "Tap to search for \"" + text + "\""
+        } else {
+            cell?.titleLabel.text = "Tap to search"
+        }
+        
+        return cell
+    }
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        if self.allBlinksArray.count <= 0 && self.isSearching == false {
+            self.searchForText(self.searchText!)
+            tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        }
+    }
 }

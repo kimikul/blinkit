@@ -61,7 +61,6 @@ class BIFlashbackMainViewController: BIViewController, UIPageViewControllerDataS
         self.navigationItem.rightBarButtonItem = self.searchButton
         
         var searchResultsVC = self.storyboard?.instantiateViewControllerWithIdentifier("BIFlashbackSearchResultsViewController") as BIFlashbackSearchResultsViewController
-        searchResultsVC.view.backgroundColor = UIColor.redColor()
         
         var searchController = BISearchController(searchResultsController: searchResultsVC)
         searchController.delegate = self
@@ -76,6 +75,7 @@ class BIFlashbackMainViewController: BIViewController, UIPageViewControllerDataS
         self.searchBar = searchController.searchBar
         self.searchController = searchController
         self.searchResultsVC = searchResultsVC
+        self.searchResultsVC.searchBar = self.searchBar
         
         self.definesPresentationContext = true
     }
@@ -310,10 +310,22 @@ class BIFlashbackMainViewController: BIViewController, UIPageViewControllerDataS
         self.searchResultsVC.searchForText(searchText)
     }
     
+    func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
+        searchBar.tintColor = UIColor.coral()
+
+        self.searchResultsVC.searchText = searchText
+        self.searchResultsVC.tableView.reloadData()
+        
+        if searchText == "" {
+            self.searchResultsVC.clearResults()
+        }
+    }
+
+    
 // pragma mark - UISearchResultsUpdating
     
     func updateSearchResultsForSearchController(searchController: UISearchController) {
-        
+
     }
     
 // pragma mark - UISearchControllerDelegate
@@ -321,6 +333,9 @@ class BIFlashbackMainViewController: BIViewController, UIPageViewControllerDataS
     func willPresentSearchController(searchController: UISearchController) {
         searchController.view.setNeedsLayout()
         self.searchBar.tintColor = UIColor.coral()
+    }
+    
+    func didPresentSearchController(searchController: UISearchController) {
     }
 
     func willDismissSearchController(searchController: UISearchController) {
