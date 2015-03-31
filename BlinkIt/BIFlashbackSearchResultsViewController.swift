@@ -41,15 +41,15 @@ class BIFlashbackSearchResultsViewController: BIMyBlinksBaseViewController {
 // pragma mark - requests
     
     func searchForText(searchText: NSString) {
-        searchText = searchText.lowercaseString()
+        let str = searchText.lowercaseString
         
         self.isSearching = true
         self.tableView.reloadData()
         
-        self.searchText = searchText
+        self.searchText = str
         self.searchBar?.resignFirstResponder()
         
-        var searchTerms = searchText.componentsSeparatedByCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+        var searchTerms = str.componentsSeparatedByCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
         
         var query = PFQuery(className: "Blink")
         query.whereKey("words", containsAllObjectsInArray: searchTerms)
