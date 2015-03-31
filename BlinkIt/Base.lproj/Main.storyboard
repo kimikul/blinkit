@@ -1630,16 +1630,43 @@ Try posting more often so you have more to look back on!</string>
                                     <outlet property="delegate" destination="i8O-nm-TiP" id="XVi-8s-P8c"/>
                                 </connections>
                             </tableView>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9gF-hf-Ah0">
+                                <rect key="frame" x="0.0" y="20" width="320" height="460"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No results found" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="knF-uQ-3na">
+                                        <rect key="frame" x="8" y="14" width="304" height="21"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="21" id="jgl-xd-VTa"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="15"/>
+                                        <color key="textColor" red="0.5568627451" green="0.5568627451" blue="0.5568627451" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="knF-uQ-3na" firstAttribute="leading" secondItem="9gF-hf-Ah0" secondAttribute="leading" constant="8" id="DQ1-6E-0Ed"/>
+                                    <constraint firstAttribute="trailing" secondItem="knF-uQ-3na" secondAttribute="trailing" constant="8" id="NA7-t8-F7n"/>
+                                    <constraint firstItem="knF-uQ-3na" firstAttribute="top" secondItem="9gF-hf-Ah0" secondAttribute="top" constant="14" id="dlj-Jm-oSu"/>
+                                    <constraint firstAttribute="centerX" secondItem="knF-uQ-3na" secondAttribute="centerX" id="eDi-Zp-mKF"/>
+                                    <constraint firstAttribute="centerX" secondItem="knF-uQ-3na" secondAttribute="centerX" id="zOb-Zc-xBb"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="mTz-RO-KK2" firstAttribute="leading" secondItem="rJZ-58-L47" secondAttribute="leadingMargin" constant="-16" id="9MN-nf-dMI"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="9gF-hf-Ah0" secondAttribute="trailing" constant="-16" id="DOL-FT-Vf4"/>
+                            <constraint firstItem="9gF-hf-Ah0" firstAttribute="top" secondItem="ngd-WJ-Tyo" secondAttribute="bottom" id="Nkn-Lf-47Q"/>
+                            <constraint firstItem="9gF-hf-Ah0" firstAttribute="leading" secondItem="rJZ-58-L47" secondAttribute="leadingMargin" constant="-16" id="PSm-rR-Mtb"/>
                             <constraint firstAttribute="trailingMargin" secondItem="mTz-RO-KK2" secondAttribute="trailing" constant="-16" id="T2g-LB-yyv"/>
+                            <constraint firstItem="91x-5m-iQI" firstAttribute="top" secondItem="9gF-hf-Ah0" secondAttribute="bottom" id="rYD-NY-Zw4"/>
                             <constraint firstItem="91x-5m-iQI" firstAttribute="top" secondItem="mTz-RO-KK2" secondAttribute="bottom" id="uOQ-zH-cde"/>
                             <constraint firstItem="mTz-RO-KK2" firstAttribute="top" secondItem="ngd-WJ-Tyo" secondAttribute="bottom" id="yPX-JH-uFn"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="noResultsView" destination="9gF-hf-Ah0" id="ixm-Ln-veq"/>
                         <outlet property="tableView" destination="mTz-RO-KK2" id="eRn-fA-9TE"/>
                     </connections>
                 </viewController>

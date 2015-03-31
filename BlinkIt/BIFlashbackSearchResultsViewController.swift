@@ -12,6 +12,7 @@ class BIFlashbackSearchResultsViewController: BIMyBlinksBaseViewController {
     var searchText:String?
     var searchBar:UISearchBar?
     var isSearching:Bool
+    @IBOutlet weak var noResultsView: UIView!
     
     required init(coder aDecoder: NSCoder) {
         isSearching = false
@@ -54,12 +55,19 @@ class BIFlashbackSearchResultsViewController: BIMyBlinksBaseViewController {
         query.findObjectsInBackgroundWithBlock({ (objects: [AnyObject]!, error) -> Void in
             self.allBlinksArray = NSMutableArray(array: objects)
             self.isSearching = false
-            self.reloadTableData()
+            
+            if self.allBlinksArray.count == 0 {
+                self.noResultsView.fadeInWithDuration(0.2, completion: nil)
+            } else {
+                self.noResultsView.hidden = true
+                self.reloadTableData()
+            }
         })
     }
     
     func clearResults() {
         self.searchText = nil
+        self.noResultsView.hidden = true
         self.allBlinksArray.removeAllObjects()
         self.reloadTableData()
     }
