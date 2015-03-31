@@ -41,6 +41,8 @@ class BIFlashbackSearchResultsViewController: BIMyBlinksBaseViewController {
 // pragma mark - requests
     
     func searchForText(searchText: NSString) {
+        searchText = searchText.lowercaseString()
+        
         self.isSearching = true
         self.tableView.reloadData()
         
