@@ -19,3 +19,4 @@
 #import "BIFeedBaseViewController.h"
 #import "UIColor+BlinkIt.h"
 #import "NSDate+BlinkIt.h"
+#import "BIConstants.h"

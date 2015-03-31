@@ -70,6 +70,7 @@ class BIFlashbackMainViewController: BIViewController, UIPageViewControllerDataS
         searchController.searchResultsUpdater = self
         searchController.searchBar.delegate = self
         searchController.searchBar.frame = CGRectMake(10.0, 0, 0, 44.0)
+        searchController.searchBar.placeholder = "Search your past blinks"
         self.navigationController?.navigationBar.addSubview(searchController.searchBar)
         
         self.searchBar = searchController.searchBar
@@ -284,7 +285,6 @@ class BIFlashbackMainViewController: BIViewController, UIPageViewControllerDataS
         }, completion: { (completed: Bool) in
             self.searchBar.becomeFirstResponder()
             self.isSearching = true
-//            self.navigationItem.rightBarButtonItem = nil
             return
         })
     }
@@ -304,6 +304,12 @@ class BIFlashbackMainViewController: BIViewController, UIPageViewControllerDataS
         })
     }
     
+    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+        let searchText = searchBar.text
+        
+        self.searchResultsVC.searchForText(searchText)
+    }
+    
 // pragma mark - UISearchResultsUpdating
     
     func updateSearchResultsForSearchController(searchController: UISearchController) {
@@ -314,12 +320,9 @@ class BIFlashbackMainViewController: BIViewController, UIPageViewControllerDataS
     
     func willPresentSearchController(searchController: UISearchController) {
         searchController.view.setNeedsLayout()
+        self.searchBar.tintColor = UIColor.coral()
     }
-    
-    func didPresentSearchController(searchController: UISearchController) {
 
-    }
-    
     func willDismissSearchController(searchController: UISearchController) {
         self.searchBarCancelButtonClicked(self.searchBar)
     }
