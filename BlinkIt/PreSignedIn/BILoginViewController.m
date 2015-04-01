@@ -48,6 +48,8 @@
     
     [PFUser logInWithUsernameInBackground:username password:password
                                     block:^(PFUser *user, NSError *error) {
+                                        [self.passwordTextField resignFirstResponder];
+
                                         if (user) {
                                             [self.delegate loginViewController:self didLoginUser:user];
                                         } else if (error) {
