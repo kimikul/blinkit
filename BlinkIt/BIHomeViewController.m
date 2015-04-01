@@ -38,6 +38,7 @@
     if (self) {
         self.useRefreshTableHeaderView = YES;
         [self fetchBlinksForPagination:NO];
+        [self setupObservers];
     }
     
     return self;
@@ -51,7 +52,6 @@
     [self setupButtons];
     [self setupNav];
     [self setupHeader];
-    [self setupObservers];
     [self fetchBlinksForPagination:NO];
 }
 
