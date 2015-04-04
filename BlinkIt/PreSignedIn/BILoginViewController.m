@@ -61,6 +61,45 @@
                                     }];
 }
 
+- (IBAction)tappedForgotPassword:(id)sender {
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Forgot Password" message:@"Enter your email address and we'll send you an email to reset your password" preferredStyle:UIAlertControllerStyleAlert];
+    
+    [alertController addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+        textField.placeholder = @"email";
+    }];
+    
+    UIAlertAction *submit = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        NSString *email = [(UITextField*)alertController.textFields[0] text];
+        if (email.hasContent) {
+            [PFUser requestPasswordResetForEmailInBackground:email target:self selector:@selector(sentResetPasswordRequest:error:)];
+        }
+    }];
+    
+    UIAlertAction* cancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
+        [alertController dismissViewControllerAnimated:YES completion:nil];
+    }];
+    
+    [alertController addAction:submit];
+    [alertController addAction:cancel];
+    
+    [self presentViewController:alertController animated:YES completion:nil];
+}
+
+#pragma mark - reset password {
+
+- (void)sentResetPasswordRequest:(NSNumber*)result error:(NSError*)error {
+    BOOL success = result.boolValue;
+    if (success) {
+        UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"Email Sent" message:@"You should receive an email to reset your password" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [av show];
+    } else {
+        NSString *errorMsg = error.code == 205 ? @"No user was found with that email" : @"An error occurred. Please try again";
+        
+        UIAlertView *av = [[UIAlertView alloc] initWithTitle:@"Error" message:errorMsg delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [av show];
+    }
+}
+
 #pragma mark - UITextFieldDelegate
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {

@@ -221,9 +221,26 @@
                                     <action selector="loginTapped:" destination="FIu-Ba-Dvu" eventType="touchUpInside" id="jH0-S1-vXy"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wh7-kh-nsR">
+                                <rect key="frame" x="80" y="219" width="160" height="41"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="160" id="3WD-Za-m8J"/>
+                                    <constraint firstAttribute="height" constant="41" id="FbQ-BS-evs"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <state key="normal" title="Forgot your password?">
+                                    <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="tappedForgotPassword:" destination="FIu-Ba-Dvu" eventType="touchUpInside" id="s9C-zv-5Tw"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.8980392157" green="0.8980392157" blue="0.8980392157" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="wh7-kh-nsR" firstAttribute="centerX" secondItem="rVb-vt-aoL" secondAttribute="centerX" id="3HE-0e-iTC"/>
+                            <constraint firstItem="wh7-kh-nsR" firstAttribute="top" secondItem="rVb-vt-aoL" secondAttribute="bottom" constant="9" id="8uO-YN-W7T"/>
                             <constraint firstAttribute="trailingMargin" secondItem="cue-dR-0zY" secondAttribute="trailing" constant="-6" id="DC7-aL-stk"/>
                             <constraint firstItem="rVb-vt-aoL" firstAttribute="top" secondItem="cue-dR-0zY" secondAttribute="bottom" constant="10" id="W6w-qJ-WLb"/>
                             <constraint firstItem="rVb-vt-aoL" firstAttribute="leading" secondItem="iFP-YL-vYN" secondAttribute="leadingMargin" constant="-6" id="gSm-CT-ziP"/>
