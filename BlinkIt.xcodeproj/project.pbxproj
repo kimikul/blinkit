@@ -121,6 +121,7 @@
 		5EB8148919877AB3007B7502 /* BIFlashbackMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EB8148819877AB3007B7502 /* BIFlashbackMainViewController.swift */; };
 		5EC8DAB81985B628000ED81C /* BIFlashbackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC8DAB61985B628000ED81C /* BIFlashbackViewController.swift */; };
 		5EDCB5C01995FE3B00ACE1DF /* BIFeedBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EDCB5BF1995FE3B00ACE1DF /* BIFeedBaseViewController.m */; };
+		5EE5CA0E1ACFBA2E007BE1A2 /* BIHashtagViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EE5CA0C1ACFBA2E007BE1A2 /* BIHashtagViewController.swift */; };
 		5EF4791F1AAD7915009C0FCF /* BIRecentSearchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5EF4791E1AAD7915009C0FCF /* BIRecentSearchCell.xib */; };
 		5EF479211AAD7987009C0FCF /* BIRecentSearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EF479201AAD7987009C0FCF /* BIRecentSearchCell.swift */; };
 		5EFAA845199887CF00AEF2B1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EAB8AA3187E73DF00B02953 /* Foundation.framework */; };
@@ -321,6 +322,7 @@
 		5EC8DAB61985B628000ED81C /* BIFlashbackViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BIFlashbackViewController.swift; sourceTree = "<group>"; };
 		5EDCB5BE1995FE3B00ACE1DF /* BIFeedBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BIFeedBaseViewController.h; sourceTree = "<group>"; };
 		5EDCB5BF1995FE3B00ACE1DF /* BIFeedBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BIFeedBaseViewController.m; sourceTree = "<group>"; };
+		5EE5CA0C1ACFBA2E007BE1A2 /* BIHashtagViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BIHashtagViewController.swift; sourceTree = "<group>"; };
 		5EF4791E1AAD7915009C0FCF /* BIRecentSearchCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BIRecentSearchCell.xib; sourceTree = "<group>"; };
 		5EF479201AAD7987009C0FCF /* BIRecentSearchCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BIRecentSearchCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -603,6 +605,7 @@
 		5EAB8AA9187E73DF00B02953 /* BlinkIt */ = {
 			isa = PBXGroup;
 			children = (
+				5EE5CA0B1ACFB9E2007BE1A2 /* Hashtags */,
 				5E03C741197F654F00726522 /* BlinkIt-Bridging-Header.h */,
 				5EC8DAB51985B60F000ED81C /* Flashback */,
 				5E99D1A718B4527D00862462 /* Profiles */,
@@ -775,6 +778,14 @@
 				5E6A4AD21AC91D410085F049 /* BIFlashbackSearchResultsViewController.swift */,
 			);
 			name = Flashback;
+			sourceTree = "<group>";
+		};
+		5EE5CA0B1ACFB9E2007BE1A2 /* Hashtags */ = {
+			isa = PBXGroup;
+			children = (
+				5EE5CA0C1ACFBA2E007BE1A2 /* BIHashtagViewController.swift */,
+			);
+			name = Hashtags;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -963,6 +974,7 @@
 				5EB8148919877AB3007B7502 /* BIFlashbackMainViewController.swift in Sources */,
 				5E42D40B189CDF3500F651E0 /* BIConstants.m in Sources */,
 				5E3420D918A4B3CD0088A270 /* BIFeedTableViewCell.m in Sources */,
+				5EE5CA0E1ACFBA2E007BE1A2 /* BIHashtagViewController.swift in Sources */,
 				5E6392701888EA9800D1AE80 /* BIPhotoViewController.m in Sources */,
 				5E03C743197F655000726522 /* BIExpandImageHelper.swift in Sources */,
 				5E55D4E618BDBA8A00FE5168 /* BIFileSystemImageCache.m in Sources */,

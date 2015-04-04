@@ -221,8 +221,8 @@
                                     <action selector="loginTapped:" destination="FIu-Ba-Dvu" eventType="touchUpInside" id="jH0-S1-vXy"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wh7-kh-nsR">
-                                <rect key="frame" x="80" y="219" width="160" height="41"/>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wh7-kh-nsR">
+                                <rect key="frame" x="80" y="218" width="160" height="41"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="160" id="3WD-Za-m8J"/>
                                     <constraint firstAttribute="height" constant="41" id="FbQ-BS-evs"/>
@@ -1584,7 +1584,7 @@ PRO TIP : Link your Facebook in Settings so friends can find you.</string>
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                                 <subviews>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eH4-mD-LkN">
-                                        <rect key="frame" x="10" y="12" width="300" height="90"/>
+                                        <rect key="frame" x="10" y="83" width="300" height="90"/>
                                         <string key="text">You have no flashbacks for today.
 
 Try posting more often so you have more to look back on!</string>
@@ -1597,7 +1597,7 @@ Try posting more often so you have more to look back on!</string>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="eH4-mD-LkN" secondAttribute="trailing" constant="10" id="UYz-X9-trh"/>
                                     <constraint firstItem="eH4-mD-LkN" firstAttribute="leading" secondItem="wOW-HM-1nH" secondAttribute="leading" constant="10" id="jDX-Ah-eEW"/>
-                                    <constraint firstItem="eH4-mD-LkN" firstAttribute="top" secondItem="wOW-HM-1nH" secondAttribute="top" constant="12" id="sk4-ah-CpW"/>
+                                    <constraint firstItem="eH4-mD-LkN" firstAttribute="top" secondItem="wOW-HM-1nH" secondAttribute="top" constant="83" id="sk4-ah-CpW"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -1690,6 +1690,43 @@ Try posting more often so you have more to look back on!</string>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cWC-3q-YRq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="5306" y="-376"/>
+        </scene>
+        <!--Hashtag View Controller-->
+        <scene sceneID="DJ1-2e-FtH">
+            <objects>
+                <viewController storyboardIdentifier="BIHashtagViewController" id="hFe-48-Gku" customClass="BIHashtagViewController" customModule="BlinkItModule" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="MbJ-W2-E5E"/>
+                        <viewControllerLayoutGuide type="bottom" id="gnN-TD-dQ7"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8EW-6w-nch">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Uq8-mT-cfc">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="hFe-48-Gku" id="OkD-H1-9WC"/>
+                                    <outlet property="delegate" destination="hFe-48-Gku" id="nQ7-Fb-vsL"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="gnN-TD-dQ7" firstAttribute="top" secondItem="Uq8-mT-cfc" secondAttribute="bottom" id="3Bd-SV-726"/>
+                            <constraint firstItem="Uq8-mT-cfc" firstAttribute="top" secondItem="8EW-6w-nch" secondAttribute="topMargin" id="jD0-02-oWx"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Uq8-mT-cfc" secondAttribute="trailing" constant="-16" id="ldY-Ky-Kem"/>
+                            <constraint firstItem="Uq8-mT-cfc" firstAttribute="leading" secondItem="8EW-6w-nch" secondAttribute="leadingMargin" constant="-16" id="wTE-fm-fzk"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="Uq8-mT-cfc" id="s0P-Dt-T9E"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="meq-21-pMw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5853" y="-346"/>
         </scene>
         <!--Feed-->
         <scene sceneID="MAc-BV-JNV">

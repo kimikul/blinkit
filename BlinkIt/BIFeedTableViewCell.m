@@ -12,7 +12,6 @@
 @property (weak, nonatomic) IBOutlet UIImageView *userPicImageView;
 @property (weak, nonatomic) IBOutlet UILabel *userNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
-@property (weak, nonatomic) IBOutlet UITextView *contentTextView;
 @property (nonatomic, strong) PFUser *user;
 @property (weak, nonatomic) IBOutlet UIView *viewProfileTapView;
 @end
@@ -71,10 +70,10 @@
     _blink = blink;
     
     _user = blink[@"user"];
-    _contentTextView.text = nil;    // workaround for repeating links
-    _contentTextView.text = blink[@"content"];
     _userNameLabel.text = _user[@"name"];
     _timeLabel.text = [NSDate formattedTime:blink[@"date"]];
+    _contentTextView.text = nil;    // workaround for repeating links
+    [self highlightHashtags];
     
     NSString *photoURL = _user[@"photoURL"];
     UIImage *profPic = [[BIFileSystemImageCache shared] objectForKey:photoURL];
@@ -93,6 +92,26 @@
             });
         });
     }
+}
+
+#pragma mark - hashtags
+
+- (void)highlightHashtags {
+    NSString *text = self.blink[@"content"];
+    NSArray *words = [text componentsSeparatedByString:@" "];
+    
+    NSMutableAttributedString * string = [[NSMutableAttributedString alloc]initWithString:text];
+    [string addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:14.0] range:NSMakeRange(0, text.length)];
+    
+    for (NSString *word in words) {
+        if ([word hasPrefix:@"#"]) {
+            NSRange range = [text rangeOfString:word];
+            [string addAttribute:NSForegroundColorAttributeName value:[UIColor coral] range:range];
+            [string addAttribute:NSLinkAttributeName value:word range:range];
+        }
+    }
+    
+    _contentTextView.attributedText = string;
 }
 
 #pragma mark - ibactions

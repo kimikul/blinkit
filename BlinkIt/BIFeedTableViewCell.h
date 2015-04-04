@@ -22,4 +22,6 @@
 
 @property (nonatomic, strong) PFObject *blink;
 @property (nonatomic, weak) id <BIFeedTableViewCellDelegate> delegate;
+@property (weak, nonatomic) IBOutlet UITextView *contentTextView;
+
 @end

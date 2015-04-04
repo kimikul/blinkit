@@ -425,14 +425,16 @@
     self.imagePickerController.allowsEditing = YES;
     
     if (sourceType == UIImagePickerControllerSourceTypeCamera) {
+        static int topPhotoOptionBarHeight = 44;
+        static int bottomPhotoOptionBarHeight = 100;
+        
         CGRect frame = self.imagePickerController.view.bounds;
-        frame.size.height -= self.imagePickerController.navigationBar.bounds.size.height; // subtract 44
-        CGFloat barHeight = (frame.size.height - frame.size.width) / 2; // 102
+        CGFloat overlayBarHeight = (frame.size.height - bottomPhotoOptionBarHeight - topPhotoOptionBarHeight - frame.size.width); // 102
         
         UIGraphicsBeginImageContext(frame.size);
         [[UIColor blackColor] set];
-        UIRectFillUsingBlendMode(CGRectMake(0, 30, frame.size.width, barHeight-35), kCGBlendModeNormal);
-        UIRectFillUsingBlendMode(CGRectMake(0, frame.size.height - barHeight, frame.size.width, barHeight-26), kCGBlendModeNormal);
+//        UIRectFillUsingBlendMode(CGRectMake(0, topPhotoOptionBarHeight, frame.size.width, overlayBarHeight - topPhotoOptionBarHeight), kCGBlendModeNormal);
+        UIRectFillUsingBlendMode(CGRectMake(0, frame.size.height - overlayBarHeight - bottomPhotoOptionBarHeight, frame.size.width, overlayBarHeight), kCGBlendModeNormal);
         UIImage *overlayImage = UIGraphicsGetImageFromCurrentImageContext();
         UIGraphicsEndImageContext();
         

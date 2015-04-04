@@ -9,10 +9,10 @@
 #import "BIHomeTableViewCell.h"
 
 @interface BIHomeTableViewCell ()
+
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 //@property (weak, nonatomic) IBOutlet UILabel *contentLabel;
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
-@property (weak, nonatomic) IBOutlet UITextView *contentTextView;
 @end
 
 @implementation BIHomeTableViewCell
@@ -47,25 +47,36 @@
 - (void)setBlink:(PFObject *)blink {
     _blink = blink;
     
-    _contentTextView.text = nil;    // workaround for repeating links
-    _contentTextView.text = blink[@"content"];
-    
     NSDate *date = _blink[@"date"];
     _timeLabel.text = [NSDate formattedTime:date];
     _dateLabel.text = [NSDate isToday:date] ? @"Today" : [NSDate spelledOutDate:date];
+    _contentTextView.attributedText = nil;    // workaround for repeating links
+    [self highlightHashtags];
     
     BOOL isPrivate = [_blink[@"private"] boolValue];
     [self updatePrivacyButtonTo:isPrivate];
+    
 }
 
-#pragma mark - lifecycle
+#pragma mark - hashtags
 
-//- (void)awakeFromNib {
-//    [super awakeFromNib];
-//    
-//    self.contentTextView.textContainer.lineFragmentPadding = 0;
-//    self.contentTextView.textContainerInset = UIEdgeInsetsZero;
-//}
+- (void)highlightHashtags {
+    NSString *text = self.blink[@"content"];
+    NSArray *words = [text componentsSeparatedByString:@" "];
+    
+    NSMutableAttributedString * string = [[NSMutableAttributedString alloc]initWithString:text];
+    [string addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:14.0] range:NSMakeRange(0, text.length)];
+    
+    for (NSString *word in words) {
+        if ([word hasPrefix:@"#"]) {
+            NSRange range = [text rangeOfString:word];
+            [string addAttribute:NSForegroundColorAttributeName value:[UIColor coral] range:range];
+            [string addAttribute:NSLinkAttributeName value:word range:range];
+        }
+    }
+    
+    _contentTextView.attributedText = string;
+}
 
 #pragma mark - privacy button
 

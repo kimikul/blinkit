@@ -112,6 +112,7 @@
     
     cell.blink = blink;
     cell.delegate = self;
+    cell.contentTextView.delegate = self;
     
     return cell;
 }
@@ -126,6 +127,23 @@
     BIExpandImageHelper *expandImageHelper = [BIExpandImageHelper new];
     expandImageHelper.delegate = self;
     [expandImageHelper animateImageView:imageView];
+}
+
+#pragma mark - UITextFieldDelegate
+
+- (BOOL)textView:(UITextView *)textView shouldInteractWithURL:(NSURL *)URL inRange:(NSRange)characterRange {
+    if ([URL.absoluteString hasPrefix:@"#"]) {
+        BIHashtagViewController *hashtagVC = [self.storyboard instantiateViewControllerWithIdentifier:@"BIHashtagViewController"];
+        hashtagVC.hashtag = URL.absoluteString;
+        
+        UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:hashtagVC];
+        
+        [self presentViewController:nav animated:YES completion:nil];
+        
+        return NO;
+    }
+    
+    return YES;
 }
 
 @end

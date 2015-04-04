@@ -8,7 +8,7 @@
 
 #import "BITableViewController.h"
 
-@interface BIMyBlinksBaseViewController : BITableViewController
+@interface BIMyBlinksBaseViewController : BITableViewController <UITextViewDelegate>
 @property (nonatomic, strong) NSMutableArray *allBlinksArray;
 @property (nonatomic, assign) BOOL canPaginate;
 @property (weak, nonatomic) IBOutlet UIView *noBlinksView;
