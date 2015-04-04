@@ -51,10 +51,19 @@ class BIFlashbackSearchResultsViewController: BIMyBlinksBaseViewController {
         
         var searchTerms = str.componentsSeparatedByCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
         
-        var query = PFQuery(className: "Blink")
-        query.whereKey("words", containsAllObjectsInArray: searchTerms)
-        query.whereKey("user", equalTo:PFUser.currentUser())
+        // words query
+        var wordsQuery = PFQuery(className: "Blink")
+        wordsQuery.whereKey("words", containsAllObjectsInArray: searchTerms)
+        wordsQuery.whereKey("user", equalTo:PFUser.currentUser())
+        
+        // hashtag query
+        var hashtagQuery = PFQuery(className: "Blink")
+        hashtagQuery.whereKey("hashtags", containsAllObjectsInArray: searchTerms)
+        hashtagQuery.whereKey("user", equalTo:PFUser.currentUser())
+        
+        var query = PFQuery.orQueryWithSubqueries([wordsQuery, hashtagQuery])
         query.orderByDescending("date")
+
         query.findObjectsInBackgroundWithBlock({ (objects: [AnyObject]!, error) -> Void in
             self.allBlinksArray = NSMutableArray(array: objects)
             self.isSearching = false

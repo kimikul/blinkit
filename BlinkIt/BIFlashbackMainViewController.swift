@@ -173,6 +173,19 @@ class BIFlashbackMainViewController: BIViewController, UIPageViewControllerDataS
     
 // pragma mark : page control
     
+    func setupTitle() {
+        let titleView = UIView(frame: CGRectMake(0, 0, 220, 44))
+        
+        let navTitle = UILabel(frame: CGRectMake(0, 0, 220, 44))
+        navTitle.text = "Flashback"
+        navTitle.textColor = UIColor.darkGrayColor()
+        navTitle.textAlignment = NSTextAlignment.Center
+        navTitle.font = UIFont.boldSystemFontOfSize(17)
+        titleView.addSubview(navTitle)
+        
+        navigationItem.titleView = titleView
+    }
+    
     func setupPageIndicator() {
         let titleView = UIView(frame: CGRectMake(0, 0, 220, 44))
         
@@ -236,7 +249,7 @@ class BIFlashbackMainViewController: BIViewController, UIPageViewControllerDataS
             self.setupPageIndicator()
         } else {
             self.noFlashbacksView.hidden = false
-            self.title = "Flashback"
+            self.setupTitle()
         }
     }
 
@@ -277,7 +290,7 @@ class BIFlashbackMainViewController: BIViewController, UIPageViewControllerDataS
 // search
     
     func searchTapped(button: UIBarButtonItem) {
-        self.navigationItem.titleView!.hidden = true
+        self.navigationItem.titleView?.hidden = true
         self.navigationItem.rightBarButtonItem = nil
 
         UIView.animateWithDuration(0.2, delay:0, options:nil, animations: {
