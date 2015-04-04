@@ -121,7 +121,7 @@
             NSMutableArray *blinks = pagination ? [[self.allBlinksArray arrayByAddingObjectsFromArray:objects] mutableCopy] : [objects mutableCopy];
             self.allBlinksArray = [blinks mutableCopy];
             
-            [self sectionalizeBlinks:blinks pagination:pagination];
+            [self sectionalizeBlinks:objects pagination:pagination];
         }
     }];
     
