@@ -45,7 +45,6 @@ class BIFlashbackMainViewController: BIViewController, UIPageViewControllerDataS
 
         navigationController!.navigationBar.translucent = false
         
-        self.setupSearch()
         self.setupNotifications()
         self.refreshData()
     }
@@ -251,6 +250,8 @@ class BIFlashbackMainViewController: BIViewController, UIPageViewControllerDataS
             self.noFlashbacksView.hidden = false
             self.setupTitle()
         }
+        
+        self.setupSearch()
     }
 
     

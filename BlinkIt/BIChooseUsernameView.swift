@@ -36,7 +36,7 @@ class BIChooseUsernameView: UIView, UIAlertViewDelegate, UITextFieldDelegate {
 
     
     func submitUsername() {
-        let username = self.usernameTextField.text
+        let username = self.usernameTextField.text.lowercaseString
         let count = ((username.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())) as NSString).length
         
         if (count <= 0) {
@@ -50,7 +50,7 @@ class BIChooseUsernameView: UIView, UIAlertViewDelegate, UITextFieldDelegate {
         }
         
         var currentUser:PFUser = PFUser.currentUser()
-        currentUser["blinkitUsername"] = username != nil ? username : ""
+        currentUser["blinkitUsername"] = username
         
         currentUser.saveInBackgroundWithBlock { (succeeded, error) -> Void in
             if error != nil {

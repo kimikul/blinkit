@@ -36,6 +36,7 @@ class BIFlashbackSearchResultsViewController: BIMyBlinksBaseViewController {
         self.tableView.registerNib(UINib(nibName: BIPaginationTableViewCell.reuseIdentifier(), bundle: NSBundle.mainBundle()), forCellReuseIdentifier: BIPaginationTableViewCell.reuseIdentifier())
 
         self.tableView.tableFooterView = UIView(frame: CGRectZero)
+        self.tableView.allowsSelection = false
     }
     
 // pragma mark - requests

@@ -264,7 +264,8 @@
     theBlink[@"content"] = content;
     theBlink[@"user"] = [PFUser currentUser];
     theBlink[@"date"] = _openDate;
-
+    theBlink[@"preventContentParsing"] = @(0);
+    
     UIImage *image = _selectedImage;
     BOOL hasImage = NO;
     if (image) {

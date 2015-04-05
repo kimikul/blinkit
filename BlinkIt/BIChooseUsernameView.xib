@@ -39,7 +39,7 @@
                                 <constraint firstAttribute="height" constant="30" id="t6b-rS-Q6v"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <textInputTraits key="textInputTraits"/>
+                            <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
                             <connections>
                                 <outlet property="delegate" destination="LRt-hO-xjg" id="vvr-2o-Gtq"/>
                             </connections>

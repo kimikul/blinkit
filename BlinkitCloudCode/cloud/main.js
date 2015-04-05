@@ -7,24 +7,28 @@ Parse.Cloud.define("hello", function(request, response) {
 });
 
 // var _ = require("underscore");
-// Parse.Cloud.beforeSave("Blink", function(request, response) {
+// Parse.Cloud.afterSave("Blink", function(request, response) {
 //     var blink = request.object;
 
-//     var toLowerCase = function(w) { return w.toLowerCase(); };
+//     if (blink.get("preventContentParsing") != 1) {
+//       var toLowerCase = function(w) { return w.toLowerCase(); };
 
-//     var words = blink.get("content").split(/\b/);
-//     words = _.map(words, toLowerCase);
-//     var stopWords = ["the", "in", "and", "a", "to", "of", "at", "or", "i", "you", "he", "she", "on", "it", "is"]
-//     words = _.filter(words, function(w) { return w.match(/^\w+$/) && ! _.contains(stopWords, w); });
-//     words = _.uniq(words);
+//       var words = blink.get("content").split(/\b/);
+//       words = _.map(words, toLowerCase);
+//       var stopWords = ["the", "in", "and", "a", "to", "of", "at", "or", "i", "you", "he", "she", "on", "it", "is"]
+//       words = _.filter(words, function(w) { return w.match(/^\w+$/) && ! _.contains(stopWords, w); });
+//       words = _.uniq(words);
 
-//     var hashtags = blink.get("content").match(/#.+?\b/g);
-//     hashtags = _.map(hashtags, toLowerCase);
-//     hashtags = _.uniq(hashtags);
+//       var hashtags = blink.get("content").match(/#.+?\b/g);
+//       hashtags = _.map(hashtags, toLowerCase);
+//       hashtags = _.uniq(hashtags);
 
-//     blink.set("words", words);
-//     blink.set("hashtags", hashtags);
-//     response.success();
+//       blink.set("words", words);
+//       blink.set("hashtags", hashtags);
+//       blink.set("preventContentParsing", 1)
+//       blink.save();
+//     }
+//     // response.success();  we can uncomment this and change it back to beforeSave after everyone has upgraded
 // });
 
 

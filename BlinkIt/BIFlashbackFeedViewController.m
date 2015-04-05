@@ -14,10 +14,6 @@
 
 @implementation BIFlashbackFeedViewController
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-}
-
 #pragma mark - segmented control
 
 - (void)segmentedControlChanged:(UISegmentedControl*)segmentedControl {
