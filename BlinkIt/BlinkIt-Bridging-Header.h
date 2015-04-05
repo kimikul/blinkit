@@ -21,3 +21,4 @@
 #import "NSDate+BlinkIt.h"
 #import "BIConstants.h"
 #import "BIPaginationTableViewCell.h"
+#import "NSString+BlinkIt.h"

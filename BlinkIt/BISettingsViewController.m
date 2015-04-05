@@ -19,6 +19,7 @@
 #define kTableRowEmail 0
 #define kTableRowFacebook 1
 #define kTableRowDefaultPrivacy 2
+#define kTableRowUsername 3
 
 #define kTableRowReminders 0
 
@@ -32,6 +33,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *dailyReminderTimeLabel;
 @property (weak, nonatomic) IBOutlet UISwitch *dailyRemindersSwitch;
 @property (weak, nonatomic) IBOutlet UILabel *facebookLinkLabel;
+@property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
+@property (weak, nonatomic) IBOutlet UITableViewCell *usernameCell;
 
 @end
 
@@ -45,6 +48,7 @@
     _currentUser = [PFUser currentUser];
 
     [self setupButtons];
+    [self setupObservers];
     [self displayCurrentSettings];
     
     [BIMixpanelHelper sendMixpanelEvent:@"SETTINGS_viewSettings" withProperties:nil];
@@ -55,8 +59,21 @@
     self.navigationItem.rightBarButtonItem = cancelButton;
 }
 
+- (void)setupObservers {
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(displayCurrentSettings) name:kBIUsernameUpdatedNotification object:nil];
+}
+
 - (void)displayCurrentSettings {
     _emailLabel.text = _currentUser[@"username"];
+    
+    NSString *blinkitUsername = _currentUser[@"blinkitUsername"];
+    if (blinkitUsername.hasContent) {
+        _usernameLabel.text = blinkitUsername;
+        _usernameCell.selectionStyle = UITableViewCellSelectionStyleNone;
+    } else {
+        _usernameLabel.text = @"Tap to select username";
+        _usernameCell.selectionStyle = UITableViewCellSelectionStyleGray;
+    }
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     _privacySwitch.on = [defaults boolForKey:BIPrivacyDefaultSettings];
@@ -66,7 +83,7 @@
 }
 
 - (void)updateFacebookLinkLabel {
-    _facebookLinkLabel.text = [PFFacebookUtils isLinkedWithUser:_currentUser] ? _currentUser[@"name"] : @"Click to link account";
+    _facebookLinkLabel.text = [PFFacebookUtils isLinkedWithUser:_currentUser] ? _currentUser[@"name"] : @"Tap to link account";
     [_facebookLinkLabel fadeTransitionWithDuration:0.2];
 }
 
@@ -93,10 +110,26 @@
         } else {
             [self linkToFacebook];
         }
+    } else if (section == kTableSectionAccount && row == kTableRowUsername) {
+        [self presentUsernamePrompt];
     } else if (section == kTableSectionNotifications) {
         [self showReminderTimePicker];
     } else if (section == kTableSectionLogout) {
         [self promptForLogout];
+    }
+}
+
+- (void)presentUsernamePrompt {
+    NSString *blinkitUsername = _currentUser[@"blinkitUsername"];
+
+    if (!blinkitUsername.hasContent) {
+        NSArray *nibs = [[NSBundle mainBundle] loadNibNamed:@"BIChooseUsernameView" owner:self options:nil];
+        BIChooseUsernameView *usernameView = [nibs safeObjectAtIndex:0];
+        usernameView.frame = [UIApplication sharedApplication].keyWindow.bounds;
+        
+        [[UIApplication sharedApplication].keyWindow addSubview:usernameView];
+        
+        [usernameView present];
     }
 }
 

@@ -53,6 +53,7 @@
     [self setupNav];
     [self setupHeader];
     [self fetchBlinksForPagination:NO];
+    [self presentChooseUserNamePromptIfNecessary];
 }
 
 - (void)setupButtons {
@@ -120,6 +121,18 @@
 
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+#pragma mark - username
+
+- (void)presentChooseUserNamePromptIfNecessary {
+    NSArray *nibs = [[NSBundle mainBundle] loadNibNamed:@"BIChooseUsernameView" owner:self options:nil];
+    BIChooseUsernameView *usernameView = [nibs safeObjectAtIndex:0];
+    usernameView.frame = [UIApplication sharedApplication].keyWindow.bounds;
+    
+    [[UIApplication sharedApplication].keyWindow addSubview:usernameView];
+    
+    [usernameView present];
 }
 
 #pragma mark - requests

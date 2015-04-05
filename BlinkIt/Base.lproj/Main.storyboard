@@ -866,7 +866,7 @@ PRO TIP: Click the top right button to follow friends if you haven't yet :)</str
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Click to link account" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bCY-Yo-WLf">
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap to link account" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bCY-Yo-WLf">
                                                     <rect key="frame" x="94" y="12" width="216" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="52y-sW-tNw"/>
@@ -913,6 +913,39 @@ PRO TIP: Click the top right button to follow friends if you haven't yet :)</str
                                                 <constraint firstAttribute="centerY" secondItem="i4A-Sc-ayB" secondAttribute="centerY" constant="0.25" id="EC3-vW-YvU"/>
                                                 <constraint firstItem="yfF-ps-iZb" firstAttribute="leading" secondItem="bWu-uE-coK" secondAttribute="leadingMargin" constant="1" id="YVK-we-Wty"/>
                                                 <constraint firstAttribute="centerY" secondItem="yfF-ps-iZb" secondAttribute="centerY" constant="-0.75" id="kWe-2E-nG3"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="gray" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="BLj-Lj-WII">
+                                        <rect key="frame" x="0.0" y="207" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="BLj-Lj-WII" id="w4I-Tl-QE2">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0cx-hI-NBo">
+                                                    <rect key="frame" x="9" y="12" width="83" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="83" id="UHe-zy-cHp"/>
+                                                        <constraint firstAttribute="height" constant="21" id="ozA-Qn-5Pe"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap to pick your username" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kcK-Ys-00X">
+                                                    <rect key="frame" x="100" y="12" width="212" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="kcK-Ys-00X" firstAttribute="trailing" secondItem="w4I-Tl-QE2" secondAttribute="trailingMargin" id="409-i5-6Hi"/>
+                                                <constraint firstItem="kcK-Ys-00X" firstAttribute="bottom" secondItem="0cx-hI-NBo" secondAttribute="bottom" id="4m2-sr-nI1"/>
+                                                <constraint firstItem="kcK-Ys-00X" firstAttribute="leading" secondItem="0cx-hI-NBo" secondAttribute="trailing" constant="8" id="Bb1-v0-yvv"/>
+                                                <constraint firstItem="0cx-hI-NBo" firstAttribute="leading" secondItem="w4I-Tl-QE2" secondAttribute="leadingMargin" constant="1" id="G1H-Jp-X5t"/>
+                                                <constraint firstItem="kcK-Ys-00X" firstAttribute="top" secondItem="0cx-hI-NBo" secondAttribute="top" id="Vmi-C2-csk"/>
+                                                <constraint firstAttribute="centerY" secondItem="0cx-hI-NBo" secondAttribute="centerY" constant="-0.75" id="xvs-hG-Upq"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -1005,6 +1038,8 @@ PRO TIP: Click the top right button to follow friends if you haven't yet :)</str
                         <outlet property="emailLabel" destination="yeU-TL-SNt" id="nSY-UY-cr8"/>
                         <outlet property="facebookLinkLabel" destination="bCY-Yo-WLf" id="lTC-sY-Uja"/>
                         <outlet property="privacySwitch" destination="i4A-Sc-ayB" id="c6f-tH-7wK"/>
+                        <outlet property="usernameCell" destination="BLj-Lj-WII" id="reH-t7-5GU"/>
+                        <outlet property="usernameLabel" destination="kcK-Ys-00X" id="Euh-Pt-JZD"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vPF-ve-9ie" userLabel="First Responder" sceneMemberID="firstResponder"/>

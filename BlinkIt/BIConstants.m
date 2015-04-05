@@ -30,3 +30,4 @@ NSString *const kBIUpdateHomeNotificationBadgeNotification = @"kBIUpdateHomeNoti
 NSString *const kBIUpdateSavedBlinkNotification = @"kBIUpdateSavedBlinkNotification";
 NSString *const kBIDeleteBlinkNotification = @"kBIDeleteTodaysBlinkNotification";
 NSString *const kBIBlinkPrivacyUpdatedNotification = @"kBIBlinkPrivacyUpdatedNotification";
+NSString *const kBIUsernameUpdatedNotification = @"kBIUsernameUpdatedNotification";

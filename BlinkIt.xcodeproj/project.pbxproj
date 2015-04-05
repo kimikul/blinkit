@@ -122,6 +122,8 @@
 		5EC8DAB81985B628000ED81C /* BIFlashbackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC8DAB61985B628000ED81C /* BIFlashbackViewController.swift */; };
 		5EDCB5C01995FE3B00ACE1DF /* BIFeedBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5EDCB5BF1995FE3B00ACE1DF /* BIFeedBaseViewController.m */; };
 		5EE5CA0E1ACFBA2E007BE1A2 /* BIHashtagViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EE5CA0C1ACFBA2E007BE1A2 /* BIHashtagViewController.swift */; };
+		5EE5CA121AD0FAA0007BE1A2 /* BIChooseUsernameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EE5CA111AD0FAA0007BE1A2 /* BIChooseUsernameView.swift */; };
+		5EE5CA141AD0FAAD007BE1A2 /* BIChooseUsernameView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5EE5CA131AD0FAAD007BE1A2 /* BIChooseUsernameView.xib */; };
 		5EF4791F1AAD7915009C0FCF /* BIRecentSearchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5EF4791E1AAD7915009C0FCF /* BIRecentSearchCell.xib */; };
 		5EF479211AAD7987009C0FCF /* BIRecentSearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EF479201AAD7987009C0FCF /* BIRecentSearchCell.swift */; };
 		5EFAA845199887CF00AEF2B1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EAB8AA3187E73DF00B02953 /* Foundation.framework */; };
@@ -323,6 +325,8 @@
 		5EDCB5BE1995FE3B00ACE1DF /* BIFeedBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BIFeedBaseViewController.h; sourceTree = "<group>"; };
 		5EDCB5BF1995FE3B00ACE1DF /* BIFeedBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BIFeedBaseViewController.m; sourceTree = "<group>"; };
 		5EE5CA0C1ACFBA2E007BE1A2 /* BIHashtagViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BIHashtagViewController.swift; sourceTree = "<group>"; };
+		5EE5CA111AD0FAA0007BE1A2 /* BIChooseUsernameView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BIChooseUsernameView.swift; sourceTree = "<group>"; };
+		5EE5CA131AD0FAAD007BE1A2 /* BIChooseUsernameView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BIChooseUsernameView.xib; sourceTree = "<group>"; };
 		5EF4791E1AAD7915009C0FCF /* BIRecentSearchCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BIRecentSearchCell.xib; sourceTree = "<group>"; };
 		5EF479201AAD7987009C0FCF /* BIRecentSearchCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BIRecentSearchCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -605,6 +609,7 @@
 		5EAB8AA9187E73DF00B02953 /* BlinkIt */ = {
 			isa = PBXGroup;
 			children = (
+				5EE5CA101AD0FA85007BE1A2 /* Mentions */,
 				5EE5CA0B1ACFB9E2007BE1A2 /* Hashtags */,
 				5E03C741197F654F00726522 /* BlinkIt-Bridging-Header.h */,
 				5EC8DAB51985B60F000ED81C /* Flashback */,
@@ -788,6 +793,15 @@
 			name = Hashtags;
 			sourceTree = "<group>";
 		};
+		5EE5CA101AD0FA85007BE1A2 /* Mentions */ = {
+			isa = PBXGroup;
+			children = (
+				5EE5CA111AD0FAA0007BE1A2 /* BIChooseUsernameView.swift */,
+				5EE5CA131AD0FAAD007BE1A2 /* BIChooseUsernameView.xib */,
+			);
+			name = Mentions;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -883,6 +897,7 @@
 				5E6A4AF71ACA8A920085F049 /* BIPaginationTableViewCell.xib in Resources */,
 				5E55D4F018BDE0D300FE5168 /* BIHomeHeaderView.xib in Resources */,
 				5E6392721888F09600D1AE80 /* BIPhotoViewController.xib in Resources */,
+				5EE5CA141AD0FAAD007BE1A2 /* BIChooseUsernameView.xib in Resources */,
 				5E9D037A18AB3D2000634EB9 /* BIFeedTableViewCell.xib in Resources */,
 				5E7297D518AA23C9008D356C /* MPNotification.storyboard in Resources */,
 				5E4C312B1AA7F2DD0023765E /* BIComposeBlinkViewController.xib in Resources */,
@@ -932,6 +947,7 @@
 				5EAB8B3B1881300E00B02953 /* UIView+BlinkIt.m in Sources */,
 				5E9D038818AB724000634EB9 /* BINotificationsViewController.m in Sources */,
 				5E2F088C188F7B1400C633C7 /* BIPaginationTableViewCell.m in Sources */,
+				5EE5CA121AD0FAA0007BE1A2 /* BIChooseUsernameView.swift in Sources */,
 				5EB8148719876FE5007B7502 /* BIMyBlinksBaseViewController.m in Sources */,
 				5E99D1AA18B452BD00862462 /* BIProfileViewController.m in Sources */,
 				5E3420D618A488240088A270 /* BINoFollowResultsTableViewCell.m in Sources */,
