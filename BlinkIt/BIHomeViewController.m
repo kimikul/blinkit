@@ -126,13 +126,19 @@
 #pragma mark - username
 
 - (void)presentChooseUserNamePromptIfNecessary {
-    NSArray *nibs = [[NSBundle mainBundle] loadNibNamed:@"BIChooseUsernameView" owner:self options:nil];
-    BIChooseUsernameView *usernameView = [nibs safeObjectAtIndex:0];
-    usernameView.frame = [UIApplication sharedApplication].keyWindow.bounds;
+    NSString *blinkitUsername = [PFUser currentUser][@"blinkitUsername"];
+    BOOL hasPresentedUsernamePrompt = [[NSUserDefaults standardUserDefaults] boolForKey:kBIUserUsernamePromptKey];
     
-    [[UIApplication sharedApplication].keyWindow addSubview:usernameView];
-    
-    [usernameView present];
+    if (!blinkitUsername.hasContent && !hasPresentedUsernamePrompt) {
+        NSArray *nibs = [[NSBundle mainBundle] loadNibNamed:@"BIChooseUsernameView" owner:self options:nil];
+        BIChooseUsernameView *usernameView = [nibs safeObjectAtIndex:0];
+        usernameView.frame = [UIApplication sharedApplication].keyWindow.bounds;
+        
+        [[UIApplication sharedApplication].keyWindow addSubview:usernameView];
+        
+        [usernameView present];
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:kBIUserUsernamePromptKey];
+    }
 }
 
 #pragma mark - requests

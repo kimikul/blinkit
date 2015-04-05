@@ -16,6 +16,7 @@ extern NSString *const kBIUserDefaultsReminderTimeKey;
 extern NSString *const kBIUserDefaultsDateJoinedKey;
 extern NSString *const kBIUserDefaultsTotalBlinksKey;
 extern NSString *const kBIUserDefaultsRecentSearchesKey;
+extern NSString *const kBIUserUsernamePromptKey;
 
 #pragma mark - Cache
 extern NSString *const kBICachedProfilePicsKey;

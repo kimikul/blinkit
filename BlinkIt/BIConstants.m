@@ -16,6 +16,8 @@ NSString *const kBIUserDefaultsReminderTimeKey = @"kBIUserDefaultsReminderTimeKe
 NSString *const kBIUserDefaultsDateJoinedKey = @"kBIUserDefaultsDateJoinedKey";
 NSString *const kBIUserDefaultsTotalBlinksKey = @"kBIUserDefaultsTotalBlinksKey";
 NSString *const kBIUserDefaultsRecentSearchesKey = @"kBIUserDefaultsRecentSearchesKey";
+NSString *const kBIUserUsernamePromptKey = @"kBIUserUsernamePromptKey";
+
 
 #pragma mark - cache
 NSString *const kBICachedProfilePicsKey = @"kBICachedProfilePicsKey";
