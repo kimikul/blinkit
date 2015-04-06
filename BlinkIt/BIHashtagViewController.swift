@@ -31,11 +31,20 @@ class BIHashtagViewController: BIFeedBaseViewController {
     
     func fetchBlinks() {
         if let hash = self.hashtag {
-            var query = PFQuery(className: "Blink")
             
-            query.whereKey("hashtags", containsAllObjectsInArray:[hash])
+            var publicBlinksQuery = PFQuery(className: "Blink")
+            publicBlinksQuery.whereKey("hashtags", containsAllObjectsInArray:[hash])
+            publicBlinksQuery.whereKey("private", equalTo:0)
+
+            var myPrivateBlinksQuery = PFQuery(className: "Blink")
+            myPrivateBlinksQuery.whereKey("hashtags", containsAllObjectsInArray:[hash])
+            myPrivateBlinksQuery.whereKey("private", equalTo:1)
+            myPrivateBlinksQuery.whereKey("user", equalTo:PFUser.currentUser())
+            
+            var query = PFQuery.orQueryWithSubqueries([publicBlinksQuery, myPrivateBlinksQuery])
             query.orderByDescending("date")
             query.includeKey("user")
+
             query.findObjectsInBackgroundWithBlock({ (objects: [AnyObject]!, error) -> Void in
                 self.allBlinksArray = NSMutableArray(array: objects)
                 self.sectionalizeBlinks(self.allBlinksArray, pagination: false)
